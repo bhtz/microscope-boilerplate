@@ -1,0 +1,41 @@
+version: "3.6"
+services:
+
+  postgres:
+    image: postgres:12
+    container_name: mcsp_database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ../init.sql:/docker-entrypoint-initdb.d/init.sql
+      - boilerplate_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+      
+  keycloak:
+    image: mihaibob/keycloak:18.0.2-legacy
+    container_name: mcsp_identity
+    environment:
+      # KEYCLOAK_IMPORT: tmp/realm-export.json
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_SCHEMA: mcsp_identity
+      DB_PASSWORD: root
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: microscope
+      # volumes:
+      #   - ../../IAM/Keycloak/realm-export.json:/tmp/realm-export.json
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    # entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
+    ports:
+      - 8083:8080
+    depends_on:
+      - postgres
+
+volumes:
+  boilerplate_data:

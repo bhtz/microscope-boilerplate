@@ -1,0 +1,14 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Components.Authorization
+
+<MudNavMenu Bordered="true">
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
+    <MudNavLink Href="/todolist" Icon="@Icons.Outlined.List">Todolist</MudNavLink>
+    <MudNavLink Href="/infos" Icon="@Icons.Outlined.Info">Infos</MudNavLink>
+    <MudNavLink Href="http://localhost:5173/" Target="_blank" Icon="@Icons.Outlined.Book">Docs</MudNavLink>
+</MudNavMenu>
+
+@code
+{
+    [Parameter] public bool IsDrawerOpen { get; set; }
+}

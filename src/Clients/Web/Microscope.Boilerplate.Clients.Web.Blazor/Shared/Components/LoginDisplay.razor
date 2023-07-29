@@ -1,0 +1,55 @@
+﻿@namespace Microscope.Boilerplate.Clients.Web.Blazor.Shared.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Configuration
+
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IConfiguration Configuration
+@inject IJSRuntime jsRuntime
+
+<AuthorizeView>
+    <Authorized>
+        <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+            <ActivatorContent>
+                <UserAvatar Size="Size.Small" Color="@AvatarColor" Email="@context.User.Claims.FirstOrDefault(x => x.Type == "email")?.Value"></UserAvatar>
+            </ActivatorContent>
+            <ChildContent>
+                <PersonCard Name="@context.User.Identity.Name" Role="@context.User.Claims.FirstOrDefault(x => x.Type == "roles")?.Value" Class="mt-n2" />
+                <MudDivider Class="mb-2" />
+                <MudListItem Text="Account" Icon="@Icons.Filled.ManageAccounts" @onclick="OpenAccount" />
+                <MudListItem Text="Logout" Icon="@Icons.Material.Outlined.Login" @onclick="BeginSignOut" />
+            </ChildContent>
+        </MudMenu>
+    </Authorized>
+    <NotAuthorized>
+        <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" OnClick="BeginSignIn" />
+    </NotAuthorized>
+</AuthorizeView>
+
+@code{
+    private string AccountUrl { get; set; }
+    private Color AvatarColor { get; set; } = Color.Dark;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AccountUrl = Configuration["OIDC:master:Authority"] + "account";
+    }
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
+    }
+
+    private void BeginSignIn(MouseEventArgs args)
+    {
+        Navigation.NavigateTo("authentication/login");
+    }
+
+    private async void OpenAccount()
+    {
+        await jsRuntime.InvokeVoidAsync("open", AccountUrl, "_blank");
+    }
+}

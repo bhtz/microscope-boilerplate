@@ -1,0 +1,43 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}
+
+type Mutation {
+  createTodoList(command: CreateTodoListCommandInput!): UUID!
+}
+
+type Query {
+  healthCheck: String!
+  features: [KeyValuePairOfStringAndBoolean!]!
+  todolists(query: GetTodoListQueryInput!): [TodoListQueryResult!]!
+}
+
+input CreateTodoListCommandInput {
+  name: String!
+}
+
+scalar UUID
+
+type KeyValuePairOfStringAndBoolean {
+  key: String!
+  value: Boolean!
+}
+
+type TodoListQueryResult {
+  id: UUID!
+  name: String!
+}
+
+input GetTodoListQueryInput {
+  search: String!
+}

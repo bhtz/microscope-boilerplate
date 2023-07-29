@@ -1,0 +1,15 @@
+namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
+
+public static class AuthorizationConfiguration
+{
+    public static IServiceCollection AddAuthorizationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddAuthorization(options =>
+        {
+            // if jwt has specific claims for roles
+            // options.AddPolicy("Administrator", policy => policy.RequireClaim("permissions", "administrator"));
+        });
+
+        return services;
+    }
+}

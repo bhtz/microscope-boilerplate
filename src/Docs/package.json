@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "mermaid": "^10.2.4",
+    "vitepress": "^1.0.0-beta.5",
+    "vitepress-plugin-mermaid": "^2.0.13"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "docs:export-pdf": "press-export-pdf export src --config .vitepress/vitepress-pdf.config.ts"
+  },
+  "dependencies": {
+    "markdown-it-task-lists": "^2.1.1"
+  }
+}

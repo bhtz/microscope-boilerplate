@@ -1,0 +1,63 @@
+﻿@using MudBlazor
+@using Microscope.Boilerplate.Clients.Web.Blazor.Settings
+@using Microscope.Boilerplate.Clients.Web.Blazor.Shared.Components
+@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="_currentTheme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Color="Color.Primary" Fixed="false" Dense="true">
+        <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="ToggleDrawer" />
+        <MudText>Microscope</MudText>
+        <MudSpacer/>
+        <LanguageSelector />
+        <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="ToggleTheme"/>
+        <MudIconButton Href="https://github.com/bhtz/microscope" Target="_blank" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"/>
+        <UpdateAvailableDetector />
+        <LoginDisplay></LoginDisplay>
+    </MudAppBar>
+    
+    <MudDrawer @bind-Open="DrawerOpen" Elevation="25" ClipMode="DrawerClipMode.Never" Variant="DrawerVariant.Mini" MiniWidth="60px">
+        <NavMenu IsDrawerOpen="DrawerOpen"/>
+    </MudDrawer>
+    
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    
+    MudTheme _currentTheme = Theme.DefaultTheme;
+    public bool IsDarkMode { get; set; } = false;
+    public bool DrawerOpen { get; set; } = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _currentTheme = await _preferenceService.GetCurrentThemeAsync();
+        DrawerOpen = await _preferenceService.GetDrawerPreferenceAsync();
+    }
+
+    async Task ToggleTheme()
+    {
+        bool isDarkMode = await _preferenceService.ToggleDarkModeAsync();
+        if (isDarkMode)
+        {
+            _currentTheme = Theme.DefaultTheme;
+        }
+        else
+        {
+            _currentTheme = Theme.DarkTheme;
+        }
+    }
+    
+    async void ToggleDrawer()
+    {
+        DrawerOpen = !DrawerOpen;
+        await _preferenceService.ToggleDrawerAsync();
+    }
+}
