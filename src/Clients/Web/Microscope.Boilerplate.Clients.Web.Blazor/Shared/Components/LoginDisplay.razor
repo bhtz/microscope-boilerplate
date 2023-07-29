@@ -13,7 +13,7 @@
     <Authorized>
         <MudMenu Direction="Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
             <ActivatorContent>
-                <UserAvatar Size="Size.Small" Color="@AvatarColor" Email="@context.User.Claims.FirstOrDefault(x => x.Type == "email")?.Value"></UserAvatar>
+                <UserAvatar Size="Size.Small" Elevation="0" Color="Color.Primary" Email="@context.User.Claims.FirstOrDefault(x => x.Type == "email")?.Value"></UserAvatar>
             </ActivatorContent>
             <ChildContent>
                 <PersonCard Name="@context.User.Identity.Name" Role="@context.User.Claims.FirstOrDefault(x => x.Type == "roles")?.Value" Class="mt-n2" />
@@ -30,7 +30,6 @@
 
 @code{
     private string AccountUrl { get; set; }
-    private Color AvatarColor { get; set; } = Color.Dark;
 
     protected override async Task OnInitializedAsync()
     {

@@ -49,7 +49,7 @@ export default withMermaid(
         ],
     
         socialLinks: [
-          { icon: 'github', link: 'https://github.com/bhtz/microscope' }
+          { icon: 'github', link: 'https://github.com/bhtz/microscope-boilerplate' }
         ]
       },
     

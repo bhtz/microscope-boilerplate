@@ -14,7 +14,7 @@
         <MudSpacer/>
         <LanguageSelector />
         <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="ToggleTheme"/>
-        <MudIconButton Href="https://github.com/bhtz/microscope" Target="_blank" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"/>
+        <MudIconButton Href="https://github.com/bhtz/microscope-boilerplate" Target="_blank" Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit"/>
         <UpdateAvailableDetector />
         <LoginDisplay></LoginDisplay>
     </MudAppBar>
@@ -33,7 +33,6 @@
 @code {
     
     MudTheme _currentTheme = Theme.DefaultTheme;
-    public bool IsDarkMode { get; set; } = false;
     public bool DrawerOpen { get; set; } = true;
 
     protected override async Task OnInitializedAsync()

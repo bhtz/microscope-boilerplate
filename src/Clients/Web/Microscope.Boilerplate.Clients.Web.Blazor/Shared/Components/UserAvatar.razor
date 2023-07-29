@@ -1,4 +1,4 @@
-<MudAvatar Elevation="10" Size="@Size" Color="@Color" Class="mr-1">
+<MudAvatar Elevation="@Elevation" Size="@Size" Color="@Color" Class="mr-1">
     @Shortcut
 </MudAvatar>
 
@@ -6,6 +6,9 @@
 
     [Parameter]
     public string Email { get; set; }
+
+    [Parameter]
+    public int Elevation { get; set; } = 0;
 
     [Parameter]
     public Size Size { get; set; }
