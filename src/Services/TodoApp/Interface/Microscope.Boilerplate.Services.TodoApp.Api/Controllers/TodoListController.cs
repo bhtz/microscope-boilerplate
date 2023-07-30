@@ -24,7 +24,7 @@ public class TodoListController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TodoListQueryResult>>> GetTodoLists([FromQuery] string search)
     {
-        var res = await _mediator.Send(new GetTodoListQuery(search));
+        var res = await _mediator.Send(new GetTodoListQuery());
         return Ok(res);
     }
     

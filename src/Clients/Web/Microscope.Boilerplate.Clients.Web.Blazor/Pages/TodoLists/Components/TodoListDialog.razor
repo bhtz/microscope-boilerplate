@@ -1,0 +1,56 @@
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<TodoListDialog> Loc
+
+<EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
+    <MudDialog>
+        <TitleContent>@Loc["Title"]</TitleContent>
+        <DialogContent>
+            <DataAnnotationsValidator />
+
+            <MudTextField Variant="Variant.Filled" T="string" Label="Name" @bind-Value="ViewModel.Name" For="@(() => ViewModel.Name)" />
+
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@Loc["Button_Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Success" Disabled="@IsDisabled">@Loc["Button_Save"]</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter] public TodoListViewModel ViewModel { get; set; } = new TodoListViewModel();
+    [Parameter] public Guid Id { get; set; }
+
+    void Cancel() => MudDialog.Close(DialogResult.Cancel());
+    private bool Loading { get; set; } = false;
+
+    private bool IsDisabled => Loading;
+
+    public async Task OnValidSubmit()
+    {
+        Loading = true;
+
+        var res = await _todoAppClient.CreateTodoList.ExecuteAsync(ViewModel.Name);
+
+        if (res.IsSuccessResult())
+        {
+            var id = res.Data.CreateTodoList;
+            _snackBar.Add("Saved", Severity.Success);
+            MudDialog.Close(DialogResult.Ok(id));
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+        }
+
+        Loading = false;
+    }
+
+    public class TodoListViewModel
+    {
+        [Required]
+        public string Name { get; set; }
+    }
+}

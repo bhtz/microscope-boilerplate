@@ -6,7 +6,7 @@ export default withMermaid(
     defineConfig({
       title: "Microscope boilerplate",
       description: "Documentation",
-      srcDir: "./src",
+      srcDir: "./resources",
       themeConfig: {
         search: {
           provider: 'local'

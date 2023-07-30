@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microscope.Boilerplate.Clients.Web.Blazor;
 using Microscope.Boilerplate.Clients.Web.Blazor.Extensions;
 using Microscope.Boilerplate.Clients.Web.Blazor.Services;
+using MudBlazor;
 using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -31,7 +32,17 @@ builder.Services.AddTodoAppClient()
         clientBuilder => clientBuilder.AddHttpMessageHandler<AuthenticationHeaderHandler>()
     );
 
-builder.Services.AddMudServices();
+builder.Services.AddMudServices(config =>
+{
+    config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;
+    config.SnackbarConfiguration.PreventDuplicates = false;
+    config.SnackbarConfiguration.NewestOnTop = false;
+    config.SnackbarConfiguration.ShowCloseIcon = true;
+    config.SnackbarConfiguration.VisibleStateDuration = 3000;
+    config.SnackbarConfiguration.HideTransitionDuration = 100;
+    config.SnackbarConfiguration.ShowTransitionDuration = 100;
+    config.SnackbarConfiguration.SnackbarVariant = Variant.Outlined;
+});
 
 builder.Services.AddOidcAuthentication(options =>
 {

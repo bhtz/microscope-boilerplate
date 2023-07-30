@@ -1,0 +1,6 @@
+query GetTodoListById ($id: UUID!){
+    todolistById(id: $id) {
+        id
+        name
+    }
+}

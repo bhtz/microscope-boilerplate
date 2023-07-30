@@ -7,9 +7,15 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.GraphQL.Queries;
 [Authorize]
 public partial class Query
 {
-    public async Task<IEnumerable<TodoListQueryResult>> GetTodolists([Service]IMediator mediator, GetTodoListQuery query)
+    public async Task<IEnumerable<TodoListQueryResult>> GetTodolists([Service]IMediator mediator, string? search)
     {
-        var res = await mediator.Send(query);
+        var res = await mediator.Send(new GetTodoListQuery());
+        return res;
+    }
+    
+    public async Task<TodoListByIdQueryResult> GetTodolistById([Service]IMediator mediator, Guid id)
+    {
+        var res = await mediator.Send(new GetTodoListByIdQuery(id));
         return res;
     }
 }

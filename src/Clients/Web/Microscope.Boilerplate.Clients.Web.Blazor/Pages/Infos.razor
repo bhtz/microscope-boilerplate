@@ -9,11 +9,10 @@
         <p role="status">Status: @result.HealthCheck</p>
     </ChildContent>
     <ErrorContent>
-        Something went wrong ...<br />
         @result.First().Message
     </ErrorContent>
     <LoadingContent>
-        Checking status
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
     </LoadingContent>
 </UseGetHealthCheck>
 <br>
@@ -30,10 +29,9 @@
         </ul>
     </ChildContent>
     <ErrorContent>
-        Something went wrong ...<br />
         @result.First().Message
     </ErrorContent>
     <LoadingContent>
-        Fetching features
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
     </LoadingContent>
 </UseGetFeatures>

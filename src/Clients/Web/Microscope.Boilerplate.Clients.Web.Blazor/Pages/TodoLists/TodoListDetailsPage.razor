@@ -1,0 +1,27 @@
+@page "/TodoList/{Id:guid}"
+
+<UseGetTodoListById Id="Id" Context="result">
+    <ChildContent>
+        <MudToolBar>
+            <MudText Typo="Typo.h6">@result.TodolistById.Name</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoItemDialog" />
+        </MudToolBar>
+    </ChildContent>
+    <ErrorContent>
+        @result.First().Message
+    </ErrorContent>
+    <LoadingContent>
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
+    </LoadingContent>
+</UseGetTodoListById>
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+
+    private async void OpenTodoItemDialog()
+    {
+        _snackBar.Add("test", Severity.Info);
+    }
+
+}

@@ -10,5 +10,8 @@ public class TodoListMapping : Profile
     {
         CreateMap<TodoList, TodoListQueryResult>()
             .ReverseMap();
+        
+        CreateMap<TodoList, TodoListByIdQueryResult>()
+            .ReverseMap();
     }
 }

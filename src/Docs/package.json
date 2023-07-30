@@ -5,12 +5,17 @@
     "vitepress-plugin-mermaid": "^2.0.13"
   },
   "scripts": {
-    "docs:dev": "vitepress dev",
+    "docs:dev": "vitepress dev --port 5000",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "docs:export-pdf": "press-export-pdf export src --config .vitepress/vitepress-pdf.config.ts"
+    "docs:export-pdf": "press-export-pdf export src --config .vitepress/vitepress-pdf.config.ts",
+    "slides:dev": "vite ./slides --port 5001",
+    "slides:build": "vite build ./slides",
+    "slides:serve": "vite preview ./slides"
   },
   "dependencies": {
-    "markdown-it-task-lists": "^2.1.1"
+    "markdown-it-task-lists": "^2.1.1",
+    "reveal.js": "^4.5.0",
+    "vite": "^4.4.7"
   }
 }

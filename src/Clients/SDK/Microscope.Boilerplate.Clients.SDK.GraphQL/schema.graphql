@@ -19,7 +19,8 @@ type Mutation {
 type Query {
   healthCheck: String!
   features: [KeyValuePairOfStringAndBoolean!]!
-  todolists(query: GetTodoListQueryInput!): [TodoListQueryResult!]!
+  todolists(search: String): [TodoListQueryResult!]!
+  todolistById(id: UUID!): TodoListByIdQueryResult!
 }
 
 input CreateTodoListCommandInput {
@@ -38,6 +39,7 @@ type TodoListQueryResult {
   name: String!
 }
 
-input GetTodoListQueryInput {
-  search: String!
+type TodoListByIdQueryResult {
+  id: UUID!
+  name: String!
 }
