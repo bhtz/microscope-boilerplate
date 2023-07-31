@@ -23,10 +23,7 @@ public class GetTodoListByIdQueryHandler : IRequestHandler<GetTodoListByIdQuery,
         var userId = _identityService.GetUserId();
         var tenantId = _identityService.GetTenantId();
 
-        // var todoLists = await _todoListRepository
-        //     .Where(x => x.TenantId == tenantId && x.CreatedBy == userId);
-
-        var todoList = await _todoListRepository.GetByIdAsync(request.Id);
+        var todoList = await _todoListRepository.GetByIdAsync(tenantId, request.Id);
 
         return _mapper.Map<TodoListByIdQueryResult>(todoList);
     }

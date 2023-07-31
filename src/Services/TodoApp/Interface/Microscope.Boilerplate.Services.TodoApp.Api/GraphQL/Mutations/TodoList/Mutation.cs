@@ -9,4 +9,24 @@ public partial class Mutation
     {
         return await mediator.Send(command);
     }
+    
+    public async Task<Guid> AddTodoItem([Service]IMediator mediator, CreateTodoItemCommand command)
+    {
+        return await mediator.Send(command);
+    }
+    
+    public async Task<bool> ToggleTodoItem([Service]IMediator mediator, ToggleTodoItemCommand command)
+    {
+        return await mediator.Send(command);
+    }
+    
+    public async Task<bool> DeleteTodoItem([Service]IMediator mediator, DeleteTodoItemCommand command)
+    {
+        return await mediator.Send(command);
+    }
+    
+    public async Task<bool> DeleteTodoList([Service]IMediator mediator, DeleteTodoListCommand command)
+    {
+        return await mediator.Send(command);
+    }
 }

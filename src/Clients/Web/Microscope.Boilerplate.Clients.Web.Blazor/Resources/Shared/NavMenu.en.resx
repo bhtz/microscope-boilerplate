@@ -18,4 +18,8 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <!-- <data name="Scoring_COMPLETIONRATE" xml:space="preserve"> -->
+    <!--     <value>The score of a "COMPLETION RATE" theme is the percentage of steps validated in an audit for all areas and all themes.</value> -->
+    <!--     <comment/> -->
+    <!-- </data> -->
 </root>

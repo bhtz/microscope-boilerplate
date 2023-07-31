@@ -21,6 +21,6 @@ public record TodoListQueryResult
 {
     public Guid Id { get; init; }
     public string Name { get; init; }
-    // Todo: add collections
+    public bool IsCompleted { get; init; }
 }
 

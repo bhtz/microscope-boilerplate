@@ -14,6 +14,10 @@ enum ApplyPolicy {
 
 type Mutation {
   createTodoList(command: CreateTodoListCommandInput!): UUID!
+  addTodoItem(command: CreateTodoItemCommandInput!): UUID!
+  toggleTodoItem(command: ToggleTodoItemCommandInput!): Boolean!
+  deleteTodoItem(command: DeleteTodoItemCommandInput!): Boolean!
+  deleteTodoList(command: DeleteTodoListCommandInput!): Boolean!
 }
 
 type Query {
@@ -29,6 +33,25 @@ input CreateTodoListCommandInput {
 
 scalar UUID
 
+input CreateTodoItemCommandInput {
+  todoListId: UUID!
+  label: String!
+}
+
+input ToggleTodoItemCommandInput {
+  todoListId: UUID!
+  todoItemId: UUID!
+}
+
+input DeleteTodoItemCommandInput {
+  todoListId: UUID!
+  todoItemId: UUID!
+}
+
+input DeleteTodoListCommandInput {
+  todoListId: UUID!
+}
+
 type KeyValuePairOfStringAndBoolean {
   key: String!
   value: Boolean!
@@ -37,9 +60,18 @@ type KeyValuePairOfStringAndBoolean {
 type TodoListQueryResult {
   id: UUID!
   name: String!
+  isCompleted: Boolean!
 }
 
 type TodoListByIdQueryResult {
   id: UUID!
   name: String!
+  isCompleted: Boolean!
+  todoItems: [TodoItemResult!]!
+}
+
+type TodoItemResult {
+  id: UUID!
+  label: String!
+  isCompleted: Boolean!
 }

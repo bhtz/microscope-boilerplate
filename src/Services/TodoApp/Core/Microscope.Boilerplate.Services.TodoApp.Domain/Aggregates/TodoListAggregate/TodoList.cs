@@ -13,10 +13,7 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
 
     public bool IsCompleted
     {
-        get
-        {
-            return _todoItems.All(x => x.IsCompleted);
-        }
+        get { return _todoItems.Count() is not 0 && _todoItems.All(x => x.IsCompleted); }
     }
 
     private readonly List<TodoItem> _todoItems;

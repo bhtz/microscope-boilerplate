@@ -1,12 +1,50 @@
 @page "/TodoList/{Id:guid}"
+@using Microscope.Boilerplate.Clients.Web.Blazor.Pages.TodoLists.Components
+@using System.ComponentModel.DataAnnotations
+@using System.Reflection
 
 <UseGetTodoListById Id="Id" Context="result">
     <ChildContent>
         <MudToolBar>
-            <MudText Typo="Typo.h6">@result.TodolistById.Name</MudText>
+            <MudText Typo="Typo.h6">
+                @if (result.TodolistById.IsCompleted)
+                {
+                    <strike>@result.TodolistById.Name</strike>
+                }
+                else
+                {
+                    @result.TodolistById.Name
+                }
+            </MudText>
             <MudSpacer />
-            <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoItemDialog" />
+            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog" />
         </MudToolBar>
+        
+        <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <MudTextField Variant="Variant.Filled" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)" />
+        </EditForm>
+        
+        <MudList Clickable="true">
+            @foreach (var item in result.TodolistById.TodoItems.OrderBy(x => x.Label))
+            {
+                <MudListItem OnClick="() => ToggleTodoItem(item.Id)" IconColor="Color.Error">
+                    <MudText>
+                        <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Error"></MudIconButton>
+                        @if (item.IsCompleted)
+                        {
+                            <strike>@item.Label</strike>    
+                        }
+                        else
+                        {
+                            @item.Label
+                        }
+                        
+                    </MudText>
+                </MudListItem>
+                <MudDivider/>                
+            }
+        </MudList>
     </ChildContent>
     <ErrorContent>
         @result.First().Message
@@ -18,10 +56,94 @@
 
 @code {
     [Parameter] public Guid Id { get; set; }
+    private bool Loading { get; set; } = false;
+    public TodoItemViewModel ViewModel { get; set; } = new TodoItemViewModel();
 
-    private async void OpenTodoItemDialog()
+    public async Task OnValidSubmit()
     {
-        _snackBar.Add("test", Severity.Info);
+        Loading = true;
+
+        var res = await _todoAppClient.AddTodoItem.ExecuteAsync(ViewModel.Label, Id);
+        
+        if (res.IsSuccessResult())
+        {
+            var id = res.Data.AddTodoItem;
+            _snackBar.Add("Saved", Severity.Success);
+            ViewModel.Label = string.Empty;
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+        }
+        
+        Loading = false;
+    }
+    
+    public async Task DeleteTodoItem(Guid todoItemId)
+    {
+        Loading = true;
+
+        var res = await _todoAppClient.DeleteTodoItem.ExecuteAsync(todoItemId, Id);
+        
+        if (res.IsSuccessResult() && res.Data.DeleteTodoItem)
+        {
+            _snackBar.Add("Saved", Severity.Success);
+            ViewModel.Label = string.Empty;
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+        }
+        
+        Loading = false;
+    }
+    
+    public async Task ToggleTodoItem(Guid todoItemId)
+    {
+        Loading = true;
+
+        var res = await _todoAppClient.ToggleTodoItem.ExecuteAsync(todoItemId, Id);
+    
+        if (res.IsSuccessResult() && res.Data.ToggleTodoItem)
+        {
+            _snackBar.Add("Saved", Severity.Success);
+            ViewModel.Label = string.Empty;
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+        }
+        
+        Loading = false;
+    }
+    
+    private async void OpenTodoListDialog()
+    {
+        var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true, DisableBackdropClick = true };
+        var parameters = new DialogParameters(){};
+        
+        var vm = new TodoListDialog.TodoListViewModel
+        {
+            Name = "test"
+        };
+
+        parameters.Add("ViewModel", vm);
+
+        var dialog = _dialogService.Show<TodoListDialog>(null, parameters, options);
+
+        var result = await dialog.Result;
+
+        if (!result.Cancelled)
+        {
+            var id = (Guid)result.Data;
+            _navigationManager.NavigateTo($"/TodoList/{id}");
+        }
+    }
+    
+    public class TodoItemViewModel
+    {
+        [Required]
+        public string Label { get; set; }
     }
 
 }

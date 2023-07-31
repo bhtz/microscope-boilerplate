@@ -11,17 +11,19 @@ public class TodoListRepository : EFRepositoryBase<TodoApp.Domain.Aggregates.Tod
     {
     }
 
-    public async Task<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList> GetByIdAsync(string tenantId, Guid id)
+    public async Task<Domain.Aggregates.TodoListAggregate.TodoList> GetByIdAsync(string tenantId, Guid id)
     {
-        return await this.DbSet.SingleOrDefaultAsync(x => x.TenantId == tenantId && x.Id == id);
+        return await this.DbSet
+            .Include(x => x.TodoItems)
+            .SingleOrDefaultAsync(x => x.TenantId == tenantId && x.Id == id);
     }
 
-    public async Task<IEnumerable<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList>> GetAllByTenantAsync(string tenantId, Expression<Func<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList, bool>> filters, bool hydrated)
+    public async Task<IEnumerable<Domain.Aggregates.TodoListAggregate.TodoList>> GetAllByTenantAsync(string tenantId, Expression<Func<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList, bool>> filters, bool hydrated)
     {
         return await this.DbSet.Where(x => x.TenantId == tenantId).ToListAsync();
     }
 
-    public async Task<IEnumerable<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList>> GetCreatedBy(string tenantId, Guid userId)
+    public async Task<IEnumerable<Domain.Aggregates.TodoListAggregate.TodoList>> GetCreatedBy(string tenantId, Guid userId)
     {
         return await this.DbSet.Where(x => x.TenantId == tenantId && x.CreatedBy == userId).ToListAsync();
     }

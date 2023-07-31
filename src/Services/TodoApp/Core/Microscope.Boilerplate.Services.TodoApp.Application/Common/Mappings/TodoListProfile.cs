@@ -4,11 +4,14 @@ using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregat
 
 namespace Microscope.Boilerplate.Services.TodoApp.Application.Common.Mappings;
 
-public class TodoListMapping : Profile
+public class TodoListProfile : Profile
 {
-    public TodoListMapping()
+    public TodoListProfile()
     {
         CreateMap<TodoList, TodoListQueryResult>()
+            .ForMember(
+                destination => destination.IsCompleted,
+                opt => opt.MapFrom(x => x.IsCompleted) )
             .ReverseMap();
         
         CreateMap<TodoList, TodoListByIdQueryResult>()
