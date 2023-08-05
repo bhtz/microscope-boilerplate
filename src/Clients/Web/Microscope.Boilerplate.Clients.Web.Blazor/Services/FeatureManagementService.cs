@@ -1,27 +1,25 @@
 using System.Net.Http.Json;
+using Microscope.Boilerplate.Clients.SDK.GraphQL;
+using StrawberryShake;
 
 namespace Microscope.Boilerplate.Clients.Web.Blazor.Services;
 
 public class FeatureManagementService
 {
-    public FeaturesResult Features { get; set; }
+    private readonly ITodoAppClient _client;
+    private IEnumerable<IGetFeatures_Features> Features { get; set; }
     
-    private HttpClient _httpClient;
-    
-    public FeatureManagementService(HttpClient httpClient)
+    public FeatureManagementService(ITodoAppClient client)
     {
-        _httpClient = httpClient;
+        _client = client;
     }
     
     public async Task LoadFeatureManagement()
     {
-        var res = await _httpClient.GetAsync("/api/Features");
-
-        if (res.IsSuccessStatusCode)
+        var featuresResult = await _client.GetFeatures.ExecuteAsync();
+        if (featuresResult.IsSuccessResult())
         {
-            Features = await res.Content.ReadFromJsonAsync<FeaturesResult>();
+            Features = featuresResult.Data.Features;
         }
     }
-    
-    public record FeaturesResult(bool IaGeneration);
 }

@@ -36,6 +36,20 @@ services:
       - 8083:8080
     depends_on:
       - postgres
+        
+        
+  rabbitmq:
+    container_name: mcsp_bus
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      # "test: rabbitmq-diagnostics check_port_connectivity" does not work with masstransit/rabbitmq
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
 
 volumes:
   boilerplate_data:

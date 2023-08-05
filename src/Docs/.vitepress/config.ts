@@ -28,9 +28,11 @@ export default withMermaid(
           },
 
           {
-            text: 'Product Discovery',
+            text: 'Product & Tech Discovery',
             items: [
               { text: 'Discovery framing', link: '/Product/toc' },
+              { text: 'Event storming', link: '/Architecture/EventStorming/toc' },
+              { text: 'Bounded Context Canvas', link: '/Architecture/BoundedContexts/toc' },
             ]
           },
     
@@ -38,10 +40,8 @@ export default withMermaid(
             text: 'Architecture',
             items: [
               { text: 'Getting started', link: '/Architecture/getting-started' },
-              { text: 'Event storming', link: '/Architecture/EventStorming/toc' },
-              { text: 'Bounded Context Canvas', link: '/Architecture/BoundedContexts/toc' },
-              { text: 'Solution architecture', link: '/Architecture/architecture' },
-              { text: 'Architecture schema', link: '/Architecture/c4' },
+              { text: 'Solution structure', link: '/Architecture/solution-structure' },
+              { text: 'Architecture schema', link: '/Architecture/architecture' },
               { text: 'Technology matrix', link: '/Architecture/technologies' },
             ]
           },

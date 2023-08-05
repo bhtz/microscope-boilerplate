@@ -1,5 +1,12 @@
 # Product Engineering Organization
 
+## Squads
+
+* [Squad B2C](/Organization/Squads/squad-B2C)
+* [Squad B2B](/Organization/Squads/squad-B2B)
+* [Architecture](/Organization/Squads/squad-architecture)
+* [Management](/Organization/Squads/squad-management)
+
 ## Organization diagram
 
 ```mermaid
@@ -43,10 +50,3 @@ graph TD;
     ENGINEERING_MANAGER-->ENGINEER4;
     ENGINEERING_MANAGER-->ENGINEER5;
 ```
-
-## Squads
-
-* [Squad B2C](/Organization/Squads/squad-B2C)
-* [Squad B2B](/Organization/Squads/squad-B2B)
-* [Architecture](/Organization/Squads/squad-architecture)
-* [Management](/Organization/Squads/squad-management)

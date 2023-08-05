@@ -16,4 +16,8 @@
       </GraphQL>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Services\TodoApp\Core\Microscope.Boilerplate.Services.TodoApp.Application\Microscope.Boilerplate.Services.TodoApp.Application.csproj" />
+    </ItemGroup>
+
 </Project>

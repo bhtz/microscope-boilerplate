@@ -66,7 +66,7 @@ builder.Services
     .AddBlazoredLocalStorage()
     .AddLocalization(options => options.ResourcesPath = "Resources")
     .AddScoped<PreferenceService>()
-    .AddScoped<FeatureManagementService>();
+    .AddSingleton<FeatureManagementService>();
 
 var host = builder.Build();
 

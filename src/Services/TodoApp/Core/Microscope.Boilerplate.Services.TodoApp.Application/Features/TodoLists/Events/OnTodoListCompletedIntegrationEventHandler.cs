@@ -3,24 +3,25 @@ using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Events;
-using Microscope.SharedKernel;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Events;
 
-public class SendMailOnTodoListCompletedEventHandler : INotificationHandler<OnTodoListCompletedEvent>
+public class OnTodoListCompletedIntegrationEventHandler : INotificationHandler<OnTodoListCompletedEvent>
 {
-    private readonly IMailService _mailService;
+    private readonly IBusService _busService;
     private readonly IMapper _mapper;
-    
-    public SendMailOnTodoListCompletedEventHandler(IMailService mailService, IMapper mapper)
+
+    public OnTodoListCompletedIntegrationEventHandler(IBusService busService, IMapper mapper)
     {
-        _mailService = mailService;
+        _busService = busService;
         _mapper = mapper;
     }
-    
+
     public async Task Handle(OnTodoListCompletedEvent notification, CancellationToken cancellationToken)
     {
-        var dto = _mapper.Map<TodoListQueryResult>(notification.TodoList);
-        await _mailService.SendTodoListCompletedMail(notification.TodoList.CreatorMail, dto);
+        var dto = new OnTodoListCompletedEventRecord(notification.TodoList.Id, notification.CreatedAt);
+        await _busService.Publish<OnTodoListCompletedEventRecord>(dto);
     }
+
+    private record OnTodoListCompletedEventRecord(Guid TodoListId, DateTime CreatedAt);
 }

@@ -11,10 +11,8 @@
 ## 🎯 State transition
 
 ```mermaid
-
 flowchart LR
-Start --> Stop
-
+Created --> Completed
 ```
 
 ## 📈 Enforced invariant

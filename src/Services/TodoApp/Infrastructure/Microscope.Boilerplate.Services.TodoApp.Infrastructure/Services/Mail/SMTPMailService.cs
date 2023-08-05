@@ -12,7 +12,7 @@ public class SMTPMailService : IMailService
 
     public async Task<bool> SendTodoListCompletedMail(string To, object data)
     {
-        Console.WriteLine("Not implemented yet");
+        Console.WriteLine("SMTP mail adapter not implemented yet");
         return true;
     }
 }

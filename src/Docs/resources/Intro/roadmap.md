@@ -8,7 +8,8 @@ Initial setup of the boilerplate
 
 ## Template
 
-- [ ] Setup dotnet template
+- [x] Setup dotnet template
+- [ ] Make docs a choice
 
 ## Clients
 - [x] Setup mudblazor UI
@@ -18,8 +19,8 @@ Initial setup of the boilerplate
     - [x] Language support
 - [x] Setup PWA
 - [x] Setup Authentication
+- [x] Setup Feature management
 - [ ] Setup Globalization
-- [ ] Setup Feature management
 - [ ] BFF
     - [ ] blazor hosted & SSR
     - [x] reverse proxy APIs (YARP)
@@ -36,8 +37,9 @@ Initial setup of the boilerplate
     - [ ] Application
         - [x] Common behaviours
         - [x] Mappings
+        - [ ] App settings check
         - [ ] Feature
-            - [ ] Todolist features
+            - [x] Todolist features
                 - [x] Commands
                   - [x] Create todo list
                   - [x] Delete todo list
@@ -52,7 +54,8 @@ Initial setup of the boilerplate
                   - [x] Todolist created by policy requirement
                 - [x] Events
                   - [x] SendMailOnTodoListCompleted
-                  - [ ] OnTodoListCompleted integration event
+                  - [x] OnTodoListCompletedIntegrationEvent
+            - [ ] Upload sample
   - [ ] Infrastructure
     - [ ] Persistence
          - [x] Entity framework
@@ -60,14 +63,14 @@ Initial setup of the boilerplate
            - [x] EF Migration
          - [ ] MartenDB
     - [ ] External systems implementation
-        - [ ] Storage
-        - [ ] User
+        - [x] Storage
+        - [x] User
         - [ ] AI Prompting
         - [x] Mail
         - [ ] PDF
     - [ ] Bus
-        - [ ] MassTransit
-        - [ ] OpenTelemetry
+        - [x] MassTransit
+          - [ ] OpenTelemetry
 - [ ] Interface
     - [x] Setup GraphQL API
     - [x] Setup REST API
@@ -87,10 +90,10 @@ Initial setup of the boilerplate
     - [x] Architecture tests
 
 ### Storage (optional) ?
-- [ ] Azure blob storage
-- [ ] Minio
-- [ ] AWS S3
-- [ ] File system
+- [x] Azure blob storage
+- [x] Minio
+- [x] AWS S3
+- [x] File system
 
 ###  Workflow (optional)
 - [ ] Elsa core
@@ -108,7 +111,7 @@ Initial setup of the boilerplate
         - [x] postgres
         - [x] keycloak
           - [ ] import realms configuration
-        - [ ] Service Bus RabbitMQ
+        - [x] Service Bus RabbitMQ
         - [ ] Internal services
     - [ ] Azure biceps / ARM
     - [ ] K8S
