@@ -32,20 +32,48 @@
     {
         Loading = true;
 
-        var res = await _todoAppClient.CreateTodoList.ExecuteAsync(ViewModel.Name);
+        if (Id == Guid.Empty)
+        {
+            PerformCreate();
+        }
+        else
+        {
+            PerformUpdate();
+        }
+
+        Loading = false;
+    }
+
+    private async Task PerformUpdate()
+    {
+        var res = await _todoAppClient.UpdateTodoList.ExecuteAsync(Id, ViewModel.Name);
 
         if (res.IsSuccessResult())
         {
-            var id = res.Data.CreateTodoList;
-            _snackBar.Add("Saved", Severity.Success);
-            MudDialog.Close(DialogResult.Ok(id));
+            var isOk = res.Data.UpdateTodoList;
+            _snackBar.Add("Updated", Severity.Success);
+            MudDialog.Close(DialogResult.Ok(isOk));
         }
         else
         {
             _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
         }
+    }
+    
+    private async Task PerformCreate()
+    {
+        var res = await _todoAppClient.CreateTodoList.ExecuteAsync(ViewModel.Name);
 
-        Loading = false;
+        if (res.IsSuccessResult())
+        {
+            var isOK = res.Data.CreateTodoList;
+            _snackBar.Add("Saved", Severity.Success);
+            MudDialog.Close(DialogResult.Ok(isOK));
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+        }
     }
 
     public class TodoListViewModel

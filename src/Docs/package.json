@@ -5,11 +5,11 @@
     "vitepress-plugin-mermaid": "^2.0.13"
   },
   "scripts": {
-    "docs:dev": "vitepress dev --port 5000",
+    "docs:dev": "vitepress dev --port 9000",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "docs:export-pdf": "press-export-pdf export src --config .vitepress/vitepress-pdf.config.ts",
-    "slides:dev": "vite ./slides --port 5001",
+    "slides:dev": "vite ./slides --port 9001",
     "slides:build": "vite build ./slides",
     "slides:serve": "vite preview ./slides"
   },

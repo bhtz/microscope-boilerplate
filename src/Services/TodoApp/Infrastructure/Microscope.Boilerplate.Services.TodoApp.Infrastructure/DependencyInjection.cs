@@ -1,7 +1,9 @@
 using Microscope.Boilerplate.Services.TodoApp.Application;
+using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence.Repositories;
+using Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.Mail;
 using Microscope.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,7 @@ public static class DependencyInjection
     {
         services.AddTodoApplication();
         services.AddPersistenceAdapter(configuration);
+        services.AddMailAdapter(configuration);
         
         return services;
     }
@@ -67,6 +70,23 @@ public static class DependencyInjection
     
     public static IServiceCollection AddMailAdapter(this IServiceCollection services, IConfiguration configuration)
     {
+        string provider = configuration.GetValue<string>("Mail:Adapter");
+
+        switch (provider)
+        {
+            case "smtp":
+                services.AddScoped<IMailService, SMTPMailService>();
+                break;
+
+            case "sendgrid":
+                services.AddScoped<IMailService, SendGridMailService>();
+                break;
+
+            default:
+                services.AddScoped<IMailService, SMTPMailService>();
+                break;
+        }
+        
         return services;
     }
     

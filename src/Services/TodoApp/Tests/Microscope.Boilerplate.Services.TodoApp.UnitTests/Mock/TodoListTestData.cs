@@ -6,7 +6,7 @@ public static class TodoListMock
 {
     public static TodoList MockTodoList()
     {
-        var tl = TodoList.Create("test-tenant",Guid.NewGuid(), Guid.NewGuid(), "todolist test");
+        var tl = TodoList.Create("test-tenant",Guid.NewGuid(), Guid.NewGuid(), "heintz.benjamin@gmail.com", "todolist test");
         tl.AddTodoItem("Cook the lunch");
         tl.AddTodoItem("Clean the kitchen");
         tl.AddTodoItem("Cook the solution architecture");

@@ -5,6 +5,9 @@
 
 <UseGetTodoListById Id="Id" Context="result">
     <ChildContent>
+        @{
+            Data = result.TodolistById;
+        }
         <MudToolBar>
             <MudText Typo="Typo.h6">
                 @if (result.TodolistById.IsCompleted)
@@ -16,15 +19,15 @@
                     @result.TodolistById.Name
                 }
             </MudText>
-            <MudSpacer />
-            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog" />
+            <MudSpacer/>
+            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
         </MudToolBar>
-        
+
         <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
-            <DataAnnotationsValidator />
-            <MudTextField Variant="Variant.Filled" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)" />
+            <DataAnnotationsValidator/>
+            <MudTextField Variant="Variant.Filled" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
         </EditForm>
-        
+
         <MudList Clickable="true">
             @foreach (var item in result.TodolistById.TodoItems.OrderBy(x => x.Label))
             {
@@ -33,16 +36,16 @@
                         <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Error"></MudIconButton>
                         @if (item.IsCompleted)
                         {
-                            <strike>@item.Label</strike>    
+                            <strike>@item.Label</strike>
                         }
                         else
                         {
                             @item.Label
                         }
-                        
+
                     </MudText>
                 </MudListItem>
-                <MudDivider/>                
+                <MudDivider/>
             }
         </MudList>
     </ChildContent>
@@ -57,6 +60,7 @@
 @code {
     [Parameter] public Guid Id { get; set; }
     private bool Loading { get; set; } = false;
+    private IGetTodoListById_TodolistById Data { get; set; }
     public TodoItemViewModel ViewModel { get; set; } = new TodoItemViewModel();
 
     public async Task OnValidSubmit()
@@ -124,10 +128,11 @@
         
         var vm = new TodoListDialog.TodoListViewModel
         {
-            Name = "test"
+            Name = Data.Name
         };
 
         parameters.Add("ViewModel", vm);
+        parameters.Add("Id", Id);
 
         var dialog = _dialogService.Show<TodoListDialog>(null, parameters, options);
 
@@ -135,8 +140,8 @@
 
         if (!result.Cancelled)
         {
-            var id = (Guid)result.Data;
-            _navigationManager.NavigateTo($"/TodoList/{id}");
+            var id = (bool)result.Data;
+            StateHasChanged();
         }
     }
     

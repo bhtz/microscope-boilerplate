@@ -29,4 +29,9 @@ public partial class Mutation
     {
         return await mediator.Send(command);
     }
+    
+    public async Task<bool> UpdateTodoList([Service]IMediator mediator, UpdateTodoListCommand command)
+    {
+        return await mediator.Send(command);
+    }
 }

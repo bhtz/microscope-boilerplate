@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Features\TodoLists\Events\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Microscope.Boilerplate.Services.TodoApp.Domain\Microscope.Boilerplate.Services.TodoApp.Domain.csproj" />
     </ItemGroup>
 

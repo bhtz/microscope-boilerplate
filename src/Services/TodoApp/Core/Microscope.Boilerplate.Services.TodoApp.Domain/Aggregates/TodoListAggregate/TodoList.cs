@@ -27,11 +27,12 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         
     }
 
-    protected TodoList(string tenantId, Guid id, Guid userId, string name)
+    protected TodoList(string tenantId, Guid id, Guid userId, string creatorMail, string name)
     {
         Id = id;
         TenantId = tenantId;
         CreatedBy = userId;
+        CreatorMail = creatorMail;
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
         Name = name;
@@ -39,9 +40,20 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         _tags = new List<Tag>();
     }
 
-    public static TodoList Create(string tenantId, Guid id, Guid userId, string name)
+    public static TodoList Create(string tenantId, Guid id, Guid userId, string creatorMail, string name)
     {
-        return new TodoList(tenantId, id, userId, name);
+        return new TodoList(tenantId, id, userId, creatorMail, name);
+    }
+
+    public void Update(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new TodoListDomainException("todolist name cannot by null or empty");
+        }
+
+        Name = name;
+        UpdatedAt = DateTime.Now;
     }
 
     public Guid AddTodoItem(string label)
@@ -49,6 +61,7 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         var id = Guid.NewGuid();
         var item = TodoItem.Create(id, label, this);
         _todoItems.Add(item);
+        UpdatedAt = DateTime.Now;
         
         return id;
     }
@@ -61,21 +74,30 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         {
             throw new TodoListDomainException("Todo list item not found");
         }
-
+        
+        UpdatedAt = DateTime.Now;
+        
         _todoItems.Remove(item);
+
+        if (IsCompleted)
+        {
+            this.AddDomainEvent(new OnTodoListCompletedEvent(this));
+        }
     }
 
     public void AddTag(Tag tag)
     {
         if (_tags.Any(x => x.Equals(tag)))
             throw new DomainException("Duplicate label for todolist tags");
-
+        
         _tags.Add(tag);
+        UpdatedAt = DateTime.Now;
     }
 
     public void RemoveTag(Tag tag)
     {       
         _tags.Remove(tag);
+        UpdatedAt = DateTime.Now;
     }
      
     public void ToggleItem(Guid id)
@@ -88,26 +110,15 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         }
 
         if (item.IsCompleted)
-        {
             item.UnComplete();
-        }
         else
-        {
             item.Complete();
-            if (IsCompleted)
-            {
-                this.AddDomainEvent(new OnTodoListCompletedEvent(this));
-            }
-        }
-    }
-
-    public void CompleteAll()
-    {
-        foreach (var item in _todoItems)
+        
+        if (IsCompleted)
         {
-            item.Complete();
+            this.AddDomainEvent(new OnTodoListCompletedEvent(this));
         }
         
-        this.AddDomainEvent(new OnTodoListCompletedEvent(this));
+        UpdatedAt = DateTime.Now;
     }
 }

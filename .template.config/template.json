@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [ "DDD", "Blazor", "Clean architecture", "Docs" ],
+  "identity": "Microscope.Boilerplate",
+  "name": "Microscope boilerplate",
+  "shortName": "microscope_boilerplate",
+  "sourceName": "Microscope.Boilerplate"
+  }
+}

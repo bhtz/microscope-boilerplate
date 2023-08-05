@@ -1,4 +1,4 @@
-# Roadmap
+# Product Roadmap
 
 Microscope boilerplate - Opiniated solution boilerplate & guidelines for product engineering teams
 
@@ -20,6 +20,9 @@ Initial setup of the boilerplate
 - [x] Setup Authentication
 - [ ] Setup Globalization
 - [ ] Setup Feature management
+- [ ] BFF
+    - [ ] blazor hosted & SSR
+    - [x] reverse proxy APIs (YARP)
 
 ## Services
 ### TodoList 
@@ -32,13 +35,24 @@ Initial setup of the boilerplate
       - [x] Setup exceptions
     - [ ] Application
         - [x] Common behaviours
-        - [ ] Mappings
+        - [x] Mappings
         - [ ] Feature
             - [ ] Todolist features
-                - [ ] Commands
-                - [ ] Queries
-                - [ ] Policies
-                - [ ] Events
+                - [x] Commands
+                  - [x] Create todo list
+                  - [x] Delete todo list
+                  - [x] Update todo list
+                  - [x] Create todo item
+                  - [x] Delete todo item
+                  - [x] Toggle todo item
+                - [x] Queries
+                  - [x] Get all todo lists by user
+                  - [x] Get todo list by id
+                - [x] Policies
+                  - [x] Todolist created by policy requirement
+                - [x] Events
+                  - [x] SendMailOnTodoListCompleted
+                  - [ ] OnTodoListCompleted integration event
   - [ ] Infrastructure
     - [ ] Persistence
          - [x] Entity framework
@@ -49,9 +63,10 @@ Initial setup of the boilerplate
         - [ ] Storage
         - [ ] User
         - [ ] AI Prompting
-        - [ ] Mail
+        - [x] Mail
         - [ ] PDF
-    - [ ] Distributed tracing
+    - [ ] Bus
+        - [ ] MassTransit
         - [ ] OpenTelemetry
 - [ ] Interface
     - [x] Setup GraphQL API
@@ -62,7 +77,8 @@ Initial setup of the boilerplate
     - [x] Authorization
     - [x] HealthCheck
     - [x] Feature management
-    - [ ] SignalR websocket
+    - [ ] SignalR websocket use case
+    - [ ] OpenTelemetry
 - [ ] Tests
     - [x] Unit tests
         - [x] Setup Unit tests
@@ -87,41 +103,33 @@ Initial setup of the boilerplate
     - [x] use mediatr contract only
 
 ## Building blocks
-- [x] Reverse proxy
-    - [x] Setup YARP reverse proxy
 - [ ] IAC
     - [ ] docker-compose
         - [x] postgres
         - [x] keycloak
           - [ ] import realms configuration
+        - [ ] Service Bus RabbitMQ
         - [ ] Internal services
     - [ ] Azure biceps / ARM
     - [ ] K8S
 
 ## Docs
 - [x] Setup vitepress
-- [x] Enable task list markdown plugin
-- [x] Home page
-- [ ] Getting started
-    - [x] Roadmap page
-- [ ] Guidelines
-    - [ ] Discovery & delivery dual track
-    - [ ] Product & Tech Discovery
-        - [ ] FOCUSED product discovery 
-        - [ ] DDD Tech Discovery 
-    - [ ] Agile Delivery
-        - Agile guidelines
-        - Application lifecycle management
-- [ ] Boilerplate
-    - [ ] Architecture (C4)
-        - [ ] Clients
-        - [ ] Services
-        - [ ] Building blocks
-        - [ ] Docs
-        - [ ] Cross cutting
-    - [ ] Testing
-        - [ ] Unit tests
-        - [ ] Architecture tests
-        - [ ] Integration tests
-        - [ ] E2E tests
-    - [ ] Deploy
+  - [x] Mermaid
+  - [x] PDF export
+  - [x] Task list
+- [x] Setup revealjs slides
+
+-------------------------
+## Roadmap (sample)
+```mermaid
+gantt
+    title Product roadmap
+    dateFormat YYYY-MM-DD
+    section B2C
+        Feature 1          :a1, 2023-01-01, 30d
+        Feature 2    :after a1, 20d
+    section B2B
+        Feature 1 :2023-01-12, 12d
+        Feature 2    :24d
+```

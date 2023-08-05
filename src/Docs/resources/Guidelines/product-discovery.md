@@ -14,15 +14,32 @@
 
 ## Frame
 
->  Objectives of frame
+#### 🎯 Project ambition
 
-**Workshops & Tools** 
+> * What will make us say that the project will be a success?
+> * Specific indicator "The Target”
+> * Level to be reached for the "Ambition" indicator
+> * Current level of this indicator "The Situation”
+
+#### 💥 Damage Control
+
+> * The risk we are willing to take
+> * Indicator
+> * Level to be reached
+> * Current level
+
+#### ⏰ Time Box
+
+> * How long can we spend on the discovery ?
+
+#### Workshops & Tools
 * Vision-project connection
 * Reverse Brainstorm
 * Observation of metrics over time
 * Analysis of the history
 
-**Deliverables**
+#### Deliverables
+
 ![](https://blog.octo.com/wp-content/uploads/2022/08/project-ambition-1024x576.jpg)
 ![](https://www.product-frameworks.com/images/Product_Strategy_Canvas.jp2)
 

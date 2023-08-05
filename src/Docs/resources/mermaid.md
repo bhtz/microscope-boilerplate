@@ -69,3 +69,27 @@ journey
         Go downstairs: 5: Me
         Sit down: 5: Me
 ```
+
+## Event storming
+
+```mermaid
+graph TD;
+
+classDef aggregate fill:#fdfd9d
+classDef command fill:#45abef
+classDef readModel fill:#77dd77
+classDef event fill:#ffb853
+classDef policy fill:#c14bc0
+classDef external fill:#f8b1f5
+classDef actor fill:transparent
+
+ReadModel:::readModel --> Actor:::actor
+Actor:::actor --> Command:::command
+Command:::command --> Aggregate:::aggregate
+Command:::command --> ExternalSystem:::external
+Aggregate:::aggregate --> Event:::event
+ExternalSystem:::external --> Event:::event
+Event:::event --> Policy:::policy
+Event:::event --> ReadModel:::readModel
+Policy:::policy --> Command:::command
+```

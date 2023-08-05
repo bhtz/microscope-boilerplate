@@ -7,6 +7,7 @@ export default withMermaid(
       title: "Microscope boilerplate",
       description: "Documentation",
       srcDir: "./resources",
+      ignoreDeadLinks: true,
       themeConfig: {
         search: {
           provider: 'local'
@@ -21,18 +22,15 @@ export default withMermaid(
             text: 'Introduction',
             items: [
               { text: 'Introduction', link: '/Intro/introduction' },
+              { text: 'Presentation', link: '/Intro/slides' },
               { text: 'Roadmap', link: '/Intro/roadmap' }
             ]
           },
-            
+
           {
-            text: 'Guidelines',
+            text: 'Product Discovery',
             items: [
-              { text: 'Lean startup', link: '/Guidelines/lean-startup' },
-              { text: 'Discovery & delivery', link: '/Guidelines/discovery-delivery' },
-              { text: 'Product discovery', link: '/Guidelines/product-discovery' },
-              { text: 'DDD Modelling process', link: '/Guidelines/ddd-modelling-process.md' },
-              { text: 'Delivery process', link: '/Guidelines/delivery-process.md' }
+              { text: 'Discovery framing', link: '/Product/toc' },
             ]
           },
     
@@ -40,10 +38,36 @@ export default withMermaid(
             text: 'Architecture',
             items: [
               { text: 'Getting started', link: '/Architecture/getting-started' },
-              { text: 'Microservices oriented', link: '/Architecture/microservices' },
+              { text: 'Event storming', link: '/Architecture/EventStorming/toc' },
+              { text: 'Bounded Context Canvas', link: '/Architecture/BoundedContexts/toc' },
               { text: 'Solution architecture', link: '/Architecture/architecture' },
-              { text: 'Documentation', link: '/Architecture/getting-started' },
-              { text: 'Tests', link: '/Architecture/getting-started' },
+              { text: 'Architecture schema', link: '/Architecture/c4' },
+              { text: 'Technology matrix', link: '/Architecture/technologies' },
+            ]
+          },
+
+          {
+            text: 'Organization & Governance',
+            items: [
+              { text: 'Squads', link: '/Organization/Squads/toc' },
+              { text: 'Weekly meetings', link: '/Organization/Governance/Weekly/toc' },
+              { text: 'Architecture Decision Record', link: '/Organization/Governance/ADR/toc' },
+            ]
+          },
+
+          {
+            text: 'Guidelines',
+            items: [
+              { text: 'Lean startup', link: '/Guidelines/lean-startup' },
+              { text: 'Discovery & delivery', link: '/Guidelines/discovery-delivery' },
+              { text: 'Product discovery', link: '/Guidelines/product-discovery' },
+              { text: 'DDD Modelling process', link: '/Guidelines/ddd-modelling-process.md' },
+              { text: 'Microservices oriented', link: '/Guidelines/microservices' },
+              { text: 'Delivery process', link: '/Guidelines/delivery-process.md' },
+              { text: 'No estimate', link: '/Guidelines/no-estimate.md' },
+              { text: 'Well Architected Framework', link: '/Guidelines/waf.md' },
+              { text: 'Matrix management', link: '/Guidelines/matrix-management.md' },
+              { text: 'Career path', link: '/Guidelines/career-path.md' },
             ]
           },
         ],

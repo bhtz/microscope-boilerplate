@@ -20,14 +20,4 @@ public class TodoListTest
         
         Assert.Equal(4, count);
     }
-    
-    [Fact]
-    public void CompleteAll()
-    {
-        var todolist = TodoListMock.MockTodoList();
-        todolist.CompleteAll();
-        
-        Assert.True(todolist.IsCompleted);
-        Assert.NotEmpty(todolist.DomainEvents);
-    }
 }

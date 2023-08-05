@@ -25,9 +25,10 @@ public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListComman
     public async Task<Guid> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
     {
         var userId = _identityService.GetUserId();
+        var userMail = _identityService.GetUserMail();
         var tenantId = _identityService.GetTenantId();
 
-        var todolist = TodoList.Create(tenantId, Guid.NewGuid(), userId, request.Name);
+        var todolist = TodoList.Create(tenantId, Guid.NewGuid(), userId, userMail, request.Name);
 
         await _todoListRepository.AddAsync(todolist);
         await _unitOfWork.SaveChangesAndDispatchEventsAsync(cancellationToken);
