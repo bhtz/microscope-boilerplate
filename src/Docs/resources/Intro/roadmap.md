@@ -38,8 +38,8 @@ Initial setup of the boilerplate
         - [x] Common behaviours
         - [x] Mappings
         - [ ] App settings check
-        - [ ] Feature
-            - [x] Todolist features
+        - [ ] Features
+            - [x] Todolist
                 - [x] Commands
                   - [x] Create todo list
                   - [x] Delete todo list
@@ -55,7 +55,7 @@ Initial setup of the boilerplate
                 - [x] Events
                   - [x] SendMailOnTodoListCompleted
                   - [x] OnTodoListCompletedIntegrationEvent
-            - [ ] Upload sample
+            - [ ] Upload
   - [ ] Infrastructure
     - [ ] Persistence
          - [x] Entity framework
@@ -65,15 +65,15 @@ Initial setup of the boilerplate
     - [ ] External systems implementation
         - [x] Storage
         - [x] User
-        - [ ] AI Prompting
         - [x] Mail
+        - [ ] AI Prompting
         - [ ] PDF
     - [ ] Bus
         - [x] MassTransit
           - [ ] OpenTelemetry
 - [ ] Interface
-    - [x] Setup GraphQL API
-    - [x] Setup REST API
+    - [x] GraphQL API
+    - [ ] REST API
     - [x] Authentication
         - [x] OPENID JWT
         - [x] MASTER KEY

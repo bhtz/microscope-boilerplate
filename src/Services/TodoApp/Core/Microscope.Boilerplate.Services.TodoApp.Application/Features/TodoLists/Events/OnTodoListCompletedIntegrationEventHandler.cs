@@ -19,9 +19,9 @@ public class OnTodoListCompletedIntegrationEventHandler : INotificationHandler<O
 
     public async Task Handle(OnTodoListCompletedEvent notification, CancellationToken cancellationToken)
     {
-        var dto = new OnTodoListCompletedEventRecord(notification.TodoList.Id, notification.CreatedAt);
-        await _busService.Publish<OnTodoListCompletedEventRecord>(dto);
+        var dto = new OnTodoListCompletedIntegrationEvent(notification.TodoList.Id, notification.CreatedAt);
+        await _busService.Publish<OnTodoListCompletedIntegrationEvent>(dto);
     }
 
-    private record OnTodoListCompletedEventRecord(Guid TodoListId, DateTime CreatedAt);
+    public record OnTodoListCompletedIntegrationEvent(Guid TodoListId, DateTime CreatedAt);
 }
