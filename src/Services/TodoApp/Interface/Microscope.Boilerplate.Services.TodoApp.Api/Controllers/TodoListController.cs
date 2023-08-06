@@ -34,4 +34,59 @@ public class TodoListController : ControllerBase
         var id = await _mediator.Send(command);
         return Ok(id);
     }
+
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<ActionResult<bool>> UpdateTodoList([FromRoute]Guid id, UpdateTodoListCommand command)
+    {
+        if (id != command.TodoListId)
+        {
+            return BadRequest();
+        }
+        
+        return await _mediator.Send(command);
+    }
+    
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<ActionResult<bool>> DeleteTodoList([FromRoute]Guid id, [FromRoute]Guid itemId, [FromBody]DeleteTodoListCommand command)
+    {
+        if (id != command.TodoListId)
+        {
+            return BadRequest();
+        }
+        
+        return await _mediator.Send(command);
+    }
+    
+    [HttpPost]
+    [Route("{id}/items")]
+    public async Task<Guid> AddTodoItem(CreateTodoItemCommand command)
+    {
+        return await _mediator.Send(command);
+    }
+    
+    [HttpPut]
+    [Route("{id}/items/{itemId}")]
+    public async Task<ActionResult<bool>> ToggleTodoItem([FromRoute]Guid id, [FromRoute]Guid itemId, [FromBody]ToggleTodoItemCommand command)
+    {
+        if (id != command.TodoListId || itemId != command.TodoItemId)
+        {
+            return BadRequest();
+        }
+        
+        return await _mediator.Send(command);
+    }
+    
+    [HttpDelete]
+    [Route("{id}/items/{itemId}")]
+    public async Task<ActionResult<bool>> DeleteTodoItem([FromRoute]Guid id, [FromRoute]Guid itemId, [FromBody]DeleteTodoItemCommand command)
+    {
+        if (id != command.TodoListId || itemId != command.TodoItemId)
+        {
+            return BadRequest();
+        }
+        
+        return await _mediator.Send(command);
+    }
 }

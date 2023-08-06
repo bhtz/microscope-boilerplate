@@ -9,7 +9,7 @@ Initial setup of the boilerplate
 ## Template
 
 - [x] Setup dotnet template
-- [ ] Make docs a choice
+- [x] Make docs a choice
 
 ## Clients
 - [x] Setup mudblazor UI
@@ -73,7 +73,7 @@ Initial setup of the boilerplate
           - [ ] OpenTelemetry
 - [ ] Interface
     - [x] GraphQL API
-    - [ ] REST API
+    - [x] REST API
     - [x] Authentication
         - [x] OPENID JWT
         - [x] MASTER KEY
