@@ -15,10 +15,14 @@ git clone https://github.com/bhtz/microscope-boilerplate.git
 dotnet new install ./microscope-boilerplate
 ```
 
+## Create solution
+```console
+dotnet new microscope_boilerplate -n Acme.AwesomeProject
+```
+
 ## Build
 **Build solution** 
 ```console
-dotnet restore
 dotnet build
 dotnet publish
 ```
@@ -51,13 +55,13 @@ npm run slides:dev
 
 ## Solution
 
-**Set environment**
+### Environments
 ```console
 export ASPNETCORE_ENVIRONMENT=Development
 export ASPNETCORE_ENVIRONMENT=Production
 ```
 
-### EF Core migration
+### EF Core Tools
 
 **Add migration**
 ```console

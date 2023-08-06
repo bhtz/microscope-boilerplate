@@ -18,7 +18,7 @@ services:
     image: mihaibob/keycloak:18.0.2-legacy
     container_name: mcsp_identity
     environment:
-      # KEYCLOAK_IMPORT: tmp/realm-export.json
+      KEYCLOAK_IMPORT: tmp/realm-export.json
       DB_VENDOR: postgres
       DB_ADDR: postgres
       DB_DATABASE: postgres
@@ -27,8 +27,8 @@ services:
       DB_PASSWORD: root
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: microscope
-      # volumes:
-      #   - ./realm-export.json:/tmp/realm-export.json
+    volumes:
+      - ./realm-export.json:/tmp/realm-export.json
       # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
       #JDBC_PARAMS: "ssl=true"
     # entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]

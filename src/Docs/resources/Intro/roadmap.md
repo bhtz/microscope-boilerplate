@@ -80,6 +80,7 @@ Initial setup of the boilerplate
     - [x] Authorization
     - [x] HealthCheck
     - [x] Feature management
+    - [x] Auto migration option
     - [ ] SignalR websocket use case
     - [ ] OpenTelemetry
 - [ ] Tests
@@ -105,16 +106,15 @@ Initial setup of the boilerplate
 - [x] SharedKernel
     - [x] use mediatr contract only
 
-## Building blocks
-- [ ] IAC
-    - [ ] docker-compose
-        - [x] postgres
-        - [x] keycloak
-          - [ ] import realms configuration
-        - [x] Service Bus RabbitMQ
-        - [ ] Internal services
-    - [ ] Azure biceps / ARM
-    - [ ] K8S
+## IAC
+- [ ] docker-compose
+    - [x] postgres
+    - [x] keycloak
+      - [ ] import realms configuration - bug
+    - [x] Service Bus RabbitMQ
+    - [ ] Internal services
+- [ ] Azure biceps / ARM
+- [ ] K8S
 
 ## Docs
 - [x] Setup vitepress

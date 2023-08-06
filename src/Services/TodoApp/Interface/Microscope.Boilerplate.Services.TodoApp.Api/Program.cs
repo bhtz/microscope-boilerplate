@@ -23,7 +23,7 @@ builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddHealthCheckConfiguration(builder.Configuration);
 builder.Services.AddHttpClient();
 
-// authentication & authorization
+// Authentication & authorization
 builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddApiKeyAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddAuthorizationConfiguration(builder.Configuration);
@@ -31,9 +31,11 @@ builder.Services.AddAuthorizationConfiguration(builder.Configuration);
 var app = builder.Build();
 
 var isMigrationEnabled = builder.Configuration.GetValue<bool>("EnableMigration");
-
-if(isMigrationEnabled)
-    app.Services.GetRequiredService<TodoAppDbContext>().Migrate();
+if (isMigrationEnabled)
+{
+    using var scope = app.Services.CreateScope();
+    scope.ServiceProvider.GetRequiredService<TodoAppDbContext>().Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -53,11 +55,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapGraphQL();
-    // .RequireAuthorization(new AuthorizeAttribute
-    // {
-    //     AuthenticationSchemes = $"{JwtBearerDefaults.AuthenticationScheme},{ApiKeyDefaults.AuthenticationScheme}"
-    // })
-    // .AllowAnonymous();
 
 app.MapHealthChecks("/healthchecks");
 
