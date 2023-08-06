@@ -10,17 +10,9 @@
 git clone https://github.com/bhtz/microscope-boilerplate.git
 ```
 
-## install template
+## Install microscope boilerplate template
 ```console
 dotnet new install ./microscope-boilerplate
-```
-
-
-## Run solution
-**Not implemented yet**
-```console
-cd src/BuildingBlocks/IAC/Docker
-docker-compose up
 ```
 
 ## Build
@@ -28,6 +20,14 @@ docker-compose up
 ```console
 dotnet restore
 dotnet build
+dotnet publish
+```
+
+## Run solution
+**Not implemented yet**
+```console
+cd src/IAC
+docker-compose up
 ```
 
 ## Documentation
