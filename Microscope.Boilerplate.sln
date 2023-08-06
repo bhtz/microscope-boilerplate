@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.BuildingBlocks.ReverseProxy", "src\BuildingBlocks\ReverseProxy\Microscope.Boilerplate.BuildingBlocks.ReverseProxy\Microscope.Boilerplate.BuildingBlocks.ReverseProxy.csproj", "{17687194-C263-4981-9419-82F528A9D6A2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.CLI", "src\Clients\CLI\Microscope.Boilerplate.Clients.CLI\Microscope.Boilerplate.Clients.CLI.csproj", "{44200DE8-91F0-4F34-940D-A2F136DB17DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{95A9E4C9-790E-437A-8B79-3F345860078B}"
@@ -14,8 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4ABFC523-BA37-44EB-9D42-83A1D0EADA3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{AA344C80-5C8D-4F91-A1DA-A40EF3EC2E06}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReverseProxy", "ReverseProxy", "{D24B7BCC-07A2-4588-8C25-69C22343150C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.Web.Blazor", "src\Clients\Web\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj", "{7603B6F9-AF8A-4F22-A927-BED696CF4491}"
 EndProject
@@ -61,6 +57,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.SDK.Rest", "src\Clients\SDK\Microscope.Boilerplate.Clients.SDK.Rest\Microscope.Boilerplate.Clients.SDK.Rest.csproj", "{3E8DA948-8BF1-4D0D-82C1-9977EE1C9CDA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BFF", "BFF", "{40B2EBAC-1B97-4DE3-8A03-EA52C58C4814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.BFF", "src\Clients\BFF\Microscope.Boilerplate.Clients.BFF\Microscope.Boilerplate.Clients.BFF.csproj", "{A50F13F4-814E-4CC9-BC23-643E35BB7AC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,10 +70,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17687194-C263-4981-9419-82F528A9D6A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17687194-C263-4981-9419-82F528A9D6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17687194-C263-4981-9419-82F528A9D6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17687194-C263-4981-9419-82F528A9D6A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -118,13 +114,15 @@ Global
 		{3E8DA948-8BF1-4D0D-82C1-9977EE1C9CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8DA948-8BF1-4D0D-82C1-9977EE1C9CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8DA948-8BF1-4D0D-82C1-9977EE1C9CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D54756D4-CA39-4522-AEDE-563E94C1C4A5} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF} = {D54756D4-CA39-4522-AEDE-563E94C1C4A5}
 		{4ABFC523-BA37-44EB-9D42-83A1D0EADA3C} = {95A9E4C9-790E-437A-8B79-3F345860078B}
-		{D24B7BCC-07A2-4588-8C25-69C22343150C} = {AA344C80-5C8D-4F91-A1DA-A40EF3EC2E06}
-		{17687194-C263-4981-9419-82F528A9D6A2} = {D24B7BCC-07A2-4588-8C25-69C22343150C}
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491} = {4ABFC523-BA37-44EB-9D42-83A1D0EADA3C}
 		{667F8943-9076-4300-AADC-3FD92CEA281C} = {C4777D83-8B0B-4683-82FF-CD0BE83B36CB}
 		{D0095CA9-72E1-4CDA-99A9-EF862824C4FA} = {D8910B96-F1B1-4BB9-B1D1-71E44CAC9046}
@@ -145,5 +143,7 @@ Global
 		{9CC70DEE-9F48-41B7-806D-AC8740857354} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{D5E38286-6C3B-42FB-8EF2-A0DF992CFE41} = {9CC70DEE-9F48-41B7-806D-AC8740857354}
 		{3E8DA948-8BF1-4D0D-82C1-9977EE1C9CDA} = {9CC70DEE-9F48-41B7-806D-AC8740857354}
+		{40B2EBAC-1B97-4DE3-8A03-EA52C58C4814} = {95A9E4C9-790E-437A-8B79-3F345860078B}
+		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6} = {40B2EBAC-1B97-4DE3-8A03-EA52C58C4814}
 	EndGlobalSection
 EndGlobal

@@ -20,10 +20,10 @@ Initial setup of the boilerplate
 - [x] Setup PWA
 - [x] Setup Authentication
 - [x] Setup Feature management
-- [ ] Setup Globalization
-- [ ] BFF
-    - [ ] blazor hosted & SSR
+- [x] BFF
+    - [x] blazor hosted & SSR
     - [x] reverse proxy APIs (YARP)
+- [ ] Setup Globalization
 
 ## Services
 ### TodoList 

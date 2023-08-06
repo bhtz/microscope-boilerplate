@@ -6,13 +6,17 @@
 * nodejs 16+
 
 ## Get source code
-
 ```console
 git clone https://github.com/bhtz/microscope-boilerplate.git
 ```
 
-## Run solution
+## install template
+```console
+dotnet new install ./microscope-boilerplate
+```
 
+
+## Run solution
 **Not implemented yet**
 ```console
 cd src/BuildingBlocks/IAC/Docker
@@ -27,7 +31,6 @@ dotnet build
 ```
 
 ## Documentation
-
 **Build documentation**
 ```console
 cd src/Docs
