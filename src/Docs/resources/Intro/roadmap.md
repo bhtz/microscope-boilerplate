@@ -1,11 +1,8 @@
 # Product Roadmap
 
-Microscope boilerplate - Starter kit
+> Add your own awesome project roadmap here
 
 ## V1
-
-Initial setup of the boilerplate
-
 ## Template
 
 - [x] Setup dotnet template
@@ -18,6 +15,9 @@ Initial setup of the boilerplate
     - [x] Drawer open
     - [x] Language support
 - [x] Setup PWA
+- [x] SDKs
+  - [x] GraphQL SDK
+  - [x] REST SDK
 - [x] Setup Authentication
 - [x] Setup Feature management
 - [x] Setup Globalization

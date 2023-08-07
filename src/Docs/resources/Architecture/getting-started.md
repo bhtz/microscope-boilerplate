@@ -4,6 +4,7 @@
 
 * dotnet 7 SDK
 * nodejs 16+
+* docker engine
 
 ## Get source code
 ```console
@@ -15,9 +16,14 @@ git clone https://github.com/bhtz/microscope-boilerplate.git
 dotnet new install ./microscope-boilerplate
 ```
 
-## Create solution
+## Create new solution
 ```console
 dotnet new microscope_boilerplate -n Acme.AwesomeProject
+```
+
+## Create new solution without documentation project
+```console
+dotnet new microscope_boilerplate -n Acme.AwesomeProject -D "false"
 ```
 
 ## Build
@@ -58,6 +64,13 @@ npm run slides:dev
 ```console
 export ASPNETCORE_ENVIRONMENT=Development
 export ASPNETCORE_ENVIRONMENT=Production
+```
+### SDK generation
+you will need to run todoapp api first for this
+```console
+cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL
+dotnet graphql update
+dotnet build
 ```
 
 ### EF Core Tools

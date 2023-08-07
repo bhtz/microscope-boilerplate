@@ -55,7 +55,8 @@
         @result.First().Message
     </ErrorContent>
     <LoadingContent>
-        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="250px" Height="50px" />
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" Class="mt-4" />
     </LoadingContent>
 </UseGetTodoListById>
 

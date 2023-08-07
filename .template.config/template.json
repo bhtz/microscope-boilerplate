@@ -22,10 +22,10 @@
   },
   "sources": [
     {
-      "exclude": "src/Docs/**",
       "modifiers": [
         {
-          "condition": "Documentation",
+          "condition": "(!Documentation)",
+          "exclude": "src/Docs/**"
         }
       ]
     }
