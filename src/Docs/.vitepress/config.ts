@@ -22,7 +22,6 @@ export default withMermaid(
             text: 'Introduction',
             items: [
               { text: 'Introduction', link: '/Intro/introduction' },
-              { text: 'Presentation', link: '/Intro/slides' },
               { text: 'Roadmap', link: '/Intro/roadmap' }
             ]
           },

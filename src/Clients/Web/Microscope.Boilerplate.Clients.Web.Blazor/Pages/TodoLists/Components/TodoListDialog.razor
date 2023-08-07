@@ -8,7 +8,7 @@
         <DialogContent>
             <DataAnnotationsValidator />
 
-            <MudTextField Variant="Variant.Filled" T="string" Label="Name" @bind-Value="ViewModel.Name" For="@(() => ViewModel.Name)" />
+            <MudTextField Variant="Variant.Filled" T="string" Label="@Loc["Name"]" @bind-Value="ViewModel.Name" For="@(() => ViewModel.Name)" />
 
         </DialogContent>
         <DialogActions>

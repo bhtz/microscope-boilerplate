@@ -1,21 +1,77 @@
 # Getting started
 
----------------------------
+## Requirements
 
-Start with cloning the repository :
+* dotnet 7 SDK
+* nodejs 16+
 
-> git clone https://github.com/bhtz/microscope-boilerplate.git
+## Get source code
+```console
+git clone https://github.com/bhtz/microscope-boilerplate.git
+```
 
-Run solution :
+## Install microscope boilerplate template
+```console
+dotnet new install ./microscope-boilerplate
+```
 
-> docker-compose up
+## Create solution
+```console
+dotnet new microscope_boilerplate -n Acme.AwesomeProject
+```
 
-## Development
+## Build
+**Build solution**
+```console
+dotnet build
+dotnet publish
+```
 
-Install dependencies :
+## Run solution
+```console
+cd src/IAC
+docker-compose up
+```
 
-> dotnet restore
+## Documentation
+**Build documentation**
+```console
+cd src/Docs
+npm run docs:build
+npm run slides:build
+```
 
-Build solution :
+### Run solution documentation (vitepress)
+```console
+npm run docs:dev
+```
 
-> dotnet build
+### Run presentation slides (revealjs)
+```console
+cd src/Docs
+npm run slides:dev
+```
+
+## Solution
+
+### Environments
+```console
+export ASPNETCORE_ENVIRONMENT=Development
+export ASPNETCORE_ENVIRONMENT=Production
+```
+
+### EF Core Tools
+
+**Add migration**
+```console
+dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.TodoApp.Api/ migrations add InitialCreate -o ./Persistence/Migrations
+```
+**Update database**
+```console
+dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.TodoApp.Api/ database update
+```
+**Export SQL**
+```console
+dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.TodoApp.Api/ migrations script > ./Scripts/TodoApp.sql
+```
+

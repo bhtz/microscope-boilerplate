@@ -1,6 +1,6 @@
 # Product Roadmap
 
-Microscope boilerplate - Opiniated solution boilerplate & guidelines for product engineering teams
+Microscope boilerplate - Starter kit
 
 ## V1
 
@@ -20,10 +20,10 @@ Initial setup of the boilerplate
 - [x] Setup PWA
 - [x] Setup Authentication
 - [x] Setup Feature management
+- [x] Setup Globalization
 - [x] BFF
     - [x] blazor hosted & SSR
     - [x] reverse proxy APIs (YARP)
-- [ ] Setup Globalization
 
 ## Services
 ### TodoList 
@@ -37,7 +37,7 @@ Initial setup of the boilerplate
     - [ ] Application
         - [x] Common behaviours
         - [x] Mappings
-        - [ ] App settings check
+        - [ ] App settings (IOption validation)
         - [ ] Features
             - [x] Todolist
                 - [x] Commands
@@ -82,13 +82,16 @@ Initial setup of the boilerplate
     - [x] Feature management
     - [x] Auto migration option
     - [ ] SignalR websocket use case
+      - [ ] Listen service bus
     - [ ] OpenTelemetry
 - [ ] Tests
     - [x] Unit tests
         - [x] Setup Unit tests
             - [x] Todolist tests
-    - [ ] Integration tests
     - [x] Architecture tests
+    - [ ] Integration tests
+    - [ ] E2E tests
+      - [ ] Playwright
 
 ### Storage (optional) ?
 - [x] Azure blob storage
@@ -113,6 +116,7 @@ Initial setup of the boilerplate
       - [ ] import realms configuration - bug
     - [x] Service Bus RabbitMQ
     - [ ] Internal services
+      - [ ] Microsoft.Build.Container
 - [ ] Azure biceps / ARM
 - [ ] K8S
 

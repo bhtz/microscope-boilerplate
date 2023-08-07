@@ -82,7 +82,7 @@ if (storageService is not null)
     if (preference != null)
         culture = new CultureInfo(preference.LanguageCode);
     else
-        culture = new CultureInfo("fr-FR");
+        culture = new CultureInfo("en-US");
 
     CultureInfo.DefaultThreadCurrentCulture = culture;
     CultureInfo.DefaultThreadCurrentUICulture = culture;

@@ -1,52 +1,51 @@
 @page "/TodoList"
-@using Microscope.Boilerplate.Clients.SDK.GraphQL
 @using Microscope.Boilerplate.Clients.Web.Blazor.Pages.TodoLists.Components
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<TodoListPage> Loc
 @attribute [Authorize]
 
-<PageTitle>Todo lists</PageTitle>
+<PageTitle>@Loc["Title"]</PageTitle>
 
 <MudToolBar>
-    <MudText Typo="Typo.h6">Todo lists</MudText>
-    <MudSpacer />
-    <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoListDialog" />
+    <MudText Typo="Typo.h6">@Loc["Title"]</MudText>
+    <MudSpacer/>
+    <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoListDialog"/>
 </MudToolBar>
 
-<MudContainer>
-    <UseGetTodolists Context="result">
-        <ChildContent>
-            <MudDataGrid T="IGetTodolists_Todolists" Items="result.Todolists">
-                <Columns>
-                    <PropertyColumn Property="x => x.Name" />
-                    <TemplateColumn T="IGetTodolists_Todolists" Title="Actions" Filterable="false" Sortable="false">
-                        <CellTemplate>
-                            <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="() => GoToDetails(context.Item.Id)"/>
-                            <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="() => DeleteTodoList(context.Item.Id)"/>
-                        </CellTemplate>
-                    </TemplateColumn>
-                </Columns>
-            </MudDataGrid>
-        </ChildContent>
-        <ErrorContent>
-            @result.First().Message
-        </ErrorContent>
-        <LoadingContent>
-            <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
-        </LoadingContent>
-    </UseGetTodolists>
-</MudContainer>
+<UseGetTodolists Context="result">
+    <ChildContent>
+        <MudDataGrid T="IGetTodolists_Todolists" Items="result.Todolists">
+            <Columns>
+                <PropertyColumn Property="x => x.Name"/>
+                <TemplateColumn T="IGetTodolists_Todolists" Title="Actions" Filterable="false" Sortable="false">
+                    <CellTemplate>
+                        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="() => GoToDetails(context.Item.Id)"/>
+                        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="() => DeleteTodoList(context.Item.Id)"/>
+                    </CellTemplate>
+                </TemplateColumn>
+            </Columns>
+        </MudDataGrid>
+    </ChildContent>
+    <ErrorContent>
+        @result.First().Message
+    </ErrorContent>
+    <LoadingContent>
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4"/>
+    </LoadingContent>
+</UseGetTodolists>
 
 @code
 {
     private void GoToDetails(Guid itemId)
     {
-        _navigationManager.NavigateTo($"/TodoList/{itemId}" );
+        _navigationManager.NavigateTo($"/TodoList/{itemId}");
     }
 
     private async void OpenTodoListDialog()
     {
         var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true, DisableBackdropClick = true };
-        var parameters = new DialogParameters(){};
+        var parameters = new DialogParameters() { };
 
         var dialog = _dialogService.Show<TodoListDialog>(null, parameters, options);
 
@@ -62,14 +61,14 @@
     private async void DeleteTodoList(Guid todoListId)
     {
         bool? result = await _dialogService.ShowMessageBox(
-            "Warning", 
-            "Deleting can not be undone!", 
-            yesText:"Delete!", cancelText:"Cancel");
+            "Warning",
+            "Deleting can not be undone!",
+            yesText: "Delete!", cancelText: "Cancel");
 
         if (result is not null)
         {
             var res = await _todoAppClient.DeleteTodoList.ExecuteAsync(todoListId);
-        
+
             if (res.IsSuccessResult() && res.Data.DeleteTodoList)
             {
                 _snackBar.Add("Saved", Severity.Success);
@@ -78,7 +77,7 @@
             else
             {
                 _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
-            }   
+            }
         }
     }
 }

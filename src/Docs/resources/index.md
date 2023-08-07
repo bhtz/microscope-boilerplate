@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Microscope"
   text: "Boilerplate"
-  tagline: Product Engineering Starter Kit for CPTO
+  tagline: Product Engineering Starter Kit
   actions:
     - theme: brand
       text: Getting started

@@ -30,7 +30,6 @@
 
     <ItemGroup>
       <Folder Include="Configurations\" />
-      <Folder Include="Resources\Pages\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -49,6 +48,38 @@
       <EmbeddedResource Update="Resources\Shared\NavMenu.fr.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>NavMenu.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TodoListDialog.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TodoListDialog.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListDetailsPage.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDetailsPage.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListDetailsPage.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDetailsPage.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListPage.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListPage.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListPage.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListPage.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Shared\Components\LoginDisplay.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LoginDisplay.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Shared\Components\LoginDisplay.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LoginDisplay.fr.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 

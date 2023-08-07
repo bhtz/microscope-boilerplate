@@ -1,7 +1,8 @@
-@page "/TodoList/{Id:guid}"
+@page "/todolist/{Id:guid}"
 @using Microscope.Boilerplate.Clients.Web.Blazor.Pages.TodoLists.Components
 @using System.ComponentModel.DataAnnotations
-@using System.Reflection
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<TodoListDetailsPage> Loc
 
 <UseGetTodoListById Id="Id" Context="result">
     <ChildContent>
@@ -10,6 +11,7 @@
         }
         <MudToolBar>
             <MudText Typo="Typo.h6">
+                <a href="/todolist">@Loc["Todolists"]</a> / 
                 @if (result.TodolistById.IsCompleted)
                 {
                     <strike>@result.TodolistById.Name</strike>
