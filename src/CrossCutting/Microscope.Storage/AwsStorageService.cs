@@ -1,6 +1,4 @@
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
-
-namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
+namespace Microscope.Storage;
 
 public class AwsStorageService : IStorageService
 {

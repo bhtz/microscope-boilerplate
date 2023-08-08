@@ -4,13 +4,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.User;
 
-public class UserService : IUserService
+public class KeycloakUserService : IUserService
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
     private readonly IIdentityService _identityService;
 
-    public UserService(HttpClient httpClient, IIdentityService identityService, IConfiguration configuration)
+    public KeycloakUserService(HttpClient httpClient, IIdentityService identityService, IConfiguration configuration)
     {
         _httpClient = httpClient;
         _identityService = identityService;

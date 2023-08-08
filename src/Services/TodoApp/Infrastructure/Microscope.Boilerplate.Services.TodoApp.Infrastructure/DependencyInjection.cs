@@ -1,5 +1,4 @@
 using MassTransit;
-using MassTransit.MultiBus;
 using Microscope.Boilerplate.Services.TodoApp.Application;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
@@ -9,6 +8,7 @@ using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
 using Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.Mail;
 using Microscope.SharedKernel;
+using Microscope.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +23,7 @@ public static class DependencyInjection
         services.AddPersistenceAdapter(configuration);
         services.AddMailAdapter(configuration);
         services.AddBusAdapter(configuration);
+        services.AddStorageAdapter(configuration);
         
         return services;
     }
@@ -65,34 +66,9 @@ public static class DependencyInjection
     
     public static IServiceCollection AddStorageAdapter(this IServiceCollection services, IConfiguration configuration)
     {
-        StorageOptions options = new StorageOptions();
-        IConfigurationSection section = configuration.GetSection("Storage");
-        section.Bind(options);
-        
-        services.Configure<StorageOptions>(settings => section.Bind(settings));
-
-        switch (options.Adapter)
-        {
-            case "filesystem":
-                services.AddScoped<IStorageService, FileSystemStorageService>();
-                break;
-
-            case "azure":
-                services.AddScoped<IStorageService, BlobStorageService>();
-                break;
-
-            case "aws":
-                services.AddScoped<IStorageService, AwsStorageService>();
-                break;
-
-            case "minio":
-                services.AddScoped<IStorageService, MinioStorageService>();
-                break;
-
-            default:
-                services.AddScoped<IStorageService, FileSystemStorageService>();
-                break;
-        }
+        // using microscope.storage cross cutting
+        services.AddStorage(configuration);
+        services.AddScoped<IFileStorageService, FileStorageService>(); 
         return services;
     }
     

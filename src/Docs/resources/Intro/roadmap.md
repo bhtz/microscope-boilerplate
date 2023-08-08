@@ -37,7 +37,6 @@
     - [ ] Application
         - [x] Common behaviours
         - [x] Mappings
-        - [ ] App settings (IOption validation)
         - [ ] Features
             - [x] Todolist
                 - [x] Commands
@@ -57,6 +56,7 @@
                   - [x] OnTodoListCompletedIntegrationEvent
             - [ ] Upload
   - [ ] Infrastructure
+    - [ ] App settings (IOption validation)
     - [ ] Persistence
          - [x] Entity framework
            - [x] EF Entities configuration
@@ -108,6 +108,7 @@
 ## Cross cutting 
 - [x] SharedKernel
     - [x] use mediatr contract only
+- [ ] refactoring to move Microscope.Storage crosscutting lib
 
 ## IAC
 - [ ] docker-compose

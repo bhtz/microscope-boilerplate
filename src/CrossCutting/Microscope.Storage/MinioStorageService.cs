@@ -1,11 +1,10 @@
 using System.Reactive.Linq;
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microsoft.Extensions.Options;
 using Minio;
 using Minio.DataModel;
 using Minio.Exceptions;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
+namespace Microscope.Storage;
 
 public class MinioStorageService : IStorageService
 {

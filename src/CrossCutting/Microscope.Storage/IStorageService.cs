@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Services;
+namespace Microscope.Storage;
 
 public interface IStorageService
 {

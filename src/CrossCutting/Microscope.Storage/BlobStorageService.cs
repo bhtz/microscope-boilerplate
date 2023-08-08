@@ -1,9 +1,8 @@
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
+namespace Microscope.Storage;
 
 public class BlobStorageService : IStorageService
 {

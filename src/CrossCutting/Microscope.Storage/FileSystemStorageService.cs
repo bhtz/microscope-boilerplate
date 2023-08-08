@@ -1,7 +1,6 @@
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microsoft.Extensions.Options;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
+namespace Microscope.Storage;
 
 public class FileSystemStorageService : IStorageService
 {
