@@ -66,9 +66,8 @@ public static class DependencyInjection
     
     public static IServiceCollection AddStorageAdapter(this IServiceCollection services, IConfiguration configuration)
     {
-        // using microscope.storage cross cutting
-        services.AddStorage(configuration);
-        services.AddScoped<IFileStorageService, FileStorageService>(); 
+        services.AddStorage(configuration); // cross cutting Microscope.Storage
+        services.AddScoped<IFileStorageService, FileStorageService>();
         return services;
     }
     
@@ -79,9 +78,16 @@ public static class DependencyInjection
     
     public static IServiceCollection AddMailAdapter(this IServiceCollection services, IConfiguration configuration)
     {
-        string provider = configuration.GetValue<string>("Mail:Adapter");
+        var option = new MailOptions();
+        var section = configuration.GetSection(MailOptions.ConfigurationKey);
+        section.Bind(option);
+        
+        services.AddOptions<MailOptions>()
+            .Bind(section)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
-        switch (provider)
+        switch (option.Adapter)
         {
             case "smtp":
                 services.AddScoped<IMailService, SMTPMailService>();
@@ -101,20 +107,28 @@ public static class DependencyInjection
 
     public static IServiceCollection AddBusAdapter(this IServiceCollection services, IConfiguration configuration)
     {
-        var provider = configuration.GetValue<string>("Bus:Adapter");
-        
         services.AddScoped<IBusService, MassTransitBusService>();
+        
+        var option = new BusOptions();
+        var section = configuration.GetSection(BusOptions.ConfigurationKey);
+        section.Bind(option);
+        
+        services.AddOptions<BusOptions>()
+            .Bind(section)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
         services.AddMassTransit(configuration =>
         {
-            switch (provider)
+            switch (option.Adapter)
             {
                 case "rabbitmq":
                     configuration.UsingRabbitMq((ctx, cfg) =>
                     {
-                        cfg.Host("rabbitmq://localhost", x =>
+                        cfg.Host(option.Host, x =>
                         {
-                            x.Username("guest");
-                            x.Password("guest");
+                            x.Username(option.Username);
+                            x.Password(option.Password);
                         });
                     });
                     break;
@@ -124,14 +138,7 @@ public static class DependencyInjection
                     break;
 
                 default:
-                    configuration.UsingRabbitMq((ctx, cfg) =>
-                    {
-                        cfg.Host("localhost", x =>
-                        {
-                            x.Username("guest");
-                            x.Password("guest");
-                        });
-                    });
+                    configuration.UsingInMemory();
                     break;
             }
         });

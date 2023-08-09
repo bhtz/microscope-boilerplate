@@ -8,7 +8,7 @@ public static class Startup
     public static IServiceCollection AddStorage(this IServiceCollection services, IConfiguration configuration)
     {
         var option = new StorageOptions();
-        var section = configuration.GetSection(StorageOptions.Name);
+        var section = configuration.GetSection(StorageOptions.ConfigurationKey);
         section.Bind(option);
         
         services.AddOptions<StorageOptions>()

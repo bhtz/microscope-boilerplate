@@ -38,6 +38,7 @@
         - [x] Common behaviours
         - [x] Mappings
         - [ ] Features
+            - [ ] File upload sample ?
             - [x] Todolist
                 - [x] Commands
                   - [x] Create todo list
@@ -54,9 +55,8 @@
                 - [x] Events
                   - [x] SendMailOnTodoListCompleted
                   - [x] OnTodoListCompletedIntegrationEvent
-            - [ ] Upload
   - [ ] Infrastructure
-    - [ ] App settings (IOption validation)
+    - [x] App settings (IOption validation)
     - [ ] Persistence
          - [x] Entity framework
            - [x] EF Entities configuration
@@ -66,8 +66,6 @@
         - [x] Storage
         - [x] User
         - [x] Mail
-        - [ ] AI Prompting
-        - [ ] PDF
     - [ ] Bus
         - [x] MassTransit
           - [ ] OpenTelemetry
@@ -108,7 +106,7 @@
 ## Cross cutting 
 - [x] SharedKernel
     - [x] use mediatr contract only
-- [ ] refactoring to move Microscope.Storage crosscutting lib
+- [x] refactoring to move Microscope.Storage crosscutting lib
 
 ## IAC
 - [ ] docker-compose

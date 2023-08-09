@@ -4,7 +4,6 @@ namespace Microscope.SharedKernel;
 
 public interface IRepository
 {
-    // IUnitOfWork UnitOfWork { get; }
 }
 
 public interface IRepository<T> : IRepository<T, Guid> where T : class, IAggregateRoot<Guid>

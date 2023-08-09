@@ -12,7 +12,7 @@ public class TodoAppDbContext : DbContext
 
     #region DbSets
 
-    public virtual DbSet<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList> TodoLists { get; set; }
+    public virtual DbSet<Domain.Aggregates.TodoListAggregate.TodoList> TodoLists { get; set; }
 
     #endregion
 

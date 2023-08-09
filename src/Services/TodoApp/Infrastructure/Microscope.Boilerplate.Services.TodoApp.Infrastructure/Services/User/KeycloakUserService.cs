@@ -20,11 +20,11 @@ public class KeycloakUserService : IUserService
     public async Task<IEnumerable<DomainUser>> GetUsersAsync(int limit)
     {
         var token = _identityService.GetToken();
-        var userServiceEndpoint = _configuration.GetValue<string>("UserServiceEndpoint");
-        _httpClient.DefaultRequestHeaders.Add("Authorization", token);
+        var userServiceEndpoint = _configuration.GetValue<string>("Users:UserServiceEndpoint");
         
         try
         {
+            _httpClient.DefaultRequestHeaders.Add("Authorization", token);
             var users = await _httpClient.GetFromJsonAsync<IEnumerable<DomainUser>>(userServiceEndpoint);
             return users;
         }

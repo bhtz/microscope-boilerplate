@@ -4,7 +4,7 @@ namespace Microscope.Storage;
 
 public class StorageOptions
 {
-    public static readonly string Name = "Storage";
+    public static readonly string ConfigurationKey = "Storage";
     
     [Required]
     public string Adapter { get; set; }

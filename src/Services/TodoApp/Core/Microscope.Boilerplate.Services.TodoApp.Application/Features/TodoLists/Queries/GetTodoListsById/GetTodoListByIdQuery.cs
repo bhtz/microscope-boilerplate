@@ -17,7 +17,6 @@ public record TodoListByIdQueryResult
     public Guid Id { get; init; }
     public string Name { get; init; }
     public bool IsCompleted { get; init; }
-    // Todo: add collections
     public IEnumerable<TodoItemResult> TodoItems { get; init; } 
 }
 
