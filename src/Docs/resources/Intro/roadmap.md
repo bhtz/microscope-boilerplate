@@ -114,9 +114,13 @@
     - [x] keycloak
       - [ ] import realms configuration - bug
     - [x] Service Bus RabbitMQ
-    - [ ] Internal services
-      - [ ] Microsoft.Build.Container
-- [ ] Azure biceps / ARM
+    - [ ] Todo API
+    - [ ] BFF
+    - [ ] Microsoft.Build.Container
+- [ ] Pulumi stack
+  - [ ] Azure
+  - [ ] AWS
+  - [ ] GCP
 - [ ] K8S
 
 ## Docs

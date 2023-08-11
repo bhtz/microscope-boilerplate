@@ -39,6 +39,14 @@ cd src/IAC
 docker-compose up
 ```
 
+## Register IAM application client
+* open [Keycloak console](http://localhost:8083/auth/)
+* Login as admin
+    * user : admin
+    * password : microscope
+        * Don't forget to change this default setting
+* Go to import > select file > ./src/IAC/realm-export.json
+
 ## Documentation
 **Build documentation**
 ```console
@@ -48,13 +56,18 @@ npm run slides:build
 ```
 
 ### Run solution documentation (vitepress)
+**Install NPM packages**
+```console
+cd ./src/Docs
+npm i
+```
+**run documentation website**
 ```console
 npm run docs:dev
 ```
 
 ### Run presentation slides (revealjs)
 ```console
-cd src/Docs
 npm run slides:dev
 ```
 
@@ -75,6 +88,12 @@ dotnet build
 
 ### EF Core Tools
 
+**Navigate to infrastructure project**
+```console
+cd src/Services/TodoApp/Infrastructure/Microscope.Boilerplate.Services.TodoApp.Infrastructure/
+```
+
+cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL
 **Add migration**
 ```console
 dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.TodoApp.Api/ migrations add InitialCreate -o ./Persistence/Migrations
