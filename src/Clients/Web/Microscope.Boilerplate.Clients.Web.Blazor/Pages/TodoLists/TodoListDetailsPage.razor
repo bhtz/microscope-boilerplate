@@ -11,7 +11,7 @@
         }
         <MudToolBar>
             <MudText Typo="Typo.h6">
-                <a href="/todolist">@Loc["Todolists"]</a> / 
+                <span @onclick="() => GoToList()" class="mud-primary-text cursor-pointer">@Loc["Todolists"] / </span>
                 @if (result.TodolistById.IsCompleted)
                 {
                     <strike>@result.TodolistById.Name</strike>
@@ -22,20 +22,30 @@
                 }
             </MudText>
             <MudSpacer/>
-            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
+            <MudIconButton Size="Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
         </MudToolBar>
+        
+        <div>
+            <MudIconButton OnClick="OpenTagDialog" Size="Size.Small" Icon="@Icons.Material.Filled.Add"></MudIconButton>
+            @foreach (var tag in result.TodolistById.Tags.OrderBy(x => x.Label))
+            {
+                Color.TryParse(tag.Color, out Color color);
+                <MudChip Size="Size.Small" Color="@color" OnClose="() => RemoveTag(tag)">@tag.Label</MudChip>    
+            }
+        </div>
 
+        <div class="mt-4"></div>
         <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
             <DataAnnotationsValidator/>
-            <MudTextField Variant="Variant.Filled" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
+            <MudTextField Variant="Variant.Outlined" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
         </EditForm>
 
         <MudList Clickable="true">
             @foreach (var item in result.TodolistById.TodoItems.OrderBy(x => x.Label))
             {
-                <MudListItem OnClick="() => ToggleTodoItem(item.Id)" IconColor="Color.Error">
+                <MudListItem OnClick="() => ToggleTodoItem(item.Id)">
                     <MudText>
-                        <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Error"></MudIconButton>
+                        <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Default"></MudIconButton>
                         @if (item.IsCompleted)
                         {
                             <strike>@item.Label</strike>
@@ -147,11 +157,42 @@
             StateHasChanged();
         }
     }
+
+    private async void OpenTagDialog()
+    {
+        var options = new DialogOptions { MaxWidth = MaxWidth.Medium, FullWidth = true, CloseButton = true, DisableBackdropClick = true };
+        var parameters = new DialogParameters(){};
+        parameters.Add("TodoListId", Id);
+
+        var dialog = _dialogService.Show<TagDialog>(null, parameters, options);
+
+        var result = await dialog.Result;
+
+        if (!result.Cancelled)
+        {
+            var id = (bool)result.Data;
+            StateHasChanged();
+        }
+    }
+
+    public async void RemoveTag(IGetTodoListById_TodolistById_Tags tag)
+    {
+        var result = await _todoAppClient.RemoveTag.ExecuteAsync(Id, tag.Label, tag.Color);
+        if (result.IsSuccessResult())
+        {
+            _snackBar.Add("Saved", Severity.Success);
+            StateHasChanged();
+        }
+    }
+
+    public async void GoToList()
+    {
+        _navigationManager.NavigateTo("TodoList");
+    }
     
     public class TodoItemViewModel
     {
         [Required]
         public string Label { get; set; }
     }
-
 }

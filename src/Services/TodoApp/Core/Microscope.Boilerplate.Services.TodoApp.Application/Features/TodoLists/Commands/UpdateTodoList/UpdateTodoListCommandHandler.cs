@@ -2,12 +2,11 @@ using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Application.Common.Exceptions;
 using Microscope.Boilerplate.Services.TodoApp.Application.Policies.CreatedByRequirement;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
 using Microscope.SharedKernel;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.CreateTodoList;
+namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.UpdateTodoList;
 
 public class UpdateTodoListCommandHandler : IRequestHandler<UpdateTodoListCommand, bool>
 {

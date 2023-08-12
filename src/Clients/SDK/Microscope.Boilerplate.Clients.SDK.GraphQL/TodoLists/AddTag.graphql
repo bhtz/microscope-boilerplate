@@ -1,0 +1,7 @@
+mutation AddTag($todoListId: UUID!, $label: String!, $color: String!) {
+    addTag(command: {
+        label: $label,
+        color: $color,
+        todoListId: $todoListId
+    })
+}

@@ -14,7 +14,7 @@ public class Tag : ValueObject
 
     public Tag(string label, string color)
     {
-        Label = Label;
+        Label = label;
         Color = color;
     }
     

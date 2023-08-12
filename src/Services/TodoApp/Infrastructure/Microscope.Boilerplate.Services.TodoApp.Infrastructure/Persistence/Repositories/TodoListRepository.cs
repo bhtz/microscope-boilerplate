@@ -20,6 +20,7 @@ public class TodoListRepository : ITodoListRepository
     {
         return await _todoLists
             .Include(x => x.TodoItems)
+            .Include(x => x.Tags)
             .SingleOrDefaultAsync(x => x.TenantId == tenantId && x.Id == id);
     }
 

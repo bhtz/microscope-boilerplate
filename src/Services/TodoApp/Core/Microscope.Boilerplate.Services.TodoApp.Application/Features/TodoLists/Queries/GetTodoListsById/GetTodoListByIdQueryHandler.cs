@@ -3,7 +3,7 @@ using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
+namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
 
 public class GetTodoListByIdQueryHandler : IRequestHandler<GetTodoListByIdQuery, TodoListByIdQueryResult>
 {

@@ -1,6 +1,6 @@
 using Microscope.SharedKernel;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
+namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
 
 public class GetTodoListByIdQuery : IQuery<TodoListByIdQueryResult>
 {
@@ -17,7 +17,8 @@ public record TodoListByIdQueryResult
     public Guid Id { get; init; }
     public string Name { get; init; }
     public bool IsCompleted { get; init; }
-    public IEnumerable<TodoItemResult> TodoItems { get; init; } 
+    public IEnumerable<TodoItemResult> TodoItems { get; init; }
+    public IEnumerable<TagResult> Tags { get; init; }
 }
 
 public record TodoItemResult
@@ -27,3 +28,8 @@ public record TodoItemResult
     public bool IsCompleted { get; init; }
 }
 
+public record TagResult
+{
+    public string Label { get; init; }
+    public string Color { get; init; }
+}

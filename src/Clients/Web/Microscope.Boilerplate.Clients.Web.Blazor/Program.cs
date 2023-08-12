@@ -27,11 +27,12 @@ if (!String.IsNullOrEmpty(baseAddressConfiguration))
                 client.BaseAddress = new Uri(apiAddress),
             clientBuilder => clientBuilder.AddHttpMessageHandler<AuthenticationHeaderHandler>()
         );
-}
 
-// var clientName = "Boilerplate.Api";
-// builder.Services.AddHttpClient(clientName, client => client.BaseAddress = new Uri(apiAddress))
-//     .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+    // To consume REST API
+    // var clientName = "Boilerplate.Api";
+    // builder.Services.AddHttpClient(clientName, client => client.BaseAddress = new Uri(apiAddress))
+    //     .AddHttpMessageHandler<AuthenticationHeaderHandler>();
+}
 
 builder.Services.AddTransient<AuthenticationHeaderHandler>();
 

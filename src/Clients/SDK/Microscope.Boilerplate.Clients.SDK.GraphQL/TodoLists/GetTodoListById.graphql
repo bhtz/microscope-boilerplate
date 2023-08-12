@@ -8,5 +8,9 @@ query GetTodoListById ($id: UUID!){
             label
             isCompleted
         }
+        tags {
+            label
+            color
+        }
     }
 }

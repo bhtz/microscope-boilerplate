@@ -19,6 +19,8 @@ type Mutation {
   deleteTodoItem(command: DeleteTodoItemCommandInput!): Boolean!
   deleteTodoList(command: DeleteTodoListCommandInput!): Boolean!
   updateTodoList(command: UpdateTodoListCommandInput!): Boolean!
+  addTag(command: AddTagCommandInput!): Boolean!
+  removeTag(command: RemoveTagCommandInput!): Boolean!
 }
 
 type Query {
@@ -58,6 +60,18 @@ input UpdateTodoListCommandInput {
   name: String!
 }
 
+input AddTagCommandInput {
+  todoListId: UUID!
+  label: String!
+  color: String!
+}
+
+input RemoveTagCommandInput {
+  todoListId: UUID!
+  label: String!
+  color: String!
+}
+
 type KeyValuePairOfStringAndBoolean {
   key: String!
   value: Boolean!
@@ -74,6 +88,12 @@ type TodoListByIdQueryResult {
   name: String!
   isCompleted: Boolean!
   todoItems: [TodoItemResult!]!
+  tags: [TagResult!]!
+}
+
+type TagResult {
+  label: String!
+  color: String!
 }
 
 type TodoItemResult {

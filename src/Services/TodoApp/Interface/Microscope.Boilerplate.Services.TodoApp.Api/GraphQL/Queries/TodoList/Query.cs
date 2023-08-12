@@ -1,6 +1,7 @@
 using HotChocolate.Authorization;
 using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
+using Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Api.GraphQL.Queries;
 

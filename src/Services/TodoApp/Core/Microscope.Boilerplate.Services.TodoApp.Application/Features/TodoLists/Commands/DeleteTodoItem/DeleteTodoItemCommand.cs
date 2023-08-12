@@ -1,7 +1,7 @@
 using FluentValidation;
 using Microscope.SharedKernel;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.CreateTodoList;
+namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.DeleteTodoItem;
 
 public class DeleteTodoItemCommand : ICommand<bool>
 {
