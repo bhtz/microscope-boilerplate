@@ -118,6 +118,7 @@
     - [ ] BFF
     - [ ] Microsoft.Build.Container
 - [ ] Pulumi stack
+  - [ ] Setup Pulumi 
   - [ ] Azure
   - [ ] AWS
   - [ ] GCP

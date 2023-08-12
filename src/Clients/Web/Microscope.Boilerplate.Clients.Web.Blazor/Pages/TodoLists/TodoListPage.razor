@@ -15,9 +15,16 @@
 
 <UseGetTodolists Context="result">
     <ChildContent>
-        <MudDataGrid T="IGetTodolists_Todolists" Items="result.Todolists">
+        <MudDataGrid T="IGetTodolists_Todolists" Items="result.Todolists" Dense="true" Striped="true" Hover="true" Bordered="true" Filterable="true" QuickFilter="@FilterFunc" Hideable="true" ShowMenuIcon="true">
+            <ToolBarContent>
+                <MudTextField @bind-Value="SearchTerm" Placeholder="Search" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Small" Class="mr-5"></MudTextField>
+            </ToolBarContent>
             <Columns>
-                <PropertyColumn Property="x => x.Name"/>
+                <TemplateColumn T="IGetTodolists_Todolists" Title="Name" Filterable="true" Sortable="true">
+                    <CellTemplate>
+                        <MudText @onclick="() => GoToDetails(context.Item.Id)" Class="cursor-pointer"><b>@context.Item.Name</b></MudText>
+                    </CellTemplate>
+                </TemplateColumn>
                 <TemplateColumn T="IGetTodolists_Todolists" Title="Actions" Filterable="false" Sortable="false">
                     <CellTemplate>
                         <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="() => GoToDetails(context.Item.Id)"/>
@@ -38,6 +45,8 @@
 
 @code
 {
+    public string SearchTerm { get; set; } = String.Empty;
+    
     private void GoToDetails(Guid itemId)
     {
         _navigationManager.NavigateTo($"/TodoList/{itemId}");
@@ -81,4 +90,15 @@
             }
         }
     }
+    
+    private Func<IGetTodolists_Todolists, bool> FilterFunc => x =>
+    {
+        if (string.IsNullOrWhiteSpace(SearchTerm))
+            return true;
+        
+        if (x.Name.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    };
 }
