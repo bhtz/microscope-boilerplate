@@ -33,7 +33,7 @@ dotnet build
 dotnet publish
 ```
 
-**Build solution & containers for arm64 **
+**Build solution & containers for arm64**
 ```console
 dotnet build
 dotnet publish -r linux-arm64
@@ -41,7 +41,7 @@ dotnet publish -r linux-arm64
 
 ## Run solution
 ```console
-cd src/IAC
+cd src/IAC/Docker
 docker-compose up
 ```
 
@@ -52,6 +52,9 @@ docker-compose up
     * password : microscope
         * Don't forget to change this default setting
 * Go to import > select file > ./src/IAC/realm-export.json
+
+## Go to app
+* open [Boilerplate app](http://localhost:5215/)
 
 ## Documentation
 **Build documentation**
