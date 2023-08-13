@@ -121,26 +121,26 @@ dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.Todo
 
 ### IAC (experimental)
 
-## Install Pulumi & Azure CLI
+**Install Pulumi & Azure CLI**
 ```console
 brew update
 brew install azure-cli
 brew install pulumi/tap/pulumi
 ```
 
-## Azure CLI login
+**Azure CLI login**
 ```console
 az login
 ```
 
 
-## Set azure location (optional)
+**Set azure location (optional)**
 ```console
 cd ./src/IAC/Pulumi/Microscope.Boilerplate.IAC
 pulumi config set azure-native:location westus2
 ```
 
-## Deploy stack on Azure
+**Deploy stack on Azure**
 ```console
 pulumi up
 ```
