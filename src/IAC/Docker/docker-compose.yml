@@ -1,11 +1,9 @@
 version: "3.8"
 name: boilerplate
-  
 services:
-
   postgres:
     image: postgres:12
-    container_name: mcsp_database
+    container_name: boilerplate-database
     ports:
       - "5432:5432"
     restart: always
@@ -18,7 +16,7 @@ services:
       
   keycloak:
     image: mihaibob/keycloak:18.0.2-legacy
-    container_name: mcsp_identity
+    container_name: boilerplate-identity
     environment:
       KEYCLOAK_IMPORT: tmp/realm-export.json
       DB_VENDOR: postgres
@@ -40,7 +38,7 @@ services:
       - postgres  
         
   rabbitmq:
-    container_name: mcsp_bus
+    container_name: boilerplate-bus
     image: masstransit/rabbitmq:latest
     ports:
       - "5672:5672"
@@ -51,6 +49,20 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+      
+  todoapp-service:
+    image: boilerplate/todoapp-service:latest
+    container_name: boilerplate-todoapp-service
+    ports:
+      - "5288:80"
+    depends_on:
+      - "postgres"
+
+  bff:
+    image: boilerplate/bff:latest
+    container_name: boilerplate-bff
+    ports:
+      - "5215:80"
 
 volumes:
   boilerplate_data:
