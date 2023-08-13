@@ -5,7 +5,7 @@
 --------------------------------
 
 ```mermaid
-flowchart TB
+flowchart LR
 
 subgraph DomainUser[Domain user]
         direction LR
@@ -13,31 +13,35 @@ subgraph DomainUser[Domain user]
         d1[A generic internal domain user]:::description
 end
 DomainUser:::person
+    
+subgraph Clients[Acme web client]
+    direction TB
 
-subgraph TodoApp[Todo application]
-    subgraph Client[Todo web client]
-        subgraph pwa[Progressive Web App]
-            direction LR
-            h2[Container: ASP .NET 7 Blazor]:::type
-            d2[Web client for todoo application and others]:::description
-        end
-        pwa:::internalContainer
-        
-        subgraph sdk[SDK]
-            direction LR
-            h12[Container: Typescript / dotnet]:::type
-            d12[HTTP SDK for GraphQL / REST protocols]:::description
-        end
-        sdk:::internalContainer
-        
-        subgraph bff[Backend for frontend]
-            direction LR
-            h3[Container: ASP .NET 7 and YARP]:::type
-            d3[Backend for frontend hosting blazor PWA and routing API Services]:::description
-        end
-        bff:::internalContainer
+    subgraph pwa[Progressive Web App]
+        direction LR
+        h2[Container: ASP .NET 7 Blazor]:::type
+        d2[Web client for todoo application and others]:::description
     end
-    Client:::groupInternalContainer
+    pwa:::internalContainer
+    
+    subgraph sdk[SDK]
+        direction LR
+        h12[Container: Typescript / dotnet]:::type
+        d12[HTTP SDK for GraphQL / REST protocols]:::description
+    end
+    sdk:::internalContainer
+    
+    subgraph bff[Backend for frontend]
+        direction LR
+        h3[Container: ASP .NET 7 and YARP]:::type
+        d3[Backend for frontend hosting blazor PWA and routing API Services]:::description
+    end
+    bff:::internalContainer
+end
+Clients:::groupInternalContainer
+    
+subgraph Services[microservice]
+    direction LR
     
     subgraph TodoAPI[Todo microservice]
         direction LR
@@ -53,20 +57,25 @@ subgraph TodoApp[Todo application]
     end
     TodoData:::database
     
-    subgraph OtherAPI[microservice x]
+    subgraph BaasAPI[microservice x]
         direction LR
         h6[Container: xxx]:::type
         d6[xxx microservice exposing API]:::description
     end
-    OtherAPI:::internalContainer
+    BaasAPI:::internalContainer
     
-    subgraph OtherData[Other service database]
+    subgraph BaasData[Other service database]
         direction LR
         h7[Container: xxx]:::type
         d7[Relational xxx]:::description
     end
-    OtherData:::database
-    
+    BaasData:::database
+end
+Services:::groupInternalContainer
+
+subgraph BuildingBlocks[Building blocks]
+    direction LR
+
     subgraph emailSystem[Email System]
         h99[-Software System-]:::type
         d99[The external email system provided by xxx]:::description
@@ -77,27 +86,26 @@ subgraph TodoApp[Todo application]
         h10[-Software System-]:::type
         d10[The external service bus system provided by xxx]:::description
     end
-    serviceBusSystem:::externalSystem
+    serviceBusSystem:::externalSystem 
     
-end
-TodoApp:::internalComponent
+    subgraph identityAccessManagement[Identity & Access Management]
+        h11[-Software System-]:::type
+        d11[The IAM system provided by xxx]:::description
+    end
+    identityAccessManagement:::externalSystem
+end 
+BuildingBlocks:::externalSystem
 
-subgraph identityAccessManagement[Identity & Access Management]
-    h11[-Software System-]:::type
-    d11[The IAM system provided by xxx]:::description
-end
-identityAccessManagement:::externalSystem
-
-DomainUser--Use-->TodoApp
-TodoAPI--Use-->emailSystem
-TodoAPI--Use-->serviceBusSystem
-pwa--use-->sdk
+DomainUser--Use-->Clients
+Services--Consume-->BuildingBlocks
+Clients--Consume-->BuildingBlocks
 bff--Host blazor PWA-->pwa
-bff--proxying microservices-->TodoAPI
-bff--proxying microservices-->OtherAPI
+sdk--used by-->pwa
+sdk--call-->bff
+Clients--proxying microservices-->Services
+Clients--schema stitching-->Services
 TodoAPI--Use-->TodoData
-OtherAPI--Use-->OtherData
-TodoApp--Use-->identityAccessManagement
+BaasAPI--Use-->BaasData
 
 classDef application fill:#26A69A
 classDef person fill:#01579B, color:#ffffff, stroke: #ffffff

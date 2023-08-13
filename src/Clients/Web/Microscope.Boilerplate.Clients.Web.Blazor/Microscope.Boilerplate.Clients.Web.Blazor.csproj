@@ -29,10 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Configurations\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Shared\Components\RedirectToLogin.razor" />
     </ItemGroup>
 

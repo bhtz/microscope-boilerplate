@@ -133,7 +133,6 @@ brew install pulumi/tap/pulumi
 az login
 ```
 
-
 **Set azure location (optional)**
 ```console
 cd ./src/IAC/Pulumi/Microscope.Boilerplate.IAC

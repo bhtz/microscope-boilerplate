@@ -4,7 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "TodoAppClient",
-      "url": "http://localhost:5288/graphql/",
+      "url": "http://localhost:5215/graphql/",
       "records": {
         "inputs": false,
         "entities": false

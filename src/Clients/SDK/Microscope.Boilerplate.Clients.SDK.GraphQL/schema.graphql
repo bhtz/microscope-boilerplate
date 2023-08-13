@@ -3,13 +3,11 @@
   mutation: Mutation
 }
 
-"The `Upload` scalar type represents a file upload."
-scalar Upload
-
-enum ApplyPolicy {
-  BEFORE_RESOLVER
-  AFTER_RESOLVER
-  VALIDATION
+type Query {
+  healthCheck: String!
+  features: [KeyValuePairOfStringAndBoolean!]!
+  todolists(search: String): [TodoListQueryResult!]!
+  todolistById(id: UUID!): TodoListByIdQueryResult!
 }
 
 type Mutation {
@@ -23,72 +21,9 @@ type Mutation {
   removeTag(command: RemoveTagCommandInput!): Boolean!
 }
 
-type Query {
-  healthCheck: String!
-  features: [KeyValuePairOfStringAndBoolean!]!
-  todolists(search: String): [TodoListQueryResult!]!
-  todolistById(id: UUID!): TodoListByIdQueryResult!
-}
-
-input CreateTodoListCommandInput {
-  name: String!
-}
-
-scalar UUID
-
-input CreateTodoItemCommandInput {
-  todoListId: UUID!
-  label: String!
-}
-
-input ToggleTodoItemCommandInput {
-  todoListId: UUID!
-  todoItemId: UUID!
-}
-
-input DeleteTodoItemCommandInput {
-  todoListId: UUID!
-  todoItemId: UUID!
-}
-
-input DeleteTodoListCommandInput {
-  todoListId: UUID!
-}
-
-input UpdateTodoListCommandInput {
-  todoListId: UUID!
-  name: String!
-}
-
-input AddTagCommandInput {
-  todoListId: UUID!
-  label: String!
-  color: String!
-}
-
-input RemoveTagCommandInput {
-  todoListId: UUID!
-  label: String!
-  color: String!
-}
-
 type KeyValuePairOfStringAndBoolean {
   key: String!
   value: Boolean!
-}
-
-type TodoListQueryResult {
-  id: UUID!
-  name: String!
-  isCompleted: Boolean!
-}
-
-type TodoListByIdQueryResult {
-  id: UUID!
-  name: String!
-  isCompleted: Boolean!
-  todoItems: [TodoItemResult!]!
-  tags: [TagResult!]!
 }
 
 type TagResult {
@@ -101,3 +36,73 @@ type TodoItemResult {
   label: String!
   isCompleted: Boolean!
 }
+
+type TodoListByIdQueryResult {
+  id: UUID!
+  name: String!
+  isCompleted: Boolean!
+  todoItems: [TodoItemResult!]!
+  tags: [TagResult!]!
+}
+
+type TodoListQueryResult {
+  id: UUID!
+  name: String!
+  isCompleted: Boolean!
+}
+
+input AddTagCommandInput {
+  todoListId: UUID!
+  label: String!
+  color: String!
+}
+
+input CreateTodoItemCommandInput {
+  todoListId: UUID!
+  label: String!
+}
+
+input CreateTodoListCommandInput {
+  name: String!
+}
+
+input DeleteTodoItemCommandInput {
+  todoListId: UUID!
+  todoItemId: UUID!
+}
+
+input DeleteTodoListCommandInput {
+  todoListId: UUID!
+}
+
+input RemoveTagCommandInput {
+  todoListId: UUID!
+  label: String!
+  color: String!
+}
+
+input ToggleTodoItemCommandInput {
+  todoListId: UUID!
+  todoItemId: UUID!
+}
+
+input UpdateTodoListCommandInput {
+  todoListId: UUID!
+  name: String!
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}
+
+scalar UUID
+
+"Delegates a resolver to a remote schema."
+directive @delegate("The path to the field on the remote schema." path: String "The name of the schema to which this field shall be delegated to." schema: String!) on FIELD_DEFINITION
+
+directive @computed("Specifies the fields on which a computed field is dependent on." dependantOn: [String!]) on FIELD_DEFINITION
+
+"Annotates the original name of a type."
+directive @source("The original name of the annotated type." name: String! "The name of the schema to which this type belongs to." schema: String!) repeatable on OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION
