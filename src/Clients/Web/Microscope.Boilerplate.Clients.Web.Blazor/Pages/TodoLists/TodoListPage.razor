@@ -86,7 +86,7 @@
             }
             else
             {
-                _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+                _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
             }
         }
     }

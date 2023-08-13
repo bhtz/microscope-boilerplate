@@ -1,6 +1,4 @@
 using Pulumi;
-using Pulumi.AzureNative.DBforPostgreSQL;
-using Pulumi.AzureNative.DBforPostgreSQL.V20220308Preview.Inputs;
 using Pulumi.AzureNative.Resources;
 using Pulumi.AzureNative.Storage;
 using Pulumi.AzureNative.Web;

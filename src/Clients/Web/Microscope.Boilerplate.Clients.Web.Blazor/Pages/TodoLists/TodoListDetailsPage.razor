@@ -22,7 +22,7 @@
                 }
             </MudText>
             <MudSpacer/>
-            <MudIconButton Size="Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
+            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
         </MudToolBar>
         
         <div>
@@ -33,33 +33,35 @@
                 <MudChip Size="Size.Small" Color="@color" OnClose="() => RemoveTag(tag)">@tag.Label</MudChip>    
             }
         </div>
+        
+        <MudPaper Elevation="3">
+            <div class="mt-4"></div>
+            <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
+                <DataAnnotationsValidator/>
+                <MudTextField Variant="Variant.Outlined" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
+            </EditForm>
 
-        <div class="mt-4"></div>
-        <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
-            <DataAnnotationsValidator/>
-            <MudTextField Variant="Variant.Outlined" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
-        </EditForm>
+            <MudList Clickable="true">
+                @foreach (var item in result.TodolistById.TodoItems.OrderBy(x => x.Label))
+                {
+                    <MudListItem OnClick="() => ToggleTodoItem(item.Id)">
+                        <MudText>
+                            <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Default"></MudIconButton>
+                            @if (item.IsCompleted)
+                            {
+                                <strike>@item.Label</strike>
+                            }
+                            else
+                            {
+                                @item.Label
+                            }
 
-        <MudList Clickable="true">
-            @foreach (var item in result.TodolistById.TodoItems.OrderBy(x => x.Label))
-            {
-                <MudListItem OnClick="() => ToggleTodoItem(item.Id)">
-                    <MudText>
-                        <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Default"></MudIconButton>
-                        @if (item.IsCompleted)
-                        {
-                            <strike>@item.Label</strike>
-                        }
-                        else
-                        {
-                            @item.Label
-                        }
-
-                    </MudText>
-                </MudListItem>
-                <MudDivider/>
-            }
-        </MudList>
+                        </MudText>
+                    </MudListItem>
+                    <MudDivider/>
+                }
+            </MudList>
+        </MudPaper>
     </ChildContent>
     <ErrorContent>
         @result.First().Message
@@ -90,7 +92,7 @@
         }
         else
         {
-            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+            _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
         }
         
         Loading = false;
@@ -109,7 +111,7 @@
         }
         else
         {
-            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+            _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
         }
         
         Loading = false;
@@ -128,7 +130,7 @@
         }
         else
         {
-            _snackBar.Add(res.Errors.FirstOrDefault().ToString(), Severity.Error);
+            _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
         }
         
         Loading = false;

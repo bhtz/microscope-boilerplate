@@ -1,3 +1,5 @@
 ﻿using Microscope.Boilerplate.IAC.Stacks;
 
-return await Pulumi.Deployment.RunAsync<AzureStack>();
+return await Pulumi
+    .Deployment
+    .RunAsync<AzureStack>();
