@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.9" />
+      <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.400" />
+      <PackageReference Include="Yarp.ReverseProxy" Version="2.0.1" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <ContainerImageName>boilerplate/bff</ContainerImageName>
+        <PublishProfile>DefaultContainer</PublishProfile>
+        <ContainerImageTags>latest</ContainerImageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Web\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj" />
+    </ItemGroup>
+
+</Project>
