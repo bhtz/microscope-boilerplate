@@ -27,15 +27,18 @@ dotnet new microscope_boilerplate -n Acme.AwesomeProject -D "false"
 ```
 
 ## Build
-**Build solution & containers**
+**Build solution**
 ```console
 dotnet build
+```
+
+**Build solution containers**
+```console
 dotnet publish
 ```
 
-**Build solution & containers for arm64**
+**Build solution containers for arm64**
 ```console
-dotnet build
 dotnet publish -r linux-arm64
 ```
 
