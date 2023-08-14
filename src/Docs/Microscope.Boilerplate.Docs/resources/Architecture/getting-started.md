@@ -68,19 +68,27 @@ npm run slides:build
 ```
 
 ### Run solution documentation (vitepress)
+
 **Install NPM packages**
 ```console
-cd ./src/Docs
+cd ./src/Docs/Microscope.Boilerplate.Docs
 npm i
 ```
-**run documentation website**
+
+**Dev documentation**
 ```console
 npm run docs:dev
 ```
 
-### Run presentation slides (revealjs)
+### Dev slides (revealjs)
 ```console
 npm run slides:dev
+```
+
+**Build docs & run**
+```console
+npm run docs:build
+dotnet run
 ```
 
 ## Solution
