@@ -19,4 +19,4 @@ dotnet new microscope_boilerplate -n Acme.AwesomeProject
 
 ## Reading documentation :
 
-[Getting started documentation](https://github.com/bhtz/microscope-boilerplate/blob/master/src/Docs/resources/Architecture/getting-started.md)
+[Getting started documentation](https://github.com/bhtz/microscope-boilerplate/blob/master/src/Docs/Microscope.Boilerplate.Docs/resources/Architecture/getting-started.md)
