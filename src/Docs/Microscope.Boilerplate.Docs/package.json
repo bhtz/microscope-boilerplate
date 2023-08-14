@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "mermaid": "^10.3.1",
+    "vitepress": "^1.0.0-rc.4",
+    "vitepress-plugin-mermaid": "^2.0.14"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev --port 9000",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "slides:dev": "vite ./slides --port 9001",
+    "slides:build": "vite build ./slides",
+    "slides:serve": "vite preview ./slides"
+  },
+  "dependencies": {
+    "markdown-it-task-lists": "^2.1.1",
+    "reveal.js": "^4.5.0",
+    "vite": "^4.4.7"
+  }
+}

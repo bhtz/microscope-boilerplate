@@ -3,8 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-src/Docs/slides/dist/
-src/Docs/.vitepress/cache/
+src/Docs/Microscope.Boilerplate.Docs/slides/dist/
+src/Docs/Microscope.Boilerplate.Docs/.vitepress/cache/
+src/Docs/Microscope.Boilerplate.Docs/wwwroot/*
 
 # User-specific files
 *.rsuser

@@ -63,6 +63,12 @@ services:
     container_name: boilerplate-bff
     ports:
       - "5215:80"
+        
+  docs:
+    image: boilerplate/docs:latest
+    container_name: boilerplate-docs
+    ports:
+      - "9000:80"
 
 # ADD Backend As Service for POC or GraphQL gateway
   baas:
