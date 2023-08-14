@@ -3,9 +3,11 @@ using Microscope.Boilerplate.Clients.BFF.Configurations;
 var builder = WebApplication.CreateBuilder(args);
 
 // register reverse proxy configuration
-builder.Services.AddReverseProxy()
+builder.Services
+    .AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
+// builder.Services.AddSimpleGraphQlGateway(builder.Configuration);
 builder.Services.AddGraphQlGateway(builder.Configuration);
 
 var app = builder.Build();

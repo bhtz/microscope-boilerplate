@@ -1,28 +1,47 @@
 namespace Microscope.Boilerplate.Clients.BFF.Configurations;
 
-public static class CorsConfiguration
+public static class GatewayConfiguration
 {
     public static IServiceCollection AddGraphQlGateway(this IServiceCollection services, IConfiguration configuration)
     {
-        var requestExecutorBuilder = services.AddGraphQLServer();
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         services.AddTransient<AuthenticationHeaderHandler>();
         
-        var schemas = configuration.GetSection("GraphQLGateway:Schemas").Get<GqlSchemas[]>();
-        
-        foreach (var schema in schemas)
+        var option = new GatewayOptions();
+        configuration.GetSection("GraphQLGateway").Bind(option);
+
+        var builder = services.AddGraphQLServer();
+
+        foreach (var scalar in option.Scalars)
+        {
+            builder.AddType(new AnyType(scalar));
+        }
+
+        foreach (var schema in option.Schemas)
         {
             services
                 .AddHttpClient(schema.Name, c => c.BaseAddress = new Uri(schema.Url))
                 .AddHttpMessageHandler<AuthenticationHeaderHandler>();
-            
-            requestExecutorBuilder.AddRemoteSchema(schema.Name);
+
+            builder.AddRemoteSchema(schema.Name);
+        
+            var subgraph = services.AddGraphQL(schema.Name);
+            foreach (var scalar in option.Scalars)
+            {
+                subgraph.AddType(new AnyType(scalar));
+            }
         }
-
-        requestExecutorBuilder.AddTypeExtensionsFromFile("./stitching.graphql");
-
+    
+        builder.AddTypeExtensionsFromFile("./stitching.graphql");
+        
         return services;
     }
-    
-    public record GqlSchemas(string Name, string Url);
+
+    public class GatewayOptions
+    {
+        public IEnumerable<GatewaySchema> Schemas { get; set; }
+        public IEnumerable<string> Scalars { get; set; }
+    }
+
+    public record GatewaySchema(string Name, string Url);
 }
