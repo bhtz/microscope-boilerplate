@@ -6,7 +6,8 @@
 ## Template
 
 - [x] Setup dotnet template
-- [x] Make docs a choice
+- [x] Documentation project option
+- [ ] Backend As A Service option
 
 ## Clients
 - [x] Setup mudblazor UI
@@ -120,6 +121,7 @@
     - [x] BFF
     - [x] Docs
     - [x] Microsoft.Build.Container
+    - [ ] Compose override ARM64 & X64
 - [ ] Pulumi stack
   - [x] Setup Pulumi 
   - [ ] Azure

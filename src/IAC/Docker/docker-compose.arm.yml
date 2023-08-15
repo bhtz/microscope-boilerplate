@@ -15,22 +15,28 @@ services:
       POSTGRES_DB: postgres
   
   keycloak:
-    image: quay.io/keycloak/keycloak:18.0.2-legacy
+    image: mihaibob/keycloak:18.0.2-legacy
     container_name: boilerplate-identity
     environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: microscope
-      KEYCLOAK_DB_VENDOR: postgres
+      KEYCLOAK_IMPORT: tmp/realm-export.json
+      DB_VENDOR: postgres
       DB_ADDR: postgres
-      DB_PORT: 5432
       DB_DATABASE: postgres
       DB_USER: postgres
+      DB_SCHEMA: mcsp_identity
       DB_PASSWORD: root
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: microscope
+    volumes:
+      - ./realm-export.json:/tmp/realm-export.json
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    # entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
     ports:
       - 8083:8080
     depends_on:
       - postgres
-        
+  
   rabbitmq:
     container_name: boilerplate-bus
     image: masstransit/rabbitmq:latest
@@ -43,7 +49,7 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
-      
+  
   todoapp-service:
     image: boilerplate/todoapp-service:latest
     container_name: boilerplate-todoapp-service
@@ -57,14 +63,14 @@ services:
     container_name: boilerplate-bff
     ports:
       - "5215:80"
-        
+  
   docs:
     image: boilerplate/docs:latest
     container_name: boilerplate-docs
     ports:
       - "9000:80"
-
-# Backend as a Service (BaaS) for prototyping microservices
+  
+  # Backend as a Service (BaaS) for prototyping microservices
   baas:
     image: hasura/graphql-engine:v2.31.0-ce
     container_name: boilerplate-baas
@@ -83,3 +89,4 @@ services:
 
 volumes:
   boilerplate_data:
+
