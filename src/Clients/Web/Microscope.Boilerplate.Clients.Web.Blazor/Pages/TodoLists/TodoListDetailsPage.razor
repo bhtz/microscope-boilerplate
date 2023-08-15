@@ -38,7 +38,7 @@
             <div class="mt-4"></div>
             <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
                 <DataAnnotationsValidator/>
-                <MudTextField Variant="Variant.Outlined" T="string" Label="Add item" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
+                <MudTextField Variant="Variant.Outlined" T="string" Label="@Loc["AddItem"]" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)"/>
             </EditForm>
 
             <MudList Clickable="true">

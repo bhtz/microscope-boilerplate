@@ -17,7 +17,7 @@
     <ChildContent>
         <MudDataGrid T="IGetTodolists_Todolists" Items="result.Todolists" Dense="true" Striped="true" Hover="true" Bordered="true" Filterable="true" QuickFilter="@FilterFunc" Hideable="true" ShowMenuIcon="true">
             <ToolBarContent>
-                <MudTextField @bind-Value="SearchTerm" Placeholder="Search" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Small" Class="mr-5"></MudTextField>
+                <MudTextField @bind-Value="SearchTerm" Placeholder="@Loc["Search"]" Adornment="Adornment.Start" Immediate="true" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Small" Class="mr-5"></MudTextField>
             </ToolBarContent>
             <Columns>
                 <TemplateColumn T="IGetTodolists_Todolists" Title="Name" Filterable="true" Sortable="true">

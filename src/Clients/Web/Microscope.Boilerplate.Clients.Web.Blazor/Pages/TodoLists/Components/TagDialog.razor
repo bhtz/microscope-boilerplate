@@ -1,6 +1,6 @@
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.Extensions.Localization
-@inject IStringLocalizer<TodoListDialog> Loc
+@inject IStringLocalizer<TagDialog> Loc
 
 <EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
     <MudDialog>
@@ -8,9 +8,9 @@
         <DialogContent>
             <DataAnnotationsValidator />
 
-            <MudTextField Variant="Variant.Filled" T="string" Label="@Loc["Name"]" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)" />
+            <MudTextField Variant="Variant.Filled" T="string" Label="@Loc["Label"]" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)" />
             
-            <MudSelect @bind-value="ViewModel.Color" T="String" Label="Color" Variant="Variant.Filled">
+            <MudSelect @bind-value="ViewModel.Color" T="String" Label="@Loc["Color"]" Variant="Variant.Filled">
                 @foreach (var item in Enum.GetValues(typeof(Color)).Cast<Color>().Select(v => v.ToString()).ToList())
                 {
                     <MudSelectItem Value="@item">

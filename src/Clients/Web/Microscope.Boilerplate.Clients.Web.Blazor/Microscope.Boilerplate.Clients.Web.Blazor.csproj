@@ -77,6 +77,14 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>LoginDisplay.fr.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TagDialog.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TagDialog.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>

@@ -121,4 +121,8 @@
     <value>To do lists</value>
     <comment/>
   </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Add item</value>
+    <comment/>
+  </data>
 </root>

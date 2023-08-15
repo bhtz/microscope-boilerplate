@@ -121,4 +121,8 @@
     <value>Liste des tâches</value>
     <comment/>
   </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Ajouter un élément</value>
+    <comment/>
+  </data>
 </root>

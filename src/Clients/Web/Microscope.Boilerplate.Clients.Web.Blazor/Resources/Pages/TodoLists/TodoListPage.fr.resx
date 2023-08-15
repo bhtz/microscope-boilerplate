@@ -121,4 +121,8 @@
     <value>Liste des tâches</value>
     <comment/>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Rechercher</value>
+    <comment/>
+  </data>
 </root>

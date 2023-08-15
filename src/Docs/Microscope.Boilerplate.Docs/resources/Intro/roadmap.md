@@ -22,8 +22,10 @@
 - [x] Setup Feature management
 - [x] Setup Globalization
 - [x] BFF
-    - [x] blazor hosted & SSR
+    - [x] blazor hosted
     - [x] reverse proxy APIs (YARP)
+    - [x] GraphQL gateway & schema stitching
+    - [ ] File upload sample
 
 ## Services
 ### TodoList 
@@ -38,7 +40,6 @@
         - [x] Common behaviours
         - [x] Mappings
         - [ ] Features
-            - [ ] File upload sample ?
             - [x] Todolist
                 - [x] Commands
                   - [x] Create todo list
@@ -114,11 +115,13 @@
     - [x] keycloak
       - [ ] import realms configuration - bug
     - [x] Service Bus RabbitMQ
-    - [ ] Todo API
-    - [ ] BFF
-    - [ ] Microsoft.Build.Container
+    - [x] Todo API
+    - [x] BaaS (Hasura)
+    - [x] BFF
+    - [x] Docs
+    - [x] Microsoft.Build.Container
 - [ ] Pulumi stack
-  - [ ] Setup Pulumi 
+  - [x] Setup Pulumi 
   - [ ] Azure
   - [ ] AWS
   - [ ] GCP
@@ -130,6 +133,7 @@
   - [x] PDF export
   - [x] Task list
 - [x] Setup revealjs slides
+- [x] Setup docs web server as static files & container
 
 -------------------------
 ## Roadmap (sample)
