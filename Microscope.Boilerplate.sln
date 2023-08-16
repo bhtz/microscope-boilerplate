@@ -64,7 +64,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{31817A
 		src\IAC\Docker\docker-compose.yml = src\IAC\Docker\docker-compose.yml
 		src\IAC\Docker\init.sql = src\IAC\Docker\init.sql
 		src\IAC\Docker\realm-export.json = src\IAC\Docker\realm-export.json
-		src\IAC\Docker\docker-compose.arm.yml = src\IAC\Docker\docker-compose.arm.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2C2C3ADB-8DA0-4165-AEC6-E60527D51F8A}"

@@ -15,11 +15,11 @@ services:
       POSTGRES_DB: postgres
   
   keycloak:
-    image: quay.io/keycloak/keycloak:18.0.2-legacy
+    image: quay.io/keycloak/keycloak:22.0
     container_name: boilerplate-identity
     environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: microscope
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
       KEYCLOAK_DB_VENDOR: postgres
       DB_ADDR: postgres
       DB_PORT: 5432
@@ -28,6 +28,11 @@ services:
       DB_PASSWORD: root
     ports:
       - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
     depends_on:
       - postgres
         
