@@ -48,14 +48,6 @@ cd src/IAC/Docker
 docker-compose up
 ```
 
-## Register IAM application client
-* open [Keycloak console](http://localhost:8083/auth/)
-* Login as admin
-    * user : admin
-    * password : microscope
-        * Don't forget to change this default setting
-* Go to import > select file > ./src/IAC/realm-export.json
-
 ## Go to app
 * open [Boilerplate app](http://localhost:5215/)
 

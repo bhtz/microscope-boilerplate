@@ -3,6 +3,7 @@
 > Add your own awesome project roadmap here
 
 ## V1
+
 ## Template
 
 - [x] Setup dotnet template
@@ -113,15 +114,15 @@
 ## IAC
 - [ ] docker-compose
     - [x] postgres
-    - [x] keycloak
-      - [ ] import realms configuration - bug
+    - [x] keycloak 22
+      - [x] import realms configuration
     - [x] Service Bus RabbitMQ
     - [x] Todo API
     - [x] BaaS (Hasura)
     - [x] BFF
     - [x] Docs
     - [x] Microsoft.Build.Container
-    - [ ] Compose override ARM64 & X64
+    
 - [ ] Pulumi stack
   - [x] Setup Pulumi 
   - [ ] Azure

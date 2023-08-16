@@ -17,6 +17,12 @@ dotnet new install ./microscope-boilerplate
 dotnet new microscope_boilerplate -n Acme.AwesomeProject
 ```
 
+## Run solution
+```console
+cd Acme.AwesomeProject
+docker-compose up
+```
+
 ## Reading documentation :
 
 [Getting started documentation](https://github.com/bhtz/microscope-boilerplate/blob/master/src/Docs/Microscope.Boilerplate.Docs/resources/Architecture/getting-started.md)
