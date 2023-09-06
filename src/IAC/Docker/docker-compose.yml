@@ -85,6 +85,17 @@ services:
       HASURA_GRAPHQL_SERVER_PORT: 8000
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
       HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: "true"
+      
+  telemetry:
+    image: jaegertracing/all-in-one:1.48
+    container_name: boilerplate-telemetry
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+      - "4317:4317"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - LOG_LEVEL=debug
 
 volumes:
   boilerplate_data:

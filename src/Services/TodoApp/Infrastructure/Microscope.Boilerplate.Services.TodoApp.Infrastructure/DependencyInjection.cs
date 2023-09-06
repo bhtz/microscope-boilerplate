@@ -12,6 +12,7 @@ using Microscope.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 
@@ -19,41 +20,70 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddTodoAppServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTodoApplication();
-        services.AddPersistenceAdapter(configuration);
-        services.AddMailAdapter(configuration);
-        services.AddBusAdapter(configuration);
-        services.AddStorageAdapter(configuration);
+        services
+            .AddTodoAppSettings(configuration)
+            .AddTodoApplication()
+            .AddPersistenceAdapter()
+            .AddMailAdapter()
+            .AddBusAdapter()
+            .AddStorageAdapter();
+
+        return services;
+    }
+    
+    public static IServiceCollection AddTodoAppSettings(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddOptions<PersistenceOptions>()
+            .Bind(configuration.GetSection(PersistenceOptions.ConfigurationKey))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<MailOptions>()
+            .Bind(configuration.GetSection(MailOptions.ConfigurationKey))
+            .Validate(x => new MailOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
+        
+        services.AddOptions<BusOptions>()
+            .Bind(configuration.GetSection(BusOptions.ConfigurationKey))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<StorageOptions>()
+            .Bind(configuration.GetSection(StorageOptions.ConfigurationKey))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
         
         return services;
     }
     
-    public static IServiceCollection AddPersistenceAdapter(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistenceAdapter(this IServiceCollection services)
     {
-        var serviceName = "TodoAppService";
-        var provider = configuration.GetValue<string>("DatabaseProvider");
-        var connectionString = configuration.GetConnectionString(serviceName);
         var assemblyName = typeof(TodoAppDbContext).Assembly.FullName;
+        
+        var option = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<PersistenceOptions>>()
+            .Value;
 
         services.AddDbContext<TodoAppDbContext>(options =>
         {
-            switch (provider)
+            switch (option.Adapter)
             {
                 case "postgres":
                     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-                    options.UseNpgsql(connectionString, o => o.MigrationsAssembly(assemblyName));
+                    options.UseNpgsql(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
                     break;
 
                 case "mssql":
-                    options.UseSqlServer(connectionString, o => o.MigrationsAssembly(assemblyName));
+                    options.UseSqlServer(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
                     break;
                 
                 case "sqlite":
-                    options.UseSqlite(connectionString, o => o.MigrationsAssembly(assemblyName));
+                    options.UseSqlite(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
                     break;
 
                 default:
-                    options.UseInMemoryDatabase(serviceName);
+                    options.UseInMemoryDatabase(assemblyName);
                     break;
             }
         });
@@ -64,9 +94,9 @@ public static class DependencyInjection
         return services;
     }
     
-    public static IServiceCollection AddStorageAdapter(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddStorageAdapter(this IServiceCollection services)
     {
-        services.AddStorage(configuration); // cross cutting Microscope.Storage
+        services.AddStorage(); // cross cutting Microscope.Storage
         services.AddScoped<IFileStorageService, FileStorageService>();
         return services;
     }
@@ -76,16 +106,12 @@ public static class DependencyInjection
         return services;
     }
     
-    public static IServiceCollection AddMailAdapter(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddMailAdapter(this IServiceCollection services)
     {
-        var option = new MailOptions();
-        var section = configuration.GetSection(MailOptions.ConfigurationKey);
-        section.Bind(option);
-        
-        services.AddOptions<MailOptions>()
-            .Bind(section)
-            .ValidateDataAnnotations()
-            .ValidateOnStart();
+        var option = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<MailOptions>>()
+            .Value;
 
         switch (option.Adapter)
         {
@@ -105,18 +131,14 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddBusAdapter(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddBusAdapter(this IServiceCollection services)
     {
+        var option = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<BusOptions>>()
+            .Value;
+        
         services.AddScoped<IBusService, MassTransitBusService>();
-        
-        var option = new BusOptions();
-        var section = configuration.GetSection(BusOptions.ConfigurationKey);
-        section.Bind(option);
-        
-        services.AddOptions<BusOptions>()
-            .Bind(section)
-            .ValidateDataAnnotations()
-            .ValidateOnStart();
         
         services.AddMassTransit(configuration =>
         {

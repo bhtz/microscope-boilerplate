@@ -20,7 +20,7 @@ public class SendMailOnTodoListCompletedEventHandler : INotificationHandler<OnTo
     
     public async Task Handle(OnTodoListCompletedEvent notification, CancellationToken cancellationToken)
     {
-        var dto = _mapper.Map<TodoListQueryResult>(notification.TodoList);
+        var dto = _mapper.Map<GetTodoListQueryResult>(notification.TodoList);
         await _mailService.SendTodoListCompletedMail(notification.TodoList.CreatorMail, dto);
     }
 }

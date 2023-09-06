@@ -2,7 +2,7 @@ using Microscope.SharedKernel;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
 
-public class GetTodoListByIdQuery : IQuery<TodoListByIdQueryResult>
+public class GetTodoListByIdQuery : IQuery<GetTodoListByIdQueryResult>
 {
     public Guid Id { get; set; }
     
@@ -12,7 +12,7 @@ public class GetTodoListByIdQuery : IQuery<TodoListByIdQueryResult>
     }
 }
 
-public record TodoListByIdQueryResult
+public record GetTodoListByIdQueryResult
 {
     public Guid Id { get; init; }
     public string Name { get; init; }

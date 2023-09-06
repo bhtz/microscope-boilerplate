@@ -1,6 +1,7 @@
 using System.Net.Mail;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using RazorLight;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -10,15 +11,18 @@ namespace Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.Mail;
 public class SendGridMailService : IMailService
 {
     private readonly IConfiguration _configuration;
+    private readonly IOptions<MailOptions> _options;
 
-    public SendGridMailService(IConfiguration configuration)
+    public SendGridMailService(IConfiguration configuration, IOptions<MailOptions> options)
     {
         _configuration = configuration;
+        _options = options;
     }
 
     private async Task<bool> SendMail(MailMessage mailMessage)
     {
-        var apiKey = _configuration.GetValue<string>("Mail:APIKey");
+        // var apiKey = _configuration.GetValue<string>("Mail:APIKey");
+        var apiKey = _options.Value.ApiKey;
         var client = new SendGridClient(apiKey);
         var from = new EmailAddress("benjamin.heintz@live.com", "Boilerplate");
         var subject = mailMessage.Subject;

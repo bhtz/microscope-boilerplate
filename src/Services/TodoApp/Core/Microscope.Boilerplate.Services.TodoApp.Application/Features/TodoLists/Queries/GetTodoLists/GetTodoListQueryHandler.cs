@@ -5,7 +5,7 @@ using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregat
 
 namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
 
-public class GetTodoListQueryHandler : IRequestHandler<GetTodoListQuery, IEnumerable<TodoListQueryResult>>
+public class GetTodoListQueryHandler : IRequestHandler<GetTodoListQuery, IEnumerable<GetTodoListQueryResult>>
 {
     private readonly ITodoListRepository _todoListRepository;
     private readonly IIdentityService _identityService;
@@ -18,14 +18,14 @@ public class GetTodoListQueryHandler : IRequestHandler<GetTodoListQuery, IEnumer
         _mapper = mapper;
     }
     
-    public async Task<IEnumerable<TodoListQueryResult>> Handle(GetTodoListQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<GetTodoListQueryResult>> Handle(GetTodoListQuery request, CancellationToken cancellationToken)
     {
         var userId = _identityService.GetUserId();
         var tenantId = _identityService.GetTenantId();
 
         var todoLists = await _todoListRepository.GetCreatedByAsync(tenantId, userId);
 
-        return _mapper.Map<IEnumerable<TodoListQueryResult>>(todoLists);
+        return _mapper.Map<IEnumerable<GetTodoListQueryResult>>(todoLists);
     }
 }
 

@@ -12,6 +12,9 @@ builder.Services.AddGraphQlGateway(builder.Configuration);
 
 var app = builder.Build();
 
+// todo : Add https redirect & hsts for prod
+// todo : Webassemblingdebugging for dev
+
 // expose reverse proxy
 app.MapReverseProxy();
 

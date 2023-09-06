@@ -3,6 +3,7 @@ using Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
 using Microsoft.FeatureManagement;
+using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ builder.Services.AddCorsConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddHealthCheckConfiguration(builder.Configuration);
 builder.Services.AddHttpClient();
+
+// Open telemetry
+builder.Services.AddTelemetryConfiguration(builder.Configuration);
 
 // Authentication & authorization
 builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
@@ -45,11 +49,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseHsts();
 
 app.UseCors("allow-all");
 
 app.UseMiddleware<HttpExceptionMiddleware>();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

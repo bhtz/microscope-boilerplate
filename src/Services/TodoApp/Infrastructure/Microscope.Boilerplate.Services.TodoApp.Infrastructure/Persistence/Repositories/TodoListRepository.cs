@@ -16,7 +16,7 @@ public class TodoListRepository : ITodoListRepository
         _todoLists = context.TodoLists;
     }
 
-    public async Task<Domain.Aggregates.TodoListAggregate.TodoList> GetByIdAsync(string tenantId, Guid id)
+    public async Task<Domain.Aggregates.TodoListAggregate.TodoList?> GetByIdAsync(string tenantId, Guid id)
     {
         return await _todoLists
             .Include(x => x.TodoItems)

@@ -121,6 +121,23 @@ dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.Todo
 
 ### IAC (experimental)
 
+#### TERRAFORM
+**Install Terraform & Azure CLI**
+```console
+brew update
+brew tap hashicorp/tap
+brew install azure-cli
+brew install hashicorp/tap/terraform
+```
+
+**Init**
+```console
+terraform init
+terraform plan
+terraform apply
+```
+
+#### PULUMI
 **Install Pulumi & Azure CLI**
 ```console
 brew update
@@ -143,3 +160,25 @@ pulumi config set azure-native:location westus2
 ```console
 pulumi up
 ```
+
+
+## E2E Tests
+
+**Setup environment**
+- Register a new E2E test user on keycloak IAM
+- username: admin@microscope.io
+- password: microscope
+
+**Run End to End tests**
+```console
+cd ./src/Clients/E2E/Microscope.Boilerplate.Clients.E2E
+dotnet test
+```
+
+**Run End to End tests with GUI**
+```console
+cd ./src/Clients/E2E/Microscope.Boilerplate.Clients.E2E
+HEADED=1 dotnet test
+```
+
+

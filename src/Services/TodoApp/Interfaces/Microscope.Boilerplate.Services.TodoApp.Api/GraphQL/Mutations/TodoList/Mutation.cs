@@ -1,4 +1,4 @@
-using HotChocolate.Authorization;
+using System.Diagnostics;
 using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.AddTag;
 using Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.CreateTodoItem;
@@ -15,6 +15,10 @@ public partial class Mutation
 {
     public async Task<Guid> CreateTodoList([Service]IMediator mediator, CreateTodoListCommand command)
     {
+        // ActivitySource source = new ActivitySource("TodoApp.Api.REST");
+        // using var activity = source.StartActivity("CreateTodoList", ActivityKind.Server);
+        // activity.SetTag("test", "test");
+        
         return await mediator.Send(command);
     }
     

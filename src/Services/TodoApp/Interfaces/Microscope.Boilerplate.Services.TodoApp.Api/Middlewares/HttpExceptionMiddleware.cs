@@ -1,6 +1,7 @@
 using System.Net;
 using FluentValidation;
 using Microscope.Boilerplate.Services.TodoApp.Application.Common.Exceptions;
+using Microscope.SharedKernel;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
 
@@ -19,8 +20,13 @@ public class HttpExceptionMiddleware
             await this._next.Invoke(context);
         }
         catch (ConflictException ex)
-        {   
-            context.Response.StatusCode = (int) HttpStatusCode.Conflict;
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.Conflict;
+            await context.Response.WriteAsync(ex.Message);
+        }
+        catch (NotFoundException ex)
+        {
+            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
             await context.Response.WriteAsync(ex.Message);
         }
         catch (PoliciesException ex)

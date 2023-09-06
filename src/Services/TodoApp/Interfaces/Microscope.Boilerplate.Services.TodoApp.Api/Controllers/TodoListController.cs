@@ -20,14 +20,17 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Controllers;
 public class TodoListController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly ILogger<TodoListController> _logger;
     
-    public TodoListController(IMediator mediator)
+    public TodoListController(IMediator mediator, ILogger<TodoListController> logger)
     {
         _mediator = mediator;
+        _logger = logger;
     }
-
+    
+    [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TodoListQueryResult>>> GetTodoLists([FromQuery] string search)
+    public async Task<ActionResult<IEnumerable<GetTodoListQueryResult>>> GetTodoLists([FromQuery] string search)
     {
         var res = await _mediator.Send(new GetTodoListQuery());
         return Ok(res);

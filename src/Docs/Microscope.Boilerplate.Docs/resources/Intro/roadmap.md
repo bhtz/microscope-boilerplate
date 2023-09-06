@@ -4,11 +4,18 @@
 
 ## V1
 
+## Solution
+
+- [ ] Clients/E2E project for playwright tests
+- [ ] Gestion des Nullable
+- [ ] Clean warnings
+
 ## Template
 
 - [x] Setup dotnet template
 - [x] Documentation project option
 - [ ] Backend As A Service option
+- [ ] microservice generator 
 
 ## Clients
 - [x] Setup mudblazor UI
@@ -19,7 +26,9 @@
 - [x] Setup PWA
 - [x] SDKs
   - [x] GraphQL SDK
-  - [x] REST SDK
+  - [ ] REST SDK
+    - [x] Setup
+    - [ ] Automate swagger.json output from api project
 - [x] Setup Authentication
 - [x] Setup Feature management
 - [x] Setup Globalization
@@ -71,6 +80,9 @@
         - [x] Mail
     - [ ] Bus
         - [x] MassTransit
+          - [x] RabbitMQ
+          - [ ] Azure Service Bus
+          - [ ] Amazon SQS
           - [ ] OpenTelemetry
 - [ ] Interface
     - [x] GraphQL API
@@ -82,22 +94,28 @@
     - [x] HealthCheck
     - [x] Feature management
     - [x] Auto migration option
+    - [ ] Users endpoints
+      - [ ] Keycloak
+      - [ ] AAD
     - [ ] SignalR websocket use case
       - [ ] Listen service bus
     - [ ] OpenTelemetry
+      - [x] REST api
+      - [ ] GraphQL api
 - [ ] Tests
-    - [x] Unit tests
-        - [x] Setup Unit tests
-            - [x] Todolist tests
-    - [x] Architecture tests
-    - [ ] Integration tests
-    - [ ] E2E tests
-      - [ ] Playwright
+    - [x] Setup Unit tests
+    - [x] Setup Architecture tests
+    - [ ] Setup Integration tests
+    - [x] Setup E2E tests
+        - [x] Setup playwright NUnit test project
+        - [ ] Generic test
+        - [ ] Login / logout
+        - [ ] Todolist
 
 ### Storage (optional) ?
 - [x] Azure blob storage
 - [x] Minio
-- [x] AWS S3
+- [ ] AWS S3
 - [x] File system
 
 ###  Workflow (optional)
@@ -109,7 +127,7 @@
 ## Cross cutting 
 - [x] SharedKernel
     - [x] use mediatr contract only
-- [x] refactoring to move Microscope.Storage crosscutting lib
+- [x] Refactoring to move Microscope.Storage crosscutting lib
 
 ## IAC
 - [ ] docker-compose
@@ -117,7 +135,7 @@
     - [x] keycloak 22
       - [x] import realms configuration
     - [x] Service Bus RabbitMQ
-    - [x] Todo API
+    - [x] Todo service
     - [x] BaaS (Hasura)
     - [x] BFF
     - [x] Docs
@@ -128,6 +146,13 @@
   - [ ] Azure
   - [ ] AWS
   - [ ] GCP
+
+- [ ] Terraform
+  - [x] Setup Terraform project
+  - [ ] Azure
+  - [ ] AWS
+  - [ ] GCP
+  
 - [ ] K8S
 
 ## Docs
@@ -138,7 +163,31 @@
 - [x] Setup revealjs slides
 - [x] Setup docs web server as static files & container
 
+----------------------------
+
+## Open source inputs
+
+#Interfaces
+- GraphQL : plutot que les partials, moi j'utilise [QueryType] et [MutationType] et en utlilisant le package HotChocolate.Types.Analyzers (source generator --> .AddTodoAppTypes())
+- Grapql Queries / Mutations --> static
+
+#Docs
+##EF Core Tools
+- "dotnet ef --startup-project ../../Interface/Ecofip.Boilerplate.Services.TodoApp.Api/ migrations add InitialCreate -o ./Persistence/Migrations" : --> KO (../Interface et non ../../Interface)
+- "cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL Add migration" ??? SDK ???
+
+#Clients
+- Blazor.csproj : line 31 -> 33 ??
+- Blazor Program.cs --> Clean
+- ConfigureHttpClients --> baseUrl + "/graphql" ??
+- SDK : dotnet tools : move .config to src/
+
+#Docs
+##EF Core Tools
+- "cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL Add migration" ??? SDK ???
+
 -------------------------
+
 ## Roadmap (sample)
 ```mermaid
 gantt

@@ -1,5 +1,5 @@
+using HotChocolate.Diagnostics;
 using HotChocolate.Execution;
-using MediatR;
 using Microscope.Boilerplate.Services.TodoApp.Api.GraphQL.Mutations;
 using Microscope.Boilerplate.Services.TodoApp.Api.GraphQL.Queries;
 
@@ -15,6 +15,10 @@ public static class GraphQLConfiguration
             .AddMutationType<Mutation>()
             .AddQueryType<Query>()
             .AddType<UploadType>()
+            .AddInstrumentation(o =>
+            {
+                o.Scopes = ActivityScopes.All;
+            })
             .AddProjections()
             .AddFiltering()
             .AddSorting();

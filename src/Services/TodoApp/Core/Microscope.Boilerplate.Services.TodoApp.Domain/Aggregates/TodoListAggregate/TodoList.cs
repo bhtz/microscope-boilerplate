@@ -24,10 +24,11 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
 
     protected TodoList()
     {
-        
+        _todoItems = new List<TodoItem>();
+        _tags = new List<Tag>();
     }
 
-    protected TodoList(string tenantId, Guid id, Guid userId, string creatorMail, string name)
+    protected TodoList(string tenantId, Guid id, Guid userId, string creatorMail, string name): this()
     {
         Id = id;
         TenantId = tenantId;
@@ -36,8 +37,6 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
         Name = name;
-        _todoItems = new List<TodoItem>();
-        _tags = new List<Tag>();
     }
 
     public static TodoList Create(string tenantId, Guid id, Guid userId, string creatorMail, string name)

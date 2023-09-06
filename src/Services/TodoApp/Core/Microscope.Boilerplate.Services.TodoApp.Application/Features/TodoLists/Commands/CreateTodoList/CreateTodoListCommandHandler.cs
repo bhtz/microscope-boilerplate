@@ -1,6 +1,8 @@
 using MediatR;
+using Microscope.Boilerplate.Services.TodoApp.Application.Common.Exceptions;
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate;
+using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
 using Microscope.SharedKernel;
 using Microsoft.AspNetCore.Authorization;
@@ -28,11 +30,14 @@ public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListComman
         var userMail = _identityService.GetUserMail();
         var tenantId = _identityService.GetTenantId();
 
-        var todolist = TodoList.Create(tenantId, Guid.NewGuid(), userId, userMail, request.Name);
-
-        await _todoListRepository.AddAsync(todolist);
+        var todoList = TodoList.Create(tenantId, Guid.NewGuid(), userId, userMail, request.Name);
+        
+        if (todoList == null) 
+            throw new TodoListNotFoundDomainException("Todolist not found");
+        
+        await _todoListRepository.AddAsync(todoList);
         await _unitOfWork.SaveChangesAndDispatchEventsAsync(cancellationToken);
 
-        return todolist.Id;
+        return todoList.Id;
     }
 }

@@ -9,13 +9,13 @@ public class TodoListProfile : Profile
 {
     public TodoListProfile()
     {
-        CreateMap<TodoList, TodoListQueryResult>()
+        CreateMap<TodoList, GetTodoListQueryResult>()
             .ForMember(
                 destination => destination.IsCompleted,
                 opt => opt.MapFrom(x => x.IsCompleted) )
             .ReverseMap();
         
-        CreateMap<TodoList, TodoListByIdQueryResult>()
+        CreateMap<TodoList, GetTodoListByIdQueryResult>()
             .ReverseMap();
     }
 }

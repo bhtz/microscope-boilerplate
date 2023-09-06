@@ -1,20 +1,17 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Microscope.Storage;
 
 public static class Startup
 {
-    public static IServiceCollection AddStorage(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddStorage(this IServiceCollection services)
     {
-        var option = new StorageOptions();
-        var section = configuration.GetSection(StorageOptions.ConfigurationKey);
-        section.Bind(option);
-        
-        services.AddOptions<StorageOptions>()
-            .Bind(section)
-            .ValidateDataAnnotations()
-            .ValidateOnStart();
+        var option = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<StorageOptions>>()
+            .Value;
 
         switch (option.Adapter)
         {

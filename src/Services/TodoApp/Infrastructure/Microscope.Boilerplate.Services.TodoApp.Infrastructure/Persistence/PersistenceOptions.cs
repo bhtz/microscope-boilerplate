@@ -2,14 +2,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
 
-public class BusOptions
+public class PersistenceOptions
 {
-    public const string ConfigurationKey = "Bus";
+    public const string ConfigurationKey = "Persistence";
     
     [Required]
     public string Adapter { get; set; }
+
     [Required]
-    public string Host { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string ConnectionString { get; set; }
+
+    public bool EnableMigration { get; set; } = false;
 }

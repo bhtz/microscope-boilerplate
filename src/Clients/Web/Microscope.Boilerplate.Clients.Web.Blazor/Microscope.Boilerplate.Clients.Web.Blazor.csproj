@@ -23,12 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="Shared\Components\RedirectToLogin.razor" />
     </ItemGroup>
 

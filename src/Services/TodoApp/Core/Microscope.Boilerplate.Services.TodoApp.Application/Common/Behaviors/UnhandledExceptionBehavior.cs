@@ -27,8 +27,15 @@ public class UnhandledExceptionBehavior<TRequest, TResponse> : IPipelineBehavior
         {
             _logger.LogError(ex, "DOMAIN EXCEPTION for Request {Name} {@Request}", requestName, request);
             _logger.LogError($"{ex.Message}");
-            
+
             throw new ConflictException(ex.Message);
+        }
+        catch (NotFoundException ex)
+        {
+            _logger.LogError(ex, "NOT FOUND EXCEPTION for Request {Name} {@Request}", requestName, request);
+            _logger.LogError($"{ex.Message}");
+
+            throw;
         }
         catch (PoliciesException ex)
         {
