@@ -12,8 +12,13 @@ builder.Services.AddGraphQlGateway(builder.Configuration);
 
 var app = builder.Build();
 
-// todo : Add https redirect & hsts for prod
-// todo : Webassemblingdebugging for dev
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+
+app.UseHttpsRedirection();
+app.UseHsts();
 
 // expose reverse proxy
 app.MapReverseProxy();
