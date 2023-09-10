@@ -39,8 +39,8 @@ public static class GatewayConfiguration
 
     public class GatewayOptions
     {
-        public IEnumerable<GatewaySchema> Schemas { get; set; }
-        public IEnumerable<string> Scalars { get; set; }
+        public IEnumerable<GatewaySchema> Schemas { get; set; } = new List<GatewaySchema>();
+        public IEnumerable<string> Scalars { get; set; } = new List<string>();
     }
 
     public record GatewaySchema(string Name, string Url);

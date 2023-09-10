@@ -10,7 +10,7 @@
 <MudToolBar>
     <MudText Typo="Typo.h6">@Loc["Title"]</MudText>
     <MudSpacer/>
-    <MudIconButton Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoListDialog"/>
+    <MudIconButton Class="add-todolist" Icon="@Icons.Material.Outlined.Add" OnClick="OpenTodoListDialog"/>
 </MudToolBar>
 
 <UseGetTodolists Context="result">
@@ -61,7 +61,7 @@
 
         var result = await dialog.Result;
 
-        if (!result.Cancelled)
+        if (!result.Canceled)
         {
             var id = (Guid)result.Data;
             _navigationManager.NavigateTo($"/TodoList/{id}");
@@ -79,7 +79,7 @@
         {
             var res = await _todoAppClient.DeleteTodoList.ExecuteAsync(todoListId);
 
-            if (res.IsSuccessResult() && res.Data.DeleteTodoList)
+            if (res.Data != null && res.IsSuccessResult() && res.Data.DeleteTodoList)
             {
                 _snackBar.Add("Saved", Severity.Success);
                 StateHasChanged();

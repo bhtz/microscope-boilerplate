@@ -5,7 +5,7 @@
 @code {
 
     [Parameter]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [Parameter]
     public int Elevation { get; set; } = 0;
@@ -21,7 +21,7 @@
         get { return GetShortcut(Email); }
     }
 
-    private string GetShortcut(string email)
+    private string GetShortcut(string? email)
     {
         string shortcut = "";
 

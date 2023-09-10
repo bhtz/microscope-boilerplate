@@ -2,7 +2,7 @@ using Microscope.SharedKernel;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.ValueObjects;
 
-public class Tag : ValueObject
+public record Tag : ValueObject
 {
     public string Label { get; private set; } = default!;
     public string Color { get; private set; } = default!;
@@ -16,11 +16,5 @@ public class Tag : ValueObject
     {
         Label = label;
         Color = color;
-    }
-    
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Label;
-        yield return Color;
     }
 }

@@ -7,22 +7,26 @@ namespace Microscope.Boilerplate.Clients.Web.Blazor.Extensions;
 
 public class CustomClaimsPrincipalFactory : AccountClaimsPrincipalFactory<RemoteUserAccount>
 {
-    public CustomClaimsPrincipalFactory(IAccessTokenProviderAccessor accessor)
-        : base(accessor)
+    public CustomClaimsPrincipalFactory(IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
-    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        RemoteUserAccount account,
-        RemoteAuthenticationUserOptions options)
+    
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(RemoteUserAccount account, RemoteAuthenticationUserOptions options)
     {
         var user = await base.CreateUserAsync(account, options);
-        var claimsIdentity = (ClaimsIdentity)user.Identity;
-        if (account != null)
+
+        if (user.Identity is { IsAuthenticated: true })
         {
-            MapArrayClaimsToMultipleSeparateClaims(account, claimsIdentity);
+            var claimsIdentity = (ClaimsIdentity)user.Identity;
+            if (claimsIdentity is not null)
+            {
+                MapArrayClaimsToMultipleSeparateClaims(account, claimsIdentity);
+            }
         }
-        return user;
+        
+        return user ?? new ClaimsPrincipal();
     }
+    
     private void MapArrayClaimsToMultipleSeparateClaims(RemoteUserAccount account, ClaimsIdentity claimsIdentity)
     {
         foreach (var prop in account.AdditionalProperties)

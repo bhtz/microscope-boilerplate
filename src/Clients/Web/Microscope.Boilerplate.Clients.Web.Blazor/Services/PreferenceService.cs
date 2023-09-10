@@ -35,7 +35,7 @@ public class PreferenceService
             return preference.IsDrawerOpen;
         }
 
-        public async Task ChangeLanguageAsync(string languageCode)
+        public async Task ChangeLanguageAsync(string? languageCode)
         {
             var preference = await GetPreference();
             preference.LanguageCode = languageCode;

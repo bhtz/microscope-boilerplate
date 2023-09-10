@@ -5,7 +5,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggr
 public class TodoItem : Entity
 {
     public Guid Id { get; private set; }
-    public string Label { get; private set; }
+    public string Label { get; private set; } = string.Empty;
     public bool IsCompleted { get; private set; }
     
     public TodoList TodoList { get; private set; }

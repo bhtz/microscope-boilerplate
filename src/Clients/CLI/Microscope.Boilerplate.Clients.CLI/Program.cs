@@ -19,7 +19,7 @@ class Program
         var serviceProvider = new ServiceCollection()
             .AddMassTransit(x =>
             {
-                x.AddConsumer<TodoListCompletedIntegrationEventConsumer>();
+                x.AddConsumer<OnTodoListCompletedIntegrationEventConsumer>();
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(new Uri(rabbitMqHost), h =>
@@ -30,7 +30,7 @@ class Program
 
                     cfg.ReceiveEndpoint("todo-list-completed-listener", ep =>
                     {
-                        ep.ConfigureConsumer<TodoListCompletedIntegrationEventConsumer>(context);
+                        ep.ConfigureConsumer<OnTodoListCompletedIntegrationEventConsumer>(context);
                     });
                 });
             })

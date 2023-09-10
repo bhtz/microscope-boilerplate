@@ -6,32 +6,34 @@
 
 ## Solution
 
-- [ ] Clients/E2E project for playwright tests
 - [ ] Gestion des Nullable
 - [ ] Clean warnings
 
 ## Template
 
 - [x] Setup dotnet template
-- [x] Documentation project option
+- [x] Documentation as code option
 - [ ] Backend As A Service option
-- [ ] microservice generator 
+- [ ] Infrastructure as Code option
+- [ ] Microservice generator option
 
 ## Clients
-- [x] Setup mudblazor UI
-- [x] Setup Preferences & Settings
-    - [x] Dark / Light mode
-    - [x] Drawer open
-    - [x] Language support
-- [x] Setup PWA
+- [x] Blazor PWA
+  - [x] Setup mudblazor UI
+  - [x] Setup Preferences & Settings
+      - [x] Dark / Light mode
+      - [x] Drawer open
+      - [x] Language support
+  - [x] Setup Authentication
+  - [x] Setup Feature management
+  - [x] Setup Globalization
+  - [ ] Refactoring program.cs
+    - [x] Setup PWA
 - [x] SDKs
   - [x] GraphQL SDK
   - [ ] REST SDK
     - [x] Setup
     - [ ] Automate swagger.json output from api project
-- [x] Setup Authentication
-- [x] Setup Feature management
-- [x] Setup Globalization
 - [x] BFF
     - [x] blazor hosted
     - [x] reverse proxy APIs (YARP)
@@ -86,7 +88,9 @@
           - [ ] OpenTelemetry
 - [ ] Interface
     - [x] GraphQL API
+      - [ ] Refactoring with QueryType et MutationType attributes ?
     - [x] REST API
+      - [ ] Missing one operation
     - [x] Authentication
         - [x] OPENID JWT
         - [x] MASTER KEY
@@ -95,22 +99,29 @@
     - [x] Feature management
     - [x] Auto migration option
     - [ ] Users endpoints
-      - [ ] Keycloak
-      - [ ] AAD
+      - [ ] Keycloak service
+      - [ ] AAD service
     - [ ] SignalR websocket use case
       - [ ] Listen service bus
     - [ ] OpenTelemetry
       - [x] REST api
       - [ ] GraphQL api
+    
 - [ ] Tests
     - [x] Setup Unit tests
     - [x] Setup Architecture tests
     - [ ] Setup Integration tests
     - [x] Setup E2E tests
-        - [x] Setup playwright NUnit test project
-        - [ ] Generic test
-        - [ ] Login / logout
-        - [ ] Todolist
+        - [x] Setup playwright NUnit project
+        - [x] Home page test
+        - [ ] Login / logout test
+        - [ ] Todolist test
+          - [ ] Create todo list test
+          - [ ] Delete todo list test
+          - [ ] Update todo list test
+          - [ ] Create todo item test
+          - [ ] Delete todo item test
+          - [ ] Toggle todo item test
 
 ### Storage (optional) ?
 - [x] Azure blob storage
@@ -171,20 +182,6 @@
 - GraphQL : plutot que les partials, moi j'utilise [QueryType] et [MutationType] et en utlilisant le package HotChocolate.Types.Analyzers (source generator --> .AddTodoAppTypes())
 - Grapql Queries / Mutations --> static
 
-#Docs
-##EF Core Tools
-- "dotnet ef --startup-project ../../Interface/Ecofip.Boilerplate.Services.TodoApp.Api/ migrations add InitialCreate -o ./Persistence/Migrations" : --> KO (../Interface et non ../../Interface)
-- "cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL Add migration" ??? SDK ???
-
-#Clients
-- Blazor.csproj : line 31 -> 33 ??
-- Blazor Program.cs --> Clean
-- ConfigureHttpClients --> baseUrl + "/graphql" ??
-- SDK : dotnet tools : move .config to src/
-
-#Docs
-##EF Core Tools
-- "cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL Add migration" ??? SDK ???
 
 -------------------------
 

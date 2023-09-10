@@ -21,6 +21,8 @@ public class SendMailOnTodoListCompletedEventHandler : INotificationHandler<OnTo
     public async Task Handle(OnTodoListCompletedEvent notification, CancellationToken cancellationToken)
     {
         var dto = _mapper.Map<GetTodoListQueryResult>(notification.TodoList);
-        await _mailService.SendTodoListCompletedMail(notification.TodoList.CreatorMail, dto);
+        
+        if (notification.TodoList.CreatorMail != null)
+            await _mailService.SendTodoListCompletedMail(notification.TodoList.CreatorMail, dto);
     }
 }

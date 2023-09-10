@@ -9,7 +9,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggr
 public class TodoList : AuditableEntity<Guid>, IAggregateRoot
 {
     public Guid Id { get; private set; }
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
 
     public bool IsCompleted
     {

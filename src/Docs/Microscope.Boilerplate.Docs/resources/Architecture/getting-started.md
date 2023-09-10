@@ -105,7 +105,6 @@ dotnet build
 cd src/Services/TodoApp/Infrastructure/Microscope.Boilerplate.Services.TodoApp.Infrastructure/
 ```
 
-cd src/Clients/SDK/Microscope.Boilerplate.Clients.SDK.GraphQL
 **Add migration**
 ```console
 dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.TodoApp.Api/ migrations add InitialCreate -o ./Persistence/Migrations

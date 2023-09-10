@@ -7,10 +7,11 @@ namespace Microscope.Boilerplate.Clients.Web.Blazor.Services;
 public class FeatureManagementService
 {
     private readonly ITodoAppClient _client;
-    private IEnumerable<IGetFeatures_Features> Features { get; set; }
+    private IEnumerable<IGetFeatures_Features>? Features { get; set; }
     
     public FeatureManagementService(ITodoAppClient client)
     {
+        Features = new List<IGetFeatures_Features>();
         _client = client;
     }
     
@@ -19,7 +20,7 @@ public class FeatureManagementService
         var featuresResult = await _client.GetFeatures.ExecuteAsync();
         if (featuresResult.IsSuccessResult())
         {
-            Features = featuresResult.Data.Features;
+            Features = featuresResult.Data?.Features;
         }
     }
 }

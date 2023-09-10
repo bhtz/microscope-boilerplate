@@ -7,7 +7,7 @@
 
 @code
 {
-    private async Task ChangeLanguageAsync(string languageCode)
+    private async Task ChangeLanguageAsync(string? languageCode)
     {
         await _preferenceService.ChangeLanguageAsync(languageCode);
         _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
@@ -15,8 +15,8 @@
     
     public class LanguageCodes
     {
-        public string DisplayName { get; set; }
-        public string Code { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Code { get; set; }
     }
 
     private List<LanguageCodes> languages = new List<LanguageCodes>()

@@ -75,7 +75,7 @@
 @code {
     [Parameter] public Guid Id { get; set; }
     private bool Loading { get; set; } = false;
-    private IGetTodoListById_TodolistById Data { get; set; }
+    private IGetTodoListById_TodolistById? Data { get; set; }
     public TodoItemViewModel ViewModel { get; set; } = new TodoItemViewModel();
 
     public async Task OnValidSubmit()
@@ -86,7 +86,10 @@
         
         if (res.IsSuccessResult())
         {
-            var id = res.Data.AddTodoItem;
+            if (res.Data != null)
+            {
+                var id = res.Data.AddTodoItem;
+            }
             _snackBar.Add("Saved", Severity.Success);
             ViewModel.Label = string.Empty;
         }
@@ -104,7 +107,7 @@
 
         var res = await _todoAppClient.DeleteTodoItem.ExecuteAsync(todoItemId, Id);
         
-        if (res.IsSuccessResult() && res.Data.DeleteTodoItem)
+        if (res.Data != null && res.IsSuccessResult() && res.Data.DeleteTodoItem)
         {
             _snackBar.Add("Saved", Severity.Success);
             ViewModel.Label = string.Empty;
@@ -123,7 +126,7 @@
 
         var res = await _todoAppClient.ToggleTodoItem.ExecuteAsync(todoItemId, Id);
     
-        if (res.IsSuccessResult() && res.Data.ToggleTodoItem)
+        if (res.Data != null && res.IsSuccessResult() && res.Data.ToggleTodoItem)
         {
             _snackBar.Add("Saved", Severity.Success);
             ViewModel.Label = string.Empty;
@@ -143,7 +146,7 @@
         
         var vm = new TodoListDialog.TodoListViewModel
         {
-            Name = Data.Name
+            Name = Data?.Name
         };
 
         parameters.Add("ViewModel", vm);
@@ -153,7 +156,7 @@
 
         var result = await dialog.Result;
 
-        if (!result.Cancelled)
+        if (!result.Canceled)
         {
             var id = (bool)result.Data;
             StateHasChanged();
@@ -169,8 +172,8 @@
         var dialog = _dialogService.Show<TagDialog>(null, parameters, options);
 
         var result = await dialog.Result;
-
-        if (!result.Cancelled)
+        
+        if (!result.Canceled)
         {
             var id = (bool)result.Data;
             StateHasChanged();
@@ -187,7 +190,7 @@
         }
     }
 
-    public async void GoToList()
+    public void GoToList()
     {
         _navigationManager.NavigateTo("TodoList");
     }
@@ -195,6 +198,6 @@
     public class TodoItemViewModel
     {
         [Required]
-        public string Label { get; set; }
+        public string? Label { get; set; }
     }
 }

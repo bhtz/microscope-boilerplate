@@ -6,9 +6,9 @@
     <MudDialog>
         <TitleContent>@Loc["Title"]</TitleContent>
         <DialogContent>
-            <DataAnnotationsValidator />
+            <DataAnnotationsValidator/>
 
-            <MudTextField Variant="Variant.Filled" T="string" Label="@Loc["Name"]" @bind-Value="ViewModel.Name" For="@(() => ViewModel.Name)" />
+            <MudTextField Variant="Variant.Filled" Class="input-todolist-name" T="string" Label="@Loc["Name"]" @bind-Value="ViewModel.Name" For="@(() => ViewModel.Name)"/>
 
         </DialogContent>
         <DialogActions>
@@ -19,9 +19,15 @@
 </EditForm>
 
 @code {
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
-    [Parameter] public TodoListViewModel ViewModel { get; set; } = new TodoListViewModel();
-    [Parameter] public Guid Id { get; set; }
+
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; }
+
+    [Parameter]
+    public TodoListViewModel ViewModel { get; set; } = new TodoListViewModel();
+
+    [Parameter]
+    public Guid Id { get; set; }
 
     void Cancel() => MudDialog.Close(DialogResult.Cancel());
     private bool Loading { get; set; } = false;
@@ -34,11 +40,11 @@
 
         if (Id == Guid.Empty)
         {
-            PerformCreate();
+            await PerformCreate();
         }
         else
         {
-            PerformUpdate();
+            await PerformUpdate();
         }
 
         Loading = false;
@@ -50,7 +56,7 @@
 
         if (res.IsSuccessResult())
         {
-            var isOk = res.Data.UpdateTodoList;
+            var isOk = res.Data is {UpdateTodoList: true };
             _snackBar.Add("Updated", Severity.Success);
             MudDialog.Close(DialogResult.Ok(isOk));
         }
@@ -59,16 +65,16 @@
             _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
         }
     }
-    
+
     private async Task PerformCreate()
     {
         var res = await _todoAppClient.CreateTodoList.ExecuteAsync(ViewModel.Name);
 
-        if (res.IsSuccessResult())
+        if (res.IsSuccessResult() && res.Data is not null)
         {
-            var isOK = res.Data.CreateTodoList;
+            var isOk = res.Data.CreateTodoList;
             _snackBar.Add("Saved", Severity.Success);
-            MudDialog.Close(DialogResult.Ok(isOK));
+            MudDialog.Close(DialogResult.Ok(isOk));
         }
         else
         {
@@ -79,6 +85,7 @@
     public class TodoListViewModel
     {
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
+
 }

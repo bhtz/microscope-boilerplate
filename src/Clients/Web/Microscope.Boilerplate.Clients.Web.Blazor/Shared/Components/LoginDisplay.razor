@@ -5,10 +5,9 @@
 @using Microsoft.Extensions.Localization
 
 @inject NavigationManager Navigation
-@inject SignOutSessionStateManager SignOutManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IConfiguration Configuration
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JsRuntime
 @inject IStringLocalizer<LoginDisplay> Loc
 
 <AuthorizeView>
@@ -20,7 +19,7 @@
             <ChildContent>
                 <PersonCard Name="@context.User.Identity.Name" Role="@context.User.Claims.FirstOrDefault(x => x.Type == "roles")?.Value" Class="mt-n2" />
                 <MudDivider Class="mb-2" />
-                <MudListItem Text="@Loc["Account"]" Icon="@Icons.Filled.ManageAccounts" @onclick="OpenAccount" />
+                <MudListItem Text="@Loc["Account"]" Icon="@Icons.Material.Filled.ManageAccounts" @onclick="OpenAccount" />
                 <MudListItem Text="@Loc["Logout"]" Icon="@Icons.Material.Outlined.Login" @onclick="BeginSignOut" />
             </ChildContent>
         </MudMenu>
@@ -31,26 +30,27 @@
 </AuthorizeView>
 
 @code{
-    private string AccountUrl { get; set; }
+    private string? AccountUrl { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
         AccountUrl = Configuration["OIDC:master:Authority"] + "account";
+        return Task.CompletedTask;
     }
 
-    private async Task BeginSignOut(MouseEventArgs args)
+    private void BeginSignOut(MouseEventArgs args)
     {
-        await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        // await SignOutManager.SetSignOutState();
+        Navigation.NavigateToLogout("authentication/logout");
     }
 
     private void BeginSignIn(MouseEventArgs args)
     {
-        Navigation.NavigateTo("authentication/login");
+        Navigation.NavigateToLogin("authentication/login");
     }
 
     private async void OpenAccount()
     {
-        await jsRuntime.InvokeVoidAsync("open", AccountUrl, "_blank");
+        await JsRuntime.InvokeVoidAsync("open", AccountUrl, "_blank");
     }
 }

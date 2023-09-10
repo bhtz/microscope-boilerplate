@@ -33,11 +33,11 @@
 </EditForm>
 
 @code {
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
     [Parameter] public TagViewModel ViewModel { get; set; } = new TagViewModel();
     [Parameter] public Guid TodoListId { get; set; }
 
-    void Cancel() => MudDialog.Close(DialogResult.Cancel());
+    void Cancel() => MudDialog?.Close(DialogResult.Cancel());
     private bool Loading { get; set; } = false;
 
     private bool IsDisabled => Loading;
@@ -50,7 +50,7 @@
 
         if (res.IsSuccessResult())
         {
-            var isOK = res.Data.AddTag;
+            var isOK = res.Data is {AddTag: true };
             _snackBar.Add("Saved", Severity.Success);
             MudDialog.Close(DialogResult.Ok(isOK));
         }
@@ -65,9 +65,9 @@
     public class TagViewModel
     {
         [Required]
-        public string Label { get; set; }
+        public string? Label { get; set; } = default;
         
         [Required]
-        public string Color { get; set; }
+        public string? Color { get; set; } = default;
     }
 }
