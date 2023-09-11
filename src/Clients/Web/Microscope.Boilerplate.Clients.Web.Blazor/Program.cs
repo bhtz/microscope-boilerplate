@@ -75,15 +75,11 @@ builder.Services
 var host = builder.Build();
 
 var storageService = host.Services.GetRequiredService<PreferenceService>();
-if (storageService is not null)
-{
-    CultureInfo culture;
-    var preference = await storageService.GetPreference();
-    
-    culture = preference is not null ? new CultureInfo(preference.LanguageCode) : new CultureInfo("en-US");
 
-    CultureInfo.DefaultThreadCurrentCulture = culture;
-    CultureInfo.DefaultThreadCurrentUICulture = culture;
-}
+var preference = await storageService.GetPreference();
+var culture = new CultureInfo(preference.LanguageCode);
+
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 await host.RunAsync();

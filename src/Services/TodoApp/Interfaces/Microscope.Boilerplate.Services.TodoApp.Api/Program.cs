@@ -1,7 +1,10 @@
+using MassTransit.Configuration;
 using Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 using Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
+using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
+using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
 using OpenTelemetry.Resources;
 
@@ -34,10 +37,11 @@ builder.Services.AddAuthorizationConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
-var isMigrationEnabled = builder.Configuration.GetValue<bool>("EnableMigration");
-if (isMigrationEnabled)
+
+using var scope = app.Services.CreateScope();
+var persistenceOptions = scope.ServiceProvider.GetRequiredService<IOptions<PersistenceOptions>>();
+if (persistenceOptions.Value.EnableMigration)
 {
-    using var scope = app.Services.CreateScope();
     scope.ServiceProvider.GetRequiredService<TodoAppDbContext>().Migrate();
 }
 

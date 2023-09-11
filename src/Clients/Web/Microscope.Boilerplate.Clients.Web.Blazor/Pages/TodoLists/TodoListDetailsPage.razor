@@ -9,6 +9,7 @@
         @{
             Data = result.TodolistById;
         }
+        <PageTitle>@Data.Name</PageTitle>
         <MudToolBar>
             <MudText Typo="Typo.h6">
                 <span @onclick="() => GoToList()" class="mud-primary-text cursor-pointer">@Loc["Todolists"] / </span>
@@ -22,7 +23,7 @@
                 }
             </MudText>
             <MudSpacer/>
-            <MudIconButton Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
+            <MudIconButton Class="update-todolist" Icon="@Icons.Material.Outlined.Edit" OnClick="OpenTodoListDialog"/>
         </MudToolBar>
         
         <div>

@@ -21,7 +21,6 @@ public class SendGridMailService : IMailService
 
     private async Task<bool> SendMail(MailMessage mailMessage)
     {
-        // var apiKey = _configuration.GetValue<string>("Mail:APIKey");
         var apiKey = _options.Value.ApiKey;
         var client = new SendGridClient(apiKey);
         var from = new EmailAddress("benjamin.heintz@live.com", "Boilerplate");

@@ -2,10 +2,11 @@
 
 > Add your own awesome project roadmap here
 
-## V1
+# V1
 
 ## Solution
 
+- [x] Hasura JWT 
 - [ ] Gestion des Nullable
 - [ ] Clean warnings
 
@@ -69,59 +70,59 @@
                 - [x] Events
                   - [x] SendMailOnTodoListCompleted
                   - [x] OnTodoListCompletedIntegrationEvent
-  - [ ] Infrastructure
-    - [x] App settings (IOption validation)
-    - [ ] Persistence
-         - [x] Entity framework
-           - [x] EF Entities configuration
-           - [x] EF Migration
-         - [ ] MartenDB
-    - [ ] External systems implementation
-        - [x] Storage
-        - [x] User
-        - [x] Mail
-    - [ ] Bus
-        - [x] MassTransit
-          - [x] RabbitMQ
-          - [ ] Azure Service Bus
-          - [ ] Amazon SQS
-          - [ ] OpenTelemetry
-- [ ] Interface
-    - [x] GraphQL API
-      - [ ] Refactoring with QueryType et MutationType attributes ?
-    - [x] REST API
-      - [ ] Missing one operation
-    - [x] Authentication
-        - [x] OPENID JWT
-        - [x] MASTER KEY
-    - [x] Authorization
-    - [x] HealthCheck
-    - [x] Feature management
-    - [x] Auto migration option
-    - [ ] Users endpoints
-      - [ ] Keycloak service
-      - [ ] AAD service
-    - [ ] SignalR websocket use case
-      - [ ] Listen service bus
-    - [ ] OpenTelemetry
-      - [x] REST api
-      - [ ] GraphQL api
+    - [ ] Infrastructure
+      - [x] App settings (IOption validation)
+      - [ ] Persistence
+           - [x] Entity framework
+             - [x] EF Entities configuration
+             - [x] EF Migration
+           - [ ] MartenDB
+      - [ ] External systems implementation
+          - [x] Storage
+          - [x] User
+          - [x] Mail
+      - [ ] Bus
+          - [x] MassTransit
+            - [x] RabbitMQ
+            - [ ] Azure Service Bus
+            - [ ] Amazon SQS
+            - [ ] OpenTelemetry
+    - [ ] Interface
+        - [x] GraphQL API
+          - [ ] Refactoring with QueryType et MutationType attributes ?
+        - [x] REST API
+          - [ ] Missing one operation
+        - [x] Authentication
+            - [x] OPENID JWT
+            - [x] MASTER KEY
+        - [x] Authorization
+        - [x] HealthCheck
+        - [x] Feature management
+        - [x] Auto migration option
+        - [ ] Users endpoints
+          - [ ] Keycloak service
+          - [ ] AAD service
+        - [ ] SignalR websocket use case
+          - [ ] Listen service bus
+        - [ ] OpenTelemetry
+          - [x] REST api
+          - [ ] GraphQL api
     
-- [ ] Tests
-    - [x] Setup Unit tests
-    - [x] Setup Architecture tests
-    - [ ] Setup Integration tests
-    - [x] Setup E2E tests
-        - [x] Setup playwright NUnit project
-        - [x] Home page test
-        - [ ] Login / logout test
-        - [ ] Todolist test
-          - [ ] Create todo list test
-          - [ ] Delete todo list test
-          - [ ] Update todo list test
-          - [ ] Create todo item test
-          - [ ] Delete todo item test
-          - [ ] Toggle todo item test
+    - [ ] Tests
+        - [x] Setup Unit tests
+        - [x] Setup Architecture tests
+        - [ ] Setup Integration tests
+        - [x] Setup E2E tests
+            - [x] Setup playwright NUnit project
+            - [x] Home page test
+            - [ ] Login / logout test
+            - [ ] Todolist test
+              - [ ] Create todo list test
+              - [ ] Delete todo list test
+              - [ ] Update todo list test
+              - [ ] Create todo item test
+              - [ ] Delete todo item test
+              - [ ] Toggle todo item test
 
 ### Storage (optional) ?
 - [x] Azure blob storage
@@ -181,6 +182,11 @@
 #Interfaces
 - GraphQL : plutot que les partials, moi j'utilise [QueryType] et [MutationType] et en utlilisant le package HotChocolate.Types.Analyzers (source generator --> .AddTodoAppTypes())
 - Grapql Queries / Mutations --> static
+
+
+# V1.1
+
+* dotnet 8 migration
 
 
 -------------------------
