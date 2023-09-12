@@ -15,24 +15,24 @@ public class CustomClaimsPrincipalFactory : AccountClaimsPrincipalFactory<Remote
     {
         var user = await base.CreateUserAsync(account, options);
 
-        if (user.Identity is { IsAuthenticated: true })
+        if (user.Identity is not { IsAuthenticated: true }) return user ?? new ClaimsPrincipal();
+        var claimsIdentity = (ClaimsIdentity)user.Identity;
+        if (claimsIdentity is not null)
         {
-            var claimsIdentity = (ClaimsIdentity)user.Identity;
-            if (claimsIdentity is not null)
-            {
-                MapArrayClaimsToMultipleSeparateClaims(account, claimsIdentity);
-            }
+            MapArrayClaimsToMultipleSeparateClaims(account, claimsIdentity);
         }
-        
+
         return user ?? new ClaimsPrincipal();
     }
     
     private void MapArrayClaimsToMultipleSeparateClaims(RemoteUserAccount account, ClaimsIdentity claimsIdentity)
     {
+        Console.WriteLine($"MapArrayClaimsToMultipleSeparateClaims: {account.AdditionalProperties.Count}");
         foreach (var prop in account.AdditionalProperties)
         {
             var key = prop.Key;
             var value = prop.Value;
+
             if (value != null && (value is JsonElement element && element.ValueKind == JsonValueKind.Array))
             {
                 claimsIdentity.RemoveClaim(claimsIdentity.FindFirst(prop.Key));

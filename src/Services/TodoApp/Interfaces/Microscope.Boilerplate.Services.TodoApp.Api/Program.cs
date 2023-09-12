@@ -1,4 +1,3 @@
-using MassTransit.Configuration;
 using Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 using Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure;
@@ -6,7 +5,6 @@ using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
 using Microsoft.Extensions.Options;
 using Microsoft.FeatureManagement;
-using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +34,6 @@ builder.Services.AddApiKeyAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddAuthorizationConfiguration(builder.Configuration);
 
 var app = builder.Build();
-
 
 using var scope = app.Services.CreateScope();
 var persistenceOptions = scope.ServiceProvider.GetRequiredService<IOptions<PersistenceOptions>>();
