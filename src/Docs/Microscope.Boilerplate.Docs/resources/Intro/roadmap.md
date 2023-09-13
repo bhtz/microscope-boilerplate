@@ -96,8 +96,8 @@
           - [ ] Refactoring with QueryType et MutationType attributes ?
         - [x] REST API
           - [x] OpenAPI documentation
-          - [ ] AsyncAPI documentation
           - [ ] Missing one operation
+        - [ ] Async API / messenging documentation
         - [x] Authentication
             - [x] OPENID JWT
             - [x] MASTER KEY
@@ -121,14 +121,15 @@
         - [x] Setup E2E tests
             - [x] Setup playwright NUnit project
             - [x] Home page test
-            - [ ] Login / logout test
+            - [ ] Register test
+            - [x] Login test
             - [ ] Todolist test
-              - [ ] Create todo list test
-              - [ ] Delete todo list test
-              - [ ] Update todo list test
-              - [ ] Create todo item test
-              - [ ] Delete todo item test
+              - [x] Create todo list test
+              - [x] Update todo list test
+              - [x] Create todo item test
               - [ ] Toggle todo item test
+              - [ ] Delete todo item test
+              - [ ] Delete todo list test
 
 ### Storage (optional) ?
 - [x] Azure blob storage

@@ -52,8 +52,8 @@ public static class AuthenticationConfiguration
                     o.TokenValidationParameters.RoleClaimType = tenant.RoleClaim;
                 }
 
-                o.TokenValidationParameters.ValidateIssuer = false;
-                o.TokenValidationParameters.ValidateAudience = false;
+                o.TokenValidationParameters.ValidateIssuer = true;
+                o.TokenValidationParameters.ValidateAudience = true;
                 
                 o.RequireHttpsMetadata = false;
                 o.Events = JwtEvent;
