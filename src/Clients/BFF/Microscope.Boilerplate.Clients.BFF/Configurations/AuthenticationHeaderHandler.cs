@@ -19,6 +19,11 @@ public class AuthenticationHeaderHandler : DelegatingHandler
                 AuthenticationHeaderValue.Parse(_httpContextAccessor.HttpContext.Request.Headers.Authorization);
         }
 
+        // foreach (var header in _httpContextAccessor.HttpContext?.Request.Headers)
+        // {
+        //     request.Headers.TryAddWithoutValidation(header.Key, header.Value.ToArray());
+        // }
+
         var response = await base.SendAsync(request, cancellationToken);
 
         return response;

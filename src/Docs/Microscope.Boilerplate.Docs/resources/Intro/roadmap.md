@@ -7,6 +7,7 @@
 ## Solution
 
 - [x] Hasura JWT 
+- [x] Keycloak default role & role mapping
 - [ ] Gestion des Nullable
 - [ ] Clean warnings
 
@@ -32,6 +33,7 @@
     - [x] Setup PWA
 - [x] SDKs
   - [x] GraphQL SDK
+    - [ ] SDK generation with admin key dotnet graphql -x x-hasura-admin xxx
   - [ ] REST SDK
     - [x] Setup
     - [ ] Automate swagger.json output from api project
@@ -39,6 +41,7 @@
     - [x] blazor hosted
     - [x] reverse proxy APIs (YARP)
     - [x] GraphQL gateway & schema stitching
+    - [ ] Forward all headers during schema stitching (related to sdk generation as admin)
     - [ ] File upload sample
 
 ## Services
@@ -89,8 +92,11 @@
             - [ ] OpenTelemetry
     - [ ] Interface
         - [x] GraphQL API
+          - [x] GraphQL documentation
           - [ ] Refactoring with QueryType et MutationType attributes ?
         - [x] REST API
+          - [x] OpenAPI documentation
+          - [ ] AsyncAPI documentation
           - [ ] Missing one operation
         - [x] Authentication
             - [x] OPENID JWT
