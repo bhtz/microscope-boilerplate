@@ -32,7 +32,7 @@ public static class AuthenticationConfiguration
                 c.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 c.Response.ContentType = "text/plain";
 
-                return c.Response.WriteAsync(c.Exception.InnerException.Message);
+                return c.Response.WriteAsync(c.Exception.Message);
             }
         };
 
@@ -52,12 +52,12 @@ public static class AuthenticationConfiguration
                     o.TokenValidationParameters.RoleClaimType = tenant.RoleClaim;
                 }
 
-                o.TokenValidationParameters.ValidateIssuer = true;
+                o.TokenValidationParameters.ValidateIssuer = false;
                 o.TokenValidationParameters.ValidateAudience = true;
                 
                 o.RequireHttpsMetadata = false;
                 o.Events = JwtEvent;
-            });    
+            });
         }
         
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

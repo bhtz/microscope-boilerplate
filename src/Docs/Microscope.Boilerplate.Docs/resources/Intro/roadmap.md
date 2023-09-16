@@ -74,7 +74,7 @@
                   - [x] SendMailOnTodoListCompleted
                   - [x] OnTodoListCompletedIntegrationEvent
     - [ ] Infrastructure
-      - [x] App settings (IOption validation)
+      - [ ] Infrastructure settings (IOption validation)
       - [ ] Persistence
            - [x] Entity framework
              - [x] EF Entities configuration
@@ -105,6 +105,8 @@
         - [x] HealthCheck
         - [x] Feature management
         - [x] Auto migration option
+        - [x] Auto migration option
+        - [ ] Infrastructure settings (IOption validation)
         - [ ] Users endpoints
           - [ ] Keycloak service
           - [ ] AAD service
