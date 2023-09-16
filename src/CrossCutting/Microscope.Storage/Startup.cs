@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -15,19 +14,19 @@ public static class Startup
 
         switch (option.Adapter)
         {
-            case "filesystem":
+            case StorageOptions.FILE_SYSTEM_ADAPTER :
                 services.AddScoped<IStorageService, FileSystemStorageService>();
                 break;
 
-            case "azure":
+            case StorageOptions.AZURE_ADAPTER :
                 services.AddScoped<IStorageService, BlobStorageService>();
                 break;
 
-            case "aws":
+            case StorageOptions.AWS_ADAPTER :
                 services.AddScoped<IStorageService, AwsStorageService>();
                 break;
 
-            case "minio":
+            case StorageOptions.MINIO_ADAPTER :
                 services.AddScoped<IStorageService, MinioStorageService>();
                 break;
 

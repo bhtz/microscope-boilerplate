@@ -1,25 +1,22 @@
 using Microscope.Boilerplate.Services.TodoApp.Application.Services;
 using Microscope.Storage;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
 
 public class FileStorageService : IFileStorageService
 {
-    private string _containerName;
     private readonly IStorageService _storageService;
-    private readonly IConfiguration _configuration;
+    private readonly IOptions<StorageOptions> _options;
 
-    public FileStorageService(IStorageService storageService, IConfiguration configuration)
+    public FileStorageService(IStorageService storageService, IOptions<StorageOptions> options)
     {
         _storageService = storageService;
-        _configuration = configuration;
-        _containerName = _configuration.GetValue<string>("DefaultStorageContainer") ?? throw new ArgumentNullException("StorageContainer");
+        _options = options;
     }
 
     public async Task UploadTodoFileAsync(string blobName, Stream data)
     {
-        await _storageService.SaveBlobAsync(_containerName, blobName, data);
+        await _storageService.SaveBlobAsync(_options.Value.DefaultStorageContainer, blobName, data);
     }
 }
