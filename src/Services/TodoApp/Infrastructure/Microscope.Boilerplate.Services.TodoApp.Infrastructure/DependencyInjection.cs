@@ -7,6 +7,7 @@ using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence.Reposit
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Storage;
 using Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.Mail;
+using Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.User;
 using Microscope.SharedKernel;
 using Microscope.Storage;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,8 @@ public static class DependencyInjection
             .AddPersistenceAdapter()
             .AddMailAdapter()
             .AddBusAdapter()
-            .AddStorageAdapter();
+            .AddStorageAdapter()
+            .AddUserAdapter();
 
         return services;
     }
@@ -35,7 +37,7 @@ public static class DependencyInjection
     {
         services.AddOptions<PersistenceOptions>()
             .Bind(configuration.GetSection(PersistenceOptions.ConfigurationKey))
-            .ValidateDataAnnotations()
+            .Validate(x => new PersistenceOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         
         services.AddOptions<MailOptions>()
@@ -43,9 +45,14 @@ public static class DependencyInjection
             .Validate(x => new MailOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         
+        services.AddOptions<UserOptions>()
+            .Bind(configuration.GetSection(UserOptions.ConfigurationKey))
+            .Validate(x => new UserOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
+        
         services.AddOptions<BusOptions>()
             .Bind(configuration.GetSection(BusOptions.ConfigurationKey))
-            .ValidateDataAnnotations()
+            .Validate(x => new BusOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         
         services.AddOptions<StorageOptions>()
@@ -69,17 +76,21 @@ public static class DependencyInjection
         {
             switch (option.Adapter)
             {
-                case "postgres":
+                case PersistenceOptions.POSTGRES_ADAPTER:
                     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                     options.UseNpgsql(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
                     break;
 
-                case "mssql":
+                case PersistenceOptions.MSSQL_ADAPTER:
                     options.UseSqlServer(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
                     break;
                 
-                case "sqlite":
+                case PersistenceOptions.SQLITE_ADAPTER:
                     options.UseSqlite(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
+                    break;
+                
+                case PersistenceOptions.INMEMORY_ADAPTER:
+                    options.UseInMemoryDatabase(assemblyName);
                     break;
 
                 default:
@@ -115,11 +126,11 @@ public static class DependencyInjection
 
         switch (option.Adapter)
         {
-            case "smtp":
+            case MailOptions.SMTP_ADAPTER:
                 services.AddScoped<IMailService, SMTPMailService>();
                 break;
 
-            case "sendgrid":
+            case MailOptions.SENDGRID_ADAPTER:
                 services.AddScoped<IMailService, SendGridMailService>();
                 break;
 
@@ -144,7 +155,7 @@ public static class DependencyInjection
         {
             switch (option.Adapter)
             {
-                case "rabbitmq":
+                case BusOptions.RABBITMQ_ADAPTER:
                     configuration.UsingRabbitMq((ctx, cfg) =>
                     {
                         cfg.Host(option.Host, x =>
@@ -155,11 +166,15 @@ public static class DependencyInjection
                     });
                     break;
 
-                case "azure":
+                case BusOptions.AZURE_ADAPTER:
                     throw new NotImplementedException();
                     break;
-
-                default:
+                
+                case BusOptions.AWS_ADAPTER:
+                    throw new NotImplementedException();
+                    break;
+                
+                case BusOptions.INMEMORY_ADAPTER:
                     configuration.UsingInMemory();
                     break;
             }
@@ -168,8 +183,20 @@ public static class DependencyInjection
         return services;
     }
     
-    public static IServiceCollection AddAiAdapter(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddUserAdapter(this IServiceCollection services)
     {
+        var option = services
+            .BuildServiceProvider()
+            .GetRequiredService<IOptions<UserOptions>>()
+            .Value;
+        
+        switch (option.Adapter)
+        {
+            case UserOptions.KEYCLOAK_ADAPTER :
+                services.AddScoped<IUserService, KeycloakUserService>();
+                break;
+        }
+        
         return services;
     }
 }
