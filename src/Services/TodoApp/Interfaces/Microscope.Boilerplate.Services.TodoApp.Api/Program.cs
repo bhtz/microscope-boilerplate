@@ -1,40 +1,26 @@
 using Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 using Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
+using Microscope.Boilerplate.Services.TodoApp.Application;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
 using Microsoft.Extensions.Options;
-using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// TodoApp service (app & infra)
-builder.Services.AddTodoAppServices(builder.Configuration);
-
-// Feature management
+// register host / web layer options & services
 builder.Services
-    .AddFeatureManagement(builder.Configuration.GetSection("FeatureManagement"));
+    .AddWebSettings(builder.Configuration)
+    .AddWebServices(builder.Configuration);
 
-// Web services
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddGraphQLConfiguration(builder.Configuration);
-builder.Services.AddCorsConfiguration(builder.Configuration);
-builder.Services.AddSwaggerConfiguration(builder.Configuration);
-builder.Services.AddHealthCheckConfiguration(builder.Configuration);
-builder.Services.AddHttpClient();
-
-// Open telemetry
-builder.Services.AddTelemetryConfiguration(builder.Configuration);
-
-// Authentication & authorization
-builder.Services.AddJwtAuthenticationConfiguration(builder.Configuration);
-builder.Services.AddApiKeyAuthenticationConfiguration(builder.Configuration);
-builder.Services.AddAuthorizationConfiguration(builder.Configuration);
+// register TodoApp options & services
+builder.Services
+    .AddTodoApplication()
+    .AddTodoAppInfrastructureSettings(builder.Configuration)
+    .AddTodoAppInfrastructureServices();
 
 var app = builder.Build();
-
+    
 using var scope = app.Services.CreateScope();
 var persistenceOptions = scope.ServiceProvider.GetRequiredService<IOptions<PersistenceOptions>>();
 if (persistenceOptions.Value.EnableMigration)

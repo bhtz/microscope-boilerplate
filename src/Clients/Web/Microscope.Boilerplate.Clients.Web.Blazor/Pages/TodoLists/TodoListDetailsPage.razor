@@ -47,7 +47,7 @@
                 {
                     <MudListItem OnClick="() => ToggleTodoItem(item.Id)">
                         <MudText>
-                            <MudIconButton Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Default"></MudIconButton>
+                            <MudIconButton Class="DeleteTodoItemButton" Size="Size.Small" OnClick="() => DeleteTodoItem(item.Id)" Icon="@Icons.Material.Outlined.Delete" Color="Color.Default"></MudIconButton>
                             @if (item.IsCompleted)
                             {
                                 <strike>@item.Label</strike>

@@ -19,11 +19,9 @@ namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddTodoAppServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddTodoAppInfrastructureServices(this IServiceCollection services)
     {
         services
-            .AddTodoAppSettings(configuration)
-            .AddTodoApplication()
             .AddPersistenceAdapter()
             .AddMailAdapter()
             .AddBusAdapter()
@@ -33,7 +31,7 @@ public static class DependencyInjection
         return services;
     }
     
-    public static IServiceCollection AddTodoAppSettings(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddTodoAppInfrastructureSettings(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions<PersistenceOptions>()
             .Bind(configuration.GetSection(PersistenceOptions.ConfigurationKey))

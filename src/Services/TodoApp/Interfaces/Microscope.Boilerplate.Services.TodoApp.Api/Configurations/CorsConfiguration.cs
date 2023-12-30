@@ -2,7 +2,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class CorsConfiguration
 {
-    public static IServiceCollection AddCorsConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddCorsConfiguration(this IServiceCollection services)
     {
         services.AddCors(o => o.AddPolicy("allow-all", builder =>
         {

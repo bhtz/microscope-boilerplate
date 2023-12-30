@@ -5,7 +5,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class HealthCheckConfiguration
 {
-    public static IServiceCollection AddHealthCheckConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddHealthCheckConfiguration(this IServiceCollection services)
     {
         services.AddHealthChecks()
             .AddCheck<SampleHealthCheck>("sample")

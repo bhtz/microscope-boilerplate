@@ -7,7 +7,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class GraphQLConfiguration
 {
-    public static IServiceCollection AddGraphQLConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddGraphQLConfiguration(this IServiceCollection services)
     {
         services.AddGraphQLServer()
             .ModifyOptions(o => o.DefaultResolverStrategy = ExecutionStrategy.Serial)
@@ -15,10 +15,7 @@ public static class GraphQLConfiguration
             .AddMutationType<Mutation>()
             .AddQueryType<Query>()
             .AddType<UploadType>()
-            .AddInstrumentation(o =>
-            {
-                o.Scopes = ActivityScopes.All;
-            })
+            .AddInstrumentation()
             .AddProjections()
             .AddFiltering()
             .AddSorting();

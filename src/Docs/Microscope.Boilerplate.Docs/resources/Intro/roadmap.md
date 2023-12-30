@@ -8,8 +8,10 @@
 
 - [x] Hasura JWT 
 - [x] Keycloak default role & role mapping
-- [ ] Gestion des Nullable
+- [ ] Dotnet 8 migration
+- [ ] Nullables
 - [ ] Clean warnings
+- [ ] Clean todos
 
 ## Template
 
@@ -53,10 +55,10 @@
       - [x] Setup domain events
       - [x] Setup repository interface
       - [x] Setup exceptions
-    - [ ] Application
+    - [x] Application
         - [x] Common behaviours
         - [x] Mappings
-        - [ ] Features
+        - [x] Features
             - [x] Todolist
                 - [x] Commands
                   - [x] Create todo list
@@ -74,13 +76,13 @@
                   - [x] SendMailOnTodoListCompleted
                   - [x] OnTodoListCompletedIntegrationEvent
     - [ ] Infrastructure
-      - [ ] Infrastructure settings (IOption validation)
+      - [x] Infrastructure settings (IOption validation)
       - [ ] Persistence
            - [x] Entity framework
              - [x] EF Entities configuration
              - [x] EF Migration
            - [ ] MartenDB
-      - [ ] External systems implementation
+      - [x] External systems implementation
           - [x] Storage
           - [x] User
           - [x] Mail
@@ -96,7 +98,7 @@
           - [ ] Refactoring with QueryType et MutationType attributes ?
         - [x] REST API
           - [x] OpenAPI documentation
-          - [ ] Missing one operation
+          - [ ] Complete missing operations
         - [ ] Async API / messenging documentation
         - [x] Authentication
             - [x] OPENID JWT
@@ -105,8 +107,7 @@
         - [x] HealthCheck
         - [x] Feature management
         - [x] Auto migration option
-        - [x] Auto migration option
-        - [ ] Infrastructure settings (IOption validation)
+        - [ ] Interface settings (IOption validation) -- DOING
         - [ ] Users endpoints
           - [ ] Keycloak service
           - [ ] AAD service
@@ -123,21 +124,20 @@
         - [x] Setup E2E tests
             - [x] Setup playwright NUnit project
             - [x] Home page test
-            - [ ] Register test
             - [x] Login test
-            - [ ] Todolist test
+            - [x] Todolist test
               - [x] Create todo list test
               - [x] Update todo list test
               - [x] Create todo item test
-              - [ ] Toggle todo item test
-              - [ ] Delete todo item test
-              - [ ] Delete todo list test
+              - [x] Toggle todo item test
+              - [x] Delete todo item test
+              - [x] Delete todo list test
 
 ### Storage (optional) ?
-- [x] Azure blob storage
-- [x] Minio
-- [ ] AWS S3
 - [x] File system
+- [x] Azure blob storage
+- [ ] AWS S3
+- [x] Minio
 
 ###  Workflow (optional)
 - [ ] Elsa core
@@ -170,7 +170,7 @@
 
 - [ ] Terraform
   - [x] Setup Terraform project
-  - [ ] Azure
+  - [x] Azure
   - [ ] AWS
   - [ ] GCP
   
@@ -186,17 +186,9 @@
 
 ----------------------------
 
-## Open source inputs
-
-#Interfaces
-- GraphQL : plutot que les partials, moi j'utilise [QueryType] et [MutationType] et en utlilisant le package HotChocolate.Types.Analyzers (source generator --> .AddTodoAppTypes())
-- Grapql Queries / Mutations --> static
-
-
 # V1.1
 
 * dotnet 8 migration
-
 
 -------------------------
 

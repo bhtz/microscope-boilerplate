@@ -2,7 +2,7 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class AuthorizationConfiguration
 {
-    public static IServiceCollection AddAuthorizationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthorizationConfiguration(this IServiceCollection services)
     {
         services.AddAuthorization(options =>
         {
