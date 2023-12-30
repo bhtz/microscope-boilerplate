@@ -21,8 +21,6 @@
 
     <PropertyGroup>
         <ContainerImageName>boilerplate/docs</ContainerImageName>
-        <PublishProfile>DefaultContainer</PublishProfile>
-        <ContainerImageTags>latest</ContainerImageTags>
     </PropertyGroup>
 
 </Project>

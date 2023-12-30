@@ -107,7 +107,7 @@
         - [x] HealthCheck
         - [x] Feature management
         - [x] Auto migration option
-        - [ ] Interface settings (IOption validation) -- DOING
+        - [x] Interface settings (IOption validation)
         - [ ] Users endpoints
           - [ ] Keycloak service
           - [ ] AAD service

@@ -9,6 +9,21 @@ public static class HostConfiguration
             .Validate(x => new SwaggerOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         
+        services.AddOptions<OTELOptions>()
+            .Bind(configuration.GetSection(OTELOptions.ConfigurationKey))
+            .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
+        
+        services.AddOptions<OIDCAuthenticationOptions>()
+            .Bind(configuration.GetSection(OIDCAuthenticationOptions.ConfigurationKey))
+            .Validate(x => new OIDCAuthenticationOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
+        
+        services.AddOptions<ApiKeyAuthenticationOptions>()
+            .Bind(configuration.GetSection(ApiKeyAuthenticationOptions.ConfigurationKey))
+            .Validate(x => new ApiKeyAuthenticationOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
+        
         return services;
     }
     
@@ -25,7 +40,7 @@ public static class HostConfiguration
             .AddAuthorizationConfiguration()
             .AddJwtAuthenticationConfiguration(configuration)
             .AddApiKeyAuthenticationConfiguration(configuration)
-            .AddTelemetryConfiguration(configuration)
+            .AddTelemetryConfiguration()
             .AddFeatureManagementConfiguration(configuration)
             .AddControllers();
         

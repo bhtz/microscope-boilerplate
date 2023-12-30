@@ -17,8 +17,6 @@
 
     <PropertyGroup>
         <ContainerImageName>boilerplate/bff</ContainerImageName>
-        <PublishProfile>DefaultContainer</PublishProfile>
-        <ContainerImageTags>latest</ContainerImageTags>
     </PropertyGroup>
 
     <ItemGroup>

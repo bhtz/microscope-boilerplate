@@ -6,8 +6,14 @@ public static class FeatureManagementConfiguration
 {
     public static IServiceCollection AddFeatureManagementConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddFeatureManagement(configuration.GetSection("FeatureManagement"));
+        services
+            .AddFeatureManagement(configuration.GetSection(FeatureManagementOptions.ConfigurationKey));
         
         return services;
     }
+}
+
+public class FeatureManagementOptions
+{
+    public const string ConfigurationKey = "FeatureManagement";
 }
