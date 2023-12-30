@@ -32,6 +32,7 @@
 
     <PropertyGroup>
         <ContainerImageName>boilerplate/todoapp-service</ContainerImageName>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
     <ItemGroup>
