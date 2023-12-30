@@ -101,13 +101,12 @@ public static class AuthenticationConfiguration
 
                         if (isValid)
                         {
-                            // TODO : Add Name, Email & Role in settings
                             var claims = new[]
                             {
                                 new Claim(ClaimTypes.NameIdentifier, Guid.Empty.ToString(), ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                                new Claim(ClaimTypes.Name, "Admin", ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                                new Claim(ClaimTypes.Email, "admin@microscope.net"),
-                                new Claim(ClaimTypes.Role, "administrator"),
+                                new Claim(ClaimTypes.Name, option.MasterName, ClaimValueTypes.String, context.Options.ClaimsIssuer),
+                                new Claim(ClaimTypes.Email, option.MasterMail),
+                                new Claim(ClaimTypes.Role, option.MasterRole),
                                 new Claim("iss", masterKeyTenant)
                             };
                             context.Principal = new ClaimsPrincipal(new ClaimsIdentity(claims, context.Scheme.Name));
@@ -156,6 +155,9 @@ public class ApiKeyAuthenticationOptions
     public string Realm { get; set; }
     public string KeyName { get; set; }
     public string MasterKey { get; set; }
+    public string MasterName { get; set; } = "Admin";
+    public string MasterRole { get; set; } = "administrator";
+    public string MasterMail { get; set; } = "admin@microscope.net";
 }
 
 public class ApiKeyAuthenticationOptionsValidator : AbstractValidator<ApiKeyAuthenticationOptions>
@@ -172,6 +174,12 @@ public class ApiKeyAuthenticationOptionsValidator : AbstractValidator<ApiKeyAuth
             .NotNull()
             .NotEmpty()
             .WithMessage("API Key option realm must have a value");
+        
+        RuleFor(x => x.MasterMail)
+            .NotNull()
+            .NotEmpty()
+            .EmailAddress()
+            .WithMessage("API Key option master mail must have be a valid email address");
     }
 }
 
