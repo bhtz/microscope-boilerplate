@@ -8,7 +8,7 @@
 
 - [x] Hasura JWT 
 - [x] Keycloak default role & role mapping
-- [ ] Dotnet 8 migration
+- [x] Dotnet 8 migration
 - [ ] Nullables
 - [ ] Clean warnings
 - [ ] Clean todos
@@ -22,6 +22,8 @@
 - [ ] Microservice generator option
 
 ## Clients
+- [ ] Blazor SSR -- DOING
+  - [ ] Dependency injection SSR
 - [x] Blazor PWA
   - [x] Setup mudblazor UI
   - [x] Setup Preferences & Settings
@@ -138,6 +140,7 @@
 - [x] Azure blob storage
 - [ ] AWS S3
 - [x] Minio
+  - [ ] Upgrade minio sdk to 6.x
 
 ###  Workflow (optional)
 - [ ] Elsa core

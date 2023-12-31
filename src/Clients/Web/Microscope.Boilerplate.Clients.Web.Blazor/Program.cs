@@ -1,16 +1,21 @@
 using System.Globalization;
 using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microscope.Boilerplate.Clients.Web.Blazor;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microscope.Boilerplate.Clients.Web.Blazor.Extensions;
 using Microscope.Boilerplate.Clients.Web.Blazor.Services;
+using Microsoft.AspNetCore.Components.Web;
 using MudBlazor;
 using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
+
+var SSREnabled = builder.Configuration.GetValue<bool>("SSREnabled");
+if (!SSREnabled)
+{
+    builder.RootComponents.Add<App>("#app");
+    builder.RootComponents.Add<HeadOutlet>("head::after");
+}
 
 string apiAddress;
 var baseAddressConfiguration = builder.Configuration.GetValue<string>("APIBaseAddress");

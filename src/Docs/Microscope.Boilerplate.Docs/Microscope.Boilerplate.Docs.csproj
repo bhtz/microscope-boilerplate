@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.400" />
+      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <ContainerImageName>boilerplate/docs</ContainerImageName>
+        <ContainerRepository>boilerplate/docs</ContainerRepository>
         <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 

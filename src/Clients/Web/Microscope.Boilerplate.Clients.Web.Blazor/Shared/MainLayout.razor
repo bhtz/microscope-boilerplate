@@ -37,6 +37,11 @@
 
     protected override async Task OnInitializedAsync()
     {
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
         _currentTheme = await _preferenceService.GetCurrentThemeAsync();
         await _featureManagementService.LoadFeatureManagement();
         DrawerOpen = await _preferenceService.GetDrawerPreferenceAsync();

@@ -1,37 +1,37 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="7.0.0" />
-        <PackageReference Include="HotChocolate.AspNetCore" Version="13.4.0" />
-        <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.4.0" />
-        <PackageReference Include="HotChocolate.Data" Version="13.4.0" />
-        <PackageReference Include="HotChocolate.Diagnostics" Version="13.4.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+        <PackageReference Include="AspNetCore.Authentication.ApiKey" Version="8.0.0" />
+        <PackageReference Include="HotChocolate.AspNetCore" Version="13.8.1" />
+        <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="13.8.1" />
+        <PackageReference Include="HotChocolate.Data" Version="13.8.1" />
+        <PackageReference Include="HotChocolate.Diagnostics" Version="13.8.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="7.0.9" />
-        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="2.6.1" />
-        <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.400" />
-        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.5.1" />
-        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.5.1" />
-        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.5.1" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.1-beta.1" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.1.1" />
+        <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
+        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
 
     <PropertyGroup>
-        <ContainerImageName>boilerplate/todoapp-service</ContainerImageName>
+        <ContainerRepository>boilerplate/todoapp-service</ContainerRepository>
         <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
