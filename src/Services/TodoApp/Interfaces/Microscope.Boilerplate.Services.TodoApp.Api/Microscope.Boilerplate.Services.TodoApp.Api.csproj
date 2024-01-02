@@ -4,7 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <ContainerRepository>boilerplate/todoapp-service</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,7 +22,6 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
         <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.1.1" />
-        <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
         <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
         <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
         <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
@@ -29,11 +29,6 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <ContainerRepository>boilerplate/todoapp-service</ContainerRepository>
-        <ContainerImageTag>latest</ContainerImageTag>
-    </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure.csproj" />

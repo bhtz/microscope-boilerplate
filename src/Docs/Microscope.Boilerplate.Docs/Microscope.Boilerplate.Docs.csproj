@@ -4,11 +4,9 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <ContainerRepository>boilerplate/docs</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
-    </ItemGroup>
 
     <ItemGroup>
       <Content Include=".vitepress\config.mts" />
@@ -18,10 +16,5 @@
     <ItemGroup>
       <None Include=".vitepress\theme\index.ts" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <ContainerRepository>boilerplate/docs</ContainerRepository>
-        <ContainerImageTag>latest</ContainerImageTag>
-    </PropertyGroup>
 
 </Project>

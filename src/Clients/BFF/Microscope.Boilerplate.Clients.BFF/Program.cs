@@ -34,7 +34,7 @@ app.MapGraphQL();
 
 app.UseStaticFiles();
 
-// expose blazor app SSR
+// expose blazor app with SSR
 if (SSREnabled)
 {
     app.UseAntiforgery();
@@ -42,7 +42,7 @@ if (SSREnabled)
         .AddInteractiveServerRenderMode()
         .AddInteractiveWebAssemblyRenderMode();
 }
-else // as static web app
+else // or as PWA
 {
     app.UseBlazorFrameworkFiles();
     app.MapFallbackToFile("index.html");

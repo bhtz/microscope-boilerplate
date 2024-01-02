@@ -53,7 +53,7 @@ services:
     image: boilerplate/todoapp-service:latest
     container_name: boilerplate-todoapp-service
     ports:
-      - "5288:80"
+      - "5288:8080"
     depends_on:
       - "postgres"
 
@@ -61,13 +61,13 @@ services:
     image: boilerplate/bff:latest
     container_name: boilerplate-bff
     ports:
-      - "5215:80"
+      - "5215:8080"
         
   docs:
     image: boilerplate/docs:latest
     container_name: boilerplate-docs
     ports:
-      - "9000:80"
+      - "9000:8080"
 
 # Backend as a Service (BaaS) for prototyping microservices
   baas:

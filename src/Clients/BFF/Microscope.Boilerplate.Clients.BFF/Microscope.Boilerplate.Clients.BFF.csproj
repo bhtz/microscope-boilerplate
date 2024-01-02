@@ -4,7 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <ContainerImageName>boilerplate/bff</ContainerImageName>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,14 +13,8 @@
       <PackageReference Include="HotChocolate.Stitching" Version="13.8.1" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
-      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
       <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <ContainerImageName>boilerplate/bff</ContainerImageName>
-        <ContainerImageTag>latest</ContainerImageTag>
-    </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Web\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj" />

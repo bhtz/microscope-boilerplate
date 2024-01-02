@@ -28,7 +28,7 @@
                 <TemplateColumn T="IGetTodolists_Todolists" Title="Actions" Filterable="false" Sortable="false">
                     <CellTemplate>
                         <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="() => GoToDetails(context.Item.Id)"/>
-                        <MudIconButton Class="DeleteTodoListButton" Size="Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="() => DeleteTodoList(context.Item.Id)"/>
+                        <MudIconButton class="delete-todo-list" Size="Size.Small" Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="() => DeleteTodoList(context.Item.Id)"/>
                     </CellTemplate>
                 </TemplateColumn>
             </Columns>

@@ -34,12 +34,13 @@ dotnet build
 
 **Build solution containers**
 ```console
-dotnet publish
+dotnet publish -p:PublishProfile=DefaultContainer
 ```
 
 **Build solution containers for arm64**
 ```console
-dotnet publish -r linux-arm64
+dotnet publish -r linux-arm64 -p:PublishProfile=DefaultContainer
+
 ```
 
 ## Run solution

@@ -81,7 +81,7 @@ public class TodoListPageTest : AuthenticatedPageTest
         await Page.Locator(".mud-table-row b").GetByText(FakeTodoListNameUpdated).First.ClickAsync();
         await Expect(Page).ToHaveTitleAsync(new Regex(FakeTodoListNameUpdated));
 
-        await Page.Locator(".DeleteTodoItemButton").First.ClickAsync();
+        await Page.Locator(".delete-todo-item").First.ClickAsync();
         
         var itemLocator = Page.Locator("div.mud-list.mud-list-padding > div > div > p > p > strike").GetByText(FakeTodoListItemName).First;
         await Expect(itemLocator).Not.ToBeVisibleAsync();
@@ -97,7 +97,7 @@ public class TodoListPageTest : AuthenticatedPageTest
         var listItem = Page.Locator(".mud-table-row b").GetByText(FakeTodoListNameUpdated).First;
         await Expect(listItem).ToBeVisibleAsync();
 
-        await Page.Locator(".DeleteTodoListButton").First.ClickAsync();
+        await Page.Locator(".delete-todo-list").First.ClickAsync();
         await Page.Locator(".mud-button-label").GetByText("Delete!").First.ClickAsync();
         
         await Expect(listItem).Not.ToBeVisibleAsync();
