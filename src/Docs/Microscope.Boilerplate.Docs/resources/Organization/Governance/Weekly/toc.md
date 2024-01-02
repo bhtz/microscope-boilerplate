@@ -2,9 +2,9 @@
 
 ---
 
-<details><summary>2023</summary>
+<details><summary>2024</summary>
 
-* [2023/01/11 : Squad B2B](/Organization/Governance/Weekly/weekly-template)
+* [2024/01/11 : Squad B2B](/Organization/Governance/Weekly/weekly-template)
 * ...
 
 </details>

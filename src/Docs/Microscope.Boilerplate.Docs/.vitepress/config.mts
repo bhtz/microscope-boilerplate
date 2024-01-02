@@ -52,6 +52,7 @@ export default withMermaid(
               { text: 'Squads', link: '/Organization/Squads/toc' },
               { text: 'Weekly meetings', link: '/Organization/Governance/Weekly/toc' },
               { text: 'Architecture Decision Record', link: '/Organization/Governance/ADR/toc' },
+              { text: 'Product Requirement Document', link: '/Organization/Governance/PRD/toc' },
             ]
           },
 

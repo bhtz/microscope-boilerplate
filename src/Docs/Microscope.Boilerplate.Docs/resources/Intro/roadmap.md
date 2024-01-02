@@ -16,10 +16,19 @@
 ## Template
 
 - [x] Setup dotnet template
-- [x] Documentation as code option
-- [ ] Backend As A Service option
-- [ ] Infrastructure as Code option
-- [ ] Microservice generator option
+- [ ] Multi template
+  - [ ] Complete template
+    - [x] "Doc as code" option
+    - [ ] "CLI“ option
+    - [ ] "E2E" tests option
+    - [ ] "Infrastructure as Code" option
+    - [ ] "Backend As A Service" option
+  - [ ] "Service" template
+    - [ ] Hexagonal (copy of TodoAppService ?)
+    - [ ] Vertical slice
+  - [ ] "Doc as code" template
+      - [ ] Copy of docs
+  - [ ] Mobile template ?
 
 ## Clients
 - [ ] Blazor SSR -- DOING
@@ -154,30 +163,19 @@
 - [x] Refactoring to move Microscope.Storage crosscutting lib
 
 ## IAC
-- [ ] docker-compose
-    - [x] postgres
-    - [x] keycloak 22
-      - [x] import realms configuration
-    - [x] Service Bus RabbitMQ
-    - [x] Todo service
-    - [x] BaaS (Hasura)
-    - [x] BFF
-    - [x] Docs
-    - [x] Microsoft.Build.Container
-    
-- [ ] Pulumi stack
+- [x] docker-compose
+- [ ] Pulumi
   - [x] Setup Pulumi 
   - [ ] Azure
   - [ ] AWS
   - [ ] GCP
-
 - [ ] Terraform
   - [x] Setup Terraform project
   - [x] Azure
   - [ ] AWS
   - [ ] GCP
-  
 - [ ] K8S
+- [ ] Aspire
 
 ## Docs
 - [x] Setup vitepress
@@ -186,14 +184,9 @@
   - [x] Task list
 - [x] Setup revealjs slides
 - [x] Setup docs web server as static files & container
+- [x] PRD & SDD template
 
 ----------------------------
-
-# V1.1
-
-* dotnet 8 migration
-
--------------------------
 
 ## Roadmap (sample)
 ```mermaid
