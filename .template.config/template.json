@@ -18,6 +18,20 @@
       "description": "Whether to include documentation or not.",
       "datatype": "bool",
       "defaultValue": "true"
+    },
+
+    "E2E": {
+      "type": "parameter",
+      "description": "Whether to include E2E tests or not.",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+
+    "CLI": {
+      "type": "parameter",
+      "description": "Whether to include CLI / console app or not.",
+      "datatype": "bool",
+      "defaultValue": "true"
     }
   },
   "sources": [
@@ -26,6 +40,14 @@
         {
           "condition": "(!Documentation)",
           "exclude": "src/Docs/**"
+        },
+        {
+          "condition": "(!E2E)",
+          "exclude": "src/Clients/E2E/**"
+        },
+        {
+          "condition": "(!CLI)",
+          "exclude": "src/Clients/CLI/**"
         }
       ]
     }

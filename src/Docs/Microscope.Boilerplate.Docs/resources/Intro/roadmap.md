@@ -17,10 +17,10 @@
 
 - [x] Setup dotnet template
 - [ ] Multi template
-  - [ ] Complete template
+  - [ ] "Fullstack" template
     - [x] "Doc as code" option
-    - [ ] "CLI“ option
-    - [ ] "E2E" tests option
+    - [x] "CLI“ option
+    - [x] "E2E" tests option
     - [ ] "Infrastructure as Code" option
     - [ ] "Backend As A Service" option
   - [ ] "Service" template
@@ -28,7 +28,7 @@
     - [ ] Vertical slice
   - [ ] "Doc as code" template
       - [ ] Copy of docs
-  - [ ] Mobile template ?
+  - [ ] "Mobile" template ?
 
 ## Clients
 - [ ] Blazor SSR -- DOING

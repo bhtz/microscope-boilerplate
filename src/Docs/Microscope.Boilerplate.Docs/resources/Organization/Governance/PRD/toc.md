@@ -4,7 +4,7 @@
 
 <details><summary>2024</summary>
 
-* [2024/01/11 : Squad B2B](/Organization/Governance/PRD/prd)
+* [2024/01/11 : PRD sample](/Organization/Governance/PRD/prd)
 * ...
 
 </details>
