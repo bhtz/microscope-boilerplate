@@ -1,6 +1,0 @@
-mutation DeleteTodoItem($id: UUID!, $todoListId: UUID!) {
-    deleteTodoItem(command: {
-        todoItemId: $id,
-        todoListId: $todoListId
-    })
-}

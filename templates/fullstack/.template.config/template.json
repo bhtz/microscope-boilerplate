@@ -7,11 +7,10 @@
     "Clean architecture",
     "Docs"
   ],
-  "identity": "Microscope.Boilerplate",
-  "name": "Microscope boilerplate",
-  "shortName": "microscope_boilerplate",
+  "identity": "Microscope.Boilerplate.Fullstack",
+  "name": "Microscope boilerplate fullstack",
+  "shortName": "mcsp_fullstack",
   "sourceName": "Microscope.Boilerplate",
-  
   "symbols": {
     "Documentation": {
       "type": "parameter",
@@ -19,14 +18,12 @@
       "datatype": "bool",
       "defaultValue": "true"
     },
-
     "E2E": {
       "type": "parameter",
       "description": "Whether to include E2E tests or not.",
       "datatype": "bool",
       "defaultValue": "true"
     },
-
     "CLI": {
       "type": "parameter",
       "description": "Whether to include CLI / console app or not.",

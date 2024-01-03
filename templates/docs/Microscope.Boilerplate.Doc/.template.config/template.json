@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [
+    "CLI",
+    "Documentation as code",
+    "Boilerplate"
+  ],
+  "identity": "Microscope.Boilerplate.Doc",
+  "name": "Microscope boilerplate doc",
+  "shortName": "mcsp_doc",
+  "sourceName": "Microscope.Boilerplate",
+  "symbols": {},
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": "node_modules/**"
+        },
+        {
+          "exclude": "package-lock.json"
+        }
+      ]
+    }
+  ]
+}

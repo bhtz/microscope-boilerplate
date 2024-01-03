@@ -2,25 +2,52 @@
 
 An opiniated started kit for product engineering teams
 
-## Get source code
+## Available templates
+
+* FULLSTACK ("mcsp_fullstack")
+  * microservice (hexagonal arch) oriented fullstack, blazor, bff & api gateway, IAM, Storage, Postgres, Telemetry, Bus
+* DOC ("mcsp_doc")
+  *  Documentation as code Web app template (markdown & mermaid) using vitepress (#product, #ADR, #PRD, #guidelines, ...)
+* CLI ("mcsp_cli")
+  * Console app template using Cocona (CLI) & Spectre.Console (UI)
+
+## Installation
+
+### Get source code
 ```console
 git clone https://github.com/bhtz/microscope-boilerplate.git
 ```
 
-## Install microscope boilerplate template
+### Install microscope boilerplate templates
 ```console
-dotnet new install ./microscope-boilerplate
+cd microscope-boilerplate
+dotnet pack
+dotnet new install /bin/Release/Microscope.Boilerplate.1.0.0.nupkg
 ```
 
-## Create new solution
+## Fullstack template
+
+### Create new fullstack solution
 ```console
-dotnet new microscope_boilerplate -n Acme.AwesomeProject
+dotnet new mcsp_fullstack -n Acme.AwesomeProject
 ```
 
-## Run solution
+### Create new fullstack solution without documentation project
 ```console
-cd Acme.AwesomeProject
+dotnet new mcsp_fullstack -n Acme.AwesomeProject -D "false"
+```
+
+### Run solution
+```console
+cd Acme.AwesomeProject/src/IAC/Docker
 docker-compose up
+```
+
+## CLI template
+
+### Create new CLI project
+```console
+dotnet new mcsp_cli -n Acme.CLI
 ```
 
 ## Reading documentation :
