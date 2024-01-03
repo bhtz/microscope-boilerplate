@@ -5,6 +5,7 @@
 
 # dotenv files
 .env
+.idea/*
 
 # User-specific files
 *.rsuser
