@@ -50,6 +50,13 @@ docker-compose up
 dotnet new mcsp_cli -n Acme.CLI
 ```
 
+## Doc template
+
+### Create new documentation as code project
+```console
+dotnet new mcsp_doc -n Acme.Doc
+```
+
 ## Reading documentation :
 
-[Getting started documentation](https://github.com/bhtz/microscope-boilerplate/blob/master/src/Docs/Microscope.Boilerplate.Docs/resources/Architecture/getting-started.md)
+[Getting started documentation](https://github.com/bhtz/microscope-boilerplate/blob/multi-template/templates/docs/Microscope.Boilerplate.Doc/resources/Architecture/getting-started.md)
