@@ -5,18 +5,14 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <ContainerRepository>boilerplate/cli</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\..\..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Cocona" Version="2.2.0" />
+      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
       <PackageReference Include="Spectre.Console" Version="0.48.0" />
-      <PackageReference Include="Spectre.Console.Cli" Version="0.48.0" />
     </ItemGroup>
 
     <ItemGroup>

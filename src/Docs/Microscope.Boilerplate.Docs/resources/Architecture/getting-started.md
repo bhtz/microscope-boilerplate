@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* dotnet 7 SDK
+* dotnet 8 SDK
 * nodejs 16+
 * docker engine
 
@@ -40,7 +40,12 @@ dotnet publish -p:PublishProfile=DefaultContainer
 **Build solution containers for arm64**
 ```console
 dotnet publish -r linux-arm64 -p:PublishProfile=DefaultContainer
+```
 
+**Build CLI containers for arm64**
+```console
+cd src/Clients/CLI/Microscope.Boilerplate.Clients.CLI
+dotnet publish -r linux-arm64 /t:PublishContainer
 ```
 
 ## Run solution
@@ -161,7 +166,6 @@ pulumi config set azure-native:location westus2
 pulumi up
 ```
 
-
 ## E2E Tests
 
 **Setup environment**
@@ -180,5 +184,3 @@ dotnet test
 cd ./src/Clients/E2E/Microscope.Boilerplate.Clients.E2E
 HEADED=1 dotnet test
 ```
-
-
