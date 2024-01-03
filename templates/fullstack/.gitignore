@@ -6,6 +6,7 @@
 src/Docs/Microscope.Boilerplate.Docs/slides/dist/
 src/Docs/Microscope.Boilerplate.Docs/.vitepress/cache/
 src/Docs/Microscope.Boilerplate.Docs/wwwroot/*
+src/IAC/Terraform/.terraform
 
 # User-specific files
 *.rsuser
