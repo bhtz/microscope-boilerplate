@@ -1,0 +1,3 @@
+name: Microscope.Boilerplate.IAC
+runtime: dotnet
+description: Pulumi infrastructure as code
