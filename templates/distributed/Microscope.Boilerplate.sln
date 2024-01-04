@@ -5,10 +5,14 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{95A9E4C9-790E-437A-8B79-3F345860078B}"
 EndProject
+
+#if (CLI == "true")
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CLI", "CLI", "{D54756D4-CA39-4522-AEDE-563E94C1C4A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.CLI", "src\Clients\CLI\Microscope.Boilerplate.Clients.CLI\Microscope.Boilerplate.Clients.CLI.csproj", "{44200DE8-91F0-4F34-940D-A2F136DB17DF}"
 EndProject
+#endif
+
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{4ABFC523-BA37-44EB-9D42-83A1D0EADA3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.Web.Blazor", "src\Clients\Web\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj", "{7603B6F9-AF8A-4F22-A927-BED696CF4491}"
@@ -62,12 +66,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{31817A
 		src\IAC\Docker\realm-export.json = src\IAC\Docker\realm-export.json
 	EndProjectSection
 EndProject
-
-#if (Documentation == "true")
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2C2C3ADB-8DA0-4165-AEC6-E60527D51F8A}"
-EndProject
-#endif
-
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "E2E", "E2E", "{798CA917-4FDA-4592-9D4F-2E6462737759}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.E2E", "src\Clients\E2E\Microscope.Boilerplate.Clients.E2E\Microscope.Boilerplate.Clients.E2E.csproj", "{0D7FD609-7771-4888-AC41-F2D20C25E976}"
@@ -81,10 +79,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        #if (CLI == "true")
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Release|Any CPU.Build.0 = Release|Any CPU
+        #endif
+		
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -133,18 +134,18 @@ Global
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		
-		#if (Documentation == "true")
-		#endif
-		
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		
+        #if (CLI == "true")
 		{D54756D4-CA39-4522-AEDE-563E94C1C4A5} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF} = {D54756D4-CA39-4522-AEDE-563E94C1C4A5}
+        #endif
+		
 		{4ABFC523-BA37-44EB-9D42-83A1D0EADA3C} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491} = {4ABFC523-BA37-44EB-9D42-83A1D0EADA3C}
 		{667F8943-9076-4300-AADC-3FD92CEA281C} = {C4777D83-8B0B-4683-82FF-CD0BE83B36CB}
@@ -166,10 +167,6 @@ Global
 		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6} = {40B2EBAC-1B97-4DE3-8A03-EA52C58C4814}
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8} = {C4777D83-8B0B-4683-82FF-CD0BE83B36CB}
 		{31817AE5-8F6F-4DF7-8C54-FB2879D9F4C3} = {2FF5EA81-3304-4028-8455-3B777BEA5CDA}
-		
-		#if (Documentation == "true")
-		#endif
-		
 		{798CA917-4FDA-4592-9D4F-2E6462737759} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{0D7FD609-7771-4888-AC41-F2D20C25E976} = {798CA917-4FDA-4592-9D4F-2E6462737759}
 	EndGlobalSection

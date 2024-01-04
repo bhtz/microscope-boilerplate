@@ -4,12 +4,31 @@ An opiniated started kit for product engineering teams
 
 ## Available templates
 
-* FULLSTACK ("mcsp_fullstack")
-  * microservice (hexagonal arch) oriented fullstack, blazor, bff & api gateway, IAM, Storage, Postgres, Telemetry, Bus
-* DOC ("mcsp_doc")
-  *  Documentation as code Web app template (markdown & mermaid) using vitepress (#product, #ADR, #PRD, #guidelines, ...)
-* CLI ("mcsp_cli")
-  * Console app template using Cocona (CLI) & Spectre.Console (UI)
+### mcsp_distributed
+> Distributed architecture oriented 
+* blazor wasm
+* rest & graphql sdk
+* bff & api gateway
+* api "TodoApp" service
+* IAM
+* Storage 
+* Postgres database
+* OpenTelemetry
+* Bus
+
+### mcsp_doc
+> Documentation as code web application
+* web app
+* vitepress
+* markdown & mermaid 
+* templates (#product, #ADR, #PRD, #guidelines, ...)
+* opiniated guidelines
+
+### mcsp_cli
+> Console app with CLI & UI
+* Cocona CLI
+* Spectre.Console UI
+* Commands folder & sample
 
 ## Installation
 
@@ -24,17 +43,23 @@ cd microscope-boilerplate
 dotnet pack
 dotnet new install /bin/Release/Microscope.Boilerplate.1.0.0.nupkg
 ```
+---------------------------------------------
 
-## Fullstack template
+## Distributed  template
 
-### Create new fullstack solution
+### Create new distributed solution
 ```console
-dotnet new mcsp_fullstack -n Acme.AwesomeProject
+dotnet new mcsp_distributed -n Acme.AwesomeProject
 ```
 
-### Create new fullstack solution without documentation project
+### Create new distributed solution with CLI
 ```console
-dotnet new mcsp_fullstack -n Acme.AwesomeProject -D "false"
+dotnet new mcsp_distributed -n Acme.AwesomeProject -C
+```
+
+### Create new distributed solution with Terraform IAC setup
+```console
+dotnet new mcsp_distributed -n Acme.AwesomeProject -T
 ```
 
 ### Run solution
@@ -42,6 +67,7 @@ dotnet new mcsp_fullstack -n Acme.AwesomeProject -D "false"
 cd Acme.AwesomeProject/src/IAC/Docker
 docker-compose up
 ```
+---------------------------------------------
 
 ## CLI template
 
@@ -50,11 +76,18 @@ docker-compose up
 dotnet new mcsp_cli -n Acme.CLI
 ```
 
+---------------------------------------------
+
 ## Doc template
 
 ### Create new documentation as code project
 ```console
 dotnet new mcsp_doc -n Acme.Doc
+```
+
+### Create new documentation as code project with default guidelines
+```console
+dotnet new mcsp_doc -n Acme.Doc -G
 ```
 
 ## Reading documentation :

@@ -20,10 +20,10 @@
   - [x] "mcsp_cli" template
   - [x] "mcsp_doc" template
     - [x] Guidelines option
-  - [ ] "mcsp_fullstack" template
+  - [ ] "mcsp_distributed" template
     - [x] Remove Docs
     - [x] "Terraform" option
-    - [ ] "CLI“ option
+    - [x] "CLI“ option
     - [ ] "E2E" tests option
     - [ ] "BaaS" option
   - [ ] "mcsp_service_hexagonal" template

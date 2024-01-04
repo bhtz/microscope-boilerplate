@@ -17,6 +17,12 @@
       "description": "Whether to include Terraform IAC or not.",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+    "CLI": {
+      "type": "parameter",
+      "description": "Whether to include CLI or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources": [
@@ -26,8 +32,15 @@
           "exclude": "src/IAC/Terraform/**"
         },
         {
+          "exclude": "src/Clients/CLI/**"
+        },
+        {
           "condition": "(IAC)",
           "include": ["src/IAC/Terraform/**"]
+        },
+        {
+          "condition": "(CLI)",
+          "include": ["src/Clients/CLI/**"]
         }
       ]
     }
