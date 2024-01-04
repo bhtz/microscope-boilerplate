@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "Microscope"
-  text: "Boilerplate"
-  tagline: Product Engineering Starter Kit
+  name: "Microscope.Boilerplate"
+  text: "Documentation"
+  tagline: "my project tagline"
   actions:
     - theme: brand
       text: Getting started
@@ -15,23 +15,10 @@ hero:
       link: /Intro/roadmap
 
 features:
-  - title: Microservices
-    details: microservices architecture boilerplate
-  - title: dotnet 7
-    details: dotnet 7 SDK 
-  - title: Blazor
-    details: Blazor WASM hosted as web frontend
-  - title: IAM
-    details: Keycloak as Identity & Access Management service
-  - title: Postgres
-    details: Postgres as database
-  - title: Documentation as code
-    details: Vitepress & revealjs as documentation static website & slides
-  - title: Product discovery templates
-    details: F.O.C.U.S.E.D discovery framework notes markdown templates
-  - title: Organization & governance templates
-    details: Weekly meeting, architecture decision record markdown templates
-  - title: Architecture documentation
-    details: Architecture schema as mermaid diagram, bounded context & aggregate canvas markdown templates 
+  - title: Architecture
+    details: Getting started, Solution structure, Architecture schema, Technology matrix
+  - title: Organisation & governance
+    details: Org chart & team description, Product Requirement Document, Architecture Decision Record, Product Increment weekly meeting
+  - title: Guidelines
+    details: Product Engineering organization guidelines
 ---
-

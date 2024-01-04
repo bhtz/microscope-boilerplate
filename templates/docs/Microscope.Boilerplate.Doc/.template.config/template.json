@@ -10,7 +10,14 @@
   "name": "Microscope boilerplate doc",
   "shortName": "mcsp_doc",
   "sourceName": "Microscope.Boilerplate",
-  "symbols": {},
+  "symbols": {
+    "Guidelines": {
+      "type": "parameter",
+      "description": "Whether to include microscope opiniated guidelines or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
   "sources": [
     {
       "modifiers": [
@@ -18,7 +25,17 @@
           "exclude": "node_modules/**"
         },
         {
+          "exclude": "wwwroot/**"
+        },
+        {
           "exclude": "package-lock.json"
+        },
+        {
+          "exclude": "resources/Guidelines/**"
+        },
+        {
+          "condition": "(Guidelines)",
+          "include": ["resources/Guidelines/**"]
         }
       ]
     }

@@ -18,16 +18,16 @@
 - [x] Setup dotnet template
 - [ ] Multi template
   - [x] "mcsp_cli" template
+  - [x] "mcsp_doc" template
+    - [x] Guidelines option
   - [ ] "mcsp_fullstack" template
-    - [x] "Doc" option
-    - [x] "CLI“ option
-    - [x] "E2E" tests option
-    - [ ] "IAC" option
+    - [x] Remove Docs
+    - [x] "Terraform" option
+    - [ ] "CLI“ option
+    - [ ] "E2E" tests option
     - [ ] "BaaS" option
   - [ ] "mcsp_service_hexagonal" template
-  - [ ] "mcsp_vertical_service" template
-  - [ ] "mcsp_doc" template
-      - [ ] Copy of docs
+  - [ ] "mcsp_vertical_service" template ?
   - [ ] "mcsp_mobile" template ?
 
 ## Clients

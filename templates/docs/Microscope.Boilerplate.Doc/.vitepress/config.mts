@@ -4,7 +4,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 
 export default withMermaid(
     defineConfig({
-      title: "Microscope boilerplate",
+      title: "Microscope.Boilerplate",
       description: "Documentation",
       srcDir: "./resources",
       outDir: "./wwwroot",
@@ -56,6 +56,7 @@ export default withMermaid(
             ]
           },
 
+//#if( Guidelines )
           {
             text: 'Guidelines',
             items: [
@@ -70,9 +71,10 @@ export default withMermaid(
               { text: 'Matrix management', link: '/Guidelines/matrix-management.md' },
               { text: 'Career path', link: '/Guidelines/career-path.md' },
             ]
-          },
+          }
+//#endif
+            
         ],
-    
         socialLinks: [
           { icon: 'github', link: 'https://github.com/bhtz/microscope-boilerplate' }
         ]

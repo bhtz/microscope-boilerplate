@@ -3,6 +3,10 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# specific ignore
+.vitepress/cache/**
+wwwroot/**
+
 # dotenv files
 .env
 
@@ -482,3 +486,5 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/.vitepress/cache/
+/.vitepress/cache/
