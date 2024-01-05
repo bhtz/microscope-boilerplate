@@ -66,10 +66,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{31817A
 		src\IAC\Docker\realm-export.json = src\IAC\Docker\realm-export.json
 	EndProjectSection
 EndProject
+
+#if (E2E == "true")
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "E2E", "E2E", "{798CA917-4FDA-4592-9D4F-2E6462737759}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.E2E", "src\Clients\E2E\Microscope.Boilerplate.Clients.E2E\Microscope.Boilerplate.Clients.E2E.csproj", "{0D7FD609-7771-4888-AC41-F2D20C25E976}"
 EndProject
+#endif
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        
         #if (CLI == "true")
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -134,10 +139,14 @@ Global
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		#if (E2E == "true")
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Release|Any CPU.Build.0 = Release|Any CPU
+		#endif
+		
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		
@@ -167,7 +176,11 @@ Global
 		{A50F13F4-814E-4CC9-BC23-643E35BB7AC6} = {40B2EBAC-1B97-4DE3-8A03-EA52C58C4814}
 		{0EA33E6C-4808-42E2-9D51-70105362E5F8} = {C4777D83-8B0B-4683-82FF-CD0BE83B36CB}
 		{31817AE5-8F6F-4DF7-8C54-FB2879D9F4C3} = {2FF5EA81-3304-4028-8455-3B777BEA5CDA}
+		
+		#if (E2E == "true")
 		{798CA917-4FDA-4592-9D4F-2E6462737759} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{0D7FD609-7771-4888-AC41-F2D20C25E976} = {798CA917-4FDA-4592-9D4F-2E6462737759}
+		#endif
+		
 	EndGlobalSection
 EndGlobal

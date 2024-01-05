@@ -24,7 +24,7 @@
     - [x] Remove Docs
     - [x] "Terraform" option
     - [x] "CLI“ option
-    - [ ] "E2E" tests option
+    - [x] "E2E" tests option
     - [ ] "BaaS" option
   - [ ] "mcsp_service_hexagonal" template
   - [ ] "mcsp_vertical_service" template ?
