@@ -16,16 +16,17 @@
 ## Template
 
 - [x] Setup dotnet template
-- [ ] Multi template
+- [x] Multi template
   - [x] "mcsp_cli" template
   - [x] "mcsp_doc" template
     - [x] Guidelines option
-  - [ ] "mcsp_distributed" template
+  - [x] "mcsp_distributed" template
     - [x] Remove Docs
     - [x] "Terraform" option
     - [x] "CLI“ option
     - [x] "E2E" tests option
-    - [ ] "BaaS" option
+    - [x] "BaaS" option
+  - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres)
   - [ ] "mcsp_service_hexagonal" template
   - [ ] "mcsp_vertical_service" template ?
   - [ ] "mcsp_mobile" template ?

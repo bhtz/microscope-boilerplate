@@ -29,6 +29,13 @@
       "description": "Whether to include E2E tests client or not.",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+
+    "BaaS": {
+      "type": "parameter",
+      "description": "Whether to include Backend as a Service container (Hasura) or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources": [

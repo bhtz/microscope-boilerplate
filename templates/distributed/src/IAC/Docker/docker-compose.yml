@@ -63,7 +63,7 @@ services:
     ports:
       - "5215:8080"
 
-# Backend as a Service (BaaS) for prototyping microservices
+#if (BaaS == true)
   baas:
     image: hasura/graphql-engine:v2.31.0-ce
     container_name: boilerplate-baas
@@ -90,7 +90,8 @@ services:
               "x-hasura-user-id": { "path": "$$.sub" }
           }
       }'
-      
+#endif
+  
   telemetry:
     image: jaegertracing/all-in-one:1.48
     container_name: boilerplate-telemetry
