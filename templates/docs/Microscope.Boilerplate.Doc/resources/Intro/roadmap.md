@@ -4,7 +4,35 @@
 
 # V1
 
-## Solution
+## Templating & packaging
+
+- [x] Setup dotnet template
+  - [x] Setup nuget package
+- [x] Multi template
+  - [x] "mcsp_cli" template
+  - [x] "mcsp_doc" template
+    - [x] Guidelines option
+  - [x] "mcsp_distributed" template
+    - [x] "Terraform" option
+    - [x] "CLI“ option
+    - [x] "E2E" tests option
+    - [x] "BaaS" option
+  - [ ] "mcsp_service" (standalone microservice template, module + api)
+  - [ ] "mcsp_vertical_service" (standalone microservice template vertical slice style, module + api) template ?
+  - [ ] "mcsp_module" (standalone module template)
+  - [ ] "mcsp_desktop" (avaloniaui + material template)
+  - [ ] "mcsp_web" (blazor + mudblazor + auth template)
+  - [ ] "mcsp_web_fluent" (blazor + fluentUI + auth template)
+  - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres) ?
+  - [ ] "mcsp_mobile" (dotnet MAUI mobile / desktop app template) ?
+  - [ ] "mcsp_mobile_avalonia" (dotnet avalonia mobile / desktop template) ?
+- [x] Setup dotnet tool
+  - [ ] Setup nuget package
+----------------------------
+
+## DISTRIBUTED TEMPLATE
+
+### Solution
 
 - [x] Hasura JWT 
 - [x] Keycloak default role & role mapping
@@ -13,25 +41,7 @@
 - [ ] Clean warnings
 - [ ] Clean todos
 
-## Template
-
-- [x] Setup dotnet template
-- [x] Multi template
-  - [x] "mcsp_cli" template
-  - [x] "mcsp_doc" template
-    - [x] Guidelines option
-  - [x] "mcsp_distributed" template
-    - [x] Remove Docs
-    - [x] "Terraform" option
-    - [x] "CLI“ option
-    - [x] "E2E" tests option
-    - [x] "BaaS" option
-  - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres)
-  - [ ] "mcsp_service_hexagonal" template
-  - [ ] "mcsp_vertical_service" template ?
-  - [ ] "mcsp_mobile" template ?
-
-## Clients
+### Clients
 - [ ] Blazor SSR -- DOING
   - [ ] Dependency injection SSR
 - [x] Blazor PWA
@@ -43,8 +53,8 @@
   - [x] Setup Authentication
   - [x] Setup Feature management
   - [x] Setup Globalization
+  - [x] Setup PWA
   - [ ] Refactoring program.cs
-    - [x] Setup PWA
 - [x] SDKs
   - [x] GraphQL SDK
     - [ ] SDK generation with admin key dotnet graphql -x x-hasura-admin xxx
@@ -58,8 +68,8 @@
     - [ ] Forward all headers during schema stitching (related to sdk generation as admin)
     - [ ] File upload sample
 
-## Services
-### TodoList 
+### Services
+#### TodoList 
 - [ ] Core
     - [x] Domain 
       - [x] Setup aggregate root
@@ -130,10 +140,10 @@
           - [ ] GraphQL api
     
     - [ ] Tests
-        - [x] Setup Unit tests
-        - [x] Setup Architecture tests
-        - [ ] Setup Integration tests
-        - [x] Setup E2E tests
+        - [x] Unit tests
+        - [x] Architecture tests
+        - [ ] Integration tests
+        - [x] E2E tests
             - [x] Setup playwright NUnit project
             - [x] Home page test
             - [x] Login test
@@ -145,47 +155,41 @@
               - [x] Delete todo item test
               - [x] Delete todo list test
 
-### Storage (optional) ?
+#### Storage (optional) ?
 - [x] File system
 - [x] Azure blob storage
 - [ ] AWS S3
 - [x] Minio
   - [ ] Upgrade minio sdk to 6.x
 
-###  Workflow (optional)
+####  Workflow (optional)
 - [ ] Elsa core
 
-###  Scheduled Jobs (optional)
+####  Scheduled Jobs (optional)
 - [ ] Hangfire
 
-## Cross cutting 
+### Cross cutting 
 - [x] SharedKernel
     - [x] use mediatr contract only
 - [x] Refactoring to move Microscope.Storage crosscutting lib
 
-## IAC
+### IAC
 - [x] docker-compose
-- [ ] Pulumi
-  - [x] Setup Pulumi 
-  - [ ] Azure
-  - [ ] AWS
-  - [ ] GCP
 - [ ] Terraform
   - [x] Setup Terraform project
   - [x] Azure
   - [ ] AWS
   - [ ] GCP
-- [ ] K8S
 - [ ] Aspire
+- [ ] K8S
 
-## Docs
+----------------------------
+
+## DOCUMENTATION TEMPLATE
 - [x] Setup vitepress
-  - [x] Mermaid
-  - [x] PDF export
-  - [x] Task list
 - [x] Setup revealjs slides
 - [x] Setup docs web server as static files & container
-- [x] PRD & SDD template
+- [ ] Refactoring documentation in template
 
 ----------------------------
 

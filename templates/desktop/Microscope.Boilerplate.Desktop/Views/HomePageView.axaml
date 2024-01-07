@@ -4,5 +4,5 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Microscope.Boilerplate.Desktop.Views.HomePageView">
-    Home
+    <TextBlock FontSize="24" HorizontalAlignment="Center" Margin="10">Microscope.Boilerplate.Desktop</TextBlock>
 </UserControl>

@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using Material.Icons;
 
 namespace Microscope.Boilerplate.Desktop.ViewModels;
 
@@ -36,13 +37,21 @@ public partial class MainWindowViewModel : ViewModelBase
     
     public ObservableCollection<SideMenuItem> MenuItems { get; } = new ObservableCollection<SideMenuItem>()
     {
-        new("Home", typeof(HomePageViewModel)),
-        new ("About", typeof(AboutPageViewModel)),
+        new("Home", typeof(HomePageViewModel), MaterialIconKind.Home),
+        new ("About", typeof(AboutPageViewModel), MaterialIconKind.Information),
     };
 }
 
-public class SideMenuItem(string label, Type type)
+public class SideMenuItem
 {
-    public string Label { get; set; } = label;
-    public Type ModelType { get; set; } = type;
+    public SideMenuItem(string label, Type type, Material.Icons.MaterialIconKind iconKind)
+    {
+        Label = label;
+        ModelType = type;
+        IconKind = iconKind;
+    }
+
+    public string Label { get; set; }
+    public Type ModelType { get; set; }
+    public MaterialIconKind IconKind { get; set; }
 }

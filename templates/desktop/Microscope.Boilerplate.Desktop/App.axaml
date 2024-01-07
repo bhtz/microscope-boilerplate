@@ -3,6 +3,7 @@
              x:Class="Microscope.Boilerplate.Desktop.App"
              xmlns:local="using:Microscope.Boilerplate.Desktop"
              xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
@@ -16,6 +17,7 @@
              
      <Application.Styles>
          <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Amber" />
+         <materialIcons:MaterialIconStyles />
      </Application.Styles>
 
 </Application>
