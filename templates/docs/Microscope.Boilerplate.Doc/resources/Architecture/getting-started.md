@@ -36,6 +36,12 @@
 * Spectre.Console UI
 * Commands folder & sample
 
+### mcsp_desktop
+> Cross platform desktop app
+* Avalonia
+* material ui & icons
+* CommunityToolkit.MVVM
+
 ## Installation
 
 ### Get source code

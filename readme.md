@@ -7,6 +7,7 @@ An opiniated started kit for product engineering teams
 ### mcsp_distributed
 > Distributed architecture oriented 
 * blazor wasm
+* material ui
 * rest & graphql sdk
 * bff & api gateway
 * api "TodoApp" service
@@ -29,6 +30,12 @@ An opiniated started kit for product engineering teams
 * Cocona CLI
 * Spectre.Console UI
 * Commands folder & sample
+
+### mcsp_desktop
+> Cross platform desktop app
+* Avalonia
+* material ui & icons
+* CommunityToolkit.MVVM
 
 ## Installation
 
