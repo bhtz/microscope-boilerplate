@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Microscope.Boilerplate.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Microscope.Boilerplate.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Microscope.Boilerplate.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <SplitView 
+        IsPaneOpen="{Binding IsPaneOpen}" 
+        OpenPaneLength="250"
+        CompactPaneLength="48" 
+        DisplayMode="CompactInline">
+        
+        <SplitView.Pane>
+            <StackPanel>
+                <Button Command="{Binding TogglePane}">!!!</Button>
+                <ListBox ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedSideMenuItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:SideMenuItem}">
+                            <StackPanel Spacing="15" Orientation="Horizontal">
+                                <TextBlock Text="{Binding Label}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </SplitView.Pane>
+        
+        <SplitView.Content>
+            <TransitioningContentControl Content="{Binding CurrentPage}"/>
+        </SplitView.Content>
+    </SplitView>
+</Window>
