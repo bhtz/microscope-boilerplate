@@ -17,10 +17,10 @@
     - [x] "CLI“ option
     - [x] "E2E" tests option
     - [x] "BaaS" option
+  - [x] "mcsp_desktop" (avaloniaui + material template + layout & sidemenu)
   - [ ] "mcsp_service" (standalone microservice template, module + api)
   - [ ] "mcsp_vertical_service" (standalone microservice template vertical slice style, module + api) template ?
   - [ ] "mcsp_module" (standalone module template)
-  - [ ] "mcsp_desktop" (avaloniaui + material template)
   - [ ] "mcsp_web" (blazor + mudblazor + auth template)
   - [ ] "mcsp_web_fluent" (blazor + fluentUI + auth template)
   - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres) ?

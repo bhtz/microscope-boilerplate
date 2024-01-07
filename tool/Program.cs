@@ -21,7 +21,8 @@ app.AddCommand(() =>
             .AddChoices(new[] {
                 "mcsp_distributed",
                 "mcsp_cli",
-                "mcsp_doc"
+                "mcsp_doc",
+                "mcsp_desktop"
             }));
 
     var distributedOptions = new MultiSelectionPrompt<string>()
@@ -53,6 +54,7 @@ app.AddCommand(() =>
     {
         "mcsp_distributed" => AnsiConsole.Prompt(distributedOptions),
         "mcsp_cli" => new List<string>(),
+        "mcsp_desktop" => new List<string>(),
         "mcsp_doc" => AnsiConsole.Prompt(docOptions),
         _ => throw new ArgumentException("incorrect option"),
     };
