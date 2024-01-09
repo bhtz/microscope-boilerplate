@@ -5,7 +5,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Configurations;
 
 public static class OpenTelemetryConfiguration
 {
@@ -23,8 +23,7 @@ public static class OpenTelemetryConfiguration
             o.IncludeScopes = true;
         }));
 
-        services.Configure<OpenTelemetryLoggerOptions>(logging => 
-            logging.AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint)));
+        services.Configure<OpenTelemetryLoggerOptions>(logging => logging.AddOtlpExporter());
 
         services.AddOpenTelemetry()
             .WithMetrics(metrics =>

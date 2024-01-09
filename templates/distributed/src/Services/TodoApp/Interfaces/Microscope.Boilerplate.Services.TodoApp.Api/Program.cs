@@ -4,6 +4,7 @@ using Microscope.Boilerplate.Services.TodoApp.Application;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence;
 using Microscope.Boilerplate.Services.TodoApp.Infrastructure.Services.Bus;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +50,10 @@ app.MapControllers();
 
 app.MapGraphQL();
 
-app.MapHealthChecks("/healthchecks");
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/alive", new HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
 
 app.Run();

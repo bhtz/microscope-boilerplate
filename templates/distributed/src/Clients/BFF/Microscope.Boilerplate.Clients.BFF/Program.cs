@@ -1,7 +1,12 @@
 using Microscope.Boilerplate.Clients.BFF.Configurations;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Host = Microscope.Boilerplate.Clients.Web.Blazor.Host;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Open Telemetry
+builder.Services.AddTelemetryConfiguration();
+builder.Services.AddHealthCheckConfiguration();
 
 // register reverse proxy configuration
 builder.Services
@@ -47,5 +52,11 @@ else // or as PWA
     app.UseBlazorFrameworkFiles();
     app.MapFallbackToFile("index.html");
 }
+
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/alive", new HealthCheckOptions
+{
+    Predicate = r => r.Tags.Contains("live")
+});
 
 app.Run();

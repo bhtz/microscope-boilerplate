@@ -9,7 +9,8 @@ public static class HealthCheckConfiguration
     {
         services.AddHealthChecks()
             .AddCheck<SampleHealthCheck>("sample")
-            .AddDbContextCheck<TodoAppDbContext>();
+            .AddDbContextCheck<TodoAppDbContext>()
+            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
   
         return services;
     }

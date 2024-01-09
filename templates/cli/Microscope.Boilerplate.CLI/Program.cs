@@ -10,7 +10,7 @@ app.AddCommands<SampleCommands>();
 app.AddCommand(() =>
 {
     AnsiConsole.Write(
-        new FigletText("MICROSCOPE BOILERPLATE")
+        new FigletText("Microscope.Boilerplate")
             .Color(Color.Aqua)
             .Centered());
     

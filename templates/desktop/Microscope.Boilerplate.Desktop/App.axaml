@@ -10,14 +10,23 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+    
+    <!-- SIMPLE UI THEME -->
+     <!-- <Application.Styles> -->
+     <!--     <SimpleTheme /> -->
+     <!--     <materialIcons:MaterialIconStyles /> -->
+     <!-- </Application.Styles> -->
+    
+    <!-- FLUENT UI THEME -->
     <!-- <Application.Styles> -->
     <!--     <FluentTheme /> -->
+    <!--     <materialIcons:MaterialIconStyles /> -->
     <!-- </Application.Styles> -->
              
-     <Application.Styles>
-         <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Amber" />
-         <materialIcons:MaterialIconStyles />
-     </Application.Styles>
+    <!-- ENABLE MATERIAL UI THEME -->
+    <Application.Styles>
+        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Amber" />
+        <materialIcons:MaterialIconStyles />
+    </Application.Styles>
 
 </Application>
