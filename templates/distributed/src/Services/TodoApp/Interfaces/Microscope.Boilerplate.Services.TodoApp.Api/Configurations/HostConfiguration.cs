@@ -4,6 +4,9 @@ public static class HostConfiguration
 {
     public static IServiceCollection AddWebSettings(this IServiceCollection services, IConfiguration configuration)
     {
+        // TODO CHECK IF REQUIRED
+        services.AddServiceDiscovery();
+        
         services.AddOptions<SwaggerOptions>()
             .Bind(configuration.GetSection(SwaggerOptions.ConfigurationKey))
             .Validate(x => new SwaggerOptionsValidator().Validate(x).IsValid)

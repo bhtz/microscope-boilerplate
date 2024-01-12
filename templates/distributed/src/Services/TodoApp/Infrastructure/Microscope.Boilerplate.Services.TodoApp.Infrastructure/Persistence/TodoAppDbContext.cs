@@ -22,9 +22,10 @@ public class TodoAppDbContext : DbContext
         _logger = logger;
     }
 
-    public void Migrate()
+    public async Task Migrate()
     {
-        this.Database.Migrate();
+        var strategy = this.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(() => this.Database.MigrateAsync());
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -72,6 +72,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "E2E", "E2E", "{798CA917-4FD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.E2E", "src\Clients\E2E\Microscope.Boilerplate.Clients.E2E\Microscope.Boilerplate.Clients.E2E.csproj", "{0D7FD609-7771-4888-AC41-F2D20C25E976}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.IAC.Aspire", "src\IAC\Aspire\Microscope.Boilerplate.IAC.Aspire\Microscope.Boilerplate.IAC.Aspire.csproj", "{F1022E29-6D65-482F-A1C6-61A555AE7F3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{F54F343D-4561-4A29-9E9D-E35188A9303B}"
+EndProject
 #endif
 
 Global
@@ -83,13 +87,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        
-        #if (CLI == "true")
+								
+								#if (CLI == "true")
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF}.Release|Any CPU.Build.0 = Release|Any CPU
-        #endif
+								#endif
 		
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -147,13 +151,17 @@ Global
 		{0D7FD609-7771-4888-AC41-F2D20C25E976}.Release|Any CPU.Build.0 = Release|Any CPU
 		#endif
 		
+		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		
-        #if (CLI == "true")
+								#if (CLI == "true")
 		{D54756D4-CA39-4522-AEDE-563E94C1C4A5} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{44200DE8-91F0-4F34-940D-A2F136DB17DF} = {D54756D4-CA39-4522-AEDE-563E94C1C4A5}
-        #endif
+								#endif
 		
 		{4ABFC523-BA37-44EB-9D42-83A1D0EADA3C} = {95A9E4C9-790E-437A-8B79-3F345860078B}
 		{7603B6F9-AF8A-4F22-A927-BED696CF4491} = {4ABFC523-BA37-44EB-9D42-83A1D0EADA3C}
@@ -182,5 +190,7 @@ Global
 		{0D7FD609-7771-4888-AC41-F2D20C25E976} = {798CA917-4FDA-4592-9D4F-2E6462737759}
 		#endif
 		
+		{F54F343D-4561-4A29-9E9D-E35188A9303B} = {2FF5EA81-3304-4028-8455-3B777BEA5CDA}
+		{F1022E29-6D65-482F-A1C6-61A555AE7F3C} = {F54F343D-4561-4A29-9E9D-E35188A9303B}
 	EndGlobalSection
 EndGlobal

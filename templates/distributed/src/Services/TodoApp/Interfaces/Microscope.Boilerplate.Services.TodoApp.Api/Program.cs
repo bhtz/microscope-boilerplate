@@ -9,6 +9,9 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine(
+    builder.Configuration.GetValue<string>("Persistence:ConnectionString"));
+
 // register host / web layer options & services
 builder.Services
     .AddWebSettings(builder.Configuration)
@@ -26,7 +29,7 @@ using var scope = app.Services.CreateScope();
 var persistenceOptions = scope.ServiceProvider.GetRequiredService<IOptions<PersistenceOptions>>();
 if (persistenceOptions.Value.EnableMigration)
 {
-    scope.ServiceProvider.GetRequiredService<TodoAppDbContext>().Migrate();
+    await scope.ServiceProvider.GetRequiredService<TodoAppDbContext>().Migrate();
 }
 
 // Configure the HTTP request pipeline.

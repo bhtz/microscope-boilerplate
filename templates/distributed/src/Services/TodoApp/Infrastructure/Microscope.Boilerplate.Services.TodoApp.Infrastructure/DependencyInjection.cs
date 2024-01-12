@@ -76,11 +76,19 @@ public static class DependencyInjection
             {
                 case PersistenceOptions.POSTGRES_ADAPTER:
                     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-                    options.UseNpgsql(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
+                    options.UseNpgsql(option.ConnectionString, o =>
+                    {
+                        o.MigrationsAssembly(assemblyName);
+                        o.EnableRetryOnFailure();
+                    });
                     break;
 
                 case PersistenceOptions.MSSQL_ADAPTER:
-                    options.UseSqlServer(option.ConnectionString, o => o.MigrationsAssembly(assemblyName));
+                    options.UseSqlServer(option.ConnectionString, o =>
+                    {
+                        o.MigrationsAssembly(assemblyName);
+                        o.EnableRetryOnFailure();
+                    });
                     break;
                 
                 case PersistenceOptions.SQLITE_ADAPTER:

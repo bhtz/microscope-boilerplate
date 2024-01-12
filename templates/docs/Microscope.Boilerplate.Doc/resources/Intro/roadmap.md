@@ -121,6 +121,7 @@
         - [x] REST API
           - [x] OpenAPI documentation
           - [ ] Complete missing operations
+          - [ ] API versioning
         - [ ] Async API / messenging documentation
         - [x] Authentication
             - [x] OPENID JWT
