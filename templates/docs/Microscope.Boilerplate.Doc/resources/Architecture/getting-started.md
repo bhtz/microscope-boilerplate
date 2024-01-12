@@ -51,7 +51,7 @@ git clone https://github.com/bhtz/microscope-boilerplate.git
 
 ### Install microscope boilerplate templates
 ```console
-cd microscope-boilerplate
+cd microscope-boilerplate/templates
 dotnet pack
 dotnet new install /bin/Release/Microscope.Boilerplate.1.0.0.nupkg
 ```
@@ -74,11 +74,17 @@ dotnet new mcsp_distributed -n Acme.AwesomeProject -C
 dotnet new mcsp_distributed -n Acme.AwesomeProject -T
 ```
 
-### Run solution
+### Run solution (with docker compose)
 ```console
 cd Acme.AwesomeProject/src/IAC/Docker
 docker-compose up
 ```
+
+### Run solution (with Aspire)
+```console
+cd Acme.AwesomeProject/src/IAC/Aspire/Microscope.Boilerplate.IAC.Aspire
+```
+
 ---------------------------------------------
 
 ## CLI template
@@ -202,6 +208,13 @@ dotnet ef --startup-project ../../Interface/Microscope.Boilerplate.Services.Todo
 
 ### IAC (experimental)
 
+#### ASPIRE
+**Publish Aspire manifest**
+```console
+cd templates/src/IAC/Aspire/Microscope.Boilerplate.IAC.Aspire
+dotnet run --publisher manifest --output-path manifest.json
+```
+
 #### TERRAFORM
 **Install Terraform & Azure CLI**
 ```console
@@ -218,7 +231,7 @@ terraform plan
 terraform apply
 ```
 
-#### PULUMI
+#### PULUMI (absolete)
 **Install Pulumi & Azure CLI**
 ```console
 brew update
