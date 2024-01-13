@@ -1,6 +1,6 @@
 # Microscope.Boilerplate roadmap
 
-> Add your own awesome project roadmap here
+> Add your own awesome project roadmap
 
 ## Release 1
 
