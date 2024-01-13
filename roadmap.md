@@ -6,12 +6,12 @@
   - [x] Setup nuget package
 - [x] Multi template
   - [x] "mcsp_cli" template
-  - [ ] "mcsp_doc" template
+  - [x] "mcsp_doc" template
     - [x] Guidelines option
-    - [ ] Tech doc option
-    - [ ] Product doc option
-    - [ ] Blog option
-    - [ ] Organization option
+    - [x] Tech doc option
+    - [x] Product doc option
+    - [x] Blog option
+    - [x] Organization option
   - [x] "mcsp_distributed" template
     - [x] "Terraform" option
     - [x] "CLI“ option
