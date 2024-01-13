@@ -2,8 +2,6 @@ using System.Net.Sockets;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// var minio = builder.AddContainer("minio");
-
 var pg = builder.AddPostgresContainer("postgres", port: 5432, password: "root");
 
 var bus = builder.AddRabbitMQContainer("bus", 5672, "guest");
@@ -53,13 +51,12 @@ var hasura = builder.AddContainer("hasura", "hasura/graphql-engine", "v2.31.0-ce
         //         """
         // );
     })
-    .WithServiceBinding(8000, 8080, name: "http://localhost:8080");
+    .WithServiceBinding(8000, 8080);
 
 var todoAppService = builder.AddProject<Projects.Microscope_Boilerplate_Services_TodoApp_Api>("todoapiservice")
         .WithEnvironment("Persistence__ConnectionString", () =>
         {
-            var cs = pg.Resource?.GetConnectionString();
-            return cs;
+            return pg.Resource?.GetConnectionString();
         })
         .WithEnvironment("Bus__Host", () =>
         {

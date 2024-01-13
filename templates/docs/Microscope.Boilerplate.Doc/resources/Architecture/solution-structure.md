@@ -1,4 +1,6 @@
-# Solution structure
+# Microscope.Boilerplate solution structure
+
+> Add your own solution structure documentation
 
 ## Services
 

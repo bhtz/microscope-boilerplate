@@ -5,9 +5,9 @@
     "vitepress-plugin-mermaid": "^2.0.14"
   },
   "scripts": {
-    "docs:dev": "vitepress dev --port 9000",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "doc:dev": "vitepress dev --port 9000",
+    "doc:build": "vitepress build",
+    "doc:preview": "vitepress preview"
   },
   "dependencies": {
     "markdown-it-task-lists": "^2.1.1",

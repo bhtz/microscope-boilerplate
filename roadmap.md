@@ -2,12 +2,16 @@
 
 ## Templating & packaging
 
-- [x] Setup dotnet template
+- [x] Setup dotnet templates
   - [x] Setup nuget package
 - [x] Multi template
   - [x] "mcsp_cli" template
-  - [x] "mcsp_doc" template
+  - [ ] "mcsp_doc" template
     - [x] Guidelines option
+    - [ ] Tech doc option
+    - [ ] Product doc option
+    - [ ] Blog option
+    - [ ] Organization option
   - [x] "mcsp_distributed" template
     - [x] "Terraform" option
     - [x] "CLI“ option
@@ -26,7 +30,9 @@
   - [ ] "mcsp_mobile" (dotnet MAUI mobile / desktop app template) ?
   - [ ] "mcsp_mobile_avalonia" (dotnet avalonia mobile / desktop template) ?
 - [x] Setup dotnet tool
-  - [ ] Setup nuget package
+  - [x] Setup nuget package
+  - [ ] Clean label and options
+  - [ ] install as global tool name "microscope"
 ----------------------------
 
 ## DISTRIBUTED TEMPLATE

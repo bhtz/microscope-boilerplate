@@ -1,4 +1,6 @@
-# OKR Template
+# Objective Key Results (OKR)
+
+> Add your own company OKR
 
 ## 🎯 Objective 1: [Clear and Inspiring Objective]
 

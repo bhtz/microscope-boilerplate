@@ -16,6 +16,30 @@
       "description": "Whether to include microscope opiniated guidelines or not.",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+    "Product": {
+      "type": "parameter",
+      "description": "Whether to include product documentation or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Tech": {
+      "type": "parameter",
+      "description": "Whether to include tech documentation or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Blog": {
+      "type": "parameter",
+      "description": "Whether to include blog or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Organization": {
+      "type": "parameter",
+      "description": "Whether to include organization & governance doc or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources": [
@@ -31,11 +55,24 @@
           "exclude": "package-lock.json"
         },
         {
-          "exclude": "resources/Guidelines/**"
+          "condition": "(!Guidelines)",
+          "exclude": ["resources/Guidelines/**"]
         },
         {
-          "condition": "(Guidelines)",
-          "include": ["resources/Guidelines/**"]
+          "condition": "(!Blog)",
+          "exclude": ["resources/Blog/**"]
+        },
+        {
+          "condition": "(!Tech)",
+          "exclude": ["resources/Architecture/**"]
+        },
+        {
+          "condition": "(!Product)",
+          "exclude": ["resources/Product/**"]
+        },
+        {
+          "condition": "(!Organization)",
+          "exclude": ["resources/Organization/**"]
         }
       ]
     }

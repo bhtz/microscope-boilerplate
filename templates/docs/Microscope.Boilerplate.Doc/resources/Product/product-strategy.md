@@ -1,4 +1,4 @@
-# Todo app discovery (sample)
+# Product strategy
 
 ## Frame
 

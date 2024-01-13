@@ -1,11 +1,13 @@
-# Technology matrix
+# Microscope.Boilerplate technology matrix
+
+> Add your own technology matrix documentation
 
 ---
 
 | Use cases                    | Name               | Actual Version | Target Version |
 |:-----------------------------|:-------------------|---------------:|---------------:|
 | Web API                      | asp net            |            7.x |            x.x |
-| Web frontend                 | asp net blazor 7.x |            7.x |            x.x |
+| Web frontend                 | asp net blazor 8.x |            7.x |            x.x |
 | Relational Database          | postgres           |             13 |            x.x |
 | BFF                          | asp net + YARP     |            7.x |            x.x |
 | GraphQL                      | HotChocolate       |             13 |            x.x |

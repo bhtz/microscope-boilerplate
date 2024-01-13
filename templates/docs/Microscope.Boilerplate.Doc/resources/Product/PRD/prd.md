@@ -1,5 +1,8 @@
-# Product Requirement Document
+#  PRD NAME
 
+> Add your own PRD 
+
+- 🎯 OKR : "Objective 1"
 - 📅 Date: 2024/01/11
 - 🖥️ Product : my awesome product
 - 👷 PM : John Doe
@@ -7,6 +10,7 @@
 - 👷 PD : John Doe
 - 🛠️ Tech document link : [link]()
 - 🎨 Design document link : [link]()
+- 📦 EPIC : TodoApp
 
 ## Problem space
 
@@ -14,12 +18,16 @@
 
 ### 🎯Overview
 
-Describe customer problem to be solved, business value 
+Describe customer problem to be solved, business value
 
 | Statements                                             | Evidence |
 |--------------------------------------------------------|----------|
 | When _____, I want to be able to _____, so I can _____ | .....    |
 | When _____, I want to be able to _____, so I can _____ | .....    |
+
+### Discovery framing 
+
+[Todo App "FOCUSED" framing](/Product/FOCUSED)
 
 ### 📈Provide metrics
 
@@ -41,14 +49,39 @@ Describe customer problem to be solved, business value
 
 ### 🖌️ Solution Design Document
 
-1. Business process (#event storming workshop)
-2. UX/UI requirements (#Wireframe, #UI Mockups, Prototype …)
-3. Bounded context & Aggregate canvas
-4. Integration requirements (API design, async messaging, rest, graphql, grpc contracts )
-5. Cloud & Infrastructure requirements (IAC evolution, cloud component requirement)
-6. Testing requirements (test pyramid testing)
-7. Critical path analysis (all impacted teams & technical components)
-8. Backlog & delivery plan (prepare backlog & delivery plan)
+1. **Business process**
+    > All required information's & usefull links to define business process
+   * [Event storming workshop](Architecture/EventStorming/todoapp-event-storming)
+   * [BPMN]()
+2. **UX/UI requirements**
+    > All required information's & usefull links to UI/UX screening
+   * [Wireframing]()
+   * [High fidelity mockups]()
+3. **Bounded context & Data model update**
+    > Link to bounded context canvas & usefull links to screen data & technical context updates
+    * [Bounded context canvas](Architecture/BoundedContexts/bounded-context.html)
+      * [Aggregate canvas](Architecture/BoundedContexts/Aggregates/aggregate-canvas.html)
+4. **Integration requirements**
+    > All required information's & usefull links to screen intégration requirements & updates
+    * [REST API documentation]()
+    * [GraphQL API documentation]()
+    * [Async API documentation]()
+    * [ETL flow documentation]()
+5. **Cloud & Infrastructure requirements**
+    > All required information's & usefull links to screen cloud & infrastructure requirements & updates
+    * [IAC: Infrastructure as code requirements]()
+    * [Cloud / infrastructure component requirement]()
+6. **Testing requirements**
+    > All required information's & usefull links about testing strategy
+    * [3 amigos report]()
+    * [Testing cover requirements]()
+7. **Critical path analysis**
+    > All required information's & usefull links about critical path (teams & tech components)
+    * [Critical path mapping]()
+8. **Backlog & delivery plan**
+    > Link to product backlog EPIC & delivery plan
+    * [Product backlog EPIC]()
+    * [Delivery plan / Roadmap]()
 
 ### 📆 Timeline / Release Planning 
 
@@ -59,11 +92,11 @@ Describe customer problem to be solved, business value
 
 ### ✓ Exec priorization & screening review
 
-| Reviewer | Role                |
-|----------|---------------------|
-| John doe | Head of engineering |
-| John doe | Head of design      |
-| John doe | Head of product     |
+| Reviewer | Role                | Validation | Date       |
+|----------|---------------------|------------|------------|
+| John doe | Head of engineering | ✅          | 01/04/2024 |
+| John doe | Head of design      | ✅          | 01/04/2024 |
+| John doe | Head of product     | 🚫         | 01/04/2024 |
 
 ### 🏆Post launch analysis
 

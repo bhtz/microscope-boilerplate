@@ -8,17 +8,19 @@ hero:
   tagline: "my project tagline"
   actions:
     - theme: brand
-      text: Getting started
-      link: /Architecture/getting-started
+      text: Documentation
+      link: /Overview/introduction
     - theme: alt
       text: Roadmap
-      link: /Intro/roadmap
+      link: /Product/roadmap
 
 features:
-  - title: Architecture
-    details: Getting started, Solution structure, Architecture schema, Technology matrix
+  - title: Discovery documentation
+    details: Objective Key Results, product roadmap, Product Requirement Solution & Solution Design Document
+  - title: Delivery documentation
+    details: Solution getting started, Solution structure, Bounded Context Canvas, Architecture schema, Technology matrix, Architecture Decision Record
   - title: Organisation & governance
-    details: Org chart & team description, Product Requirement Document, Architecture Decision Record, Product Increment weekly meeting
-  - title: Guidelines
-    details: Product Engineering organization guidelines
+    details: Org chart, teams ID CARDs, meeting report
+  - title: Guidelines & templates
+    details: Product Engineering organization guidelines & templates
 ---

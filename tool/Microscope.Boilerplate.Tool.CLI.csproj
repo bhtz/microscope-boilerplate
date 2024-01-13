@@ -5,15 +5,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>microscope</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Cocona" Version="2.2.0" />
     <PackageReference Include="Spectre.Console" Version="0.48.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include=".template.config\template.json" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-# Solution architecture schema
+# Microscope.Boilerplate architecture schema
 
 > Add your own architecture schema
 

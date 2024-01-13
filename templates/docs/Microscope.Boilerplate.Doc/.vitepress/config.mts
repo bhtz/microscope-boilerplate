@@ -15,46 +15,61 @@ export default withMermaid(
         },
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Docs', link: '/Intro/introduction' }
+          { text: 'Docs', link: '/Overview/introduction' }
         ],
     
         sidebar: [
           {
-            text: 'Introduction',
+            text: 'Overview',
             items: [
-              { text: 'Introduction', link: '/Intro/introduction' },
-              { text: 'Roadmap', link: '/Intro/roadmap' }
+              { text: 'Introduction', link: '/Overview/introduction' },
             ]
           },
 
+//#if( Product )
           {
-            text: 'Product & Tech Discovery',
+            text: 'Product documentation',
             items: [
-              { text: 'Discovery framing', link: '/Product/toc' },
-              { text: 'Event storming', link: '/Architecture/EventStorming/toc' },
-              { text: 'Bounded Context Canvas', link: '/Architecture/BoundedContexts/toc' },
+              { text: 'Objective Key Results (OKR)', link: '/Product/OKR' },
+              { text: 'Product Requirement Document', link: '/Product/PRD/toc' },
+              { text: 'Roadmap', link: '/Product/roadmap' },
             ]
           },
-    
+//#endif
+            
+//#if( Tech )
           {
-            text: 'Architecture',
+            text: 'Tech documentation',
             items: [
-              { text: 'Getting started', link: '/Architecture/getting-started' },
+              { text: 'Installation', link: '/Architecture/installation' },
               { text: 'Solution structure', link: '/Architecture/solution-structure' },
               { text: 'Architecture schema', link: '/Architecture/architecture' },
               { text: 'Technology matrix', link: '/Architecture/technologies' },
+              { text: 'Bounded Context Canvas', link: '/Architecture/BoundedContexts/toc' },
+              { text: 'Architecture Decision Record', link: '/Architecture/ADR/toc' },
+              { text: 'Event storming', link: '/Architecture/EventStorming/toc' },
             ]
           },
+//#endif
 
+//#if( Organization )
           {
             text: 'Organization & Governance',
             items: [
               { text: 'Squads', link: '/Organization/Squads/toc' },
               { text: 'Weekly meetings', link: '/Organization/Governance/Weekly/toc' },
-              { text: 'Architecture Decision Record', link: '/Organization/Governance/ADR/toc' },
-              { text: 'Product Requirement Document', link: '/Organization/Governance/PRD/toc' },
             ]
           },
+//#endif
+            
+//#if( Blog )
+          {
+            text: 'Blog',
+            items: [
+              { text: 'Welcome', link: '/Blog/welcome' },
+            ]
+          },
+//#endif
 
 //#if( Guidelines )
           {

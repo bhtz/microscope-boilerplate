@@ -1,6 +1,6 @@
-# Installation Microscope boilerplate
+# Installation Microscope.Boilerplate
 
-> Add your own getting started documentation
+> Add your own installation documentation
 
 ## Requirements
 

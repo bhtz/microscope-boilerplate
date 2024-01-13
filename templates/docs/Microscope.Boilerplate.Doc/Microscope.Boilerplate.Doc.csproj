@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="resources\Assets\Images\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
