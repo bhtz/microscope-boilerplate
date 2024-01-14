@@ -24,15 +24,15 @@
   - [ ] "mcsp_module" (standalone module template)
   - [ ] "mcsp_service" (standalone microservice template, module + api)
   - [ ] "mcsp_vertical_service" (standalone microservice template vertical slice style, module + api) template ?
-  - [ ] "mcsp_web" (blazor + mudblazor + auth template)
+  - [ ] "mcsp_web_material" (blazor + mudblazor + auth template)
   - [ ] "mcsp_web_fluent" (blazor + fluentUI + auth template)
   - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres) ?
   - [ ] "mcsp_mobile" (dotnet MAUI mobile / desktop app template) ?
   - [ ] "mcsp_mobile_avalonia" (dotnet avalonia mobile / desktop template) ?
 - [x] Setup dotnet tool
   - [x] Setup nuget package
-  - [ ] Clean label and options
-  - [ ] install as global tool name "microscope"
+  - [x] Clean label and options
+  - [x] install as global tool name "microscope"
 ----------------------------
 
 ## DISTRIBUTED TEMPLATE
@@ -211,7 +211,7 @@
 - [x] Setup vitepress
 - [x] Setup revealjs slides
 - [x] Setup docs web server as static files & container
-- [ ] Refactoring documentation in template
+- [x] Refactoring documentation in template
 
 ----------------------------
 

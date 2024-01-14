@@ -60,6 +60,20 @@ cd microscope-boilerplate/templates
 dotnet pack
 dotnet new install /bin/Release/Microscope.Boilerplate.1.0.0.nupkg
 ```
+
+### Install microscope dotnet tool
+```console
+cd microscope-boilerplate/tool
+dotnet pack
+dotnet tool install --global --add-source ./nupkg Microscope.Boilerplate.Tool.CLI
+
+```
+
+## Uninstall tool
+```console
+dotnet tool uninstall Microscope.Boilerplate.Tool.CLI --global
+```
+
 ---------------------------------------------
 
 ## Distributed  template

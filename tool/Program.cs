@@ -1,71 +1,49 @@
 ﻿using System.Diagnostics;
 using Cocona;
 using Microscope.Boilerplate.Tool.CLI.Commands;
+using Microscope.Boilerplate.Tool.CLI.Data;
 using Spectre.Console;
 
 var builder = CoconaApp.CreateBuilder();
 
 var app = builder.Build();
 
-app.AddCommands<SampleCommands>();
+// app.AddCommands<SampleCommands>();
+
 app.AddCommand(() =>
 {
     AnsiConsole.Write(
         new FigletText("MICROSCOPE")
             .Color(Color.Aqua)
             .Centered());
-    
-    var template = AnsiConsole.Prompt(
-        new SelectionPrompt<string>()
-            .Title("What template would you like to use ?")
-            .AddChoices(new[] {
-                "mcsp_distributed",
-                "mcsp_cli",
-                "mcsp_doc",
-                "mcsp_desktop"
-            }));
 
-    var distributedOptions = new MultiSelectionPrompt<string>()
-        .Title("Include options ?")
-        .NotRequired()
-        .InstructionsText(
-            "[grey](Press [blue]<space>[/] to toggle an option, " +
-            "[green]<enter>[/] to accept)[/]")
-        .AddChoices(new[]
-        {
-            "--CLI",
-            "--E2E",
-            "--BaaS",
-            "--Terraform"
-        });
-    
-    var docOptions = new MultiSelectionPrompt<string>()
-        .Title("Include options ?")
-        .NotRequired()
-        .InstructionsText(
-            "[grey](Press [blue]<space>[/] to toggle an option, " +
-            "[green]<enter>[/] to accept)[/]")
-        .AddChoices(new[]
-        {
-            "--Guidelines"
-        });
-
-    var templateOptions = template switch
-    {
-        "mcsp_distributed" => AnsiConsole.Prompt(distributedOptions),
-        "mcsp_cli" => new List<string>(),
-        "mcsp_desktop" => new List<string>(),
-        "mcsp_doc" => AnsiConsole.Prompt(docOptions),
-        _ => throw new ArgumentException("incorrect option"),
-    };
-
+    var selectedTemplate = PromptTemplates();
+    var templateArguments = selectedTemplate.Prompt();
     var name = AnsiConsole.Ask<string>("What is the name of the project ?");
     var output = AnsiConsole.Ask<string>("Where do you want output ?");
     
-    RunDotnetTemplate(template, name, output, templateOptions);
+    GenerateDotnetTemplate(selectedTemplate.CodeName, name, output, templateArguments);
 });
 
-void RunDotnetTemplate(string template, string name, string output, List<string> options)
+ITemplate PromptTemplates()
+{
+    var prompt = new SelectionPrompt<ITemplate>()
+        .Title("What template would you like to use ?");
+    
+    prompt.AddChoices(new List<ITemplate>()
+    {
+        new DistributedTemplate(),
+        new DocumentationTemplate(),
+        new DesktopTemplate(),
+        new CLITemplate()
+    });
+    
+    prompt.Converter = (tpl) => tpl.Label;
+    
+    return AnsiConsole.Prompt(prompt);
+}
+
+void GenerateDotnetTemplate(string template, string name, string output, IEnumerable<string> options)
 {
     string nameArg = string.IsNullOrEmpty(name) ? string.Empty : $"-n {name}";
     string outputArg = string.IsNullOrEmpty(output) ? string.Empty : $"-o {output}";
@@ -76,16 +54,12 @@ void RunDotnetTemplate(string template, string name, string output, List<string>
     Process process = new Process();
     process.StartInfo.FileName = "dotnet";
     process.StartInfo.Arguments = arguments;
-
     process.StartInfo.UseShellExecute = false;
     process.StartInfo.RedirectStandardOutput = true;
 
     process.Start();
-
-    string stdout = process.StandardOutput.ReadToEnd();
-
+    var stdout = process.StandardOutput.ReadToEnd();
     process.WaitForExit();
-
     Console.WriteLine(stdout);
 }
 
