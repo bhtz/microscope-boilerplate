@@ -7,14 +7,6 @@ public static class HostConfiguration
 {
     public static IServiceCollection AddWebSettings(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddServiceDiscovery();
-        
-        // service defaults OTEL options
-        services.AddOptions<OTELOptions>()
-            .Bind(configuration.GetSection(OTELOptions.ConfigurationKey))
-            .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
-            .ValidateOnStart();
-        
         services.AddOptions<SwaggerOptions>()
             .Bind(configuration.GetSection(SwaggerOptions.ConfigurationKey))
             .Validate(x => new SwaggerOptionsValidator().Validate(x).IsValid)

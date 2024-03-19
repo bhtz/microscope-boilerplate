@@ -6,11 +6,6 @@ using Host = Microscope.Boilerplate.Clients.Web.Blazor.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOptions<OTELOptions>()
-    .Bind(builder.Configuration.GetSection(OTELOptions.ConfigurationKey))
-    .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
-    .ValidateOnStart();
-
 builder.Services.AddServiceDefaults();
 
 builder.Services.AddCustomHealthCheckConfiguration();
