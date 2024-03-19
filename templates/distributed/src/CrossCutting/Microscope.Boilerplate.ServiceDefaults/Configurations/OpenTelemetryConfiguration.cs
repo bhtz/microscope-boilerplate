@@ -20,7 +20,7 @@ public static class OpenTelemetryConfiguration
 
         services.AddLogging(l => l.AddOpenTelemetry(o =>
         {
-            o.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(option.ServiceName));
+            // o.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(option.ServiceName));
             o.IncludeFormattedMessage = true;
             o.IncludeScopes = true;
         }));
