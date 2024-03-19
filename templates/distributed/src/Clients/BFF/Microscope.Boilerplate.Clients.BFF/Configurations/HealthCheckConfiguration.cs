@@ -4,11 +4,8 @@ namespace Microscope.Boilerplate.Clients.BFF.Configurations;
 
 public static class HealthCheckConfiguration
 {
-    public static IServiceCollection AddHealthCheckConfiguration(this IServiceCollection services)
+    public static IServiceCollection AddCustomHealthCheckConfiguration(this IServiceCollection services)
     {
-        services.AddHealthChecks()
-            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
-  
         return services;
     }
 }

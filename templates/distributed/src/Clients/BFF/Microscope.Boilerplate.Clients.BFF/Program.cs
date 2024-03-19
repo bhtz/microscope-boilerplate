@@ -1,12 +1,19 @@
 using Microscope.Boilerplate.Clients.BFF.Configurations;
+using Microscope.Boilerplate.ServiceDefaults;
+using Microscope.Boilerplate.ServiceDefaults.Configurations;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Host = Microscope.Boilerplate.Clients.Web.Blazor.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Open Telemetry
-builder.Services.AddTelemetryConfiguration();
-builder.Services.AddHealthCheckConfiguration();
+builder.Services.AddOptions<OTELOptions>()
+    .Bind(builder.Configuration.GetSection(OTELOptions.ConfigurationKey))
+    .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
+    .ValidateOnStart();
+
+builder.Services.AddServiceDefaults();
+
+builder.Services.AddCustomHealthCheckConfiguration();
 
 // register reverse proxy configuration
 builder.Services
@@ -53,10 +60,6 @@ else // or as PWA
     app.MapFallbackToFile("index.html");
 }
 
-app.MapHealthChecks("/health");
-app.MapHealthChecks("/alive", new HealthCheckOptions
-{
-    Predicate = r => r.Tags.Contains("live")
-});
+app.MapDefaultEndpoints();
 
 app.Run();

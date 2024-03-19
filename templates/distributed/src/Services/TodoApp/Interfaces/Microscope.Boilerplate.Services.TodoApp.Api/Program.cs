@@ -1,3 +1,4 @@
+using Microscope.Boilerplate.ServiceDefaults;
 using Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 using Microscope.Boilerplate.Services.TodoApp.Api.Middlewares;
 using Microscope.Boilerplate.Services.TodoApp.Application;
@@ -53,10 +54,6 @@ app.MapControllers();
 
 app.MapGraphQL();
 
-app.MapHealthChecks("/health");
-app.MapHealthChecks("/alive", new HealthCheckOptions
-{
-    Predicate = r => r.Tags.Contains("live")
-});
+app.MapDefaultEndpoints();
 
 app.Run();

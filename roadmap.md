@@ -2,9 +2,8 @@
 
 ## Templating & packaging
 
-- [x] Setup dotnet templates
+- [x] dotnet templates
   - [x] Setup nuget package
-- [x] Multi template
   - [x] "mcsp_cli" template
   - [x] "mcsp_doc" template
     - [x] Guidelines option
@@ -29,10 +28,11 @@
   - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres) ?
   - [ ] "mcsp_mobile" (dotnet MAUI mobile / desktop app template) ?
   - [ ] "mcsp_mobile_avalonia" (dotnet avalonia mobile / desktop template) ?
-- [x] Setup dotnet tool
+
+- [x] dotnet tool
   - [x] Setup nuget package
   - [x] Clean label and options
-  - [x] install as global tool name "microscope"
+  - [x] install as global tool "microscope"
 ----------------------------
 
 ## DISTRIBUTED TEMPLATE
@@ -74,7 +74,8 @@
     - [ ] File upload sample
 
 ### Services
-#### TodoList 
+
+#### TodoApp service
 - [ ] Core
     - [x] Domain 
       - [x] Setup aggregate root
@@ -161,6 +162,14 @@
               - [x] Delete todo item test
               - [x] Delete todo list test
 
+#### POC service "Backend As A Service"
+- [x] Hasura
+  - [x] Docker
+  - [x] Auth
+- [ ] Azure Data API Builder
+  - [ ] Docker
+  - [ ] Auth
+
 #### Storage (optional) ?
 - [x] File system
 - [x] Azure blob storage
@@ -189,6 +198,7 @@
   - [x] Bus (rabbitmq)
   - [x] BaaS (hasura)
   - [x] OTEL (Jaeger)
+
 - [ ] Aspire
   - [x] BFF
   - [x] TodoAPI
@@ -198,11 +208,12 @@
   - [x] Bus (rabbitmq)
   - [x] BaaS (hasura)
   - [x] OTEL (aspire)
+
 - [ ] Terraform
-  - [x] Setup Terraform project
   - [x] Azure
   - [ ] AWS
   - [ ] GCP
+
 - [ ] K8S
 
 ----------------------------
@@ -212,18 +223,6 @@
 - [x] Setup revealjs slides
 - [x] Setup docs web server as static files & container
 - [x] Refactoring documentation in template
+- [x] Templating options
 
 ----------------------------
-
-## Roadmap (sample)
-```mermaid
-gantt
-    title Product roadmap
-    dateFormat YYYY-MM-DD
-    section B2C
-        Feature 1          :a1, 2023-01-01, 30d
-        Feature 2    :after a1, 20d
-    section B2B
-        Feature 1 :2023-01-12, 12d
-        Feature 2    :24d
-```

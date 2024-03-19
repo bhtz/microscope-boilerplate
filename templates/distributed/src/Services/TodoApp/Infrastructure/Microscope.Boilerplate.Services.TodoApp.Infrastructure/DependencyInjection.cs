@@ -164,11 +164,13 @@ public static class DependencyInjection
                 case BusOptions.RABBITMQ_ADAPTER:
                     configuration.UsingRabbitMq((ctx, cfg) =>
                     {
-                        cfg.Host(option.Host, x =>
-                        {
-                            x.Username(option.Username);
-                            x.Password(option.Password);
-                        });
+                        // cfg.Host(option.Host, x =>
+                        // {
+                        //     x.Username(option.Username);
+                        //     x.Password(option.Password);
+                        // });
+                        
+                        cfg.Host(option.Host);
                     });
                     break;
 

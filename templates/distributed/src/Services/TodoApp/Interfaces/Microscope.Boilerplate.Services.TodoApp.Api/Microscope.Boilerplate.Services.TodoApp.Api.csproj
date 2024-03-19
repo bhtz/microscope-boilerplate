@@ -23,17 +23,12 @@
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.2.23619.3" />
         <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.1.1" />
-        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
-        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
-        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure.csproj" />
     </ItemGroup>
 

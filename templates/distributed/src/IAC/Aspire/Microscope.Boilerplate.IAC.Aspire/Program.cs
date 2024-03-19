@@ -1,10 +1,8 @@
-using System.Net.Sockets;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
-var pg = builder.AddPostgresContainer("postgres", port: 5432, password: "root");
+var pg = builder.AddPostgres("postgres", port: 5432, password: "root");
 
-var bus = builder.AddRabbitMQContainer("bus", 5672, "guest");
+var bus = builder.AddRabbitMQ("bus", 5672);
 
 var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "22.0")
     .WithEnvironment(context =>
@@ -18,8 +16,8 @@ var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "22
         context.EnvironmentVariables.Add("DB_USER", "postgres");
         context.EnvironmentVariables.Add("DB_PASSWORD", "root");
     })
-    .WithServiceBinding(8080, 8083)
-    .WithVolumeMount("../../Docker/realm-export.json", "/opt/keycloak/data/import/realm-export.json")
+    .WithEndpoint(8080, 8083)
+    .WithBindMount("../../Docker/realm-export.json", "/opt/keycloak/data/import/realm-export.json")
     .WithArgs(new []
     {
         "start-dev",
@@ -53,7 +51,7 @@ var hasura = builder.AddContainer("hasura", "hasura/graphql-engine", "v2.31.0-ce
     })
     .WithServiceBinding(8000, 8080);
 
-var todoAppService = builder.AddProject<Projects.Microscope_Boilerplate_Services_TodoApp_Api>("todoapiservice")
+var todoAppService = builder.AddProject<Projects.Microscope_Boilerplate_Services_TodoApp_Api>("TodoAppService")
         .WithEnvironment("Persistence__ConnectionString", () =>
         {
             return pg.Resource?.GetConnectionString();
@@ -63,7 +61,7 @@ var todoAppService = builder.AddProject<Projects.Microscope_Boilerplate_Services
             return bus.Resource.GetConnectionString();
         });
 
-var bffService = builder.AddProject<Projects.Microscope_Boilerplate_Clients_BFF>("bff")
+var bffService = builder.AddProject<Projects.Microscope_Boilerplate_Clients_BFF>("BFF")
     .WithReference(todoAppService);
 
 builder.Build().Run();

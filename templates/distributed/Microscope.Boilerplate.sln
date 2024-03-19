@@ -76,6 +76,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.IAC.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{F54F343D-4561-4A29-9E9D-E35188A9303B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.ServiceDefaults", "src\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj", "{194404FB-69F0-4704-8705-95938D80FF5B}"
+EndProject
 #endif
 
 Global
@@ -155,6 +157,10 @@ Global
 		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1022E29-6D65-482F-A1C6-61A555AE7F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194404FB-69F0-4704-8705-95938D80FF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194404FB-69F0-4704-8705-95938D80FF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194404FB-69F0-4704-8705-95938D80FF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194404FB-69F0-4704-8705-95938D80FF5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		
@@ -192,5 +198,6 @@ Global
 		
 		{F54F343D-4561-4A29-9E9D-E35188A9303B} = {2FF5EA81-3304-4028-8455-3B777BEA5CDA}
 		{F1022E29-6D65-482F-A1C6-61A555AE7F3C} = {F54F343D-4561-4A29-9E9D-E35188A9303B}
+		{194404FB-69F0-4704-8705-95938D80FF5B} = {C4777D83-8B0B-4683-82FF-CD0BE83B36CB}
 	EndGlobalSection
 EndGlobal

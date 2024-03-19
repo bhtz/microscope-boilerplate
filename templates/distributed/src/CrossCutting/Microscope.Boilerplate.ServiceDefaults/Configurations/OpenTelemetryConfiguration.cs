@@ -1,11 +1,13 @@
 using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
+namespace Microscope.Boilerplate.ServiceDefaults.Configurations;
 
 public static class OpenTelemetryConfiguration
 {
@@ -23,8 +25,7 @@ public static class OpenTelemetryConfiguration
             o.IncludeScopes = true;
         }));
 
-        services.Configure<OpenTelemetryLoggerOptions>(logging => 
-            logging.AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint)));
+        services.Configure<OpenTelemetryLoggerOptions>(logging => logging.AddOtlpExporter());
 
         services.AddOpenTelemetry()
             .WithMetrics(metrics =>
@@ -32,8 +33,8 @@ public static class OpenTelemetryConfiguration
                 metrics
                     .AddRuntimeInstrumentation(null)
                     .AddBuiltInMeters()
-                    .AddOtlpExporter();
-                    // .AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint));
+                     .AddOtlpExporter();
+                    //.AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint));
             })
             .WithTracing(builder =>
                 builder
@@ -41,8 +42,8 @@ public static class OpenTelemetryConfiguration
                     .AddHotChocolateInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddConsoleExporter()
-                    .AddOtlpExporter());
-                    // .AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint));
+                     .AddOtlpExporter());
+                    //.AddOtlpExporter(o => o.Endpoint = new Uri(option.OtelExporterEndpoint)));
                     
         return services;
     }
@@ -58,8 +59,8 @@ public class OTELOptions
 {
     public const string ConfigurationKey = "OTEL";
 
-    public string ServiceName { get; set; } = "TodoApp.Api";
-    public string OtelExporterEndpoint { get; set; }
+    public string? ServiceName { get; set; }
+    public string? OtelExporterEndpoint { get; set; }
 }
 
 public class OTELOptionsValidator : AbstractValidator<OTELOptions>

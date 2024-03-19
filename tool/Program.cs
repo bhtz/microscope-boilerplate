@@ -8,7 +8,7 @@ var builder = CoconaApp.CreateBuilder();
 
 var app = builder.Build();
 
-// app.AddCommands<SampleCommands>();
+app.AddCommands<InstallCommands>();
 
 app.AddCommand(() =>
 {

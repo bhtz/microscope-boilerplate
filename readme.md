@@ -54,7 +54,7 @@
 git clone https://github.com/bhtz/microscope-boilerplate.git
 ```
 
-### Install microscope boilerplate templates
+### Install microscope dotnet templates
 ```console
 cd microscope-boilerplate/templates
 dotnet pack

@@ -13,7 +13,7 @@ public static class FeatureManagementConfiguration
     }
 }
 
-public class FeatureManagementOptions
+public static class FeatureManagementOptions
 {
     public const string ConfigurationKey = "FeatureManagement";
 }

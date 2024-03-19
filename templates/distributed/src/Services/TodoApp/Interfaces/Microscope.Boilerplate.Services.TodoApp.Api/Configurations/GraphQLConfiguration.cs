@@ -15,7 +15,7 @@ public static class GraphQLConfiguration
             .AddMutationType<Mutation>()
             .AddQueryType<Query>()
             .AddType<UploadType>()
-            .AddInstrumentation(o => o.Scopes = ActivityScopes.All)
+            .AddInstrumentation()
             .AddProjections()
             .AddFiltering()
             .AddSorting();

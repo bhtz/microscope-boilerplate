@@ -1,20 +1,23 @@
+using Microscope.Boilerplate.ServiceDefaults;
+using Microscope.Boilerplate.ServiceDefaults.Configurations;
+
 namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class HostConfiguration
 {
     public static IServiceCollection AddWebSettings(this IServiceCollection services, IConfiguration configuration)
     {
-        // TODO CHECK IF REQUIRED
         services.AddServiceDiscovery();
+        
+        // service defaults OTEL options
+        services.AddOptions<OTELOptions>()
+            .Bind(configuration.GetSection(OTELOptions.ConfigurationKey))
+            .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
+            .ValidateOnStart();
         
         services.AddOptions<SwaggerOptions>()
             .Bind(configuration.GetSection(SwaggerOptions.ConfigurationKey))
             .Validate(x => new SwaggerOptionsValidator().Validate(x).IsValid)
-            .ValidateOnStart();
-        
-        services.AddOptions<OTELOptions>()
-            .Bind(configuration.GetSection(OTELOptions.ConfigurationKey))
-            .Validate(x => new OTELOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         
         services.AddOptions<OIDCAuthenticationOptions>()
@@ -32,19 +35,24 @@ public static class HostConfiguration
     
     public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
+        // register default services :
+        // service discovery
+        // healthcheck
+        // telemetry
+        services.AddServiceDefaults();
+        
+        // register custom services
         services
             .AddEndpointsApiExplorer()
-            .AddSwaggerGen()
             .AddGraphQLConfiguration()
             .AddCorsConfiguration()
             .AddSwaggerConfiguration()
-            .AddHealthCheckConfiguration()
+            .AddCustomHealthCheckConfiguration()
             .AddHttpClient()
             .AddAuthorizationConfiguration()
             .AddJwtAuthenticationConfiguration(configuration)
             .AddApiKeyAuthenticationConfiguration(configuration)
-            .AddTelemetryConfiguration()
-            .AddFeatureManagementConfiguration(configuration)
+            .AddFeatureManagementConfiguration(configuration) // TODO: to service default with custom
             .AddControllers();
         
         return services;

@@ -5,12 +5,11 @@ namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
 public static class HealthCheckConfiguration
 {
-    public static IServiceCollection AddHealthCheckConfiguration(this IServiceCollection services)
+    public static IServiceCollection AddCustomHealthCheckConfiguration(this IServiceCollection services)
     {
         services.AddHealthChecks()
             .AddCheck<SampleHealthCheck>("sample")
-            .AddDbContextCheck<TodoAppDbContext>()
-            .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
+            .AddDbContextCheck<TodoAppDbContext>();
   
         return services;
     }

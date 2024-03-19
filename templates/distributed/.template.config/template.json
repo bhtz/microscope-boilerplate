@@ -51,7 +51,7 @@
           "exclude": "src/Clients/E2E/**"
         },
         {
-          "condition": "(IAC)",
+          "condition": "(Terraform)",
           "include": ["src/IAC/Terraform/**"]
         },
         {
