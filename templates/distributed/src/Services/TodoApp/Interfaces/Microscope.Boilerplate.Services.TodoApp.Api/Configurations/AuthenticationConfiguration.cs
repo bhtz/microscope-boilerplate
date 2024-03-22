@@ -18,7 +18,7 @@ public static class AuthenticationConfiguration
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddJwtAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddJwtAuthenticationConfiguration(this IServiceCollection services)
     {
         var option = services
             .BuildServiceProvider()
@@ -77,7 +77,7 @@ public static class AuthenticationConfiguration
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddApiKeyAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApiKeyAuthenticationConfiguration(this IServiceCollection services)
     {
         var option = services
             .BuildServiceProvider()

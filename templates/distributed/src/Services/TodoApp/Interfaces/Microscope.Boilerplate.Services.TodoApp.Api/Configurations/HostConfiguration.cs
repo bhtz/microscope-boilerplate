@@ -1,5 +1,4 @@
 using Microscope.Boilerplate.ServiceDefaults;
-using Microscope.Boilerplate.ServiceDefaults.Configurations;
 
 namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
 
@@ -27,10 +26,7 @@ public static class HostConfiguration
     
     public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // register default services :
-        // service discovery
-        // healthcheck
-        // telemetry
+        // Register default services : service discovery, healthcheck, open telemetry
         services.AddServiceDefaults();
         
         // register custom services
@@ -42,8 +38,8 @@ public static class HostConfiguration
             .AddCustomHealthCheckConfiguration()
             .AddHttpClient()
             .AddAuthorizationConfiguration()
-            .AddJwtAuthenticationConfiguration(configuration)
-            .AddApiKeyAuthenticationConfiguration(configuration)
+            .AddJwtAuthenticationConfiguration()
+            .AddApiKeyAuthenticationConfiguration()
             .AddFeatureManagementConfiguration(configuration) // TODO: to service default with custom
             .AddControllers();
         

@@ -47,7 +47,7 @@
 - [ ] Clean todos
 
 ### Clients
-- [ ] Blazor SSR -- DOING
+- [ ] Move to blazor WEB & SSR instead of WASM only
   - [ ] Dependency injection SSR
 - [x] Blazor PWA
   - [x] Setup mudblazor UI
@@ -183,10 +183,13 @@
 ####  Scheduled Jobs (optional)
 - [ ] Hangfire
 
-### Cross cutting 
+### Cross cutting
 - [x] SharedKernel
     - [x] use mediatr contract only
 - [x] Refactoring to move Microscope.Storage crosscutting lib
+- [x] ServiceDefaults
+    - [x] OpenTelemetry
+    - [x] Default Healthcheck
 
 ### IAC
 - [x] Docker compose
