@@ -25,7 +25,7 @@
              
     <!-- ENABLE MATERIAL UI THEME -->
     <Application.Styles>
-        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Amber" />
+        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Red" />
         <materialIcons:MaterialIconStyles />
     </Application.Styles>
 

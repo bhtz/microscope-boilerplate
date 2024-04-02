@@ -1,20 +1,12 @@
 using Microscope.Boilerplate.Clients.BFF.Configurations;
 using Microscope.Boilerplate.ServiceDefaults;
-using Microscope.Boilerplate.ServiceDefaults.Configurations;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Host = Microscope.Boilerplate.Clients.Web.Blazor.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddServiceDefaults();
-
 builder.Services.AddCustomHealthCheckConfiguration();
-
-// register reverse proxy configuration
-builder.Services
-    .AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
-
+builder.Services.AddReverseProxyConfiguration(builder.Configuration);
 builder.Services.AddGraphQlGateway(builder.Configuration);
 
 var SSREnabled = builder.Configuration.GetValue<bool>("SSREnabled");

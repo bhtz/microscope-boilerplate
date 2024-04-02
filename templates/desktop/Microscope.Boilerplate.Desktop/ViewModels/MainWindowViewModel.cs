@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Material.Icons;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microscope.Boilerplate.Desktop.ViewModels;
 
@@ -14,7 +15,15 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool _isPaneOpen = true;
 
     [ObservableProperty] 
-    private ViewModelBase _currentPage = new HomePageViewModel();
+    private ViewModelBase _currentPage;
+
+    [ObservableProperty] 
+    private SideMenuItem? _selectedSideMenuItem;
+
+    public MainWindowViewModel()
+    {
+        _currentPage = App.Current.Services.GetRequiredService<HomePageViewModel>();
+    }
     
     [RelayCommand]
     public void TogglePane()
@@ -22,14 +31,11 @@ public partial class MainWindowViewModel : ViewModelBase
         IsPaneOpen = !IsPaneOpen;
     }
 
-    [ObservableProperty] 
-    private SideMenuItem? _selectedSideMenuItem;
-    
     partial void OnSelectedSideMenuItemChanged(SideMenuItem? value)
     {
         if (value is null) return;
-
-        var instance = Activator.CreateInstance(value.ModelType);
+        
+        var instance = App.Current.Services.GetService(value.ModelType);
     
         if (instance is null) return;
         CurrentPage = (ViewModelBase)instance;
@@ -38,7 +44,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public ObservableCollection<SideMenuItem> MenuItems { get; } = new ObservableCollection<SideMenuItem>()
     {
         new("Home", typeof(HomePageViewModel), MaterialIconKind.Home),
-        new ("About", typeof(AboutPageViewModel), MaterialIconKind.Information),
+        new ("Counter", typeof(CounterPageViewModel), MaterialIconKind.Add),
     };
 }
 

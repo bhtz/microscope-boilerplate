@@ -16,7 +16,7 @@
     
     <SplitView 
         IsPaneOpen="{Binding IsPaneOpen}" 
-        OpenPaneLength="250"
+        OpenPaneLength="240"
         CompactPaneLength="52" 
         PaneBackground="#27272e"
         Background="#32333d"

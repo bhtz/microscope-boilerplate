@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Microscope.Boilerplate.Desktop.Views;
 
-public partial class AboutPageView : UserControl
+public partial class CounterPageView : UserControl
 {
-    public AboutPageView()
+    public CounterPageView()
     {
         InitializeComponent();
     }
