@@ -1,16 +1,12 @@
 namespace Microscope.Boilerplate.Tool.CLI.Data;
 
-public sealed class DocumentationTemplate : Template, ITemplate
+public sealed class BFFSSRBlazorTemplate : Template, ITemplate
 {
-    public string Label { get; set; } = "Documentation as code";
-    public string CodeName { get; set; } = "mcsp_doc";
+    public string Label { get; set; } = "BFF SSR Blazor";
+    public string CodeName { get; set; } = "mcsp_bff_ssr_blazor";
 
     public override List<TemplateOption> Options { get; set; } =
     [
-        new("Product documentation", "--Product"),
-        new("Tech documentation", "--Tech"),
-        new("Organization & governance documentation", "--Organization"),
-        new("Technical blog", "--Blog"),
-        new("Opiniated guidelines", "--Guidelines")
+        new("Backend as a service (Hasura)", "--BaaS"),
     ];
 }

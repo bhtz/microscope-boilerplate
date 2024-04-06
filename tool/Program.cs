@@ -33,9 +33,10 @@ ITemplate PromptTemplates()
     prompt.AddChoices(new List<ITemplate>()
     {
         new DistributedTemplate(),
+        new BFFSSRBlazorTemplate(),
         new DocumentationTemplate(),
         new DesktopTemplate(),
-        new CLITemplate()
+        new CLITemplate(),
     });
     
     prompt.Converter = (tpl) => tpl.Label;

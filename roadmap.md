@@ -20,7 +20,7 @@
     - [ ] "Jaeger" option
     - [ ] "Minio" option
   - [x] "mcsp_desktop" (avaloniaui + material template + layout & sidemenu)
-  - [ ] "mcsp_bff_ssr_blazor" (blazor SSR + mudblazor + auth template)
+  - [x] "mcsp_bff_ssr_blazor" (blazor SSR + mudblazor + auth template)
   - [ ] "mcsp_module" (standalone module template)
   - [ ] "mcsp_service" (standalone microservice template, module + api)
   - [ ] "mcsp_vertical_service" (standalone microservice template vertical slice style, module + api) template ?

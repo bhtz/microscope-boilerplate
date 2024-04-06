@@ -14,7 +14,14 @@
   "shortName": "mcsp_bff_ssr_blazor",
   "sourceName": "Microscope.Boilerplate.Clients",
 
-  "symbols": {},
+  "symbols": {
+    "BaaS": {
+      "type": "parameter",
+      "description": "Whether to include Backend as a Service container (Hasura) or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
   
   "sources": [
     {
