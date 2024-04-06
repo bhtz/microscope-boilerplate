@@ -58,7 +58,8 @@ git clone https://github.com/bhtz/microscope-boilerplate.git
 ```console
 cd microscope-boilerplate/templates
 dotnet pack
-dotnet new install /bin/Release/Microscope.Boilerplate.1.0.0.nupkg
+dotnet new install ./bin/Release/Microscope.Boilerplate.1.0.0.nupkg
+dotnet new uninstall Microscope.Boilerplate
 ```
 
 ### Install microscope dotnet tool

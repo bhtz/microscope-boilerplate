@@ -1,0 +1,41 @@
+version: "3.8"
+name: microscope-bff-ssr-blazor
+services:
+  postgres:
+    image: postgres:12
+    container_name: microscope-database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - microscope_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: microscope-identity
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
+      KEYCLOAK_DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_PASSWORD: root
+    ports:
+      - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    depends_on:
+      - postgres
+
+volumes:
+  microscope_data:
+  

@@ -1,0 +1,32 @@
+﻿@page "/continents"
+@using Microscope.Boilerplate.Clients.SDK.GraphQL.Components
+@using Microsoft.AspNetCore.Authorization
+@using Microscope.Boilerplate.Clients.SDK.GraphQL
+@using Microsoft.Extensions.Localization
+@inject BFFClient BffClient;
+@attribute [Authorize]
+@inject IStringLocalizer<Continents> Loc
+
+<PageTitle>Continents</PageTitle>
+<MudText Typo="Typo.h3" GutterBottom="true">@Loc["Title"]</MudText>
+<MudText Class="mb-8">@Loc["SubTitle"]</MudText>
+
+<UseGetContinents Context="result">
+    <ChildContent>
+        <MudPaper>
+            <MudList>
+                @foreach (var item in result.Continents)
+                {
+                    <MudListItem Icon="@Icons.Material.Filled.List">@item.Name</MudListItem>
+                }
+            </MudList>
+        </MudPaper>
+    </ChildContent>
+    <ErrorContent>
+        @result.First().Message
+    </ErrorContent>
+    <LoadingContent>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" />
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" Class="mt-4" />
+    </LoadingContent>
+</UseGetContinents>

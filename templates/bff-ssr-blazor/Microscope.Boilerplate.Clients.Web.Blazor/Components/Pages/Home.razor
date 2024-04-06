@@ -1,0 +1,8 @@
+﻿@page "/"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Home> Loc
+
+<PageTitle>Home</PageTitle>
+<MudText Typo="Typo.h3" Color="Color.Primary"><b>Microscope</b></MudText>
+<MudText Typo="Typo.h3"><b>Boilerplate .NET</b></MudText>
+<MudText Class="mt-5" Typo="Typo.h6">@Loc["SubTitle"]</MudText>
