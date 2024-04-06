@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ContainerRepository>boilerplate/bff</ContainerRepository>
+    <ContainerImageTag>latest</ContainerImageTag>
   </PropertyGroup>
   
   <ItemGroup>
@@ -30,6 +32,12 @@
   
   <ItemGroup>
     <AdditionalFiles Include="Components\Error.razor" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="stitching.graphql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

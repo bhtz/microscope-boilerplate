@@ -4,23 +4,20 @@ Microscope.Boilerplate BFF SSR BLAZOR
 
 ## Getting started 
 
+**Build solution containers**
+```console
+dotnet publish -p:PublishProfile=DefaultContainer
+```
+
+**Build solution containers for arm64**
+```console
+dotnet publish -r linux-arm64 -p:PublishProfile=DefaultContainer
+```
+
 **Docker compose up**
 ```console
 cd ./IAC/Docker
 docker-compose up
-```
-
-[http://localhost:8083/admin/master/console/#/microscope/clients](http://localhost:8083/admin/master/console/#/microscope/clients)
-
-* username: admin
-* password: microscope
-
-> Clients > boilerplate > credentials > regenerate secret token
- 
-> Copy it to your appsettings.{env}.json
-
-```json
-"ClientSecret": "dMMj1Q9yiIzQeI8Td0pMnIx9zq95NREz",
 ```
 
 ```console

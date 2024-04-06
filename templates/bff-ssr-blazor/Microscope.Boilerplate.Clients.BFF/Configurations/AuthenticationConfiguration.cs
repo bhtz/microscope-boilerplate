@@ -65,7 +65,8 @@ public static class AuthenticationConfiguration
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     NameClaimType = oidcAuthenticationOptions.NameClaimType,
-                    RoleClaimType = oidcAuthenticationOptions.RoleClaimType
+                    RoleClaimType = oidcAuthenticationOptions.RoleClaimType,
+                    ValidateIssuer = false
                 };
 
                 foreach (var item in oidcAuthenticationOptions.Scopes)
