@@ -8,6 +8,7 @@ export default withMermaid(
       description: "Documentation",
       srcDir: "./resources",
       outDir: "../../docs",
+      base: "/microscope-boilerplate/",
       ignoreDeadLinks: true,
       themeConfig: {
         search: {
