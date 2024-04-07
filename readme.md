@@ -11,41 +11,56 @@
 ## Available templates
 
 * mcsp_distributed
+* mcsp_bff_ssr_blazor
 * mcsp_desktop
 * mcsp_cli
 * mcsp_doc
 
 ### mcsp_distributed
 > Distributed architecture oriented 
-* blazor wasm
-* rest & graphql sdk
-* bff & api gateway
-* api "TodoApp" service
-* IAM
-* Storage 
-* Postgres database
-* OpenTelemetry
-* Bus
+* ✅ blazor wasm
+* ✅ rest & graphql sdk
+* ✅ bff & api gateway
+* ✅ api "TodoApp" service
+* ✅ IAM
+* ✅ Storage 
+* ✅ Postgres database
+* ✅ OpenTelemetry
+* ✅ Bus
+
+### mcsp_bff_ssr_blazor
+> Blazor frontend + BFF pattern
+* ✅ Material UI (MudBlazor)
+* ✅ Custom endpoint
+* ✅ Server side rendering (Blazor)
+* ✅ OIDC / Cookie authentication (Keycloak)
+* ✅ Proxying API (Yarp)
+* ✅ GraphQL gateway (HotChocolate)
+* ✅ Auto generated SDK (StrawberryShake)
+* ✅ Light / Dark theme
+* ✅ I18N
+* ✅ Feature management
+* ✅ Docker
 
 ### mcsp_doc
 > Documentation as code web application
-* web app
-* vitepress
-* markdown & mermaid 
-* templates (#product, #ADR, #PRD, #guidelines, ...)
-* opiniated guidelines
+* ✅ web app
+* ✅ vitepress
+* ✅ markdown & mermaid 
+* ✅ templates (#product, #ADR, #PRD, #guidelines, ...)
+* ✅ opiniated guidelines
 
 ### mcsp_cli
 > Console app with CLI & UI
-* Cocona CLI
-* Spectre.Console UI
-* Commands folder & sample
+* ✅ Cocona CLI
+* ✅ Spectre.Console UI
+* ✅ Commands folder & sample
 
 ### mcsp_desktop
 > Cross platform desktop app
-* Avalonia
-* material ui & icons
-* CommunityToolkit.MVVM
+* ✅ Avalonia
+* ✅ material ui & icons
+* ✅ CommunityToolkit.MVVM
 
 ## Installation
 
@@ -67,7 +82,7 @@ dotnet new uninstall Microscope.Boilerplate
 cd microscope-boilerplate/tool
 dotnet pack
 dotnet tool install --global --add-source ./nupkg Microscope.Boilerplate.Tool.CLI
-dotnet tool uninstall --global  Microscope.Boilerplate.Tool.CLI  
+dotnet tool uninstall --global  Microscope.Boilerplate.Tool.CLI
 ```
 
 ---------------------------------------------

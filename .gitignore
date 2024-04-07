@@ -3,6 +3,8 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+src/documentation/wwwroot/
+src/documentation/.vitepress/cache/
 # dotenv files
 .env
 .idea/*
