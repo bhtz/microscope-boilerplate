@@ -68,6 +68,27 @@ public static class AuthenticationConfiguration
                     RoleClaimType = oidcAuthenticationOptions.RoleClaimType,
                     ValidateIssuer = false
                 };
+                
+                options.Events.OnRedirectToIdentityProvider = context =>
+                {
+                    if (!string.IsNullOrEmpty(oidcAuthenticationOptions.IssuerAddress))
+                    {
+                        // Intercept the redirection so the browser navigates to the right URL in your host
+                        context.ProtocolMessage.IssuerAddress = oidcAuthenticationOptions.IssuerAddress;
+                    }
+                    return Task.CompletedTask;
+                };
+
+                options.Events.OnRedirectToIdentityProviderForSignOut = context =>
+                {
+                    if (!string.IsNullOrEmpty(oidcAuthenticationOptions.IssuerLogoutAddress))
+                    {
+                        // Intercept the redirection so the browser navigates to the right URL in your host
+                        context.ProtocolMessage.IssuerAddress = oidcAuthenticationOptions.IssuerLogoutAddress;
+                    }
+
+                    return Task.CompletedTask;
+                };
 
                 foreach (var item in oidcAuthenticationOptions.Scopes)
                 {
@@ -90,6 +111,8 @@ public class OidcAuthenticationOptions
     public string ClientSecret { get; set; }
     public string? NameClaimType { get; set; } = ClaimTypes.Name;
     public string? RoleClaimType { get; set; } = ClaimTypes.Role;
+    public string? IssuerAddress { get; set; }
+    public string? IssuerLogoutAddress { get; set; }
     public IEnumerable<string> Scopes { get; set; }
 }
 

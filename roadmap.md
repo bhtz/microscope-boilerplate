@@ -20,13 +20,14 @@
     - [ ] "Jaeger" option
     - [ ] "Minio" option
   - [x] "mcsp_desktop" (avaloniaui + material template + layout & sidemenu)
-  - [x] "mcsp_bff_ssr_blazor" (blazor SSR + mudblazor + auth template)
+  - [x] "mcsp_bff_ssr_blazor" (blazor SSR + auth template)
+    - [ ] mudblazor
+    - [ ] radzen
+    - [ ] fluent
   - [ ] "mcsp_module" (standalone module template)
   - [ ] "mcsp_service" (standalone microservice template, module + api)
   - [ ] "mcsp_vertical_service" (standalone microservice template vertical slice style, module + api) template ?
   - [ ] "mcsp_bff_ssr_blazor_wasm" (blazor WASM + mudblazor + auth template) ?
-  - [ ] "mcsp_baas" template (Hasura + Blazor + StrawberryShake + postgres) ?
-  - [ ] "mcsp_web_fluent" (blazor + fluentUI + auth template)
   - [ ] "mcsp_mobile" (dotnet MAUI mobile / desktop app template) ?
   - [ ] "mcsp_mobile_avalonia" (dotnet avalonia mobile / desktop template) ?
 
