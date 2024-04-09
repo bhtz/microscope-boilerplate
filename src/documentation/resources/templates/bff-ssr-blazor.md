@@ -13,3 +13,15 @@
 * ✅ I18N
 * ✅ Feature management
 * ✅ IAC (docker)
+* ✅ BaaS (optional with Hasura)
+
+### Create new CLI project
+```console
+dotnet new mcsp_bff_ssr_blazor -n Acme
+```
+
+### Template options
+
+* -B, --BaaS 
+    * Whether to include Backend as a Service container (Hasura) or not
+    * Default : false

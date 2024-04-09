@@ -18,4 +18,3 @@ export PATH="$PATH:/Users/bhtz/.dotnet/tools"
 ```console
 dotnet tool uninstall Microscope.Boilerplate.Tool.CLI --global
 ```
-

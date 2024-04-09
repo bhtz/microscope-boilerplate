@@ -2,6 +2,8 @@
 
 > An opiniated started kit for product engineering teams
 
+[Documentation](https://bhtz.github.io/microscope-boilerplate/)
+
 ## Requirements
 
 * dotnet 8 SDK

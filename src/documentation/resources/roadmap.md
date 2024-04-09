@@ -53,7 +53,7 @@
 
 ### Clients
 - [ ] Move to blazor WEB & SSR instead of WASM only
-  - [ ] Dependency injection SSR
+  - [x] Go to BFF SSR Blazor template
 - [x] Blazor PWA
   - [x] Setup mudblazor UI
   - [x] Setup Preferences & Settings
