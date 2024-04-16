@@ -7,10 +7,11 @@ var builder = CoconaApp.CreateBuilder();
 var app = builder.Build();
 
 app.AddCommands<SampleCommands>();
+app.AddCommands<PromptCommands>();
 app.AddCommand(() =>
 {
     AnsiConsole.Write(
-        new FigletText("Microscope.Boilerplate")
+        new FigletText("Microscope")
             .Color(Color.Aqua)
             .Centered());
     

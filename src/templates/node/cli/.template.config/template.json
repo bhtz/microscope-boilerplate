@@ -19,7 +19,14 @@
     {
       "modifiers": [
         {
-          "exclude": "node_modules/**"
+          "exclude": [
+            "node_modules/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
         }
       ]
     }
