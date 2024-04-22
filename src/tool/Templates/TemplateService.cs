@@ -9,7 +9,7 @@ public static class TemplateService
 {
     public static IEnumerable<ITemplate> GetTemplates()
     {
-        return new List<ITemplate>()
+        return new List<ITemplate>
         {
             // Some default from dotnet 
             new ConsoleTemplate(),
@@ -28,6 +28,7 @@ public static class TemplateService
             
             // Custom rust
             new RustCliTemplate(),
+            new RustApiTemplate(),
             
             // Custom node
             new NodeCliTemplate()

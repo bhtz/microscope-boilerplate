@@ -1,1 +1,1 @@
-pub mod open_api_configuration;
+pub mod weather_controller;

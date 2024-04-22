@@ -1,16 +1,20 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Benjamin HEINTZ",
+  
   "classifications": [
-    "CLI",
+    "API",
     "Boilerplate",
     "Rust"
   ],
-  "identity": "Microscope.Boilerplate.Rust.CLI",
-  "name": "Microscope boilerplate Rust CLI",
-  "shortName": "mcsp_rust_cli",
+  
+  "identity": "Microscope.Boilerplate.Rust.API",
+  "name": "Microscope boilerplate Rust API",
+  "shortName": "mcsp_rust_api",
   "sourceName": "microscope",
+
   "symbols": {},
+  
   "sources": [
     {
       "modifiers": [

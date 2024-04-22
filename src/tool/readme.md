@@ -6,7 +6,6 @@ Microscope.Boilerplate.Tool CLI project
 ```console
 dotnet build && dotnet pack
 dotnet tool install --global --add-source ./nupkg Microscope.Boilerplate.Tool.CLI
-
 ```
 
 ## Export to path (MACOS)
