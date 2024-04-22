@@ -12,7 +12,6 @@ using Host = Microscope.Boilerplate.Clients.BFF.Components.Host;
 var builder = WebApplication.CreateBuilder(args);
 
 // BFF Configuration
-builder.Services.AddScoped<BffAuthenticationHeaderHandler>();
 builder.Services.AddAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddReverseProxyConfiguration(builder.Configuration);
 builder.Services.AddGraphQlGatewayConfiguration(builder.Configuration);
