@@ -5,13 +5,13 @@ version: "3.9"
 services:
   postgres:
     image: postgres:12
-    container_name: boilerplate-database
+    container_name: dab-database
     ports:
       - "5432:5432"
     restart: always
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - boilerplate_data:/var/lib/postgresql/data
+      - dab_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: postgres
@@ -19,6 +19,9 @@ services:
   dab:
     image: "mcr.microsoft.com/azure-databases/data-api-builder:latest"
     ports:
-      - "5000:5000"
+      - "4700:5000"
     volumes:
-      - "dab-config.json:/App/dab-config.json"
+      - "./dab-config.json:/App/dab-config.json"
+
+volumes:
+  dab_data:
