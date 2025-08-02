@@ -20,13 +20,16 @@ public static class TemplateService
             new XUnitTemplate(),
             
             // Custom dotnet
-            new DistributedTemplate(),
-            new BffTemplate(),
-            new BffSsrBlazorTemplate(),
-            new DocumentationTemplate(),
-            new DesktopTemplate(),
             new CLITemplate(),
-            
+            new DesktopTemplate(),
+            new BffTemplate(),
+            new DocumentationTemplate(),
+            new DabTemplate(),
+
+            // Custom dotnet (deprecated)
+            new DistributedTemplate(),
+            new BffSsrBlazorTemplate(),
+
             // Custom rust
             new RustCliTemplate(),
             new RustApiTemplate(),

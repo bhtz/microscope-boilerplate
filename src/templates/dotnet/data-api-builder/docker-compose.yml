@@ -1,14 +1,14 @@
 version: "3.9"
 services:
   postgres:
-    image: postgres:12
-    container_name: dab-database
+    image: postgres:15
+    container_name: microscope-management-database
     ports:
       - "5432:5432"
     restart: always
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - dab_data:/var/lib/postgresql/data
+      - ./Postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - dab_data:/container/path:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: postgres
@@ -18,7 +18,7 @@ services:
     ports:
       - "4700:5000"
     volumes:
-      - "./dab-config.json:/App/dab-config.json"
+      - "./dab/dab-config.json:/App/dab-config.json"
 
 volumes:
   dab_data:
