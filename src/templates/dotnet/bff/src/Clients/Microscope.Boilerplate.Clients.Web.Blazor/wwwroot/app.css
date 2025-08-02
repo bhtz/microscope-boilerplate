@@ -1,0 +1,6 @@
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15); /* Fond semi-transparent */
+    backdrop-filter: blur(10px);           /* Effet de flou d’arrière-plan */
+    -webkit-backdrop-filter: blur(10px);   /* Compatibilité Webkit */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Bordure légère */
+}

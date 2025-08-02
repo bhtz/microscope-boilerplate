@@ -1,0 +1,41 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+
+@page "/user"
+@attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IStringLocalizer<User> Loc
+
+<PageTitle>User</PageTitle>
+<MudContainer Class="mt-10">
+    <MudText Typo="Typo.h3" GutterBottom="true">@Loc["Title"]</MudText>
+    <MudText Class="mb-8">@Loc["SubTitle"]</MudText>
+    
+    @if (Claims is not null)
+    {
+        <MudPaper>
+            <MudList T="string">
+                @foreach (var item in Claims)
+                {
+                    <MudListItem Icon="@Icons.Material.Filled.StarRate">
+                        <b>@item.Type :</b> @item.Value.ToString()
+                    </MudListItem>
+                }
+            </MudList>
+        </MudPaper>
+    }
+</MudContainer>
+
+@code
+{
+    private IEnumerable<Claim>? Claims { get; set; }
+    private string? UserName { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        Claims = authState.User?.Claims;
+        UserName = authState.User?.Identity?.Name;
+    }
+}

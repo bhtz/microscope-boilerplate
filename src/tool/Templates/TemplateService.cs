@@ -21,6 +21,7 @@ public static class TemplateService
             
             // Custom dotnet
             new DistributedTemplate(),
+            new BffTemplate(),
             new BffSsrBlazorTemplate(),
             new DocumentationTemplate(),
             new DesktopTemplate(),

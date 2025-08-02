@@ -1,0 +1,165 @@
+version: "3.8"
+name: microscope-management
+services:
+  postgres:
+    image: postgres:15
+    container_name: microscope-management-database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./Postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - microscope_boilerplate_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: microscope-management-identity
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/mcsp_identity
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: root
+      KC_HTTP_ENABLED: "true" # Use HTTP, disable HTTPS for local dev
+      KC_HOSTNAME_STRICT: "false"
+      KC_LOG_LEVEL: INFO
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
+    ports:
+      - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./Keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./Keycloak/Themes/microscope/:/opt/keycloak/themes/microscope
+    depends_on:
+      - postgres
+
+  bff:
+    image: microscope-management/bff:latest
+    container_name: microscope-management-bff
+    ports:
+      - "5215:8080"
+    depends_on:
+      - "keycloak"
+#      - "api"
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+      OTEL_SERVICE_NAME: BFF
+
+#  api:
+#    image: microscope-management/api:latest
+#    container_name: microscope-management-api
+#    ports:
+#      - "5095:8080"
+#    depends_on:
+#      - "postgres"
+#      - "keycloak"
+#    environment:
+#      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+#      OTEL_SERVICE_NAME: API
+#      AI__Key: "openai_key_here"
+
+#  functions:
+#    image: on-the-air/functions
+#    container_name: on-the-air-functions
+#    ports:
+#      - "7241:80"
+#    environment:
+#      AzureWebJobsStorage: DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://host.docker.internal:10000/devstoreaccount1;QueueEndpoint=http://host.docker.internal:10001/devstoreaccount1;TableEndpoint=http://host.docker.internal:10002/devstoreaccount1;
+#      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+#      OTEL_SERVICE_NAME: FUNCTIONS
+#    depends_on:
+#      - postgres
+#      - azurite
+
+#  doc:
+#    image: microscope/docs
+#    container_name: microscope-doc
+#    ports:
+#      - "9000:8080"
+
+  dab:
+    image: "mcr.microsoft.com/azure-databases/data-api-builder:latest"
+    container_name: microscope-management-dab
+    ports:
+      - "4700:5000"
+    depends_on:
+      - "postgres"
+      - "keycloak"
+    volumes:
+      - "./Dab/dab-config.json:/App/dab-config.json"
+
+#  baas:
+#    image: hasura/graphql-engine:v2.38.0
+#    container_name: on-the-air-hasura
+#    ports:
+#      - "8080:8000"
+#    depends_on:
+#      - "postgres"
+#      - "keycloak"
+#    restart: always
+#    environment:
+#      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:root@postgres:5432/mcsp_app
+#      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+#      HASURA_GRAPHQL_ADMIN_SECRET: microscope
+#      HASURA_GRAPHQL_SERVER_PORT: 8000
+#      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
+#      HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: "true"
+#      HASURA_GRAPHQL_JWT_SECRET: '{
+#          "jwk_url": "http://host.docker.internal:8083/realms/microscope/protocol/openid-connect/certs",
+#          "audience": ["poc-service"],
+#          "issuer": "http://localhost:8083/realms/microscope",
+#          "claims_map": {
+#              "x-hasura-allowed-roles": ["admin", "user"],
+#              "x-hasura-default-role": { "path": "$$.roles[0]" },
+#              "x-hasura-user-id": { "path": "$$.sub" }
+#          }
+#      }'
+
+#  ollama:
+#    image: ollama/ollama:0.5.9
+#    container_name: microscope-management-ollama
+#    tty: true
+#    ports:
+#      - "7869:11434"
+#    volumes:
+#      - "ollama_data:/root/.ollama"
+#
+#  ollama-webui:
+#    image: ghcr.io/open-webui/open-webui:main
+#    container_name: microscope-management-openwebui
+#    volumes:
+#      - ollama_webui_data:/app/backend/data
+#    depends_on:
+#      - ollama
+#    ports:
+#      - "8081:8080"
+#    environment: # https://docs.openwebui.com/getting-started/env-configuration#default_models
+#      - OLLAMA_BASE_URLS=http://host.docker.internal:7869 #comma separated ollama hosts
+#      - ENV=dev
+#      - WEBUI_AUTH=False
+#      - WEBUI_NAME=BoilerplateOllama
+#      - WEBUI_URL=http://localhost:8080
+#      - ENABLE_WEBSOCKET_SUPPORT=False
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:3.33.0
+    container_name: on-the-air-azurite
+    ports:
+      - "10000:10000"  # Blob service
+      - "10001:10001"  # Queue service
+      - "10002:10002"  # Table service
+    volumes:
+      - azurite_data:/data
+    command: "azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0"
+              
+volumes:
+  microscope_boilerplate_data:
+  ollama_webui_data:
+  ollama_data:
+  azurite_data:
+  

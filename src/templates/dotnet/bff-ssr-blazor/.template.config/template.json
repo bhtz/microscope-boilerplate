@@ -9,7 +9,7 @@
     "Boilerplate"
   ],
   
-  "identity": "Microscope.Boilerplate.BFF",
+  "identity": "Microscope.Boilerplate.BFF-SSR-Blazor",
   "name": "Microscope boilerplate BFF SSR Blazor",
   "shortName": "mcsp_bff_ssr_blazor",
   "sourceName": "Microscope.Boilerplate.Clients",
