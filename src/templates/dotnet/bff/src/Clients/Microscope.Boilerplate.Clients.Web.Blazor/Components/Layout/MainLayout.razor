@@ -25,6 +25,7 @@
         </FeatureFlag>
         <MudSpacer/>
         <FeatureFlag FlagName="DarkModeAvailable">
+            <ThemeSelector OnThemeChanged="OnThemeChanged"></ThemeSelector>
             @{
                 var icon = _isDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode;
             }
@@ -53,6 +54,24 @@
     public void ToggleDrawer()
     {
         DrawerOpen = !DrawerOpen;
+    }
+    
+    private void OnThemeChanged(string theme)
+    {
+        switch (theme)
+        {
+            case "default":
+                _currentTheme = Theme.DefaultTheme;
+                break;
+                
+            case "skyline":
+                _currentTheme = Theme.SkylineTheme;
+                break;
+                
+            default:
+                _currentTheme = Theme.DefaultTheme;
+                break;
+        }
     }
     
     private void ToggleTheme()

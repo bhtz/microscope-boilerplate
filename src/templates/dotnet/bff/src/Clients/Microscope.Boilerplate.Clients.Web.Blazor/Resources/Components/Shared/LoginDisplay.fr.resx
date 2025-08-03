@@ -24,4 +24,7 @@
     <data name="Logout" xml:space="preserve">
         <value>Se déconnecter</value>
     </data>
+    <data name="Login" xml:space="preserve">
+        <value>S'identifier</value>
+    </data>
 </root>
