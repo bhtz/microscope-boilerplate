@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  
+  "classifications": [
+    "BFF",
+    "SSR",
+    "Blazor",
+    "Boilerplate"
+  ],
+  
+  "identity": "Microscope.Boilerplate.BFF",
+  "name": "Microscope boilerplate BFF SSR Blazor",
+  "shortName": "mcsp_bff",
+  "sourceName": "Microscope.Boilerplate",
+
+  "symbols": {
+    "BaaS": {
+      "type": "parameter",
+      "description": "Whether to include Backend as a Service container or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
+        }
+      ]
+    }
+  ]
+}
