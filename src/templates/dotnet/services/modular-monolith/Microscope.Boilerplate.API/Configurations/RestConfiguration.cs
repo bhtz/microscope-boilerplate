@@ -3,7 +3,7 @@ using Asp.Versioning.Builder;
 
 namespace Microscope.Boilerplate.API.Configurations;
 
-public static class RestApiVersioningConfiguration
+public static class RestConfiguration
 {
     public static IServiceCollection AddRestConfiguration(this IServiceCollection services)
     {

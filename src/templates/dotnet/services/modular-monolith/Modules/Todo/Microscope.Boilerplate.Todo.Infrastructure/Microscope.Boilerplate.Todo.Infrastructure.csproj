@@ -7,9 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentValidation" Version="12.0.0" />
-      <PackageReference Include="MediatR" Version="13.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
+      <ProjectReference Include="..\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Persistence\" />
     </ItemGroup>
 
 </Project>

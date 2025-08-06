@@ -1,6 +1,6 @@
-using Microscope.SharedKernel;
+using Microscope.Boilerplate.Framework.EventSourcing;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.ValueObjects;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects;
 
 public record Tag : ValueObject
 {

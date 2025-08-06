@@ -1,7 +1,4 @@
-using System.Linq.Expressions;
-using Microscope.SharedKernel;
-
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 
 public interface ITodoListRepository
 {

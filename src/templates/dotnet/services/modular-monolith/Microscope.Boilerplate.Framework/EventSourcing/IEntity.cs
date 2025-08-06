@@ -1,6 +1,11 @@
 namespace Microscope.Boilerplate.Framework.EventSourcing;
 
-public class IEntity
+public interface IEntity<TId>
+{
+    TId Id { get; }
+}
+
+public interface IEntity : IEntity<Guid>
 {
     
 }

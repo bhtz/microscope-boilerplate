@@ -1,10 +1,9 @@
-using Microscope.SharedKernel;
+using Microscope.Boilerplate.Framework.EventSourcing;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Entities;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
 
 public class TodoItem : Entity
 {
-    public Guid Id { get; private set; }
     public string Label { get; private set; } = string.Empty;
     public bool IsCompleted { get; private set; }
     

@@ -1,7 +1,7 @@
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Entities;
-using Microscope.SharedKernel;
+using Microscope.Boilerplate.Framework.EventSourcing;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Events;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 
 public class OnTodoItemCreatedEvent : DomainEvent
 {

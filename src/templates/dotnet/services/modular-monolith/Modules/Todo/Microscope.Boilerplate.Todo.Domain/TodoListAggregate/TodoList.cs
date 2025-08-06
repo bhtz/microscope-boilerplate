@@ -1,14 +1,14 @@
-﻿using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Entities;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Events;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Exceptions;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.ValueObjects;
-using Microscope.SharedKernel;
+﻿using Microscope.Boilerplate.Framework.EventSourcing;
+using Microscope.Boilerplate.Framework.Exceptions;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 
-public class TodoList : AuditableEntity<Guid>, IAggregateRoot
+public class TodoList : AggregateRoot, IAuditableEntity
 {
-    public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
 
     public bool IsCompleted
@@ -120,4 +120,10 @@ public class TodoList : AuditableEntity<Guid>, IAggregateRoot
         
         UpdatedAt = DateTime.Now;
     }
+
+    public DateTime CreatedAt { get; set; }
+    public Guid CreatedBy { get; set; }
+    public string? CreatorMail { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public Guid UpdatedBy { get; set; }
 }

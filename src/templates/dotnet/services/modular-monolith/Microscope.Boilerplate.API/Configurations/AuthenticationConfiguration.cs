@@ -2,11 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using FluentValidation;
-using Microscope.Management.API.Common.Identity;
+using Microscope.Boilerplate.API.Common.Services;
+using Microscope.Boilerplate.Framework.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
-namespace Microscope.Management.API.Configurations;
+namespace Microscope.Boilerplate.API.Configurations;
 
 public static class AuthenticationConfiguration
 {

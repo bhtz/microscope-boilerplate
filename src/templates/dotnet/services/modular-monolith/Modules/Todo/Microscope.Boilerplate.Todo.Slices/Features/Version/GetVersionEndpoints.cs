@@ -1,4 +1,3 @@
-using Asp.Versioning;
 using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +12,7 @@ public class GetVersionEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/version", GetApiVersion)
+            .AllowAnonymous()
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
             .MapToApiVersion(1);
     }

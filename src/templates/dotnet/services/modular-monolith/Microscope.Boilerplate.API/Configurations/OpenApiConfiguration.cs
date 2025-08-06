@@ -1,4 +1,4 @@
-namespace Microscope.Management.API.Configurations;
+namespace Microscope.Boilerplate.API.Configurations;
 
 public static class OpenApiConfiguration
 {

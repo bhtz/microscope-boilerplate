@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.API", "Microscope.Boilerplate.API\Microscope.Boilerplate.API.csproj", "{CC980055-1E86-4EFB-B0BE-3711BCDC2526}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{D538054D-66E5-4576-A5E7-2C9585AB0B3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Todo", "Todo", "{14454839-ECED-450F-8404-F888A21FCD75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Todo.Domain", "Modules\Todo\Microscope.Boilerplate.Todo.Domain\Microscope.Boilerplate.Todo.Domain.csproj", "{F44F7E46-3F59-4BC7-855E-1816385C793B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Todo.Slices", "Modules\Todo\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj", "{1C4694BF-357C-4306-8F9E-0292BDEB066E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Todo.Infrastructure", "Modules\Todo\Microscope.Boilerplate.Todo.Infrastructure\Microscope.Boilerplate.Todo.Infrastructure.csproj", "{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Framework", "Microscope.Boilerplate.Framework\Microscope.Boilerplate.Framework.csproj", "{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC980055-1E86-4EFB-B0BE-3711BCDC2526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC980055-1E86-4EFB-B0BE-3711BCDC2526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC980055-1E86-4EFB-B0BE-3711BCDC2526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC980055-1E86-4EFB-B0BE-3711BCDC2526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44F7E46-3F59-4BC7-855E-1816385C793B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44F7E46-3F59-4BC7-855E-1816385C793B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44F7E46-3F59-4BC7-855E-1816385C793B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44F7E46-3F59-4BC7-855E-1816385C793B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4694BF-357C-4306-8F9E-0292BDEB066E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4694BF-357C-4306-8F9E-0292BDEB066E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4694BF-357C-4306-8F9E-0292BDEB066E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4694BF-357C-4306-8F9E-0292BDEB066E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14454839-ECED-450F-8404-F888A21FCD75} = {D538054D-66E5-4576-A5E7-2C9585AB0B3C}
+		{1C4694BF-357C-4306-8F9E-0292BDEB066E} = {14454839-ECED-450F-8404-F888A21FCD75}
+		{F44F7E46-3F59-4BC7-855E-1816385C793B} = {14454839-ECED-450F-8404-F888A21FCD75}
+		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5} = {14454839-ECED-450F-8404-F888A21FCD75}
+	EndGlobalSection
+EndGlobal

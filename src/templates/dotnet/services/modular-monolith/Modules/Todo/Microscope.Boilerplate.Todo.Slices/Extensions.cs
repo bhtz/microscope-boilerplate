@@ -33,7 +33,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection RegisterCarterModules(this IServiceCollection services)
+    private static IServiceCollection RegisterCarterModules(this IServiceCollection services)
     {
         var carterModules = typeof(ITodoModule).Assembly.GetTypes()
             .Where(t => typeof(ICarterModule).IsAssignableFrom(t) && 

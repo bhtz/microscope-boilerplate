@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Services;
+namespace Microscope.Boilerplate.Framework.Services;
 
 public interface IIdentityService
 {

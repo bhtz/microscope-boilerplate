@@ -1,4 +1,7 @@
-namespace Microscope.Management.API.Configurations;
+using HotChocolate;
+using Microscope.Boilerplate.Todo.Slices;
+
+namespace Microscope.Boilerplate.API.Configurations;
 
 public static class GraphQlConfiguration
 {
@@ -8,7 +11,7 @@ public static class GraphQlConfiguration
         
         services
             .AddGraphQLServer()
-            .AddTypes()
+            .AddTodoTypes()
             .AddAuthorization();
         
         return services;

@@ -1,30 +1,11 @@
-using System.Text.Json.Serialization;
+namespace Microscope.Boilerplate.Framework.EventSourcing;
 
-namespace Microscope.SharedKernel;
-
-public class Entity
+public abstract class Entity<TId> : IEntity<TId>
 {
-    public String? TenantId { get; protected set; }
+    public TId Id { get; protected set; } = default!;
+}
+
+public abstract class Entity : Entity<Guid>, IEntity
+{
     
-    [JsonIgnore]
-    private List<DomainEvent> _domainEvents;
-
-    [JsonIgnore]
-    public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
-
-    public void AddDomainEvent(DomainEvent eventItem)
-    {
-        _domainEvents = _domainEvents ?? new List<DomainEvent>();
-        _domainEvents.Add(eventItem);
-    }
-
-    public void RemoveDomainEvent(DomainEvent eventItem)
-    {
-        _domainEvents?.Remove(eventItem);
-    }
-
-    public void ClearDomainEvents()
-    {
-        _domainEvents?.Clear();
-    }
 }

@@ -1,6 +1,6 @@
-using Microscope.SharedKernel;
+using Microscope.Boilerplate.Framework.EventSourcing;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Events;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 
 public class OnTodoListCompletedEvent : DomainEvent
 {

@@ -1,6 +1,6 @@
-using Microscope.SharedKernel;
+using Microscope.Boilerplate.Framework.Exceptions;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Exceptions;
+namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 
 public class TodoListNotFoundDomainException : NotFoundException
 {

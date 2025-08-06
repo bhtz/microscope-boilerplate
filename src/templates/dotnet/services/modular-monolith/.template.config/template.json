@@ -3,21 +3,21 @@
   "author": "Benjamin HEINTZ",
   
   "classifications": [
-    "BFF",
-    "SSR",
-    "Blazor",
-    "Boilerplate"
+    "Modular",
+    "Monolith",
+    "MartenDB",
+    "Vertical slice"
   ],
   
-  "identity": "Microscope.Boilerplate.BFF",
-  "name": "Microscope boilerplate BFF SSR Blazor",
-  "shortName": "mcsp_bff",
+  "identity": "Microscope.Boilerplate.Service",
+  "name": "Microscope boilerplate modular monolith",
+  "shortName": "mcsp_service",
   "sourceName": "Microscope.Boilerplate",
 
   "symbols": {
-    "BaaS": {
+    "Marten": {
       "type": "parameter",
-      "description": "Whether to include Backend as a Service container or not.",
+      "description": "Choose MartenDB over entity framework",
       "datatype": "bool",
       "defaultValue": "false"
     }

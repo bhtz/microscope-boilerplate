@@ -34,7 +34,7 @@ public static class DependencyInjection
     public static IServiceCollection AddTodoAppInfrastructureSettings(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOptions<PersistenceOptions>()
-            .Bind(configuration.GetSection(PersistenceOptions.ConfigurationKey))
+            .BindConfiguration(PersistenceOptions.ConfigurationKey)
             .Validate(x => new PersistenceOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
         

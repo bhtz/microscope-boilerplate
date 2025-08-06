@@ -10,27 +10,26 @@ public abstract class AggregateRoot<TId> : IAggregateRoot<TId>
 {
     public TId Id { get; protected set; } = default!;
     
-    public String? TenantId { get; protected set; }
+    public string? TenantId { get; protected set; }
     
     [JsonIgnore]
-    private List<DomainEvent> _domainEvents;
+    private readonly List<IEvent> _domainEvents = [];
 
     [JsonIgnore]
-    public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
+    public IReadOnlyCollection<IEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     public void AddDomainEvent(DomainEvent eventItem)
     {
-        _domainEvents = _domainEvents ?? new List<DomainEvent>();
         _domainEvents.Add(eventItem);
     }
 
-    public void RemoveDomainEvent(DomainEvent eventItem)
+    public void RemoveDomainEvent(IEvent eventItem)
     {
-        _domainEvents?.Remove(eventItem);
+        _domainEvents.Remove(eventItem);
     }
 
     public void ClearDomainEvents()
     {
-        _domainEvents?.Clear();
+        _domainEvents.Clear();
     }
 }
