@@ -12,28 +12,29 @@ Todo :
 - [x] Refactoring of framework
   - [x] isolate domain framework
   - [x] isolate application framework
-- [ ] Clean AuditableAggregate
-- [ ] Implement persistence
-  - [ ] EFcore
-    - [ ] Repository
-    - [ ] Configurations
-    - [ ] Migrations
+- [x] Implement basic persistence
+  - [x] EFcore
+    - [x] Repository
+    - [x] Configurations
+    - [x] Migrations
   - [x] Marten
     - [x] Repository
 - [ ] Todo slices
+- [ ] Clean AuditableAggregate
+- [ ] Documentation
 
-## Helpers
+## Helpers EF CORE
 
 Navigate to module infra layer :
 
 Generate migrations :
 
-    dotnet ef --startup-project ../../Microscope.Boilerplate.API/ migrations add InitialCreate -o Migrations
+    dotnet ef --startup-project ../../../Microscope.Boilerplate.API/ migrations add InitialCreate -o ./Persistence/EFcore/Migrations
 
 Update database :
 
-    dotnet ef --startup-project ../../Microscope.Boilerplate.API/ database update
+    dotnet ef --startup-project ../../../Microscope.Boilerplate.API/ database update
 
 Generate SQL script :
 
-    dotnet ef --startup-project ../../Interface/AuditExOp.Api/ migrations script > ./Scripts/AuditExOp.SQL
+    dotnet ef --startup-project ../../../Microscope.Boilerplate.API/ migrations script > ./Persistence/EFcore/Scripts/Todo.SQL

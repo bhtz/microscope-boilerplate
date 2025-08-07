@@ -27,6 +27,11 @@ public class TodoAppDbContext : DbContext
         _persistenceOptions = persistenceOptions;
     }
 
+    public TodoAppDbContext()
+    {
+        
+    }
+
     public async Task Migrate()
     {
         var strategy = this.Database.CreateExecutionStrategy();
