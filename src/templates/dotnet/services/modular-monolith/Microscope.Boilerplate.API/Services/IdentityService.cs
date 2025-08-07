@@ -1,7 +1,7 @@
 using System.Security.Claims;
-using Microscope.Boilerplate.Framework.Services;
+using Microscope.Framework.Application.Services;
 
-namespace Microscope.Boilerplate.API.Common.Services;
+namespace Microscope.Boilerplate.API.Services;
 
 public class IdentityService : IIdentityService
 {

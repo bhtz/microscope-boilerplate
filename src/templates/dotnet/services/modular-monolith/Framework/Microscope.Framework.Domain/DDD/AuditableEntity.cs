@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Framework.EventSourcing;
+namespace Microscope.Framework.Domain.DDD;
 
 public abstract class AuditableEntity<TId> : IAuditableEntity<TId>, IEntity<TId>
 {

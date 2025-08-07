@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
 
-public class GetVersionEndpoints : ICarterModule
+public class GetTodoModuleVersionEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/api/v{apiVersion:apiVersion}/version", GetApiVersion)
+        app.MapGet("/api/v{apiVersion:apiVersion}/todo/version", GetApiVersion)
             .AllowAnonymous()
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
             .MapToApiVersion(1);
@@ -19,7 +19,7 @@ public class GetVersionEndpoints : ICarterModule
 
     private async Task<IResult> GetApiVersion([FromServices] IMediator mediator)
     {
-        var resp = await mediator.Send(new GetVersionQuery());
+        var resp = await mediator.Send(new GetTodoVersionQuery());
         return Results.Ok(resp);
     }
 }

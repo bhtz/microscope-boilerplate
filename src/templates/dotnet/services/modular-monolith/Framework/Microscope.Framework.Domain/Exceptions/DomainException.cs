@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Framework.Exceptions;
+namespace Microscope.Framework.Domain.Exceptions;
 
 public class DomainException : Exception
 {

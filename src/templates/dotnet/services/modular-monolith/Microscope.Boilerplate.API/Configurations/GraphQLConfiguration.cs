@@ -11,7 +11,6 @@ public static class GraphQlConfiguration
         
         services
             .AddGraphQLServer()
-            .AddTodoTypes()
             .AddAuthorization();
         
         return services;

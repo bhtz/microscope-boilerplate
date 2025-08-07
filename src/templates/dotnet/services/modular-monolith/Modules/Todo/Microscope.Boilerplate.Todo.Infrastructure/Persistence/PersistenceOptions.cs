@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
+namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence;
 
 public class PersistenceOptions
 {
@@ -8,15 +8,15 @@ public class PersistenceOptions
     
     public const string MARTEN_FRAMEWORK = "marten";
     public const string ENTITY_FRAMEWORK = "efcore";
-
-    public string Framework { get; set; } = MARTEN_FRAMEWORK;
     
     public const string INMEMORY_ADAPTER = "inmemory";
     public const string SQLITE_ADAPTER = "sqlite";
     public const string POSTGRES_ADAPTER = "postgres";
     public const string MSSQL_ADAPTER = "mssql";
     public string Adapter { get; set; }
+    public string Framework { get; set; } = MARTEN_FRAMEWORK;
     public string ConnectionString { get; set; }
+    public string Schema { get; set; }
     public bool EnableMigration { get; set; } = false;
 }
 
@@ -24,6 +24,10 @@ public class PersistenceOptionsValidator : AbstractValidator<PersistenceOptions>
 {
     public PersistenceOptionsValidator()
     {
+        RuleFor(x => x.Framework)
+            .NotEmpty()
+            .NotNull();
+            
         // WHEN ENTITY FRAMEWORK
         When(x => x.Framework == PersistenceOptions.ENTITY_FRAMEWORK, () =>
         {

@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Framework.Exceptions;
+namespace Microscope.Framework.Application.Exceptions;
 
 public class ConflictException : Exception
 {

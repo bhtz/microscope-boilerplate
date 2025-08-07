@@ -1,5 +1,6 @@
 using Asp.Versioning;
 using Asp.Versioning.Builder;
+using Carter;
 
 namespace Microscope.Boilerplate.API.Configurations;
 
@@ -8,6 +9,7 @@ public static class RestConfiguration
     public static IServiceCollection AddRestConfiguration(this IServiceCollection services)
     {
         services.AddControllers();
+        services.AddCarter();
         
         services.AddApiVersioning(x =>
         {

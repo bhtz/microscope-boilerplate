@@ -15,7 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Todo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Todo.Infrastructure", "Modules\Todo\Microscope.Boilerplate.Todo.Infrastructure\Microscope.Boilerplate.Todo.Infrastructure.csproj", "{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Framework", "Microscope.Boilerplate.Framework\Microscope.Boilerplate.Framework.csproj", "{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Framework.Domain", "Framework\Microscope.Framework.Domain\Microscope.Framework.Domain.csproj", "{F14A37E8-232A-4B75-A39F-AC063568E08A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Framework.Application", "Framework\Microscope.Framework.Application\Microscope.Framework.Application.csproj", "{888C29D5-34C4-47E6-9697-0E8C3302FA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Framework.Infrastructure", "Framework\Microscope.Framework.Infrastructure\Microscope.Framework.Infrastructure.csproj", "{A2960069-7294-417E-B9E0-683B92838602}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{DE587EEE-8B76-4318-A7E5-4E694E401524}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,15 +48,26 @@ Global
 		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA8BD571-9AF9-4B1E-A4D6-596E9C1AD2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14A37E8-232A-4B75-A39F-AC063568E08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14A37E8-232A-4B75-A39F-AC063568E08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14A37E8-232A-4B75-A39F-AC063568E08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14A37E8-232A-4B75-A39F-AC063568E08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888C29D5-34C4-47E6-9697-0E8C3302FA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888C29D5-34C4-47E6-9697-0E8C3302FA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888C29D5-34C4-47E6-9697-0E8C3302FA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888C29D5-34C4-47E6-9697-0E8C3302FA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2960069-7294-417E-B9E0-683B92838602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2960069-7294-417E-B9E0-683B92838602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2960069-7294-417E-B9E0-683B92838602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2960069-7294-417E-B9E0-683B92838602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{14454839-ECED-450F-8404-F888A21FCD75} = {D538054D-66E5-4576-A5E7-2C9585AB0B3C}
 		{1C4694BF-357C-4306-8F9E-0292BDEB066E} = {14454839-ECED-450F-8404-F888A21FCD75}
 		{F44F7E46-3F59-4BC7-855E-1816385C793B} = {14454839-ECED-450F-8404-F888A21FCD75}
 		{F1663B78-7A8D-479B-8B2F-BEDAB5DC7BB5} = {14454839-ECED-450F-8404-F888A21FCD75}
+		{888C29D5-34C4-47E6-9697-0E8C3302FA3E} = {DE587EEE-8B76-4318-A7E5-4E694E401524}
+		{F14A37E8-232A-4B75-A39F-AC063568E08A} = {DE587EEE-8B76-4318-A7E5-4E694E401524}
+		{A2960069-7294-417E-B9E0-683B92838602} = {DE587EEE-8B76-4318-A7E5-4E694E401524}
 	EndGlobalSection
 EndGlobal

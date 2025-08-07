@@ -1,14 +1,14 @@
 using HotChocolate.Authorization;
 using MediatR;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
+namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
 [QueryType]
-public static class GetTodoModuleVersionResolver
+public static class CreateTodoListResolver
 {
     [AllowAnonymous]
-    public static async Task<string> GetTodoModuleVersion([Service]IMediator mediator)
+    public static async Task<Guid> CreateTodoList([Service]IMediator mediator, CreateTodoListCommand command)
     {
-        return await mediator.Send(new GetTodoVersionQuery());
+        return await mediator.Send(command);
     }
 }

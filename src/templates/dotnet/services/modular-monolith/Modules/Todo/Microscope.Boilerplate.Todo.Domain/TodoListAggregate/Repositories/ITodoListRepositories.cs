@@ -1,6 +1,8 @@
+using Microscope.Framework.Domain.DDD;
+
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 
-public interface ITodoListRepository
+public interface ITodoListRepository : IRepository<TodoList>
 {
     public Task<IEnumerable<TodoList>> GetCreatedByAsync(string tenantId, Guid userId);
     public Task<TodoList?> GetByIdAsync(string tenantId, Guid id);

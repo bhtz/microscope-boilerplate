@@ -1,42 +1,42 @@
+using FluentValidation;
 using MediatR;
-using Microscope.Boilerplate.Services.TodoApp.Application.Common.Exceptions;
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Exceptions;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
-using Microscope.SharedKernel;
-using Microsoft.AspNetCore.Authorization;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
+using Microscope.Framework.Application.Services;
+using Microscope.Framework.Domain.CQRS;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Commands.CreateTodoList;
+namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
-public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, Guid>
+public record CreateTodoListCommand(string Name) : ICommand<Guid>;
+
+public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCommand>
 {
-    private readonly ITodoListRepository _todoListRepository;
-    private readonly IIdentityService _identityService;
-    private readonly IAuthorizationService _authorizationService;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public CreateTodoListCommandHandler(ITodoListRepository todoListRepository, IIdentityService identityService, IAuthorizationService authorizationService, IUnitOfWork unitOfWork)
+    public CreateTodoListCommandValidator()
     {
-        _todoListRepository = todoListRepository;
-        _identityService = identityService;
-        _authorizationService = authorizationService;
-        _unitOfWork = unitOfWork;
+        RuleFor(v => v.Name).NotEmpty();
     }
-    
+}
+
+public class CreateTodoListCommandHandler(
+    ITodoListRepository todoListRepository,
+    IIdentityService identityService) : IRequestHandler<CreateTodoListCommand, Guid>
+{
     public async Task<Guid> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
     {
-        var userId = _identityService.GetUserId();
-        var userMail = _identityService.GetUserMail();
-        var tenantId = _identityService.GetTenantId();
+        // Todo : remove fake id
+        var userId = Guid.NewGuid(); // identityService.GetUserId();
+        var userMail = "heintz.benjamin@gmail.com"; // identityService.GetUserMail();
+        var tenantId =  Guid.NewGuid().ToString(); //identityService.GetTenantId();
 
         var todoList = TodoList.Create(tenantId, Guid.NewGuid(), userId, userMail, request.Name);
         
-        if (todoList == null) 
+        if (todoList == null)
             throw new TodoListNotFoundDomainException("Todolist not found");
         
-        await _todoListRepository.AddAsync(todoList);
-        await _unitOfWork.SaveChangesAndDispatchEventsAsync(cancellationToken);
+        // Todo : need refactoring
+        await todoListRepository.AddAsync(todoList);
+        await todoListRepository.SaveAndPublishAsync(todoList, cancellationToken);
 
         return todoList.Id;
     }

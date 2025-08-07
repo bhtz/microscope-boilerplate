@@ -2,8 +2,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using FluentValidation;
-using Microscope.Boilerplate.API.Common.Services;
-using Microscope.Boilerplate.Framework.Services;
+using Microscope.Boilerplate.API.Services;
+using Microscope.Framework.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 

@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Microscope.Boilerplate.Framework.CQRS.Behaviors;
+namespace Microscope.Framework.Application.CQRS.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

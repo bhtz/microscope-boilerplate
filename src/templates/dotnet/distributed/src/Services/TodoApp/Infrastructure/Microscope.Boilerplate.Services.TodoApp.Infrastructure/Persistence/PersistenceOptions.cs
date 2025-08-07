@@ -28,7 +28,7 @@ public class PersistenceOptionsValidator : AbstractValidator<PersistenceOptions>
                 or PersistenceOptions.SQLITE_ADAPTER)
             .WithMessage($"Adapter must be : {PersistenceOptions.INMEMORY_ADAPTER} | {PersistenceOptions.SQLITE_ADAPTER} | {PersistenceOptions.POSTGRES_ADAPTER} | {PersistenceOptions.MSSQL_ADAPTER}, not empty or null string");
 
-        When(x => x.Adapter is not BusOptions.INMEMORY_ADAPTER, () =>
+        When(x => x.Adapter is not PersistenceOptions.INMEMORY_ADAPTER, () =>
         {
             RuleFor(x => x.ConnectionString)
                 .NotNull()

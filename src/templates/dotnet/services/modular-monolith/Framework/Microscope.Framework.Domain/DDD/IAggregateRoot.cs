@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Framework.EventSourcing;
+namespace Microscope.Framework.Domain.DDD;
 
 public interface IAggregateRoot : IAggregateRoot<Guid>
 {

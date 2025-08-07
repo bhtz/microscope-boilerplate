@@ -1,9 +1,18 @@
+-- IAM DATABASE
 CREATE DATABASE mcsp_identity;
+
+-- APPLICATION DATABASE
 CREATE DATABASE mcsp_app;
 
 \c mcsp_app;
 
-CREATE TABLE IF NOT EXISTS leads (
+-- Schéma pour Entity Framework Core
+CREATE SCHEMA IF NOT EXISTS efcore;
+
+-- Schéma pour Marten (Event Sourcing & Document Store)
+CREATE SCHEMA IF NOT EXISTS marten;
+
+CREATE TABLE IF NOT EXISTS public.leads (
     id BIGSERIAL PRIMARY KEY,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
@@ -12,7 +21,7 @@ CREATE TABLE IF NOT EXISTS leads (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO leads (firstname, lastname, email, phone) VALUES
+INSERT INTO public.leads (firstname, lastname, email, phone) VALUES
 ('Alice', 'Johnson', 'alice@example.com', '123-456-7890'),
 ('Bob', 'Smith', 'bob@example.com', '234-567-8901'),
 ('Charlie', 'Brown', 'charlie@example.com', '345-678-9012'),

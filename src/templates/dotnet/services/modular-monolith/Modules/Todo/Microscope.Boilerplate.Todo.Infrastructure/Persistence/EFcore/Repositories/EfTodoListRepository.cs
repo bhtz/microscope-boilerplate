@@ -1,18 +1,21 @@
-using System.Linq.Expressions;
+using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore.Repositories;
 
-public class TodoListRepository : ITodoListRepository
+public class EfTodoListRepository : ITodoListRepository
 {
     private readonly TodoAppDbContext _context;
     private readonly DbSet<TodoList> _todoLists;
+    private readonly IMediator _mediatr;
 
-    public TodoListRepository(TodoAppDbContext context)
+    public EfTodoListRepository(TodoAppDbContext context, IMediator mediatr)
     {
         ArgumentNullException.ThrowIfNull(context);
         _context = context;
+        _mediatr = mediatr;
         _todoLists = context.TodoLists;
     }
 
@@ -22,11 +25,6 @@ public class TodoListRepository : ITodoListRepository
             .Include(x => x.TodoItems)
             .Include(x => x.Tags)
             .SingleOrDefaultAsync(x => x.TenantId == tenantId && x.Id == id);
-    }
-
-    public async Task<IEnumerable<TodoList>> GetAllAsync(string tenantId, Expression<Func<Domain.Aggregates.TodoListAggregate.TodoList, bool>> filters, bool hydrated)
-    {
-        return await this._todoLists.Where(x => x.TenantId == tenantId).ToListAsync();
     }
 
     public async Task<IEnumerable<TodoList>> GetCreatedByAsync(string tenantId, Guid userId)
@@ -61,5 +59,32 @@ public class TodoListRepository : ITodoListRepository
         }
 
         _context.TodoLists.Attach(entity);
+    }
+
+    public async Task SaveAsync(CancellationToken cancellationToken = default)
+    {
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task SaveAndPublishAsync(TodoList aggregate, CancellationToken cancellationToken = default)
+    {
+        var domainEvents = aggregate.DomainEvents;
+        
+        aggregate.ClearDomainEvents();
+        
+        await SaveAsync(cancellationToken);
+        
+        foreach (var domainEvent in domainEvents)
+        {
+            await _mediatr.Publish(domainEvent, cancellationToken);
+        }
+    }
+
+    public async Task<TodoList?> Get(Guid aggregateId, CancellationToken cancellationToken = default)
+    {
+        return await _todoLists
+            .Include(x => x.TodoItems)
+            .Include(x => x.Tags)
+            .SingleOrDefaultAsync(x => x.Id == aggregateId, cancellationToken: cancellationToken);
     }
 }

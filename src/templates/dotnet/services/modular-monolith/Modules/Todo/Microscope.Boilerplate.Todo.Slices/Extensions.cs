@@ -1,14 +1,9 @@
 using System.Reflection;
 using Asp.Versioning;
 using Asp.Versioning.Builder;
-using Carter;
 using FluentValidation;
-using MediatR;
-using Microscope.Boilerplate.Framework;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microscope.Boilerplate.Todo.Slices;
@@ -28,24 +23,8 @@ public static class Extensions
 
         // services.AddSingleton<IAuthorizationHandler, TodoListCreatedByRequirementHandler>();
 
-        services.RegisterCarterModules();
+        services.AddGraphQL().AddTodoTypes();
 
-        return services;
-    }
-
-    private static IServiceCollection RegisterCarterModules(this IServiceCollection services)
-    {
-        var carterModules = typeof(ITodoModule).Assembly.GetTypes()
-            .Where(t => typeof(ICarterModule).IsAssignableFrom(t) && 
-                        !t.IsInterface && 
-                        !t.IsAbstract)
-            .ToArray();
-
-        services.AddCarter(configurator: c =>
-        {
-            c.WithModules(carterModules);
-        });
-        
         return services;
     }
     

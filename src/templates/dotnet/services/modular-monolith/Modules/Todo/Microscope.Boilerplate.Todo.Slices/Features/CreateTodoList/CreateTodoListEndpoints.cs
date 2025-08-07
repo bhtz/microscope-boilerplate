@@ -5,21 +5,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
+namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
-public class GetTodoModuleVersionEndpoints : ICarterModule
+public class CreateTodoListEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/api/v{apiVersion:apiVersion}/todo/version", GetApiVersion)
+        app.MapPost("/api/v{apiVersion:apiVersion}/todo/todolist", CreateTodoList)
             .AllowAnonymous()
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
             .MapToApiVersion(1);
     }
-
-    private async Task<IResult> GetApiVersion([FromServices] IMediator mediator)
+    
+    private async Task<IResult> CreateTodoList([FromServices] IMediator mediator, CreateTodoListCommand command)
     {
-        var resp = await mediator.Send(new GetTodoVersionQuery());
+        var resp = await mediator.Send(command);
         return Results.Ok(resp);
     }
 }

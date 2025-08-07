@@ -9,9 +9,13 @@
     <ItemGroup>
       <ProjectReference Include="..\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj" />
     </ItemGroup>
-
+    
     <ItemGroup>
-      <Folder Include="Persistence\" />
+        <PackageReference Include="Marten" Version="8.6.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     </ItemGroup>
-
 </Project>

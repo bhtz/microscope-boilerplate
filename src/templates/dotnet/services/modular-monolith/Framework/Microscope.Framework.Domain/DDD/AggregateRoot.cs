@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Microscope.Boilerplate.Framework.EventSourcing;
+namespace Microscope.Framework.Domain.DDD;
 
 public abstract class AggregateRoot : AggregateRoot<Guid>, IAggregateRoot
 {

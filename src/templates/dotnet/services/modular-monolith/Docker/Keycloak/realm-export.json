@@ -58,9 +58,6 @@
             "uma_authorization"
           ],
           "client": {
-            "boilerplate": [
-              "user"
-            ],
             "account": [
               "manage-account",
               "view-profile"
@@ -303,31 +300,10 @@
           "attributes": {}
         }
       ],
-      "todo-service": [],
-      "boilerplate": [
-        {
-          "id": "14f27fe0-fe3d-4b6e-8e64-9a8012e1d673",
-          "name": "user",
-          "description": "",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "7fcd632d-3784-4374-bbe2-7ea9ea364f90",
-          "attributes": {}
-        },
-        {
-          "id": "aebd53a2-c7b0-48fb-a156-36084313cf36",
-          "name": "manager",
-          "description": "",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "7fcd632d-3784-4374-bbe2-7ea9ea364f90",
-          "attributes": {}
-        }
-      ],
+      "microscope-api": [],
       "security-admin-console": [],
       "admin-cli": [],
       "poc-service": [],
-      "enode-api": [],
       "account-console": [],
       "broker": [
         {
@@ -451,8 +427,8 @@
   "otpPolicyCodeReusable": false,
   "otpSupportedApplications": [
     "totpAppGoogleName",
-    "totpAppFreeOTPName",
-    "totpAppMicrosoftAuthenticatorName"
+    "totpAppMicrosoftAuthenticatorName",
+    "totpAppFreeOTPName"
   ],
   "webAuthnPolicyRpEntityName": "keycloak",
   "webAuthnPolicySignatureAlgorithms": [
@@ -638,109 +614,6 @@
       ]
     },
     {
-      "id": "7fcd632d-3784-4374-bbe2-7ea9ea364f90",
-      "clientId": "boilerplate",
-      "name": "boilerplate",
-      "description": "boilerplate",
-      "rootUrl": "https://localhost:7197/",
-      "adminUrl": "https://localhost:7197/",
-      "baseUrl": "https://localhost:7197/",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": true,
-      "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
-      "redirectUris": [
-        "http://localhost:5215/*",
-        "https://localhost:7197/*"
-      ],
-      "webOrigins": [
-        "*"
-      ],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": true,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
-      "publicClient": false,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "client.secret.creation.time": "1712427114",
-        "post.logout.redirect.uris": "+",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.revoke.offline.tokens": "false",
-        "use.refresh.tokens": "true",
-        "oidc.ciba.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
-        "client_credentials.use_refresh_token": "false",
-        "acr.loa.map": "{}",
-        "require.pushed.authorization.requests": "false",
-        "tls.client.certificate.bound.access.tokens": "false",
-        "display.on.consent.screen": "false",
-        "token.response.type.bearer.lower-case": "false"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
-      "protocolMappers": [
-        {
-          "id": "77e5b4c4-1d37-4990-975d-60808b9f1efb",
-          "name": "enode-api",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-audience-mapper",
-          "consentRequired": false,
-          "config": {
-            "included.client.audience": "enode-api",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
-            "userinfo.token.claim": "true"
-          }
-        },
-        {
-          "id": "88897970-df58-4153-b18d-0c9b688970f4",
-          "name": "poc-service",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-audience-mapper",
-          "consentRequired": false,
-          "config": {
-            "included.client.audience": "poc-service",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
-            "userinfo.token.claim": "true"
-          }
-        },
-        {
-          "id": "dd6d67a0-204f-4011-a268-1e2dc7bc3561",
-          "name": "todo-service",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-audience-mapper",
-          "consentRequired": false,
-          "config": {
-            "included.client.audience": "todo-service",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
-            "userinfo.token.claim": "true"
-          }
-        }
-      ],
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "roles",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "microprofile-jwt"
-      ]
-    },
-    {
       "id": "93673277-e171-43ad-8c8e-d00823e839d9",
       "clientId": "broker",
       "name": "${client_broker}",
@@ -781,9 +654,9 @@
       ]
     },
     {
-      "id": "aee115d9-f59b-4e04-bc70-7340ea2520b4",
-      "clientId": "enode-api",
-      "name": "enode-api",
+      "id": "6be6685e-7357-4bad-9c5b-54dc9bea0329",
+      "clientId": "microscope-api",
+      "name": "microscope-api",
       "description": "",
       "rootUrl": "http://localhost:5095",
       "adminUrl": "",
@@ -793,10 +666,10 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/*"
+        "http://localhost:5288/*"
       ],
       "webOrigins": [
-        "/*"
+        "http://localhost:5288"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -975,58 +848,6 @@
           }
         }
       ],
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "profile",
-        "roles",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "microprofile-jwt"
-      ]
-    },
-    {
-      "id": "6be6685e-7357-4bad-9c5b-54dc9bea0329",
-      "clientId": "todo-service",
-      "name": "todo-service",
-      "description": "",
-      "rootUrl": "http://localhost:5288/",
-      "adminUrl": "http://localhost:5288/",
-      "baseUrl": "http://localhost:5288/",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": false,
-      "clientAuthenticatorType": "client-secret",
-      "redirectUris": [
-        "http://localhost:5288/*"
-      ],
-      "webOrigins": [
-        "http://localhost:5288"
-      ],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": false,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
-      "publicClient": true,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "oidc.ciba.grant.enabled": "false",
-        "post.logout.redirect.uris": "+",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
-        "backchannel.logout.revoke.offline.tokens": "false"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
       "defaultClientScopes": [
         "web-origins",
         "acr",
@@ -1603,12 +1424,12 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "saml-user-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "oidc-full-name-mapper",
+            "saml-user-attribute-mapper",
             "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
-            "oidc-full-name-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "saml-user-attribute-mapper",
-            "saml-user-property-mapper",
             "saml-role-list-mapper",
             "oidc-usermodel-attribute-mapper"
           ]
@@ -1666,14 +1487,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "saml-user-attribute-mapper",
             "saml-user-property-mapper",
-            "oidc-address-mapper",
             "oidc-sha256-pairwise-sub-mapper",
             "oidc-usermodel-property-mapper",
             "oidc-full-name-mapper",
+            "oidc-address-mapper",
             "saml-role-list-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "saml-user-attribute-mapper"
+            "oidc-usermodel-attribute-mapper"
           ]
         }
       },

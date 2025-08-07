@@ -1,4 +1,4 @@
-using Microscope.Boilerplate.Framework.EventSourcing;
+using Microscope.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects;
 

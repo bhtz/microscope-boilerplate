@@ -1,5 +1,5 @@
 using System.Reflection;
-using Microscope.Boilerplate.Framework.CQRS;
+using Microscope.Framework.Application;
 
 namespace Microscope.Boilerplate.API.Configurations;
 

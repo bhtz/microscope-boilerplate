@@ -1,19 +1,26 @@
-using System.Reflection;
 using Carter;
 using Microscope.Boilerplate.API.Configurations;
-using Microscope.Boilerplate.Framework.CQRS;
+using Microscope.Boilerplate.API.Services;
+using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;
+using Microscope.Framework.Application.Services;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Commons
 
 // builder.AddServiceDefaults();
 // builder.AddAIConfiguration();
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
+// builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+
+#endregion
 
 #region Protocols
 
+builder.Services.AddOpenApiConfiguration();
 builder.Services.AddRestConfiguration();
 builder.Services.AddGraphQlConfiguration();
 
@@ -21,8 +28,13 @@ builder.Services.AddGraphQlConfiguration();
 
 #region Modules
 
+// TODO : remove when AddAuthenticationConfiguration is call to disable calling twice
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
+
 builder.Services
-    .AddTodoApplication();
+    .AddTodoApplication()
+    .AddTodoInfrastructure(builder.Configuration);
 
 #endregion
 

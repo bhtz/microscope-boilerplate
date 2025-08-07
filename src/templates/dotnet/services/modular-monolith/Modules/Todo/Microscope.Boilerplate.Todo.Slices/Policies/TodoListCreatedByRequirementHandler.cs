@@ -1,9 +1,8 @@
-using Microscope.Boilerplate.Services.TodoApp.Application.Policies.CreatedByRequirement;
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
+using Microscope.Framework.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Policies;
+namespace Microscope.Boilerplate.Todo.Slices.Policies;
 
 public class TodoListCreatedByRequirementHandler : AuthorizationHandler<CreatedByRequirement, TodoList>
 {

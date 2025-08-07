@@ -1,9 +1,9 @@
-﻿using Microscope.Boilerplate.Framework.EventSourcing;
-using Microscope.Boilerplate.Framework.Exceptions;
-using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
+﻿using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects;
+using Microscope.Framework.Domain.DDD;
+using Microscope.Framework.Domain.Exceptions;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 

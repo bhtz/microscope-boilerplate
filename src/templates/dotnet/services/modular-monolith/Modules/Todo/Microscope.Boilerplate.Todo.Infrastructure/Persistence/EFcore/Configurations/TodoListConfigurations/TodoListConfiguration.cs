@@ -1,11 +1,13 @@
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Infrastructure.Persistence.Configurations.TodoListConfigurations;
+namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore.Configurations.TodoListConfigurations;
 
-public class TodoListConfiguration : IEntityTypeConfiguration<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList>
+public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
 {
-    public void Configure(EntityTypeBuilder<TodoApp.Domain.Aggregates.TodoListAggregate.TodoList> builder)
+    public void Configure(EntityTypeBuilder<TodoList> builder)
     {
         builder.Ignore(b => b.DomainEvents);
         builder.HasKey(e => e.Id);
@@ -20,7 +22,7 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoApp.Domain.Agg
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.Metadata
-            .FindNavigation(nameof(TodoApp.Domain.Aggregates.TodoListAggregate.TodoList.TodoItems))
+            .FindNavigation(nameof(TodoItem))
             ?.SetPropertyAccessMode(PropertyAccessMode.Field);
         
         builder.OwnsMany(a => a.Tags, map =>
