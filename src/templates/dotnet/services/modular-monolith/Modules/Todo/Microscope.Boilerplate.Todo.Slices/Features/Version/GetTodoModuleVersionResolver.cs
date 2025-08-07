@@ -4,10 +4,10 @@ using MediatR;
 namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
 
 [QueryType]
-public static class GetVersionResolver
+public static class GetTodoModuleVersionResolver
 {
     [AllowAnonymous]
-    public static async Task<string> GetApiVersion([Service]IMediator mediator)
+    public static async Task<string> GetTodoModuleVersion([Service]IMediator mediator)
     {
         return await mediator.Send(new GetVersionQuery());
     }
