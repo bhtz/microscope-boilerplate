@@ -1,24 +1,24 @@
 using Carter;
 using MediatR;
-using Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
+using Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
+namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoList;
 
-public class DeleteTodoItemEndpoints : ICarterModule
+public class DeleteTodoListEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/items", DeleteTodoItem)
+        app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", DeleteTodoList)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
             .MapToApiVersion(1)
             .AllowAnonymous(); // Todo: to remove
     }
     
-    private async Task<IResult> DeleteTodoItem([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]DeleteTodoItemCommand command)
+    private async Task<IResult> DeleteTodoList([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]DeleteTodoListCommand command)
     {
         if (id != command.TodoListId)
         {

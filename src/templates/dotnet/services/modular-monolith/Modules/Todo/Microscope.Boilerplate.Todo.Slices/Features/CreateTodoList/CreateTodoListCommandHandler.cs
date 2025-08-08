@@ -9,16 +9,6 @@ using Microscope.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
-public record CreateTodoListCommand(string Name) : ICommand<Guid>;
-
-public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCommand>
-{
-    public CreateTodoListCommandValidator()
-    {
-        RuleFor(v => v.Name).NotEmpty();
-    }
-}
-
 public class CreateTodoListCommandHandler(
     IUnitOfWork unitOfWork,
     ITodoListRepository todoListRepository,

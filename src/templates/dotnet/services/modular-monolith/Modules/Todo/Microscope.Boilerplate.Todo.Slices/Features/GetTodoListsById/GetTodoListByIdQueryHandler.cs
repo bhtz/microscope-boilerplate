@@ -1,22 +1,19 @@
-using AutoMapper;
 using MediatR;
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Exceptions;
-using Microscope.Boilerplate.Services.TodoApp.Domain.Aggregates.TodoListAggregate.Repositories;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
+using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
+using Microscope.Framework.Application.Services;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
+namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 
 public class GetTodoListByIdQueryHandler : IRequestHandler<GetTodoListByIdQuery, GetTodoListByIdQueryResult>
 {
     private readonly ITodoListRepository _todoListRepository;
     private readonly IIdentityService _identityService;
-    private readonly IMapper _mapper;
     
-    public GetTodoListByIdQueryHandler(ITodoListRepository todoListRepository, IIdentityService identityService, IMapper mapper)
+    public GetTodoListByIdQueryHandler(ITodoListRepository todoListRepository, IIdentityService identityService)
     {
         _todoListRepository = todoListRepository;
         _identityService = identityService;
-        _mapper = mapper;
     }
     
     public async Task<GetTodoListByIdQueryResult> Handle(GetTodoListByIdQuery request, CancellationToken cancellationToken)
@@ -29,7 +26,14 @@ public class GetTodoListByIdQueryHandler : IRequestHandler<GetTodoListByIdQuery,
         if (todoList == null) 
             throw new TodoListNotFoundDomainException("Todolist not found");
         
-        return _mapper.Map<GetTodoListByIdQueryResult>(todoList);
+        return new GetTodoListByIdQueryResult()
+        {
+            Id = todoList.Id,
+            IsCompleted = todoList.IsCompleted,
+            Name = todoList.Name,
+            Tags = todoList.Tags.Select(x => new TagResult(x.Label, x.Color)),
+            TodoItems = todoList.TodoItems.Select(x => new TodoItemResult(x.Id, x.Label, x.IsCompleted))
+        };
     }
 }
 

@@ -1,19 +1,11 @@
-using Microscope.SharedKernel;
+using Microscope.Framework.Domain.CQRS;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoLists;
+namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoLists;
 
-public class GetTodoListQuery : IQuery<IEnumerable<GetTodoListQueryResult>>
+public record GetTodoListQuery(): IQuery<IEnumerable<GetTodoListQueryResult>>;
+
+public record GetTodoListQueryResult(Guid Id, string Name, bool IsCompleted)
 {
-    public GetTodoListQuery()
-    {
-        
-    }
-}
 
-public record GetTodoListQueryResult
-{
-    public Guid Id { get; init; }
-    public string Name { get; init; }
-    public bool IsCompleted { get; init; }
 }
 

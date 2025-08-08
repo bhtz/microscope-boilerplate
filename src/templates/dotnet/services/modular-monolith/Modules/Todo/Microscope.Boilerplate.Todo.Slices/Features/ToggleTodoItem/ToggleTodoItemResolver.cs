@@ -1,14 +1,13 @@
 using HotChocolate.Authorization;
 using MediatR;
-using Microscope.Boilerplate.Todo.Slices.Features.RemoveTag;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.ToggleTodoItem;
 
 [MutationType]
-public static class RemoveTagResolver
+public static class ToggleTodoItemResolver
 {
     [AllowAnonymous]
-    public static async Task<bool> RemoveTag([Service]IMediator mediator, RemoveTagCommand command)
+    public static async Task<bool> ToggleTodoItem([Service]IMediator mediator, ToggleTodoItemCommand command)
     {
         return await mediator.Send(command);
     }

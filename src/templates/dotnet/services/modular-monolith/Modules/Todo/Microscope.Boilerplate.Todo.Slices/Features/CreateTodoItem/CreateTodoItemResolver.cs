@@ -1,13 +1,14 @@
 using HotChocolate.Authorization;
 using MediatR;
+using Microscope.Boilerplate.Todo.Slices.Features.AddTag;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.AddTag;
+namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 
 [MutationType]
-public static class AddTagResolver
+public static class CreateTodoItemResolver
 {
     [AllowAnonymous]
-    public static async Task<bool> AddTag([Service]IMediator mediator, AddTagCommand command)
+    public static async Task<Guid> CreateTodoItem([Service]IMediator mediator, CreateTodoItemCommand command)
     {
         return await mediator.Send(command);
     }

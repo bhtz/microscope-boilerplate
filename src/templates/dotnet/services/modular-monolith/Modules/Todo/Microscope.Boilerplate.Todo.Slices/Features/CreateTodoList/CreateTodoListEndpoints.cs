@@ -11,7 +11,7 @@ public class CreateTodoListEndpoints : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("/api/v{apiVersion:apiVersion}/todo/todolist", CreateTodoList)
+        app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists", CreateTodoList)
             .AllowAnonymous()
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
             .MapToApiVersion(1);

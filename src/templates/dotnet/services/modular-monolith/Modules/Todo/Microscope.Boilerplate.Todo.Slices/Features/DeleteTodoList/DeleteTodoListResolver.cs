@@ -1,14 +1,13 @@
 using HotChocolate.Authorization;
 using MediatR;
-using Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
+namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoList;
 
 [MutationType]
-public static class DeleteTodoItemResolver
+public static class DeleteTodoListResolver
 {
     [AllowAnonymous]
-    public static async Task<bool> DeleteTodoItem([Service]IMediator mediator, DeleteTodoItemCommand command)
+    public static async Task<bool> DeleteTodoList([Service]IMediator mediator, DeleteTodoListCommand command)
     {
         return await mediator.Send(command);
     }

@@ -1,15 +1,10 @@
-using Microscope.SharedKernel;
+using Microscope.Framework.Domain.CQRS;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Features.TodoLists.Queries.GetTodoListsById;
+namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 
-public class GetTodoListByIdQuery : IQuery<GetTodoListByIdQueryResult>
+public record GetTodoListByIdQuery(Guid Id) : IQuery<GetTodoListByIdQueryResult>
 {
-    public Guid Id { get; set; }
     
-    public GetTodoListByIdQuery(Guid id)
-    {
-        Id = id;
-    }
 }
 
 public record GetTodoListByIdQueryResult
@@ -21,15 +16,6 @@ public record GetTodoListByIdQueryResult
     public IEnumerable<TagResult> Tags { get; init; }
 }
 
-public record TodoItemResult
-{
-    public Guid Id { get; init; }
-    public string Label { get; init; }
-    public bool IsCompleted { get; init; }
-}
+public record TodoItemResult(Guid Id, string Label, bool IsCompleted);
 
-public record TagResult
-{
-    public string Label { get; init; }
-    public string Color { get; init; }
-}
+public record TagResult(string Label, string Color);

@@ -1,14 +1,14 @@
 using HotChocolate.Authorization;
 using MediatR;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoList;
+namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoLists;
 
-[MutationType]
-public static class DeleteTodoListResolver
+[QueryType]
+public static class GetTodoListResolver
 {
     [AllowAnonymous]
-    public static async Task<bool> DeleteTodoList([Service]IMediator mediator, DeleteTodoListCommand command)
+    public static async Task<IEnumerable<GetTodoListQueryResult>> GetTodoLists([Service]IMediator mediator)
     {
-        return await mediator.Send(command);
+        return await mediator.Send(new GetTodoListQuery());
     }
 }

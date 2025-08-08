@@ -20,8 +20,15 @@ Todo :
   - [x] Marten
     - [x] Repository
 - [x] Marten & EfCore unit of work
+- [x] Todo slices
+  - [x] Command & Query & Handlers
+  - [x] GraphQL operations
+  - [x] REST operations
+  - [ ] cleanup AllowAnonymous
+- [ ] Multi tenancy
+  - [ ] EF CORE global filter by tenant
+  - [ ] marten session by tenant
 - [ ] Refactoring IRepository & Aggregate framework
-- [ ] Todo slices
 - [ ] Clean AuditableAggregate
 - [ ] Basic Documentation
 - [ ] API KEY authentication
