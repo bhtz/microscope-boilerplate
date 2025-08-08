@@ -19,6 +19,7 @@ Todo :
     - [x] Migrations
   - [x] Marten
     - [x] Repository
+- [ ] Refactoring IRepository & Aggregate framework
 - [ ] Todo slices
 - [ ] Clean AuditableAggregate
 - [ ] Documentation
