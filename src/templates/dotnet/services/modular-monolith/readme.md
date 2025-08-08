@@ -19,10 +19,14 @@ Todo :
     - [x] Migrations
   - [x] Marten
     - [x] Repository
+- [x] Marten & EfCore unit of work
 - [ ] Refactoring IRepository & Aggregate framework
 - [ ] Todo slices
 - [ ] Clean AuditableAggregate
-- [ ] Documentation
+- [ ] Basic Documentation
+- [ ] API KEY authentication
+  - using AspNetCore.Authentication.ApiKey
+- [ ] Bus & integration event
 
 ## Helpers EF CORE
 

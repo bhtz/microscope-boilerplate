@@ -1,125 +1,52 @@
 using System.Data;
+using Marten;
 using MediatR;
+using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 using Microscope.Framework.Domain.DDD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
+namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 
-public class EfUnitOfWork : IUnitOfWork
+public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IUnitOfWork
 {
-    private readonly TodoAppDbContext _context;
-    private IDbContextTransaction _currentTransaction;
-    private readonly IMediator _mediator;
+    private readonly IDocumentSession _session = session;
+    
+    public bool HasActiveTransaction => false;
 
-    public EfUnitOfWork(TodoAppDbContext context, IMediator mediator)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        _context = context;
-        _mediator = mediator;
-    }
-    public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
-
-    public bool HasActiveTransaction => _currentTransaction != null;
-
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await this._context.SaveChangesAsync(cancellationToken);
+        await this._session.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<bool> SaveChangesAndDispatchEventsAsync(CancellationToken cancellationToken = default)
+    public async Task SaveChangesAndDispatchEventsAsync(CancellationToken cancellationToken = default)
     {
-        var domainEntities = this._context.ChangeTracker
-            .Entries<AggregateRoot>()
-            .Where(x => x.Entity.DomainEvents.Any())
+        var domainEntities = this._session.PendingChanges
+            .AllChangedFor<AggregateRoot>()
+            .Where(x => x.DomainEvents.Any())
             .ToList();
 
         var domainEvents = domainEntities
-            .SelectMany(x => x.Entity.DomainEvents)
+            .SelectMany(x => x.DomainEvents)
             .ToList();
 
         domainEntities.ToList()
-            .ForEach(entity => entity.Entity.ClearDomainEvents());
+            .ForEach(entity => entity.ClearDomainEvents());
 
         foreach (var domainEvent in domainEvents)
-            await this._mediator.Publish(domainEvent, cancellationToken);
+            await mediator.Publish(domainEvent, cancellationToken);
 
-        var result = await _context.SaveChangesAsync(cancellationToken);
-
-        return true;
+        await _session.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<T> EncapsulateInTransaction<T>(Func<Task<T>> action, string typeName)
     {
-        T response = default(T);
-        var strategy = this._context.Database.CreateExecutionStrategy();
-
-        await strategy.ExecuteAsync(async () =>
-        {
-            Guid transactionId;
-
-            using (var transaction = await this.BeginTransactionAsync())
-            {
-                response = await action();
-                await this.CommitTransactionAsync(transaction);
-                transactionId = transaction.TransactionId;
-            }
-        });
-
-        return response;
-    }
-
-    private async Task CommitTransactionAsync(IDbContextTransaction transaction)
-    {
-        if (transaction == null) throw new ArgumentNullException(nameof(transaction));
-        if (transaction != _currentTransaction) throw new InvalidOperationException($"Transaction {transaction.TransactionId} is not current");
-
-        try
-        {
-            await _context.SaveChangesAsync();
-            transaction.Commit();
-        }
-        catch
-        {
-            RollbackTransaction();
-            throw;
-        }
-        finally
-        {
-            if (_currentTransaction != null)
-            {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
-            }
-        }
-    }
-
-    private void RollbackTransaction()
-    {
-        try
-        {
-            _currentTransaction?.Rollback();
-        }
-        finally
-        {
-            if (_currentTransaction != null)
-            {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
-            }
-        }
-    }
-
-    private async Task<IDbContextTransaction> BeginTransactionAsync()
-    {
-        if (_currentTransaction != null) return null;
-
-        _currentTransaction = await _context.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted);
-
-        return _currentTransaction;
+        // _session.BeginTransaction();
+        return await action();
     }
 
     public void Dispose()
     {
-        this._context.Dispose();
+        this._session.Dispose();
     }
 }

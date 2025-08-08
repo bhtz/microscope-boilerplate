@@ -12,7 +12,5 @@ public interface IRepository<T> : IRepository<T, Guid> where T : class, IAggrega
 
 public interface IRepository<T, TId> : IRepository where T : class, IAggregateRoot<TId>
 {
-    Task SaveAsync(CancellationToken cancellationToken = default);
-    Task SaveAndPublishAsync(T aggregate, CancellationToken cancellationToken = default);
-    Task<T?> Get(TId aggregateId, CancellationToken cancellationToken = default);
+
 }

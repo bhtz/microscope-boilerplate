@@ -5,6 +5,7 @@ using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Framework.Application.Services;
 using Microscope.Framework.Domain.CQRS;
+using Microscope.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
@@ -19,6 +20,7 @@ public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCo
 }
 
 public class CreateTodoListCommandHandler(
+    IUnitOfWork unitOfWork,
     ITodoListRepository todoListRepository,
     IIdentityService identityService) : IRequestHandler<CreateTodoListCommand, Guid>
 {
@@ -34,9 +36,8 @@ public class CreateTodoListCommandHandler(
         if (todoList == null)
             throw new TodoListNotFoundDomainException("Todolist not found");
         
-        // Todo : need refactoring
         await todoListRepository.AddAsync(todoList);
-        await todoListRepository.SaveAndPublishAsync(todoList, cancellationToken);
+        await unitOfWork.SaveChangesAndDispatchEventsAsync(cancellationToken);
 
         return todoList.Id;
     }

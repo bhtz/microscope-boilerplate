@@ -1,9 +1,9 @@
 using MediatR;
-using Microscope.Boilerplate.Services.TodoApp.Application.Common.Behaviors;
-using Microscope.SharedKernel;
+using Microscope.Framework.Domain.CQRS;
+using Microscope.Framework.Domain.DDD;
 using Microsoft.Extensions.Logging;
 
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Common.Behaviors;
+namespace Microscope.Framework.Application.CQRS.Behaviors;
 
 public class TransactionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : ICommand<TResponse>
 {

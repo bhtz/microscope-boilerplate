@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
 
-[QueryType]
+[MutationType]
 public static class CreateTodoListResolver
 {
     [AllowAnonymous]

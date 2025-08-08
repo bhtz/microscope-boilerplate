@@ -1,11 +1,11 @@
 using Marten;
-using Marten.Services;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore.Repositories;
+using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
-using Microsoft.AspNetCore.Identity;
+using Microscope.Framework.Domain.DDD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -85,7 +85,7 @@ public static class Extensions
                 options.DatabaseSchemaName = option.Schema;
             }).UseLightweightSessions();
             
-            // services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, MartenUnitOfWork>();
             services.AddScoped<ITodoListRepository, MartenTodoListRepository>();
         }
         else
@@ -125,7 +125,7 @@ public static class Extensions
                 }
             });
 
-            // services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             services.AddScoped<ITodoListRepository, EfTodoListRepository>();
         }
 

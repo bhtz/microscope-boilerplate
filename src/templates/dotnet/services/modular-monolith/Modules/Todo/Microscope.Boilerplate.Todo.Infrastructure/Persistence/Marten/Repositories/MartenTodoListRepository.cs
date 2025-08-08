@@ -35,38 +35,4 @@ public class MartenTodoListRepository(IDocumentSession session, IMediator mediat
     {
         session.Delete(entity);
     }
-
-    public async Task Save(CancellationToken cancellationToken = default)
-    {
-        await session.SaveChangesAsync(cancellationToken);
-    }
-
-    public async Task SaveAndPublish(TodoList aggregate, CancellationToken cancellationToken = default)
-    {
-
-    }
-
-    public async Task SaveAsync(CancellationToken cancellationToken = default)
-    {
-        await session.SaveChangesAsync(cancellationToken);
-    }
-
-    public async Task SaveAndPublishAsync(TodoList aggregate, CancellationToken cancellationToken = default)
-    {
-        var domainEvents = aggregate.DomainEvents;
-        
-        aggregate.ClearDomainEvents();
-        
-        await Save(cancellationToken);
-        
-        foreach (var domainEvent in domainEvents)
-        {
-            await mediator.Publish(domainEvent, cancellationToken);
-        }
-    }
-
-    public async Task<TodoList?> Get(Guid aggregateId, CancellationToken cancellationToken = default)
-    {
-        return await session.LoadAsync<TodoList>(aggregateId, cancellationToken);
-    }
 }

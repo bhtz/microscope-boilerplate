@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 
-public class UnitOfWork : IUnitOfWork
+public class EfUnitOfWork : IUnitOfWork
 {
     private readonly TodoAppDbContext _context;
     private IDbContextTransaction _currentTransaction;
     private readonly IMediator _mediator;
 
-    public UnitOfWork(TodoAppDbContext context, IMediator mediator)
+    public EfUnitOfWork(TodoAppDbContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;
@@ -21,12 +21,12 @@ public class UnitOfWork : IUnitOfWork
 
     public bool HasActiveTransaction => _currentTransaction != null;
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return await this._context.SaveChangesAsync();
+        await this._context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<bool> SaveChangesAndDispatchEventsAsync(CancellationToken cancellationToken = default)
+    public async Task SaveChangesAndDispatchEventsAsync(CancellationToken cancellationToken = default)
     {
         var domainEntities = this._context.ChangeTracker
             .Entries<AggregateRoot>()
@@ -43,9 +43,7 @@ public class UnitOfWork : IUnitOfWork
         foreach (var domainEvent in domainEvents)
             await this._mediator.Publish(domainEvent, cancellationToken);
 
-        var result = await _context.SaveChangesAsync(cancellationToken);
-
-        return true;
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<T> EncapsulateInTransaction<T>(Func<Task<T>> action, string typeName)
