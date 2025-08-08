@@ -6,7 +6,6 @@ namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 [QueryType]
 public static class GetTodoListByIdResolver
 {
-    [AllowAnonymous]
     public static async Task<GetTodoListByIdQueryResult> GetTodoListById([Service]IMediator mediator, GetTodoListByIdQuery query)
     {
         return await mediator.Send(query);

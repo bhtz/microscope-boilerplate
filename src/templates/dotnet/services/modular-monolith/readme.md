@@ -24,15 +24,15 @@ Todo :
   - [x] Command & Query & Handlers
   - [x] GraphQL operations
   - [x] REST operations
-  - [ ] cleanup AllowAnonymous
+  - [x] cleanup AllowAnonymous
+- [ ] API KEY authentication
+  - using AspNetCore.Authentication.ApiKey
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
 - [ ] Refactoring IRepository & Aggregate framework
 - [ ] Clean AuditableAggregate
-- [ ] Basic Documentation
-- [ ] API KEY authentication
-  - using AspNetCore.Authentication.ApiKey
+- [ ] Clean up readme
 - [ ] Bus & integration event
 
 ## Helpers EF CORE

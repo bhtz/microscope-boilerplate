@@ -14,8 +14,7 @@ public class RemoveTagEndpoints : ICarterModule
     {
         app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/tags", RemoveTag)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> RemoveTag([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]DeleteTodoItemCommand command)

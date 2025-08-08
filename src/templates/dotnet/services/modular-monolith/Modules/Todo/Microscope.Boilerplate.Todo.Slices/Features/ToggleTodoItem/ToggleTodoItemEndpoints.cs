@@ -13,8 +13,7 @@ public class ToggleTodoItemEndpoints : ICarterModule
     {
         app.MapPut("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/items/{itemId:guid}", ToggleTodoItem)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> ToggleTodoItem([FromServices] IMediator mediator, [FromRoute]Guid id, [FromRoute]Guid itemId, [FromBody]ToggleTodoItemCommand command)

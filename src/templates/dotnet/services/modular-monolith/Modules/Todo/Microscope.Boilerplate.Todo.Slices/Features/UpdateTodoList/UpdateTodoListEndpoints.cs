@@ -13,8 +13,7 @@ public class UpdateTodoListEndpoints : ICarterModule
     {
         app.MapPut("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", UpdateTodoList)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> UpdateTodoList([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]UpdateTodoListCommand command)

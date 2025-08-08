@@ -14,8 +14,7 @@ public class DeleteTodoListEndpoints : ICarterModule
     {
         app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", DeleteTodoList)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> DeleteTodoList([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]DeleteTodoListCommand command)

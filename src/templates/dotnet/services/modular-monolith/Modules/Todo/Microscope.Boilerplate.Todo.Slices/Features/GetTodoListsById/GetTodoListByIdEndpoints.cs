@@ -13,8 +13,7 @@ public class GetTodoListByIdEndpoints : ICarterModule
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", GetTodoListById)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> GetTodoListById([FromServices] IMediator mediator, [FromRoute]Guid id)

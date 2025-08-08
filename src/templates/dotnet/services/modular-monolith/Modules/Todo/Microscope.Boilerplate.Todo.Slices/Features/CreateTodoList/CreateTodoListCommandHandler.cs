@@ -16,10 +16,9 @@ public class CreateTodoListCommandHandler(
 {
     public async Task<Guid> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
     {
-        // Todo : remove fake id
-        var userId = Guid.NewGuid(); // identityService.GetUserId();
-        var userMail = "heintz.benjamin@gmail.com"; // identityService.GetUserMail();
-        var tenantId =  Guid.NewGuid().ToString(); //identityService.GetTenantId();
+        var userId = identityService.GetUserId();
+        var userMail = identityService.GetUserMail();
+        var tenantId =  identityService.GetTenantId();
 
         var todoList = TodoList.Create(tenantId, Guid.NewGuid(), userId, userMail, request.Name);
         

@@ -13,8 +13,7 @@ public class AddTagEndpoints : ICarterModule
     {
         app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/tags", AddTag)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1)
-            .AllowAnonymous(); // Todo: to remove
+            .MapToApiVersion(1);
     }
     
     private async Task<IResult> AddTag([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]AddTagCommand command)
