@@ -5,14 +5,16 @@ using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 using Microscope.Framework.Domain.DDD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Npgsql;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 
 public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IUnitOfWork
 {
     private readonly IDocumentSession _session = session;
+    private NpgsqlTransaction _currentTransaction;
     
-    public bool HasActiveTransaction => false;
+    public bool HasActiveTransaction => _currentTransaction != null;
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
@@ -41,12 +43,83 @@ public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IU
 
     public async Task<T> EncapsulateInTransaction<T>(Func<Task<T>> action, string typeName)
     {
-        // _session.BeginTransaction();
-        return await action();
+        T response = default(T);
+
+        // Marten n'a pas d'équivalent direct à CreateExecutionStrategy, 
+        // mais nous pouvons implémenter une logique de retry simple si nécessaire
+        using (var transaction = await BeginTransactionAsync())
+        {
+            response = await action();
+            await CommitTransactionAsync(transaction);
+        }
+
+        return response;
+    }
+
+    private async Task<NpgsqlTransaction> BeginTransactionAsync()
+    {
+        if (_currentTransaction != null) return _currentTransaction;
+
+        // Commencer une transaction avec Marten
+        var connection = _session.Connection;
+        if (connection.State != ConnectionState.Open)
+        {
+            await connection.OpenAsync();
+        }
+
+        _currentTransaction = await connection.BeginTransactionAsync(IsolationLevel.ReadCommitted);
+        //_session.Connection.EnlistTransaction(_currentTransaction);
+
+        return _currentTransaction;
+    }
+
+    private async Task CommitTransactionAsync(NpgsqlTransaction transaction)
+    {
+        if (transaction == null) throw new ArgumentNullException(nameof(transaction));
+        if (transaction != _currentTransaction) 
+            throw new InvalidOperationException($"La transaction fournie n'est pas la transaction courante");
+
+        try
+        {
+            await _session.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+        catch
+        {
+            await RollbackTransactionAsync();
+            throw;
+        }
+        finally
+        {
+            await DisposeCurrentTransactionAsync();
+        }
+    }
+
+    private async Task RollbackTransactionAsync()
+    {
+        try
+        {
+            if (_currentTransaction != null)
+                await _currentTransaction.RollbackAsync();
+        }
+        finally
+        {
+            await DisposeCurrentTransactionAsync();
+        }
+    }
+
+    private async Task DisposeCurrentTransactionAsync()
+    {
+        if (_currentTransaction != null)
+        {
+            await _currentTransaction.DisposeAsync();
+            _currentTransaction = null;
+        }
     }
 
     public void Dispose()
     {
+        _currentTransaction?.Dispose();
         this._session.Dispose();
     }
 }
