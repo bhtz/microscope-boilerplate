@@ -18,11 +18,16 @@ public static class TemplateService
             new GrpcTemplate(),
             new WorkerTemplate(),
             new XUnitTemplate(),
-            
+
+            // Aspire templates
+            new AspireHostTemplate(),
+            new AspireServiceDefaultsTemplate(),
+
             // Custom dotnet
             new CLITemplate(),
             new DesktopTemplate(),
             new BffTemplate(),
+            new ModularMonolithTemplate(),
             new DocumentationTemplate(),
             new DabTemplate(),
 
