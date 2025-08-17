@@ -50,6 +50,17 @@ services:
 #      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
 #      OTEL_SERVICE_NAME: API
 #      AI__Key: "openai_key_here"
+        
+#  dab:
+#    image: "mcr.microsoft.com/azure-databases/data-api-builder:latest"
+#    container_name: microscope-baas
+#    ports:
+#      - "4700:5000"
+#    depends_on:
+#      - "postgres"
+#      - "keycloak"
+#    volumes:
+#      - "./Dab/dab-config.json:/App/dab-config.json"
       
 #  azurite:
 #    image: mcr.microsoft.com/azure-storage/azurite:3.33.0
