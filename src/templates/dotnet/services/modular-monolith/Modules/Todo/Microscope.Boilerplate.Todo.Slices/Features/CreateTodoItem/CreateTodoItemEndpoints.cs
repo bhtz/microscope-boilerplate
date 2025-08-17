@@ -14,7 +14,8 @@ public class CreateTodoItemEndpoints : ICarterModule
     {
         app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/items", CreateTodoItem)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1);
+            .MapToApiVersion(1)
+            .RequireCommonAuthorization();
     }
     
     private async Task<IResult> CreateTodoItem([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]CreateTodoItemCommand command)

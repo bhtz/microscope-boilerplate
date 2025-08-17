@@ -12,9 +12,9 @@ public class GetTodoModuleVersionEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/version", GetApiVersion)
-            .AllowAnonymous()
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1);
+            .MapToApiVersion(1)
+            .AllowAnonymous();
     }
 
     private async Task<IResult> GetApiVersion([FromServices] IMediator mediator)

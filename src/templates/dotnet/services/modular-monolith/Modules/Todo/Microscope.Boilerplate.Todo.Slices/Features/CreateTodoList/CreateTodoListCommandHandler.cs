@@ -1,10 +1,8 @@
-using FluentValidation;
 using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Framework.Application.Services;
-using Microscope.Framework.Domain.CQRS;
 using Microscope.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;

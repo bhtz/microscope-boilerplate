@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.AddAIConfiguration();
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
-// builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+builder.Services
+    .AddAuthenticationConfiguration(builder.Configuration)
+    .AddAuthorizationConfiguration();
 
 #endregion
 
@@ -27,10 +29,6 @@ builder.Services.AddGraphQlConfiguration();
 #endregion
 
 #region Modules
-
-// TODO : remove when AddAuthenticationConfiguration is call to disable calling twice
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 builder.Services
     .AddTodoApplication()

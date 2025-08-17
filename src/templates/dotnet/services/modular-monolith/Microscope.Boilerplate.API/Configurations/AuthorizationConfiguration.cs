@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Services.TodoApp.Api.Configurations;
+namespace Microscope.Boilerplate.API.Configurations;
 
 public static class AuthorizationConfiguration
 {

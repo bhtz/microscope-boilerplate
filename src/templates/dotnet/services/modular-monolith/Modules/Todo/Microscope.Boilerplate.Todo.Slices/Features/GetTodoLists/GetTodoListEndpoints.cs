@@ -14,7 +14,9 @@ public class GetTodoListEndpoints : ICarterModule
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/todo-lists", GetTodoLists)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1);
+            .MapToApiVersion(1)
+            .RequireCommonAuthorization();
+
     }
     
     private async Task<IResult> GetTodoLists([FromServices] IMediator mediator)

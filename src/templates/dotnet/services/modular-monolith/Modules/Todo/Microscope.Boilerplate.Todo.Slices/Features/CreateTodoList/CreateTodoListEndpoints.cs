@@ -13,7 +13,8 @@ public class CreateTodoListEndpoints : ICarterModule
     {
         app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists", CreateTodoList)
             .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
-            .MapToApiVersion(1);
+            .MapToApiVersion(1)
+            .RequireCommonAuthorization();
     }
     
     private async Task<IResult> CreateTodoList([FromServices] IMediator mediator, CreateTodoListCommand command)
