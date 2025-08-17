@@ -12,7 +12,7 @@ public class GetTodoModuleVersionEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/version", GetApiVersion)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
             .AllowAnonymous();
     }

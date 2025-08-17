@@ -1,4 +1,4 @@
-using Microscope.Framework.Domain.Exceptions;
+using Microscope.Boilerplate.Framework.Domain.Exceptions;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Microscope.Framework.Domain.DDD;
+namespace Microscope.Boilerplate.Framework.Domain.DDD;
 
 public abstract class AggregateRoot : AggregateRoot<Guid>, IAggregateRoot
 {

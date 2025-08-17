@@ -1,6 +1,6 @@
 using FluentValidation;
 using Microscope.Boilerplate.Todo.Slices.Features.AddTag;
-using Microscope.Framework.Domain.CQRS;
+using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.RemoveTag;
 

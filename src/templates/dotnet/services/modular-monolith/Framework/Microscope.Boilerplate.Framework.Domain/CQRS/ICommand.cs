@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Microscope.Framework.Domain.CQRS;
+namespace Microscope.Boilerplate.Framework.Domain.CQRS;
 
 public interface ICommand<T> : IRequest<T>
 {

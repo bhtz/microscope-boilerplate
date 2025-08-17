@@ -2,9 +2,9 @@ using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Todo.Slices.Policies;
-using Microscope.Framework.Application.Exceptions;
-using Microscope.Framework.Application.Services;
-using Microscope.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Application.Exceptions;
+using Microscope.Boilerplate.Framework.Application.Services;
+using Microscope.Boilerplate.Framework.Domain.DDD;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;

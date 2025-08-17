@@ -1,6 +1,6 @@
 using System.Data;
 using MediatR;
-using Microscope.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Domain.DDD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 

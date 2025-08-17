@@ -1,5 +1,5 @@
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Entities;
-using Microscope.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 

@@ -1,10 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
-using AspNetCore.Authentication.ApiKey;
 using FluentValidation;
 using Microscope.Boilerplate.API.Services;
-using Microscope.Framework.Application.Services;
+using Microscope.Boilerplate.Framework.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
@@ -18,19 +17,20 @@ public static class AuthenticationConfiguration
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services
-            .AddJwtAuthenticationConfiguration(configuration)
-            .AddApiKeyAuthenticationConfiguration(configuration);
-        
+            .AddJwtAuthenticationConfiguration(configuration);
+
         services.AddHttpContextAccessor();
         services.AddScoped<IIdentityService, IdentityService>();
-        
+
         return services;
     }
-    
-    private static IServiceCollection ValidateJwtAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+
+    private static IServiceCollection ValidateJwtAuthenticationConfiguration(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddOptions<OidcAuthenticationOptions>()
             .Bind(configuration.GetSection(OidcAuthenticationOptions.ConfigurationKey))
@@ -39,18 +39,9 @@ public static class AuthenticationConfiguration
 
         return services;
     }
-    
-    private static IServiceCollection ValidateApiKeyAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddOptions<ApiKeyAuthenticationOptions>()
-            .Bind(configuration.GetSection(ApiKeyAuthenticationOptions.ConfigurationKey))
-            .Validate(x => new ApiKeyAuthenticationOptionsValidator().Validate(x).IsValid)
-            .ValidateOnStart();
 
-        return services;
-    }
-    
-    private static IServiceCollection AddJwtAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddJwtAuthenticationConfiguration(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.ValidateJwtAuthenticationConfiguration(configuration);
 
@@ -66,10 +57,10 @@ public static class AuthenticationConfiguration
         }).AddJwtBearer(option =>
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-                
+
             option.Authority = oidcAuthenticationOptions.Authority;
             option.Audience = oidcAuthenticationOptions.ClientId;
-            
+
             if (!string.IsNullOrEmpty(oidcAuthenticationOptions.RoleClaimType))
             {
                 option.TokenValidationParameters.RoleClaimType = oidcAuthenticationOptions.RoleClaimType;
@@ -78,7 +69,7 @@ public static class AuthenticationConfiguration
             option.TokenValidationParameters.ValidateIssuer = false;
             option.TokenValidationParameters.ValidateAudience = true;
             option.RequireHttpsMetadata = false;
-            
+
             option.Events = new JwtBearerEvents()
             {
                 OnAuthenticationFailed = c =>
@@ -94,57 +85,6 @@ public static class AuthenticationConfiguration
 
         services.AddHttpContextAccessor();
         services.AddScoped<IIdentityService, IdentityService>();
-
-        return services;
-    }
-    
-    private  static IServiceCollection AddApiKeyAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.ValidateApiKeyAuthenticationConfiguration(configuration);
-        
-        var option = services
-            .BuildServiceProvider()
-            .GetRequiredService<IOptions<ApiKeyAuthenticationOptions>>()
-            .Value;
-        
-        var masterKeyTenant = option.MasterKey.Split("_").FirstOrDefault();
-        
-        if (masterKeyTenant is not null)
-        {
-            services
-                .AddAuthentication(ApiKeyDefaults.AuthenticationScheme)
-                .AddApiKeyInHeader(options =>
-            {
-                options.Realm = option.Realm;
-                options.KeyName = option.KeyName;
-                options.IgnoreAuthenticationIfAllowAnonymous = true;
-                options.Events = new ApiKeyEvents
-                {
-                    OnValidateKey = async (context) =>
-                    {
-                        var isValid = context.ApiKey.Equals(option.MasterKey);
-
-                        if (isValid)
-                        {
-                            var claims = new[]
-                            {
-                                new Claim(ClaimTypes.NameIdentifier, Guid.Empty.ToString(), ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                                new Claim(ClaimTypes.Name, option.MasterName, ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                                new Claim(ClaimTypes.Email, option.MasterMail),
-                                new Claim(ClaimTypes.Role, option.MasterRole),
-                                new Claim("iss", masterKeyTenant)
-                            };
-                            context.Principal = new ClaimsPrincipal(new ClaimsIdentity(claims, context.Scheme.Name));
-                            context.Success();
-                        }
-                        else
-                        {
-                            context.NoResult();
-                        }
-                    }
-                };
-            });
-        }
 
         return services;
     }
@@ -190,27 +130,4 @@ public class ApiKeyAuthenticationOptions
     public string MasterName { get; set; } = "Admin";
     public string MasterRole { get; set; } = "administrator";
     public string MasterMail { get; set; } = "admin@microscope.net";
-}
-
-public class ApiKeyAuthenticationOptionsValidator : AbstractValidator<ApiKeyAuthenticationOptions>
-{
-    public ApiKeyAuthenticationOptionsValidator()
-    {
-        RuleFor(x => x.MasterKey)
-            .NotNull()
-            .NotEmpty()
-            .Must(x => x.Contains('_'))
-            .WithMessage("Tenant option authority must have a value & contain '_' char");
-        
-        RuleFor(x => x.Realm)
-            .NotNull()
-            .NotEmpty()
-            .WithMessage("API Key option realm must have a value");
-        
-        RuleFor(x => x.MasterMail)
-            .NotNull()
-            .NotEmpty()
-            .EmailAddress()
-            .WithMessage("API Key option master mail must have be a valid email address");
-    }
 }

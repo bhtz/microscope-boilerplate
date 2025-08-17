@@ -1,9 +1,8 @@
 using System.Reflection;
 using Asp.Versioning;
 using Asp.Versioning.Builder;
-using AspNetCore.Authentication.ApiKey;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microscope.Boilerplate.Todo.Slices.Policies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
@@ -24,7 +23,7 @@ public static class Extensions
             // add specific behaviors if needed
         });
 
-        // services.AddSingleton<IAuthorizationHandler, TodoListCreatedByRequirementHandler>();
+        services.AddScoped<IAuthorizationHandler, TodoListCreatedByRequirementHandler>();
 
         services
             .AddGraphQL()
@@ -36,25 +35,10 @@ public static class Extensions
         return services;
     }
     
-    public static ApiVersionSet GetModuleVersionSet(IEndpointRouteBuilder app)
+    public static ApiVersionSet GetTodoModuleVersionSet(IEndpointRouteBuilder app)
     {
         return app.NewApiVersionSet()
             .HasApiVersion(new ApiVersion(1))
             .Build();
-    }
-    
-    /// <summary>
-    /// Applique l'autorisation commune (JWT + ApiKey) à n'importe quel builder d'endpoint
-    /// </summary>
-    /// <typeparam name="TBuilder">Type du builder (RouteHandlerBuilder, etc.)</typeparam>
-    /// <param name="builder">Le builder d'endpoint</param>
-    /// <returns>Le builder avec l'autorisation appliquée</returns>
-    public static TBuilder RequireCommonAuthorization<TBuilder>(this TBuilder builder) 
-        where TBuilder : IEndpointConventionBuilder
-    {
-        return builder.RequireAuthorization(new AuthorizeAttribute
-        {
-            AuthenticationSchemes = $"{JwtBearerDefaults.AuthenticationScheme},{ApiKeyDefaults.AuthenticationScheme}"
-        });
     }
 }

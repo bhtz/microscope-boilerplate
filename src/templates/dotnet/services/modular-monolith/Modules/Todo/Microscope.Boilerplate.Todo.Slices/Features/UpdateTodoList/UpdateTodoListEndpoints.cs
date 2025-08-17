@@ -12,9 +12,9 @@ public class UpdateTodoListEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPut("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", UpdateTodoList)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
-            .RequireCommonAuthorization();
+            .RequireAuthorization();
     }
     
     private async Task<IResult> UpdateTodoList([FromServices] IMediator mediator, [FromRoute]Guid id, [FromBody]UpdateTodoListCommand command)

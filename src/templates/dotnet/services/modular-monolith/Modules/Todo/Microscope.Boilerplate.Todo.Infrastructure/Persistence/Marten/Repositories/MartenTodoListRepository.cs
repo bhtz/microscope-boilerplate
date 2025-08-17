@@ -2,7 +2,6 @@ using Marten;
 using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
-using Microscope.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
 

@@ -1,6 +1,6 @@
 using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
-using Microscope.Framework.Application.Services;
+using Microscope.Boilerplate.Framework.Application.Services;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoLists;
 

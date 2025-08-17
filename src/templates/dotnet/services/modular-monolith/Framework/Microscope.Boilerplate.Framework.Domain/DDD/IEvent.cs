@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Microscope.Framework.Domain.DDD;
+namespace Microscope.Boilerplate.Framework.Domain.DDD;
 
 public interface IEvent : INotification
 {

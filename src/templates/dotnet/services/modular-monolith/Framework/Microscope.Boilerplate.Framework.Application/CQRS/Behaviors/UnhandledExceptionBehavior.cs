@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using MediatR;
-using Microscope.Framework.Application.Exceptions;
-using Microscope.Framework.Domain.Exceptions;
+using Microscope.Boilerplate.Framework.Application.Exceptions;
+using Microscope.Boilerplate.Framework.Domain.Exceptions;
 using Microsoft.Extensions.Logging;
 
-namespace Microscope.Framework.Application.CQRS.Behaviors;
+namespace Microscope.Boilerplate.Framework.Application.CQRS.Behaviors;
 
 public class UnhandledExceptionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

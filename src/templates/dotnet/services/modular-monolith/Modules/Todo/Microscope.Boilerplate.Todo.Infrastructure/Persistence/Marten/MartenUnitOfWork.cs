@@ -1,10 +1,7 @@
 using System.Data;
 using Marten;
 using MediatR;
-using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
-using Microscope.Framework.Domain.DDD;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+using Microscope.Boilerplate.Framework.Domain.DDD;
 using Npgsql;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;

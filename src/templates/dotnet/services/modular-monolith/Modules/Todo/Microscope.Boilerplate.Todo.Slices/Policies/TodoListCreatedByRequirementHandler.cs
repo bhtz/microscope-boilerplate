@@ -1,5 +1,5 @@
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
-using Microscope.Framework.Application.Services;
+using Microscope.Boilerplate.Framework.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Microscope.Boilerplate.Todo.Slices.Policies;

@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Microscope.Framework.Application.Services;
+using Microscope.Boilerplate.Framework.Application.Services;
 
 namespace Microscope.Boilerplate.API.Services;
 

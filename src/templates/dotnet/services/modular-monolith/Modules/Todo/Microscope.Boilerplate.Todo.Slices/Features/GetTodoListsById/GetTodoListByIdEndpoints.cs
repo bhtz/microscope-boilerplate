@@ -12,9 +12,9 @@ public class GetTodoListByIdEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", GetTodoListById)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
-            .RequireCommonAuthorization();
+            .RequireAuthorization();
     }
     
     private async Task<IResult> GetTodoListById([FromServices] IMediator mediator, [FromRoute]Guid id)

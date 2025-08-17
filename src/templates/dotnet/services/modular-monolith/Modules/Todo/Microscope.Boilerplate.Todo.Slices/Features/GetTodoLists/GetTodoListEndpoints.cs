@@ -13,9 +13,9 @@ public class GetTodoListEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/v{apiVersion:apiVersion}/todo/todo-lists", GetTodoLists)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
-            .RequireCommonAuthorization();
+            .RequireAuthorization();
 
     }
     

@@ -1,16 +1,14 @@
 using Carter;
 using Microscope.Boilerplate.API.Configurations;
-using Microscope.Boilerplate.API.Services;
 using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;
-using Microscope.Framework.Application.Services;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Commons
 
-// builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 // builder.AddAIConfiguration();
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
@@ -44,7 +42,7 @@ app.UseAuthorization();
 app.MapOpenApi();
 app.MapScalarApiReference();
 
-// app.MapDefaultEndpoints();
+app.MapDefaultEndpoints();
 app.MapControllers();
 app.MapCarter();
 app.MapGraphQL();

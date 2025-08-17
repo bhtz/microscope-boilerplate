@@ -12,7 +12,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\Microscope.Framework.Domain\Microscope.Framework.Domain.csproj" />
+      <ProjectReference Include="..\Microscope.Boilerplate.Framework.Domain\Microscope.Boilerplate.Framework.Domain.csproj" />
     </ItemGroup>
 
 </Project>

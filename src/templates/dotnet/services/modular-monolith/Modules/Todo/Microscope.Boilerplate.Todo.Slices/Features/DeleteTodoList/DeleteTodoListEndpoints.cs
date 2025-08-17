@@ -13,9 +13,9 @@ public class DeleteTodoListEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", DeleteTodoList)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
-            .RequireCommonAuthorization();
+            .RequireAuthorization();
 
     }
     

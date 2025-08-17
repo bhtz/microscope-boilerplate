@@ -2,8 +2,8 @@
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects;
-using Microscope.Framework.Domain.DDD;
-using Microscope.Framework.Domain.Exceptions;
+using Microscope.Boilerplate.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Domain.Exceptions;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 

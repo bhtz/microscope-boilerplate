@@ -1,4 +1,4 @@
-namespace Microscope.Framework.Application.Exceptions;
+namespace Microscope.Boilerplate.Framework.Application.Exceptions;
 
 public class PoliciesException : Exception
 {

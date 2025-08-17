@@ -12,9 +12,9 @@ public class ToggleTodoItemEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPut("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/items/{itemId:guid}", ToggleTodoItem)
-            .WithApiVersionSet(Extensions.GetModuleVersionSet(app))
+            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
-            .RequireCommonAuthorization();
+            .RequireAuthorization();
 
     }
     

@@ -1,6 +1,5 @@
-using System.Windows.Input;
 using FluentValidation;
-using Microscope.Framework.Domain.CQRS;
+using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.AddTag;
 

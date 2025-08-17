@@ -1,8 +1,8 @@
 using System.Reflection;
-using Microscope.Framework.Application.CQRS.Behaviors;
+using Microscope.Boilerplate.Framework.Application.CQRS.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microscope.Framework.Application;
+namespace Microscope.Boilerplate.Framework.Application;
 
 public static class Extensions
 {
