@@ -25,9 +25,6 @@ Todo :
   - [x] GraphQL operations
   - [x] REST operations
   - [x] cleanup AllowAnonymous
-- [ ] API KEY authentication
-  - [x] using AspNetCore.Authentication.ApiKey with minimal api
-  - [ ] using AspNetCore.Authentication.ApiKey with graphql api ?
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
