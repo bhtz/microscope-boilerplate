@@ -15,7 +15,7 @@
       <ProjectReference Include="..\Microscope.Boilerplate.Todo.Domain\Microscope.Boilerplate.Todo.Domain.csproj" />
     </ItemGroup>
 
-    <!-- #if (GraphQL) -->
+    <!--#if (GraphQL) -->
     <ItemGroup>
         <PackageReference Include="HotChocolate.AspNetCore" Version="15.0.3" />
         <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.0.3" />
@@ -24,7 +24,7 @@
     </ItemGroup>
     <!-- #endif -->
     
-    <!-- #if (Rest) -->
+    <!--#if (Rest) -->
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />

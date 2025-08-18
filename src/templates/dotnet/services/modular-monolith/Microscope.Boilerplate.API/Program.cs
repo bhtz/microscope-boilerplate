@@ -70,4 +70,8 @@ app.MapCarter();
 app.MapGraphQL();
 #endif
 
+#if (GraphQL)
 app.RunWithGraphQLCommands(args);
+#else
+app.Run();
+#endif

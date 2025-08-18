@@ -17,13 +17,13 @@
     <ProjectReference Include="..\Modules\Todo\Microscope.Boilerplate.Todo.Infrastructure\Microscope.Boilerplate.Todo.Infrastructure.csproj" />
   </ItemGroup>
 
-    <!-- #if (GraphQL) -->
+    <!--#if (GraphQL) -->
     <ItemGroup>
         <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.0.3" />
     </ItemGroup>
     <!-- #endif -->
 
-    <!-- #if (Rest) -->
+    <!--#if (Rest) -->
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.6.8" />
