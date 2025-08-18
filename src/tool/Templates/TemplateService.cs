@@ -11,6 +11,14 @@ public static class TemplateService
     {
         return new List<ITemplate>
         {
+            // Custom dotnet
+            new CLITemplate(),
+            new DesktopTemplate(),
+            new BffTemplate(),
+            new ModularMonolithTemplate(),
+            new DocumentationTemplate(),
+            new DabTemplate(),
+            
             // Some default from dotnet 
             new ConsoleTemplate(),
             new LibraryTemplate(),
@@ -22,15 +30,7 @@ public static class TemplateService
             // Aspire templates
             new AspireHostTemplate(),
             new AspireServiceDefaultsTemplate(),
-
-            // Custom dotnet
-            new CLITemplate(),
-            new DesktopTemplate(),
-            new BffTemplate(),
-            new ModularMonolithTemplate(),
-            new DocumentationTemplate(),
-            new DabTemplate(),
-
+            
             // Custom dotnet (deprecated)
             new DistributedTemplate(),
             new BffSsrBlazorTemplate(),

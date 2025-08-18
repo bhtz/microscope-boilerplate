@@ -6,7 +6,7 @@ public sealed class ModularMonolithTemplate : Template, ITemplate
 {
     public string Category { get; set; } = "Custom";
     public string Language { get; set; } = "Dotnet";
-    public string Label { get; set; } = "Microscope - modular monolith";
+    public string Label { get; set; } = "Microscope - Modular monolith";
     public string CodeName { get; set; } = "mcsp_service";
 
     public List<TemplateOption> ProtocolOptions { get; set; } =
