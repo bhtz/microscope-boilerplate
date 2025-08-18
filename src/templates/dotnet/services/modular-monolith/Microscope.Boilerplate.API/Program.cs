@@ -10,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Commons
 
+#if (Aspire)
 builder.AddServiceDefaults();
+#endif
+
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
 builder.Services
@@ -54,7 +57,9 @@ app.MapOpenApi();
 app.MapScalarApiReference();
 #endif
 
+#if (Aspire)
 app.MapDefaultEndpoints();
+#endif
 
 #if (Rest)
 app.MapControllers();

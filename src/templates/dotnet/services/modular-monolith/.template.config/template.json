@@ -27,6 +27,20 @@
       "description": "Add REST protocol",
       "datatype": "bool",
       "defaultValue": "true"
+    },
+
+    "Docker": {
+      "type": "parameter",
+      "description": "Add Docker support",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+
+    "Aspire": {
+      "type": "parameter",
+      "description": "Add Aspire support",
+      "datatype": "bool",
+      "defaultValue": "true"
     }
   },
   
@@ -61,6 +75,17 @@
             "**/OpenApiConfiguration.cs",
             "**/RestConfiguration.cs",
             "**/TodoRestConfiguration.cs"
+          ]
+        },
+        {
+          "condition": "(!Docker)",
+          "exclude": ["IAC/Docker/**"]
+        },
+        {
+          "condition": "(!Aspire)",
+          "exclude": [
+            "IAC/Aspire/**",
+            "Microscope.Boilerplate.ServiceDefaults/**"
           ]
         }
       ]
