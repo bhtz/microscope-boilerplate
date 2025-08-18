@@ -2,7 +2,7 @@
 
 > Microscope.Boilerplate Modular monolith service
 
-Todo : 
+## Roadmap : 
 
 - [x] Docker setup
 - [x] Refactoring of modularity
@@ -25,10 +25,10 @@ Todo :
   - [x] GraphQL operations
   - [x] REST operations
   - [x] cleanup AllowAnonymous
-- [ ] Template protocols options
-  - [ ] GraphQL
-  - [ ] REST
-  - [ ] Tool CLI options
+- [x] Template protocols options
+  - [x] GraphQL
+  - [x] REST
+  - [x] Tool CLI options
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
