@@ -8,6 +8,7 @@ public interface ITemplate
     public string Language { get; set; }
     public string Label { get; set; }
     public string CodeName { get; set; }
+    public bool OptionRequired { get; set; }
     public List<TemplateOption> Options { get; set; }
     public IEnumerable<string> Prompt(IEnumerable<TemplateOption>? options = null);
 } 
@@ -16,6 +17,7 @@ public class Template
 {
     public string Label { get; set; }
     public string CodeName { get; set; }
+    public virtual bool OptionRequired { get; set; } = false;
     public virtual List<TemplateOption> Options { get; set; } = [];
 
     public virtual IEnumerable<string> Prompt(IEnumerable<TemplateOption>? options = null)
@@ -24,9 +26,17 @@ public class Template
             .Title("Include options ?");
 
         prompt.Converter = (item) => item.Label;
-        
+
+        if (OptionRequired)
+        {
+            prompt.Required();
+        }
+        else
+        {
+            prompt.NotRequired();
+        }
+
         prompt
-            .NotRequired()
             .InstructionsText(
                 "[grey](Press [blue]<space>[/] to toggle an option, " +
                 "[green]<enter>[/] to accept)[/]")

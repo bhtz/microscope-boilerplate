@@ -12,7 +12,7 @@ public class UpdateTodoListEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPut("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}", UpdateTodoList)
-            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
+            .WithApiVersionSet(TodoRestConfiguration.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
             .RequireAuthorization();
     }

@@ -4,9 +4,7 @@ using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.RemoveTag;
 
-public record RemoveTagCommand(string Label, Guid TodoListId, string Color) : ICommand<bool>
-{
-}
+public record RemoveTagCommand(string Label, Guid TodoListId, string Color) : ICommand<bool>;
 
 public class AddTagCommandValidator : AbstractValidator<AddTagCommand>
 {

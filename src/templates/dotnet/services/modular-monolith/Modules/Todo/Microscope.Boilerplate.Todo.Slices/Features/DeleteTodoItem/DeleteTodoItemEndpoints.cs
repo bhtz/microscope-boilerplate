@@ -1,6 +1,5 @@
 using Carter;
 using MediatR;
-using Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +12,7 @@ public class DeleteTodoItemEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapDelete("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/items", DeleteTodoItem)
-            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
+            .WithApiVersionSet(TodoRestConfiguration.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
             .RequireAuthorization();
 

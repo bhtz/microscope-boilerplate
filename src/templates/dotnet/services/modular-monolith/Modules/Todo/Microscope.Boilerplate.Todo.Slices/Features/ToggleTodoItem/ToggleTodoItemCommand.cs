@@ -3,9 +3,7 @@ using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.ToggleTodoItem;
 
-public record ToggleTodoItemCommand(Guid TodoListId, Guid TodoItemId) : ICommand<bool>
-{
-}
+public record ToggleTodoItemCommand(Guid TodoListId, Guid TodoItemId) : ICommand<bool>;
 
 public class ToggleTodoItemCommandValidator : AbstractValidator<ToggleTodoItemCommand>
 {

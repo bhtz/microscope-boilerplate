@@ -1,15 +1,16 @@
+#if (Rest)
 using Carter;
+using Scalar.AspNetCore;
+#endif
 using Microscope.Boilerplate.API.Configurations;
 using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Commons
 
 builder.AddServiceDefaults();
-// builder.AddAIConfiguration();
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
 builder.Services
@@ -20,9 +21,16 @@ builder.Services
 
 #region Protocols
 
+#if (Rest)
 builder.Services.AddOpenApiConfiguration();
 builder.Services.AddRestConfiguration();
+#endif
+
+#if (GraphQL)
 builder.Services.AddGraphQlConfiguration();
+#endif
+
+// builder.Services.AddGrpcConfiguration();
 
 #endregion
 
@@ -36,15 +44,25 @@ builder.Services
 
 var app = builder.Build();
 
+// app.UseMiddleware<HttpExceptionMiddleware>();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
+#if (Rest)
 app.MapOpenApi();
 app.MapScalarApiReference();
+#endif
 
 app.MapDefaultEndpoints();
+
+#if (Rest)
 app.MapControllers();
 app.MapCarter();
+#endif
+
+#if (GraphQL)
 app.MapGraphQL();
+#endif
 
 app.RunWithGraphQLCommands(args);

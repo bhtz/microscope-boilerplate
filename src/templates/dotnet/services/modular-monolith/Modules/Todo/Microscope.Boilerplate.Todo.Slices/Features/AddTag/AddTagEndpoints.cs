@@ -12,7 +12,7 @@ public class AddTagEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists/{id:guid}/tags", AddTag)
-            .WithApiVersionSet(Extensions.GetTodoModuleVersionSet(app))
+            .WithApiVersionSet(TodoRestConfiguration.GetTodoModuleVersionSet(app))
             .MapToApiVersion(1)
             .RequireAuthorization();
     }

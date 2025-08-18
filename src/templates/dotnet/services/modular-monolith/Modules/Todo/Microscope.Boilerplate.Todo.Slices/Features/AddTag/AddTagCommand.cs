@@ -3,10 +3,7 @@ using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.AddTag;
 
-public record AddTagCommand(string Label, Guid TodoListId, string Color) : ICommand<bool>
-{
-
-}
+public record AddTagCommand(string Label, Guid TodoListId, string Color) : ICommand<bool>;
 
 public class AddTagCommandValidator : AbstractValidator<AddTagCommand>
 {

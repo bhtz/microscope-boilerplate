@@ -3,10 +3,7 @@ using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
 
-public record DeleteTodoItemCommand(Guid TodoListId, Guid TodoItemId) : ICommand<bool>
-{
-    
-}
+public record DeleteTodoItemCommand(Guid TodoListId, Guid TodoItemId) : ICommand<bool>;
 
 public class DeleteTodoItemCommandValidator : AbstractValidator<DeleteTodoItemCommand>
 {

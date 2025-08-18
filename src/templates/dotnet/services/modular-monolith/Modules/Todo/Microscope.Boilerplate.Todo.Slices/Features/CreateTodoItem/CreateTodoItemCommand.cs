@@ -3,10 +3,7 @@ using Microscope.Boilerplate.Framework.Domain.CQRS;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 
-public record CreateTodoItemCommand(string Label, Guid TodoListId) : ICommand<Guid>
-{
-    
-}
+public record CreateTodoItemCommand(string Label, Guid TodoListId) : ICommand<Guid>;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {

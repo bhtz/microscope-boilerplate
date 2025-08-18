@@ -1,6 +1,5 @@
 using HotChocolate.Authorization;
 using MediatR;
-using Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
 

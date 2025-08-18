@@ -25,6 +25,10 @@ Todo :
   - [x] GraphQL operations
   - [x] REST operations
   - [x] cleanup AllowAnonymous
+- [ ] Template protocols options
+  - [ ] GraphQL
+  - [ ] REST
+  - [ ] Tool CLI options
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant

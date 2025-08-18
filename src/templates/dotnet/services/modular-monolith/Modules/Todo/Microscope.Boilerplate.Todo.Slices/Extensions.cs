@@ -1,11 +1,7 @@
 using System.Reflection;
-using Asp.Versioning;
-using Asp.Versioning.Builder;
 using FluentValidation;
 using Microscope.Boilerplate.Todo.Slices.Policies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microscope.Boilerplate.Todo.Slices;
@@ -25,20 +21,15 @@ public static class Extensions
 
         services.AddScoped<IAuthorizationHandler, TodoListCreatedByRequirementHandler>();
 
+        #if (GraphQL)
         services
             .AddGraphQL()
             .AddTodoTypes()
             .AddProjections()
             .AddFiltering()
             .AddSorting();
+        #endif
 
         return services;
-    }
-    
-    public static ApiVersionSet GetTodoModuleVersionSet(IEndpointRouteBuilder app)
-    {
-        return app.NewApiVersionSet()
-            .HasApiVersion(new ApiVersion(1))
-            .Build();
     }
 }
