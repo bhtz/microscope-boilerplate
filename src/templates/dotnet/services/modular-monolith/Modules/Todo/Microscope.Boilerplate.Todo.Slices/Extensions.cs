@@ -1,5 +1,6 @@
 #if (Grpc)
 using Microscope.Boilerplate.Todo.Slices.Services;
+using Microsoft.AspNetCore.Routing;
 #endif
 using System.Reflection;
 using FluentValidation;
@@ -38,7 +39,7 @@ public static class Extensions
     }
     
     #if (Grpc)
-    public static WebApplication MapTodoGrpcServices(this WebApplication app)
+    public static IEndpointRouteBuilder MapTodoGrpcServices(this IEndpointRouteBuilder app)
     {
         app.MapGrpcService<TodoGrpcService>();
         return app;

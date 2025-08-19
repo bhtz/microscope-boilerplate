@@ -25,9 +25,13 @@
   - [x] GraphQL operations
   - [x] REST operations
   - [x] cleanup AllowAnonymous
+- [x] Grpc support
+  - [x] Grpc slices rpcService
+  - [x] Grpc server
 - [x] Template protocols options
   - [x] GraphQL
   - [x] REST
+  - [x] GRPC
   - [x] Tool CLI options
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant

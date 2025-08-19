@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microscope.Boilerplate.Todo.Slices.Grpc;
 
 namespace Microscope.Boilerplate.Todo.Slices.Services;
