@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants>TRACE;Rest;GraphQL;Aspire</DefineConstants>
+    <DefineConstants>TRACE;Rest;GraphQL;Aspire;Grpc</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

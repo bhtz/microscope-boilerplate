@@ -12,7 +12,8 @@ public sealed class ModularMonolithTemplate : Template, ITemplate
     public List<TemplateOption> ProtocolOptions { get; set; } =
     [
         new("Rest", "--Rest"),
-        new("GraphQL", "--GraphQL")
+        new("GraphQL", "--GraphQL"),
+        new("Grpc", "--Grpc")
     ];
     
     public  List<TemplateOption> IacOptions { get; set; } =

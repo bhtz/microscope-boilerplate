@@ -2,11 +2,13 @@ using System;
 using Grpc.Core;
 using Microscope.Boilerplate.Todo.Slices.Features.UpdateTodoList;
 using Microscope.Boilerplate.Todo.Slices.Grpc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microscope.Boilerplate.Todo.Slices.Services;
 
 public partial class TodoGrpcService
 {
+    [Authorize]
     public override async Task<UpdateTodoListResponse> UpdateTodoList(
         UpdateTodoListRequest request,
         ServerCallContext context)

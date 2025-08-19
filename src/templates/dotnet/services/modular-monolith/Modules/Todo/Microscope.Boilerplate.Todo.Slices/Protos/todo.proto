@@ -16,9 +16,14 @@ service TodoService {
   // Opérations sur les TodoItems
   rpc CreateTodoItem (CreateTodoItemRequest) returns (CreateTodoItemResponse);
   rpc ToggleTodoItem (ToggleTodoItemRequest) returns (ToggleTodoItemResponse);
+  rpc DeleteTodoItem (DeleteTodoItemRequest) returns (DeleteTodoItemResponse);
 
   // Opération sur les Tags
   rpc AddTag (AddTagRequest) returns (AddTagResponse);
+  rpc RemoveTag (RemoveTagRequest) returns (RemoveTagResponse);
+
+  // Version du module
+  rpc GetTodoModuleVersion (GetTodoModuleVersionRequest) returns (GetTodoModuleVersionResponse);
 }
 
 // Messages pour GetTodoLists
@@ -78,10 +83,21 @@ message CreateTodoItemResponse {
 
 // Messages pour ToggleTodoItem
 message ToggleTodoItemRequest {
-  string id = 1;
+  string todoListId = 1;
+  string todoItemId = 2;
 }
 
 message ToggleTodoItemResponse {
+  bool success = 1;
+}
+
+// Messages pour DeleteTodoItem
+message DeleteTodoItemRequest {
+  string todoListId = 1;
+  string todoItemId = 2;
+}
+
+message DeleteTodoItemResponse {
   bool success = 1;
 }
 
@@ -94,6 +110,24 @@ message AddTagRequest {
 
 message AddTagResponse {
   bool success = 1;
+}
+
+// Messages pour RemoveTag
+message RemoveTagRequest {
+  string label = 1;
+  string todoListId = 2;
+  string color = 3;
+}
+
+message RemoveTagResponse {
+  bool success = 1;
+}
+
+// Messages pour GetTodoModuleVersion
+message GetTodoModuleVersionRequest {}
+
+message GetTodoModuleVersionResponse {
+  string version = 1;
 }
 
 // DTOs

@@ -1,7 +1,11 @@
+#if (Grpc)
+using Microscope.Boilerplate.Todo.Slices.Services;
+#endif
 using System.Reflection;
 using FluentValidation;
 using Microscope.Boilerplate.Todo.Slices.Policies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microscope.Boilerplate.Todo.Slices;
@@ -32,4 +36,12 @@ public static class Extensions
 
         return services;
     }
+    
+    #if (Grpc)
+    public static WebApplication MapTodoGrpcServices(this WebApplication app)
+    {
+        app.MapGrpcService<TodoGrpcService>();
+        return app;
+    }
+    #endif
 }

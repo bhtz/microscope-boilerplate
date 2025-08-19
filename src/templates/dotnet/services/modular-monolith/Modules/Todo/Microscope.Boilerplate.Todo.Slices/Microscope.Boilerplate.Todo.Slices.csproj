@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;Rest;GraphQL</DefineConstants>
+      <DefineConstants>TRACE;Rest;GraphQL;Grpc</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,6 +29,13 @@
         <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
         <PackageReference Include="Carter" Version="9.0.0" />
+    </ItemGroup>
+    <!-- #endif -->
+
+    <!--#if (Grpc) -->
+    <ItemGroup>
+        <Protobuf Include="Protos\todo.proto" GrpcServices="Server" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.64.0" />
     </ItemGroup>
     <!-- #endif -->
     

@@ -29,6 +29,13 @@
       "defaultValue": "false"
     },
 
+    "Grpc": {
+      "type": "parameter",
+      "description": "Add gRPC protocol",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
     "Docker": {
       "type": "parameter",
       "description": "Add Docker support",
@@ -77,6 +84,17 @@
             "**/TodoRestConfiguration.cs"
           ]
         },
+
+        {
+          "condition": "(!Grpc)",
+          "exclude": [
+            "**/Protos/**",
+            "**/*RpcService.cs",
+            "**/*GrpcService.cs",
+            "Microscope.Boilerplate.API/Configurations/GrpcConfiguration.cs"
+          ]
+        },
+        
         {
           "condition": "(!Docker)",
           "exclude": ["IAC/Docker/**"]

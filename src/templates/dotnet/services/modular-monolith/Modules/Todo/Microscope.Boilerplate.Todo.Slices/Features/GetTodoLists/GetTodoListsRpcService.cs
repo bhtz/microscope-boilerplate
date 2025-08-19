@@ -2,11 +2,13 @@ using System.Linq;
 using Grpc.Core;
 using Microscope.Boilerplate.Todo.Slices.Features.GetTodoLists;
 using Microscope.Boilerplate.Todo.Slices.Grpc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microscope.Boilerplate.Todo.Slices.Services;
 
 public partial class TodoGrpcService
 {
+    [Authorize]
     public override async Task<GetTodoListsResponse> GetTodoLists(
         GetTodoListsRequest request,
         ServerCallContext context)

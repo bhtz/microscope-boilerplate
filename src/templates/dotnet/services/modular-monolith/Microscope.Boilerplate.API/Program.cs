@@ -2,6 +2,7 @@
 using Carter;
 using Scalar.AspNetCore;
 #endif
+
 using Microscope.Boilerplate.API.Configurations;
 using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;
@@ -33,7 +34,9 @@ builder.Services.AddRestConfiguration();
 builder.Services.AddGraphQlConfiguration();
 #endif
 
-// builder.Services.AddGrpcConfiguration();
+#if (Grpc)
+builder.Services.AddGrpcConfiguration();
+#endif
 
 #endregion
 
@@ -68,6 +71,10 @@ app.MapCarter();
 
 #if (GraphQL)
 app.MapGraphQL();
+#endif
+
+#if (Grpc)
+app.MapTodoGrpcServices();
 #endif
 
 #if (GraphQL)
