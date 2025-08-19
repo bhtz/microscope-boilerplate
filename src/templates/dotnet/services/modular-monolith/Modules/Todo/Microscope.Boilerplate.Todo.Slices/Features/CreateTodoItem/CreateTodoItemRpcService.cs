@@ -1,4 +1,3 @@
-using System;
 using Grpc.Core;
 using Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 using Microscope.Boilerplate.Todo.Slices.Grpc;

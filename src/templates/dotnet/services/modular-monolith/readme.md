@@ -33,6 +33,7 @@
   - [x] REST
   - [x] GRPC
   - [x] Tool CLI options
+- [x] Feature management
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant

@@ -17,9 +17,11 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.8" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="System.Linq.Async" Version="6.0.3" />
     </ItemGroup>
     
     <ItemGroup>
       <Folder Include="Persistence\EFcore\Scripts\" />
+      <Folder Include="Services\" />
     </ItemGroup>
 </Project>

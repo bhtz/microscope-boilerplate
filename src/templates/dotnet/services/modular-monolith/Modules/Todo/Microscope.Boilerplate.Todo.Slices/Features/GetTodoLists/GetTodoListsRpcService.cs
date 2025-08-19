@@ -1,4 +1,3 @@
-using System.Linq;
 using Grpc.Core;
 using Microscope.Boilerplate.Todo.Slices.Features.GetTodoLists;
 using Microscope.Boilerplate.Todo.Slices.Grpc;

@@ -4,6 +4,7 @@ using Scalar.AspNetCore;
 #endif
 
 using Microscope.Boilerplate.API.Configurations;
+using Microscope.Boilerplate.API.Endpoints;
 using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;
 
@@ -15,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 #endif
 
+builder.Services.AddFeatureManagementConfiguration(builder.Configuration);
 builder.Services.AddProblemDetails();
 builder.Services.AddCqrsConfiguration();
 builder.Services
@@ -35,7 +37,7 @@ builder.Services.AddGraphQlConfiguration();
 #endif
 
 #if (Grpc)
-builder.Services.AddGrpcConfiguration();
+builder.Services.AddGrpcConfiguration(builder.Configuration);
 #endif
 
 #endregion
@@ -59,6 +61,8 @@ app.UseAuthorization();
 app.MapOpenApi();
 app.MapScalarApiReference();
 #endif
+
+app.MapFeatureManagementEndpoints();
 
 #if (Aspire)
 app.MapDefaultEndpoints();

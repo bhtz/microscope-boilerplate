@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.FeatureManagement;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure;
 
@@ -29,6 +30,7 @@ public static class Extensions
     {
         services
             .AddPersistenceAdapter();
+        
         // .AddMailAdapter()
         // .AddBusAdapter()
         // .AddStorageAdapter()
@@ -128,8 +130,7 @@ public static class Extensions
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             services.AddScoped<ITodoListRepository, EfTodoListRepository>();
         }
-
-
+        
         return services;
     }
 }

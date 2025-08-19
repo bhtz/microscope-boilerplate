@@ -26,6 +26,7 @@
     <!--#if (Rest) -->
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.1.0" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.6.8" />
     </ItemGroup>
     <!-- #endif -->

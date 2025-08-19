@@ -1,6 +1,6 @@
-using Microscope.Boilerplate.Clients.Web.Blazor.Services;
+using Microscope.Boilerplate.API.Configurations;
 
-namespace Microscope.Boilerplate.Clients.BFF.Endpoints;
+namespace Microscope.Boilerplate.API.Endpoints;
 
 public static class FeatureManagementEndpoints
 {
