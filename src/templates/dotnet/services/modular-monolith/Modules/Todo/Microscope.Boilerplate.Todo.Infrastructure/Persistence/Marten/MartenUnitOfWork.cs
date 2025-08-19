@@ -9,7 +9,7 @@ namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IUnitOfWork
 {
     private readonly IDocumentSession _session = session;
-    private NpgsqlTransaction _currentTransaction;
+    private NpgsqlTransaction? _currentTransaction;
     
     public bool HasActiveTransaction => _currentTransaction != null;
 
@@ -22,7 +22,7 @@ public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IU
     {
         var domainEntities = this._session.PendingChanges
             .AllChangedFor<AggregateRoot>()
-            .Where(x => x.DomainEvents.Any())
+            .Where(x => x.DomainEvents.Count != 0)
             .ToList();
 
         var domainEvents = domainEntities
@@ -40,7 +40,7 @@ public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IU
 
     public async Task<T> EncapsulateInTransaction<T>(Func<Task<T>> action, string typeName)
     {
-        T response = default(T);
+        T response = default(T)!;
 
         // Marten n'a pas d'équivalent direct à CreateExecutionStrategy, 
         // mais nous pouvons implémenter une logique de retry simple si nécessaire

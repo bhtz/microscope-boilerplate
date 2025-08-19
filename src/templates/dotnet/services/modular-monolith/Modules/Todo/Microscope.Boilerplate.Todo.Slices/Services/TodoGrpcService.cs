@@ -1,4 +1,3 @@
-using MediatR;
 using Microscope.Boilerplate.Todo.Slices.Grpc;
 
 namespace Microscope.Boilerplate.Todo.Slices.Services;

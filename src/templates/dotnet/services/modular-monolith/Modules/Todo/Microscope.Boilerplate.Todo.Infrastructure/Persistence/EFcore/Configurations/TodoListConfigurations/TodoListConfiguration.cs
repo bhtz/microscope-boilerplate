@@ -18,7 +18,7 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
         builder.Property(e => e.UpdatedAt).IsRequired();
         
         builder.HasMany(b => b.TodoItems)
-            .WithOne(x => x.TodoList)
+            .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.Metadata

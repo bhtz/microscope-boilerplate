@@ -1,10 +1,6 @@
-using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Todo.Slices.Policies;
-using Microscope.Boilerplate.Framework.Application.Exceptions;
-using Microscope.Boilerplate.Framework.Application.Services;
-using Microscope.Boilerplate.Framework.Domain.DDD;
 using Microsoft.AspNetCore.Authorization;
 using Tag = Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects.Tag;
 
@@ -40,8 +36,8 @@ public class AddTagCommandHandler : IRequestHandler<AddTagCommand, bool>
 
         if(!res.Succeeded)
             throw new PoliciesException("Cannot update another user todo list");
-        
-        var tag = new Tag(request.Label, request.Color);
+
+        Tag tag = new(request.Label, request.Color);
         todoList.AddTag(tag);
 
         await _todoListRepository.UpdateAsync(todoList);

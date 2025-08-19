@@ -1,5 +1,4 @@
 using HotChocolate.Authorization;
-using MediatR;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 
@@ -7,7 +6,7 @@ namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 public static class GetTodoListByIdResolver
 {
     [Authorize]
-    public static async Task<GetTodoListByIdQueryResult> GetTodoListById([Service]IMediator mediator, GetTodoListByIdQuery query)
+    public static async Task<GetTodoListByIdQueryResult> GetTodoListById(IMediator mediator, GetTodoListByIdQuery query)
     {
         return await mediator.Send(query);
     }

@@ -94,14 +94,14 @@ public class OidcAuthenticationOptions
 {
     public const string ConfigurationKey = "OIDC";
 
-    public string Authority { get; set; }
-    public string ClientId { get; set; }
-    
+    public string Authority { get; set; } = string.Empty;
+    public string ClientId { get; set; } = string.Empty;
+
     public string? NameClaimType { get; set; } = ClaimTypes.Name;
     public string? RoleClaimType { get; set; } = ClaimTypes.Role;
     public string? IssuerAddress { get; set; }
     public string? IssuerLogoutAddress { get; set; }
-    public IEnumerable<string> Scopes { get; set; }
+    public IEnumerable<string> Scopes { get; set; } = [];
 }
 
 public class OidcAuthenticationOptionsValidator : AbstractValidator<OidcAuthenticationOptions>
@@ -124,9 +124,9 @@ public class ApiKeyAuthenticationOptions
 {
     public const string ConfigurationKey = "ApiKey";
     
-    public string Realm { get; set; }
-    public string KeyName { get; set; }
-    public string MasterKey { get; set; }
+    public string Realm { get; set; } = string.Empty;
+    public string KeyName { get; set; } = string.Empty;
+    public string MasterKey { get; set; } = string.Empty;
     public string MasterName { get; set; } = "Admin";
     public string MasterRole { get; set; } = "administrator";
     public string MasterMail { get; set; } = "admin@microscope.net";

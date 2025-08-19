@@ -13,10 +13,10 @@ public class PersistenceOptions
     public const string SQLITE_ADAPTER = "sqlite";
     public const string POSTGRES_ADAPTER = "postgres";
     public const string MSSQL_ADAPTER = "mssql";
-    public string Adapter { get; set; }
+    public string Adapter { get; set; } = string.Empty;
     public string Framework { get; set; } = MARTEN_FRAMEWORK;
-    public string ConnectionString { get; set; }
-    public string Schema { get; set; }
+    public string ConnectionString { get; set; } = string.Empty;
+    public string Schema { get; set; } = string.Empty;
     public bool EnableMigration { get; set; } = false;
 }
 

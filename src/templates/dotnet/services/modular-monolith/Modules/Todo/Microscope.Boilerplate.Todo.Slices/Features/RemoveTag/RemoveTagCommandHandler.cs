@@ -1,10 +1,6 @@
-using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Todo.Slices.Policies;
-using Microscope.Boilerplate.Framework.Application.Exceptions;
-using Microscope.Boilerplate.Framework.Application.Services;
-using Microscope.Boilerplate.Framework.Domain.DDD;
 using Microsoft.AspNetCore.Authorization;
 using Tag = Microscope.Boilerplate.Todo.Domain.TodoListAggregate.ValueObjects.Tag;
 
@@ -30,10 +26,8 @@ public class RemoveTagCommandHandler : IRequestHandler<RemoveTagCommand, bool>
         var userId = _identityService.GetUserId();
         var tenantId = _identityService.GetTenantId();
 
-        var todoList = await _todoListRepository.GetByIdAsync(tenantId, request.TodoListId);
-                
-        if (todoList == null) 
-            throw new TodoListNotFoundDomainException("Todolist not found");
+        var todoList = await _todoListRepository.GetByIdAsync(tenantId, request.TodoListId)
+            ?? throw new TodoListNotFoundDomainException("Todolist not found");
         
         var res = await _authorizationService
             .AuthorizeAsync(_identityService.GetClaimsPrincipal(), todoList, new CreatedByRequirement());

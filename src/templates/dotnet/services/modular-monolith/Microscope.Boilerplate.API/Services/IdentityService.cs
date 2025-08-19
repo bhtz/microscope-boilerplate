@@ -3,9 +3,9 @@ using Microscope.Boilerplate.Framework.Application.Services;
 
 namespace Microscope.Boilerplate.API.Services;
 
-public class IdentityService : IIdentityService
+public sealed class IdentityService : IIdentityService
 {
-    private IHttpContextAccessor _context;
+    private readonly IHttpContextAccessor _context;
 
     public IdentityService(IHttpContextAccessor context)
     {
@@ -14,37 +14,40 @@ public class IdentityService : IIdentityService
 
     public Guid GetUserId()
     {
-        var id = _context.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        return Guid.Parse(id);
+        var idValue = _context.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return Guid.TryParse(idValue, out var id) ? id : Guid.Empty;
     }
 
     public string GetTenantId()
     {
-        return _context.HttpContext.User.FindFirst("iss").Value;
+        return _context.HttpContext?.User?.FindFirst("iss")?.Value ?? string.Empty;
     }
 
     public string GetUserName()
     {
-        return _context.HttpContext.User.FindFirst("name").Value;
+        return _context.HttpContext?.User?.FindFirst("name")?.Value
+               ?? _context.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value
+               ?? string.Empty;
     }
 
     public bool IsInRole(string role)
     {
-        return _context.HttpContext.User.IsInRole(role);
+        return _context.HttpContext?.User?.IsInRole(role) ?? false;
     }
 
     public string GetUserMail()
     {
-        return _context.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+        return _context.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
     }
 
     public ClaimsPrincipal GetClaimsPrincipal()
     {
-        return _context.HttpContext.User;
+        return _context.HttpContext?.User ?? new ClaimsPrincipal();
     }
 
     public string GetToken()
     {
-        return _context.HttpContext.Request.Headers["Authorization"];
+        var authorization = _context.HttpContext?.Request.Headers.Authorization.ToString();
+        return string.IsNullOrWhiteSpace(authorization) ? string.Empty : authorization;
     }
 }

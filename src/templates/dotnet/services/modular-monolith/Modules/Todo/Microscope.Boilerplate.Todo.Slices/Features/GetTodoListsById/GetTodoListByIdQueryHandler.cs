@@ -1,7 +1,5 @@
-using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Exceptions;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
-using Microscope.Boilerplate.Framework.Application.Services;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.GetTodoListsById;
 
@@ -21,10 +19,8 @@ public class GetTodoListByIdQueryHandler : IRequestHandler<GetTodoListByIdQuery,
         var userId = _identityService.GetUserId();
         var tenantId = _identityService.GetTenantId();
 
-        var todoList = await _todoListRepository.GetByIdAsync(tenantId, request.Id);
-        
-        if (todoList == null) 
-            throw new TodoListNotFoundDomainException("Todolist not found");
+        var todoList = await _todoListRepository.GetByIdAsync(tenantId, request.Id)
+            ?? throw new TodoListNotFoundDomainException("Todolist not found");
         
         return new GetTodoListByIdQueryResult()
         {

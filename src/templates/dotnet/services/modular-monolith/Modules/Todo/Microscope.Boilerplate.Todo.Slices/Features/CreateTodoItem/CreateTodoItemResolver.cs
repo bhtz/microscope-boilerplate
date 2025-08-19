@@ -1,5 +1,4 @@
 using HotChocolate.Authorization;
-using MediatR;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 
@@ -7,7 +6,7 @@ namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoItem;
 public static class CreateTodoItemResolver
 {
     [Authorize]
-    public static async Task<Guid> CreateTodoItem([Service]IMediator mediator, CreateTodoItemCommand command)
+    public static async Task<Guid> CreateTodoItem(IMediator mediator, CreateTodoItemCommand command)
     {
         return await mediator.Send(command);
     }

@@ -3,13 +3,13 @@ using Microscope.Boilerplate.Framework.Domain.DDD;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 
-public class OnTodoItemCreatedEvent : DomainEvent
+public sealed record OnTodoItemCreatedEvent : DomainEvent
 {
     public TodoItem TodoItem { get; set; }
     
     public OnTodoItemCreatedEvent(TodoItem todoItem)
     {
         TodoItem = todoItem;
-        CreatedAt = DateTime.Now;
+        CreatedAt = DateTimeOffset.UtcNow;
     }
 }

@@ -10,10 +10,10 @@ public record GetTodoListByIdQuery(Guid Id) : IQuery<GetTodoListByIdQueryResult>
 public record GetTodoListByIdQueryResult
 {
     public Guid Id { get; init; }
-    public string Name { get; init; }
+    public string Name { get; init; } = string.Empty;
     public bool IsCompleted { get; init; }
-    public IEnumerable<TodoItemResult> TodoItems { get; init; }
-    public IEnumerable<TagResult> Tags { get; init; }
+    public IEnumerable<TodoItemResult> TodoItems { get; init; } = [];
+    public IEnumerable<TagResult> Tags { get; init; } = [];
 }
 
 public record TodoItemResult(Guid Id, string Label, bool IsCompleted);

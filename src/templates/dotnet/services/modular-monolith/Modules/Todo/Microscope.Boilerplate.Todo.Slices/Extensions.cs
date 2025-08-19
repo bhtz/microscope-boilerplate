@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Routing;
 using System.Reflection;
 using FluentValidation;
 using Microscope.Boilerplate.Todo.Slices.Policies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microscope.Boilerplate.Todo.Slices;
 
