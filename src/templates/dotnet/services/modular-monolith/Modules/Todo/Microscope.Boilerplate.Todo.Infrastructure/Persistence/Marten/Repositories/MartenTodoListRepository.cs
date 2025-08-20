@@ -1,17 +1,17 @@
 using Marten;
-using MediatR;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
 
-public class MartenTodoListRepository(IDocumentSession session, IMediator mediator) : ITodoListRepository
+public class MartenTodoListRepository(IDocumentSession session) : ITodoListRepository
 {
     public async Task<IEnumerable<TodoList>> GetCreatedByAsync(string tenantId, Guid userId)
     {
-        return session.Query<TodoList>()
+        var results = await session.Query<TodoList>()
             .Where(x => x.CreatedBy == userId)
-            .ToList();
+            .ToListAsync();
+        return results;
     }
 
     public async Task<TodoList?> GetByIdAsync(string tenantId, Guid id)
@@ -19,19 +19,21 @@ public class MartenTodoListRepository(IDocumentSession session, IMediator mediat
         return await session.LoadAsync<TodoList>(id);
     }
 
-    public async Task<TodoList> AddAsync(TodoList entity)
+    public Task<TodoList> AddAsync(TodoList entity)
     {
         session.Store(entity);
-        return entity;
+        return Task.FromResult(entity);
     }
 
-    public async Task UpdateAsync(TodoList entity)
+    public Task UpdateAsync(TodoList entity)
     {
         session.Update(entity);
+        return Task.CompletedTask;
     }
 
-    public async Task DeleteAsync(TodoList entity)
+    public Task DeleteAsync(TodoList entity)
     {
         session.Delete(entity);
+        return Task.CompletedTask;
     }
 }

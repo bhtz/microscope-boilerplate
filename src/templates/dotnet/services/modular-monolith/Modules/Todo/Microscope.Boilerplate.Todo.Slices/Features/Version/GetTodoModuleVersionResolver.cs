@@ -1,5 +1,4 @@
 using HotChocolate.Authorization;
-using MediatR;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
 

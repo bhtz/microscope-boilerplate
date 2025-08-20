@@ -16,11 +16,10 @@ namespace Microscope.Boilerplate.Todo.Infrastructure;
 
 public static class Extensions
 {
-    public static IServiceCollection AddTodoInfrastructure(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddTodoInfrastructure(this IServiceCollection services)
     {
         services
-            .AddTodoAppInfrastructureSettings(configuration)
+            .AddTodoAppInfrastructureSettings()
             .AddTodoAppInfrastructureServices();
         
         return services;
@@ -39,8 +38,7 @@ public static class Extensions
         return services;
     }
 
-    public static IServiceCollection AddTodoAppInfrastructureSettings(this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddTodoAppInfrastructureSettings(this IServiceCollection services)
     {
         services.AddOptions<PersistenceOptions>()
             .BindConfiguration(PersistenceOptions.ConfigurationKey)
@@ -48,22 +46,22 @@ public static class Extensions
             .ValidateOnStart();
 
         // services.AddOptions<MailOptions>()
-        //     .Bind(configuration.GetSection(MailOptions.ConfigurationKey))
+        //     .BindConfiguration(MailOptions.ConfigurationKey)
         //     .Validate(x => new MailOptionsValidator().Validate(x).IsValid)
         //     .ValidateOnStart();
         //
         // services.AddOptions<UserOptions>()
-        //     .Bind(configuration.GetSection(UserOptions.ConfigurationKey))
+        //     .BindConfiguration(UserOptions.ConfigurationKey)
         //     .Validate(x => new UserOptionsValidator().Validate(x).IsValid)
         //     .ValidateOnStart();
         //
         // services.AddOptions<BusOptions>()
-        //     .Bind(configuration.GetSection(BusOptions.ConfigurationKey))
+        //     .BindConfiguration(BusOptions.ConfigurationKey)
         //     .Validate(x => new BusOptionsValidator().Validate(x).IsValid)
         //     .ValidateOnStart();
         //
         // services.AddOptions<StorageOptions>()
-        //     .Bind(configuration.GetSection(StorageOptions.ConfigurationKey))
+        //     .BindConfiguration(StorageOptions.ConfigurationKey)
         //     .ValidateDataAnnotations()
         //     .ValidateOnStart();
 
@@ -118,11 +116,11 @@ public static class Extensions
                         break;
 
                     case PersistenceOptions.INMEMORY_ADAPTER:
-                        options.UseInMemoryDatabase(assemblyName);
+                        options.UseInMemoryDatabase(assemblyName!);
                         break;
 
                     default:
-                        options.UseInMemoryDatabase(assemblyName);
+                        options.UseInMemoryDatabase(assemblyName!);
                         break;
                 }
             });

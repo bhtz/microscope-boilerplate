@@ -6,10 +6,8 @@ public abstract class AggregateRoot : AggregateRoot<Guid>, IAggregateRoot
 {
 }
 
-public abstract class AggregateRoot<TId> : IAggregateRoot<TId>
+public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot<TId>
 {
-    public TId Id { get; protected set; } = default!;
-    
     public string? TenantId { get; protected set; }
     
     [JsonIgnore]
@@ -18,7 +16,7 @@ public abstract class AggregateRoot<TId> : IAggregateRoot<TId>
     [JsonIgnore]
     public IReadOnlyCollection<IEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public void AddDomainEvent(DomainEvent eventItem)
+    public void AddDomainEvent(IEvent eventItem)
     {
         _domainEvents.Add(eventItem);
     }

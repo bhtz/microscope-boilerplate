@@ -36,12 +36,16 @@ public class EfTodoListRepository : ITodoListRepository
     {
         AttachIfNot(entity);
         _todoLists.Remove(entity);
+
+        await Task.CompletedTask;
     }
 
     public async Task UpdateAsync(TodoList entity)
     {
         AttachIfNot(entity);
         _context.Entry(entity).State = EntityState.Modified;
+
+        await Task.CompletedTask;
     }
 
     public async Task<TodoList> AddAsync(TodoList entity)

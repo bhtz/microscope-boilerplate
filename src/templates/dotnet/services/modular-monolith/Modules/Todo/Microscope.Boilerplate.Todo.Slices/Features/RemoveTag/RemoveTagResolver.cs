@@ -1,5 +1,4 @@
 using HotChocolate.Authorization;
-using MediatR;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.RemoveTag;
 
@@ -7,7 +6,7 @@ namespace Microscope.Boilerplate.Todo.Slices.Features.RemoveTag;
 public static class RemoveTagResolver
 {
     [Authorize]
-    public static async Task<bool> RemoveTag([Service]IMediator mediator, RemoveTagCommand command)
+    public static async Task<bool> RemoveTag(IMediator mediator, RemoveTagCommand command)
     {
         return await mediator.Send(command);
     }

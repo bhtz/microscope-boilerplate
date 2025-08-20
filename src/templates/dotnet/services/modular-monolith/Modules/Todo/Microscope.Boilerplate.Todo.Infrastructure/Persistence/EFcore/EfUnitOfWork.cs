@@ -9,17 +9,17 @@ namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 public class EfUnitOfWork : IUnitOfWork
 {
     private readonly TodoAppDbContext _context;
-    private IDbContextTransaction _currentTransaction;
+    private IDbContextTransaction? _currentTransaction;
     private readonly IMediator _mediator;
+    public IDbContextTransaction? GetCurrentTransaction() => _currentTransaction;
+
+    public bool HasActiveTransaction => _currentTransaction != null;
 
     public EfUnitOfWork(TodoAppDbContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;
     }
-    public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
-
-    public bool HasActiveTransaction => _currentTransaction != null;
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
@@ -48,25 +48,25 @@ public class EfUnitOfWork : IUnitOfWork
 
     public async Task<T> EncapsulateInTransaction<T>(Func<Task<T>> action, string typeName)
     {
-        T response = default(T);
-        var strategy = this._context.Database.CreateExecutionStrategy();
+        T response = default(T)!;
+        var strategy = _context.Database.CreateExecutionStrategy();
 
         await strategy.ExecuteAsync(async () =>
         {
             Guid transactionId;
 
-            using (var transaction = await this.BeginTransactionAsync())
+            using (var transaction = await BeginTransactionAsync())
             {
                 response = await action();
-                await this.CommitTransactionAsync(transaction);
-                transactionId = transaction.TransactionId;
+                await CommitTransactionAsync(transaction);
+                transactionId = transaction!.TransactionId;
             }
         });
 
         return response;
     }
 
-    private async Task CommitTransactionAsync(IDbContextTransaction transaction)
+    private async Task CommitTransactionAsync(IDbContextTransaction? transaction)
     {
         if (transaction == null) throw new ArgumentNullException(nameof(transaction));
         if (transaction != _currentTransaction) throw new InvalidOperationException($"Transaction {transaction.TransactionId} is not current");
@@ -107,7 +107,7 @@ public class EfUnitOfWork : IUnitOfWork
         }
     }
 
-    private async Task<IDbContextTransaction> BeginTransactionAsync()
+    private async Task<IDbContextTransaction?> BeginTransactionAsync()
     {
         if (_currentTransaction != null) return null;
 

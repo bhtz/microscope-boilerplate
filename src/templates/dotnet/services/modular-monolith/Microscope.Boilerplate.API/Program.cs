@@ -46,7 +46,7 @@ builder.Services.AddGrpcConfiguration(builder.Configuration);
 
 builder.Services
     .AddTodoApplication()
-    .AddTodoInfrastructure(builder.Configuration);
+    .AddTodoInfrastructure();
 
 #endregion
 

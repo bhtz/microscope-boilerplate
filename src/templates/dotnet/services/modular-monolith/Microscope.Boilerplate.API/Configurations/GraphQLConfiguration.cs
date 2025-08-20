@@ -1,5 +1,4 @@
 using HotChocolate;
-using Microscope.Boilerplate.Todo.Slices;
 
 namespace Microscope.Boilerplate.API.Configurations;
 
@@ -21,6 +20,13 @@ public class GraphQlErrorFilter : IErrorFilter
 {
     public IError OnError(IError error)
     {
-        return error.WithMessage(error.Code);
+        var code = string.IsNullOrWhiteSpace(error.Code) ? "SERVER_ERROR" : error.Code;
+        var message = string.IsNullOrWhiteSpace(error.Exception?.Message)
+            ? (string.IsNullOrWhiteSpace(error.Message) ? code : error.Message)
+            : error.Exception!.Message;
+
+        return error
+            .WithCode(code)
+            .WithMessage(message);
     }
 }

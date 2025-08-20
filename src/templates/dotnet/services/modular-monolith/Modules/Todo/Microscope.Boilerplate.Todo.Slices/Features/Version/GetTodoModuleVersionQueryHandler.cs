@@ -1,4 +1,3 @@
-using MediatR;
 using Microscope.Boilerplate.Framework.Domain.CQRS;
 using Microsoft.FeatureManagement;
 

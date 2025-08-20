@@ -1,5 +1,4 @@
 using Carter;
-using MediatR;
 using Microscope.Boilerplate.Todo.Slices.Features.DeleteTodoItem;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

@@ -7,13 +7,13 @@ using Microscope.Boilerplate.Framework.Domain.Exceptions;
 
 namespace Microscope.Boilerplate.Todo.Domain.TodoListAggregate;
 
-public class TodoList : AggregateRoot, IAuditableEntity
+public class TodoList : AuditableAggregateRoot
 {
     public string Name { get; private set; } = string.Empty;
 
     public bool IsCompleted
     {
-        get { return _todoItems.Count() is not 0 && _todoItems.All(x => x.IsCompleted); }
+        get { return _todoItems.Count is not 0 && _todoItems.All(x => x.IsCompleted); }
     }
 
     private readonly List<TodoItem> _todoItems;
@@ -24,18 +24,18 @@ public class TodoList : AggregateRoot, IAuditableEntity
 
     protected TodoList()
     {
-        _todoItems = new List<TodoItem>();
-        _tags = new List<Tag>();
+        _todoItems = [];
+        _tags = [];
     }
 
-    protected TodoList(string tenantId, Guid id, Guid userId, string creatorMail, string name): this()
+    private TodoList(string tenantId, Guid id, Guid userId, string creatorMail, string name) : this()
     {
         Id = id;
         TenantId = tenantId;
         CreatedBy = userId;
         CreatorMail = creatorMail;
-        CreatedAt = DateTime.Now;
-        UpdatedAt = DateTime.Now;
+        CreatedAt = DateTimeOffset.UtcNow;
+        UpdatedAt = DateTimeOffset.UtcNow;
         Name = name;
     }
 
@@ -52,30 +52,26 @@ public class TodoList : AggregateRoot, IAuditableEntity
         }
 
         Name = name;
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
 
     public Guid AddTodoItem(string label)
     {
         var id = Guid.NewGuid();
-        var item = TodoItem.Create(id, label, this);
+        var item = TodoItem.Create(id, label);
         _todoItems.Add(item);
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeOffset.UtcNow;
         
         return id;
     }
     
     public void RemoveTodoItem(Guid id)
     {
-        var item = _todoItems.SingleOrDefault(x => x.Id == id);
-        
-        if (item is null)
-        {
-            throw new TodoListDomainException("Todo list item not found");
-        }
-        
-        UpdatedAt = DateTime.Now;
-        
+        var item = _todoItems.SingleOrDefault(x => x.Id == id) 
+            ?? throw new TodoListDomainException("Todo list item not found");
+
+        UpdatedAt = DateTimeOffset.UtcNow;
+
         _todoItems.Remove(item);
 
         if (IsCompleted)
@@ -90,40 +86,34 @@ public class TodoList : AggregateRoot, IAuditableEntity
             throw new DomainException("Duplicate label for todolist tags");
         
         _tags.Add(tag);
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
 
     public void RemoveTag(Tag tag)
     {       
         _tags.Remove(tag);
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
      
     public void ToggleItem(Guid id)
     {
-        var item = _todoItems.SingleOrDefault(x => x.Id == id);
-        
-        if (item is null)
-        {
-            throw new TodoListDomainException($"todo list item {id.ToString()} not found");
-        }
+        var item = _todoItems.SingleOrDefault(x => x.Id == id)
+            ?? throw new TodoListDomainException($"todo list item {id.ToString()} not found");
 
         if (item.IsCompleted)
+        {
             item.UnComplete();
+        }
         else
+        {
             item.Complete();
-        
+        }
+
         if (IsCompleted)
         {
             this.AddDomainEvent(new OnTodoListCompletedEvent(this));
         }
         
-        UpdatedAt = DateTime.Now;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
-
-    public DateTime CreatedAt { get; set; }
-    public Guid CreatedBy { get; set; }
-    public string? CreatorMail { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public Guid UpdatedBy { get; set; }
 }

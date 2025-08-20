@@ -7,24 +7,21 @@ public class TodoItem : Entity
     public string Label { get; private set; } = string.Empty;
     public bool IsCompleted { get; private set; }
     
-    public TodoList TodoList { get; private set; }
-
     protected TodoItem()
     {
         
     }
 
-    protected TodoItem(Guid id, string label, TodoList todoList)
+    private TodoItem(Guid id, string label) : this()
     {
         Id = id;
         Label = label;
-        TodoList = todoList;
         IsCompleted = false;
     }
 
-    public static TodoItem Create(Guid id, string label, TodoList todoList)
+    public static TodoItem Create(Guid id, string label)
     {
-        return new TodoItem(id, label, todoList);
+        return new TodoItem(id, label);
     }
 
     public void Complete()
