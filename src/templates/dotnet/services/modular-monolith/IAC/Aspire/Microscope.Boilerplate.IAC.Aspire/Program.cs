@@ -2,6 +2,9 @@ using Microsoft.Extensions.Configuration;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+builder.AddDockerComposeEnvironment("dev")
+    .WithDashboard(db => db.WithHostPort(8085));
+
 #region Configuration
 
 var isHasuraEnabled = builder.Configuration.GetValue<bool>("BaaS:Hasura");

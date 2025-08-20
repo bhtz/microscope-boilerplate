@@ -34,6 +34,7 @@
   - [x] GRPC
   - [x] Tool CLI options
 - [x] Feature management
+- [x] Aspire docker composer publisher
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
