@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Microscope.Boilerplate.Services.TodoApp.Application.Services;
+using Microscope.Boilerplate.Framework.Application.Services;
 using Microsoft.Extensions.Options;
 
 namespace Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.User;

@@ -12,7 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Microscope.Boilerplate.Framework.Application\Microscope.Boilerplate.Framework.Application.csproj" />
       <ProjectReference Include="..\Microscope.Boilerplate.Framework.Domain\Microscope.Boilerplate.Framework.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
     
 </Project>

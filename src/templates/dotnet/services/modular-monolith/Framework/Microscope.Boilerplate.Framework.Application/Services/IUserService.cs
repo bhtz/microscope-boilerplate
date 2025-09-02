@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Services;
+namespace Microscope.Boilerplate.Framework.Application.Services;
 
 public interface IUserService
 {

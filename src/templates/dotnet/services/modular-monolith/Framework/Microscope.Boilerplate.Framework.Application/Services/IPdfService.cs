@@ -1,6 +1,6 @@
-namespace Microscope.Boilerplate.Services.TodoApp.Application.Services;
+namespace Microscope.Boilerplate.Framework.Application.Services;
 
-public interface IPDFService
+public interface IPdfService
 {
     Task<byte[]> GenerateAndDownloadAsync(string template, string filename, object data);
     

@@ -17,7 +17,7 @@ public static class Extensions
             configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
             configuration.AddOpenBehavior(typeof(PerformanceBehavior<,>));
             
-            // Todo: bug only with marten
+            // Todo: need to fix the behavior with marten transaction
             // configuration.AddOpenBehavior(typeof(TransactionBehavior<,>));
         });
         

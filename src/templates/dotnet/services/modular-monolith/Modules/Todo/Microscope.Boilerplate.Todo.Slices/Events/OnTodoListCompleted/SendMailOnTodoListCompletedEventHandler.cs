@@ -1,15 +1,15 @@
 using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Events;
 using Microsoft.Extensions.Logging;
 
-namespace Microscope.Boilerplate.Todo.Slices.Events.OnTodoListCompletedEvent;
+namespace Microscope.Boilerplate.Todo.Slices.Events.OnTodoListCompleted;
 
 public class SendMailOnTodoListCompletedEventHandler(ILogger logger) : INotificationHandler<OnTodoListCompletedEvent>
 {
     public Task Handle(OnTodoListCompletedEvent notification, CancellationToken cancellationToken)
     {
         // implement mail sending logic here
-        logger.LogInformation("TEST DOMAIN EVENT HANDLER");
         
+        logger.LogInformation("DOMAIN EVENT HANDLER");
         throw new NotImplementedException();
     }
 }

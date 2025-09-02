@@ -48,6 +48,19 @@
       "description": "Add Aspire support",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+
+    "Module": {
+      "type": "parameter",
+      "description": "Add only module without framework or API",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "ModuleName": {
+      "type": "parameter",
+      "description": "Name of the module (used to replace Todo)",
+      "datatype": "string",
     }
   },
   
@@ -65,6 +78,23 @@
             ".idea/**/*"
           ]
         },
+
+        {
+          "condition": "(Module)",
+          "exclude": [
+            "**/Framework/**",
+            "**/IAC/**",
+            "**/GraphQL/**",
+            "Microscope.Boilerplate.ServiceDefaults/**",
+            "Microscope.Boilerplate.API/**",
+            "Microscope.Boilerplate.sln",
+            "readme.md"
+          ],
+          "rename": {
+            "Todo": "__ModuleName__"
+          }
+        },
+        
         {
           "condition": "(!GraphQL)",
           "exclude": [
@@ -96,11 +126,11 @@
         },
         
         {
-          "condition": "(!Docker)",
+          "condition": "(!Docker && !Module)",
           "exclude": ["IAC/Docker/**"]
         },
         {
-          "condition": "(!Aspire)",
+          "condition": "(!Aspire && !Module)",
           "exclude": [
             "IAC/Aspire/**",
             "Microscope.Boilerplate.ServiceDefaults/**"

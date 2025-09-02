@@ -35,13 +35,15 @@
   - [x] Tool CLI options
 - [x] Feature management
 - [x] Aspire docker composer publisher
+- [ ] Domain event handler
+- [ ] Bus & integration event ?
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
-- [ ] Refactoring IRepository & Aggregate framework
-- [ ] Clean AuditableAggregate
+- [ ] Only module symbol ?
+- [x] Refactoring IRepository & Aggregate framework
+- [x] Clean AuditableAggregate
 - [ ] Clean up readme
-- [ ] Bus & integration event
 
 ## Helpers EF CORE
 
