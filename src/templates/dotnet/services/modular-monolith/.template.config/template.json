@@ -98,13 +98,22 @@
         
         {
           "condition": "(!Docker)",
-          "exclude": ["IAC/Docker/**"]
+          "exclude": [
+            "src/IAC/Docker/docker-compose.yml",
+          ]
         },
         {
           "condition": "(!Aspire)",
           "exclude": [
             "IAC/Aspire/**",
             "Microscope.Boilerplate.ServiceDefaults/**"
+          ]
+        },
+
+        {
+          "condition": "(!Docker && !Aspire)",
+          "exclude": [
+            "src/IAC/Docker/**"
           ]
         }
       ]

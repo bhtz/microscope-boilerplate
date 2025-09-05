@@ -97,7 +97,7 @@
         {
           "condition": "(!Docker)",
           "exclude": [
-            "src/IAC/Docker/docker-compose.yml",
+            "src/IAC/Docker/docker-compose.yml"
           ]
         },
 
