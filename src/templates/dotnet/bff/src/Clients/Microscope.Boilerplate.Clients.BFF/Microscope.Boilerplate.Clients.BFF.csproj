@@ -7,6 +7,10 @@
     <ContainerRepository>microscope-management/bff</ContainerRepository>
     <ContainerImageTag>latest</ContainerImageTag>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>TRACE;Aspire;Yarp</DefineConstants>
+  </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.0.0" />
@@ -14,7 +18,9 @@
     <PackageReference Include="HotChocolate.Fusion" Version="15.0.3" />
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
+      <!--#if (Yarp) -->
     <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
+      <!-- #endif -->
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.7" />
     <ProjectReference Include="..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj" />

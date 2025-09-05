@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 
-namespace Mylight.Enode.BFF.Configurations.Http;
+namespace Microscope.Boilerplate.BFF.Configurations.Http;
 
 public class GatewayAuthenticationHeaderHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
 {

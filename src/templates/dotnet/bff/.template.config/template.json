@@ -20,6 +20,27 @@
       "description": "Whether to include Backend as a Service container or not.",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+
+    "Docker": {
+      "type": "parameter",
+      "description": "Add Docker support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "Aspire": {
+      "type": "parameter",
+      "description": "Add Aspire support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    
+    "Yarp": {
+      "type": "parameter",
+      "description": "Add Yarp support",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   
@@ -35,6 +56,40 @@
             "**/*.user",
             "**/*.lock.json",
             ".idea/**/*"
+          ]
+        },
+
+        {
+          "condition": "(!Yarp)",
+          "exclude": [
+            "**/ReverseProxyConfiguration.cs"
+          ]
+        },
+
+        {
+          "condition": "(!BaaS)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/Dab/**",
+            "src/IAC/Docker/Dab/**"
+          ]
+        },
+        
+        //
+        //    {
+        //      "condition": "(!Gateway)",
+        //      "exclude": [""]
+        //    },
+
+        {
+          "condition": "(!Docker)",
+          "exclude": ["src/IAC/Docker/**"]
+        },
+
+        {
+          "condition": "(!Aspire)",
+          "exclude": [
+            "src/IAC/Aspire/**",
+            "src/CrossCutting/**"
           ]
         }
       ]

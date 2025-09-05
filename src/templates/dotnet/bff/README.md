@@ -1,6 +1,6 @@
 # Microscope.Boilerplate
 
-Microscope.Boilerplate BFF SSR BLAZOR template
+> Microscope.Boilerplate BFF template.
 
 ## Getting started 
 
@@ -26,3 +26,14 @@ dotnet run
 ```
 
 > 🎉 Enjoy !
+
+## Template options
+- [x] Aspire
+- [x] Docker
+- [x] Yarp
+- [x] BaaS
+    - [x] Dab
+- [ ] GraphQL gateway
+    - [ ] Fusion over trevorblade public api
+- [ ] GraphQL server
+    - [ ] Continents graphQL query

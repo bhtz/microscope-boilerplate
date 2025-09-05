@@ -1,7 +1,7 @@
 using FluentValidation;
 using HotChocolate.Types;
+using Microscope.Boilerplate.BFF.Configurations.Http;
 using Microsoft.Extensions.Options;
-using Mylight.Enode.BFF.Configurations.Http;
 
 namespace Microscope.Boilerplate.Clients.BFF.Configurations;
 

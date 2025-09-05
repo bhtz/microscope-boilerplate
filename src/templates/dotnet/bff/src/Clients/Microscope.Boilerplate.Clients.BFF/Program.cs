@@ -1,15 +1,20 @@
+using Microscope.Boilerplate.BFF.Configurations.Http;
 using Microscope.Boilerplate.Clients.BFF.Configurations;
 using Microscope.Boilerplate.Clients.BFF.Endpoints;
 using Microscope.Boilerplate.Clients.Web.Blazor;
 using Microscope.Boilerplate.Clients.Web.Blazor.Configurations;
+#if (Aspire)
 using Microscope.Boilerplate.ServiceDefaults;
-using Mylight.Enode.BFF.Configurations.Http;
+#endif
 using Host = Microscope.Boilerplate.Clients.BFF.Components.Pages.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
+#if (Aspire)
 builder.AddServiceDefaults();
+#endif
+
 builder.Services.AddProblemDetails();
 
 #region Services required for BFF API
@@ -18,7 +23,9 @@ builder.Services.AddProblemDetails();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthenticationConfiguration(builder.Configuration);
 builder.Services.AddFeatureManagementConfiguration(builder.Configuration);
+#if (Yarp)
 builder.Services.AddReverseProxyConfiguration(builder.Configuration);
+#endif
 builder.Services.AddGraphQlGatewayConfiguration(builder.Environment, builder.Configuration);
 
 #endregion
@@ -71,11 +78,16 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+#if (Yarp)
 // Map BFF endpoints
 if (builder.Configuration.GetSection("ReverseProxy").Exists())
     app.MapReverseProxy();
+#endif
 
+#if (Aspire)
 app.MapDefaultEndpoints();
+#endif
+
 app.MapGraphQL();
 app.MapAuthenticationEndpoints();
 app.MapFeatureManagementEndpoints();

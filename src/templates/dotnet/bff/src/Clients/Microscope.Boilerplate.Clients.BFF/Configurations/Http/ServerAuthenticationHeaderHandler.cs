@@ -1,4 +1,4 @@
-namespace Mylight.Enode.BFF.Configurations.Http;
+namespace Microscope.Boilerplate.BFF.Configurations.Http;
 
 public class ServerAuthenticationHeaderHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
 {

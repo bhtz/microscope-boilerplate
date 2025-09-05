@@ -11,6 +11,10 @@
         <UserSecretsId>45c6d06e-1558-46f8-bf19-1680df9a6d23</UserSecretsId>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BaaS</DefineConstants>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
     </ItemGroup>
