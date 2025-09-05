@@ -40,7 +40,7 @@ public class Theme
         }
     };
 
-    public static readonly MudTheme DefaultTheme = new MudTheme()
+    public static readonly MudTheme MicroscopeTheme = new MudTheme()
     {
         PaletteLight = new PaletteLight()
         {
@@ -73,7 +73,7 @@ public class Theme
         }
     };
 
-    public static readonly MudTheme DefaultMudTheme = new MudTheme()
+    public static readonly MudTheme MudTheme = new MudTheme()
     {
         PaletteLight = new()
         {

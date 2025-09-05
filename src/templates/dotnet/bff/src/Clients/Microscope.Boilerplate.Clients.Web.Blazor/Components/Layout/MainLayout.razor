@@ -48,7 +48,7 @@
 
 @code {
     private bool _isDarkMode = false;
-    MudTheme _currentTheme = Theme.DefaultTheme;
+    MudTheme _currentTheme = Theme.MicroscopeTheme;
     private bool DrawerOpen { get; set; } = false;
 
     public void ToggleDrawer()
@@ -60,16 +60,20 @@
     {
         switch (theme)
         {
-            case "default":
-                _currentTheme = Theme.DefaultTheme;
+            case "microscope":
+                _currentTheme = Theme.MicroscopeTheme;
                 break;
                 
             case "skyline":
                 _currentTheme = Theme.SkylineTheme;
                 break;
                 
+            case "mud":
+                _currentTheme = Theme.MudTheme;
+                break;
+                
             default:
-                _currentTheme = Theme.DefaultTheme;
+                _currentTheme = Theme.MicroscopeTheme;
                 break;
         }
     }
