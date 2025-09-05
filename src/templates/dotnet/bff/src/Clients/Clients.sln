@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.BFF", "Microscope.Boilerplate.Clients.BFF\Microscope.Boilerplate.Clients.BFF.csproj", "{813952E3-4A61-9690-7C96-3E365760976F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway", "Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj", "{1DBD91C2-EC3B-A24E-7EDC-E26607F33E3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.Web.Blazor", "Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj", "{1AA2235E-4033-1C12-0E88-FD884D7728BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{813952E3-4A61-9690-7C96-3E365760976F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{813952E3-4A61-9690-7C96-3E365760976F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{813952E3-4A61-9690-7C96-3E365760976F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{813952E3-4A61-9690-7C96-3E365760976F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DBD91C2-EC3B-A24E-7EDC-E26607F33E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DBD91C2-EC3B-A24E-7EDC-E26607F33E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DBD91C2-EC3B-A24E-7EDC-E26607F33E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DBD91C2-EC3B-A24E-7EDC-E26607F33E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA2235E-4033-1C12-0E88-FD884D7728BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA2235E-4033-1C12-0E88-FD884D7728BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA2235E-4033-1C12-0E88-FD884D7728BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA2235E-4033-1C12-0E88-FD884D7728BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81714DCE-461A-49EE-A232-3421051E841F}
+	EndGlobalSection
+EndGlobal

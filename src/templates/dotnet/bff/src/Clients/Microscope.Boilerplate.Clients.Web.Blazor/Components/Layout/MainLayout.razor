@@ -1,4 +1,5 @@
-﻿@using Microscope.Boilerplate.Clients.Web.Blazor.Services
+﻿@using Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.Components
+@using Microscope.Boilerplate.Clients.Web.Blazor.Services
 @using Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared
 @using Microscope.Boilerplate.Clients.Web.Blazor.Settings
 @inherits LayoutComponentBase
@@ -16,6 +17,13 @@
         </AuthorizeView>
 
         <MudText Class="cursor-pointer" @onclick="GoToHome">microscope</MudText>
+        <FeatureFlag FlagName="ShowAppVersion">
+            <UseGetAppVersion Context="result">
+                <MudText Class="ml-2" >
+                    @result.AppVersion
+                </MudText>
+            </UseGetAppVersion>
+        </FeatureFlag>
         
         <FeatureFlag FlagName="ShowInteractiveRenderMode">
             @if (!HostingEnvironmentService.IsWebAssembly)

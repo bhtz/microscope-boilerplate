@@ -1,6 +1,1 @@
-namespace Microscope.Boilerplate.Clients.BFF.Properties;
-
-public class ModuleInfo
-{
-    
-}
+[assembly: HotChocolate.Module("BffTypes")]

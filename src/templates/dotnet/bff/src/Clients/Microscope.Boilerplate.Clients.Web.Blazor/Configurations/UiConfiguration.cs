@@ -1,5 +1,4 @@
 using ApexCharts;
-using Microscope.Boilerplate.Clients.SDK.GraphQL.Serializers;
 using Microscope.Boilerplate.Clients.Web.Blazor.Services;
 using MudBlazor;
 using MudBlazor.Services;
@@ -10,7 +9,6 @@ public static class UiConfiguration
 {
     public static IServiceCollection AddUiConfiguration(this IServiceCollection services)
     {
-        services.AddSerializer<Float8Serializer>();
         services.AddScoped<HostingEnvironmentService>();
         services.AddApexCharts(e =>
         {

@@ -1,6 +1,6 @@
 using StrawberryShake.Serialization;
 
-namespace Microscope.Boilerplate.Clients.SDK.GraphQL.Serializers;
+namespace Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Serializers;
 
 public class Float8Serializer : ScalarSerializer<Double>
 {

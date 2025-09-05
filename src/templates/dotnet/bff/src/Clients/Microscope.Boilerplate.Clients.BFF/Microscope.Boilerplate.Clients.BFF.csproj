@@ -9,13 +9,18 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants>TRACE;Aspire;Yarp</DefineConstants>
+    <DefineConstants>TRACE;Aspire;Yarp;Gateway</DefineConstants>
   </PropertyGroup>
   
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="15.0.3" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.0.3" />
     <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.0.3" />
+    <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.0.3" />
+      <!--#if (Gateway) -->
     <PackageReference Include="HotChocolate.Fusion" Version="15.0.3" />
+      <!-- #endif -->
     <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
       <!--#if (Yarp) -->

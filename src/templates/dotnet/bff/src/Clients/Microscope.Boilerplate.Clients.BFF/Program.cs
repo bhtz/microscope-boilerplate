@@ -1,6 +1,10 @@
+using Microscope.Boilerplate.BFF.Configurations;
 using Microscope.Boilerplate.BFF.Configurations.Http;
 using Microscope.Boilerplate.Clients.BFF.Configurations;
 using Microscope.Boilerplate.Clients.BFF.Endpoints;
+#if (Gateway)
+using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Serializers;
+#endif
 using Microscope.Boilerplate.Clients.Web.Blazor;
 using Microscope.Boilerplate.Clients.Web.Blazor.Configurations;
 #if (Aspire)
@@ -26,7 +30,10 @@ builder.Services.AddFeatureManagementConfiguration(builder.Configuration);
 #if (Yarp)
 builder.Services.AddReverseProxyConfiguration(builder.Configuration);
 #endif
+#if (Gateway)
 builder.Services.AddGraphQlGatewayConfiguration(builder.Environment, builder.Configuration);
+#endif
+builder.Services.AddGraphQlConfiguration();
 
 #endregion
 
@@ -45,9 +52,18 @@ builder.Services.AddRazorComponents()
 builder.Services.AddUiConfiguration();
 var baseAddress = builder.Configuration.GetValue<string>("BaseAddress") ?? throw new InvalidOperationException("BaseAddress configuration cannot be null");
 builder.Services.AddScoped<ServerAuthenticationHeaderHandler>();
-builder.Services.AddBFFClient().ConfigureHttpClient(
-        client => client.BaseAddress = new Uri(baseAddress + "graphql"),
+
+#if (Gateway)
+builder.Services.AddSerializer<Float8Serializer>();
+builder.Services.AddGatewayClient().ConfigureHttpClient(
+        client => client.BaseAddress = new Uri(baseAddress + "gateway"),
         clientBuilder => clientBuilder.AddHttpMessageHandler<ServerAuthenticationHeaderHandler>());
+#endif
+
+builder.Services.AddBffClient().ConfigureHttpClient(
+    client => client.BaseAddress = new Uri(baseAddress + "graphql"),
+    clientBuilder => clientBuilder.AddHttpMessageHandler<ServerAuthenticationHeaderHandler>());
+
 builder.Services.AddLocalizationConfiguration(builder.Configuration);
 
 #endregion
@@ -79,7 +95,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 #if (Yarp)
-// Map BFF endpoints
 if (builder.Configuration.GetSection("ReverseProxy").Exists())
     app.MapReverseProxy();
 #endif
@@ -88,7 +103,12 @@ if (builder.Configuration.GetSection("ReverseProxy").Exists())
 app.MapDefaultEndpoints();
 #endif
 
-app.MapGraphQL();
+#if (Gateway)
+app.MapGraphQL("/gateway", "gateway");
+#endif
+
+app.MapGraphQL("/graphql", "bff");
+
 app.MapAuthenticationEndpoints();
 app.MapFeatureManagementEndpoints();
 app.MapCultureEndpoints();

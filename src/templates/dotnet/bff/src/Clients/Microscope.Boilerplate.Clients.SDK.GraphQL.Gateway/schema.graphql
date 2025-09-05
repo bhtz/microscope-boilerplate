@@ -2,6 +2,27 @@ schema {
   query: Query
 }
 
+scalar Single
+
+scalar bigint
+
+scalar timestamp
+
+type Query {
+  continent(code: ID!): Continent
+  continents(filter: ContinentFilterInput = {  }): [Continent!]!
+  countries(filter: CountryFilterInput = {  }): [Country!]!
+  country(code: ID!): Country
+  language(code: ID!): Language
+  languages(filter: LanguageFilterInput = {  }): [Language!]!
+}
+
+type Continent {
+  code: ID!
+  countries: [Country!]!
+  name: String!
+}
+
 type Country {
   awsRegion: String!
   capital: String
@@ -20,15 +41,18 @@ type Country {
   subdivisions: [Subdivision!]!
 }
 
-input ContinentFilterInput {
-  code: StringQueryOperatorInput
+type Language {
+  code: ID!
+  name: String!
+  native: String!
+  rtl: Boolean!
 }
 
-scalar serial8
-
-scalar uuid
-
-scalar timetz
+type State {
+  code: String
+  country: Country!
+  name: String!
+}
 
 type Subdivision {
   code: ID!
@@ -36,10 +60,8 @@ type Subdivision {
   name: String!
 }
 
-type Continent {
-  code: ID!
-  countries: [Country!]!
-  name: String!
+input ContinentFilterInput {
+  code: StringQueryOperatorInput
 }
 
 input CountryFilterInput {
@@ -48,46 +70,6 @@ input CountryFilterInput {
   currency: StringQueryOperatorInput
   name: StringQueryOperatorInput
 }
-
-scalar float4
-
-scalar serial4
-
-type Language {
-  code: ID!
-  name: String!
-  native: String!
-  rtl: Boolean!
-}
-
-scalar varchar
-
-scalar varbit
-
-type Query {
-  continent(code: ID!): Continent
-  continents(filter: ContinentFilterInput = {  }): [Continent!]!
-  countries(filter: CountryFilterInput = {  }): [Country!]!
-  country(code: ID!): Country
-  language(code: ID!): Language
-  languages(filter: LanguageFilterInput = {  }): [Language!]!
-}
-
-scalar date
-
-scalar int2
-
-type State {
-  code: String
-  country: Country!
-  name: String!
-}
-
-scalar decimal
-
-scalar float8
-
-scalar int8
 
 input LanguageFilterInput {
   code: StringQueryOperatorInput
@@ -100,11 +82,3 @@ input StringQueryOperatorInput {
   nin: [String!]
   regex: String
 }
-
-scalar char
-
-scalar timestamptz
-
-scalar bool
-
-scalar serial2

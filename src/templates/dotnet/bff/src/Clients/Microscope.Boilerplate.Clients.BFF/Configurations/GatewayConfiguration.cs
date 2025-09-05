@@ -1,4 +1,5 @@
 using FluentValidation;
+using HotChocolate;
 using HotChocolate.Types;
 using Microscope.Boilerplate.BFF.Configurations.Http;
 using Microsoft.Extensions.Options;
@@ -35,9 +36,10 @@ public static class GatewayConfiguration
         var fgpPath = env.IsDevelopment() ? "gateway.Development.fgp" : "gateway.fgp";
         
         var graphqlFusionGatewayBuilder = services
-            .AddFusionGatewayServer()
+            .AddFusionGatewayServer("gateway")
+            .AddErrorFilter<GraphQlGatewayErrorFilter>()
             .ConfigureFromFile(fgpPath);
-
+        
         foreach (var scalar in gatewayOptions.Scalars)
         {
             graphqlFusionGatewayBuilder
@@ -56,6 +58,21 @@ public static class GatewayConfiguration
         }
         
         return services;
+    }
+    
+    public class GraphQlGatewayErrorFilter : IErrorFilter
+    {
+        public IError OnError(IError error)
+        {
+            var code = string.IsNullOrWhiteSpace(error.Code) ? "SERVER_ERROR" : error.Code;
+            var message = string.IsNullOrWhiteSpace(error.Exception?.Message)
+                ? (string.IsNullOrWhiteSpace(error.Message) ? code : error.Message)
+                : error.Exception!.Message;
+
+            return error
+                .WithCode(code)
+                .WithMessage(message);
+        }
     }
 
     public class GraphQLGatewayOptions

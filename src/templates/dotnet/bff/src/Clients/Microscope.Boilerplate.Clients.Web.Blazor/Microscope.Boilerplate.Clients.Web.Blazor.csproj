@@ -9,6 +9,10 @@
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>TRACE;Gateway</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Blazor-ApexCharts" Version="5.1.0" />
     <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
@@ -21,7 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microscope.Boilerplate.Clients.SDK.GraphQL\Microscope.Boilerplate.Clients.SDK.GraphQL.csproj" />
+    <ProjectReference Include="..\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.csproj" />
+      <!--#if (Gateway) -->
+    <ProjectReference Include="..\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj" />
+      <!-- #endif -->
   </ItemGroup>
 
   <ItemGroup>

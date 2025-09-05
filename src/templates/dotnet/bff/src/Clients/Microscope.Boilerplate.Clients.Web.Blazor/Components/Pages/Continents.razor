@@ -1,12 +1,11 @@
 ﻿@page "/continents"
-@using Microscope.Boilerplate.Clients.SDK.GraphQL.Components
+@using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway
+@using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Components
 @using Microsoft.AspNetCore.Authorization
-@using Microscope.Boilerplate.Clients.SDK.GraphQL
 @using Microsoft.Extensions.Localization
-@inject BFFClient BffClient;
+@inject GatewayClient GatewayClient;
 @attribute [Authorize]
 @inject IStringLocalizer<Continents> Loc
-
 
 <PageTitle>Continents</PageTitle>
 

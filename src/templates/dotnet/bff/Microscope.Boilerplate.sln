@@ -6,12 +6,14 @@ Project("{F698E3FA-6164-43BB-BC88-E1081370FC31}") = "Microscope.Boilerplate.Clie
 EndProject
 Project("{F698E3FA-6164-43BB-BC88-E1081370FC31}") = "Microscope.Boilerplate.Clients.Web.Blazor", "src\Clients\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj", "{444DF582-6E98-407F-8DE8-7419B3794D0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.SDK.GraphQL", "src\Clients\Microscope.Boilerplate.Clients.SDK.GraphQL\Microscope.Boilerplate.Clients.SDK.GraphQL.csproj", "{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway", "src\Clients\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj", "{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}"
 EndProject
 #if (Aspire == "true")
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.IAC.Aspire", "src\IAC\Aspire\Microscope.Boilerplate.IAC.Aspire\Microscope.Boilerplate.IAC.Aspire.csproj", "{C17795F5-A744-4D67-8FF0-EAC181980983}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.ServiceDefaults", "src\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj", "{A411D2A4-47DC-4907-89AC-A1BB9ED82434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Clients.SDK.GraphQL.Bff", "src\Clients\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.csproj", "{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}"
 EndProject
 #endif
 Global
@@ -48,6 +50,8 @@ Global
 		{444DF582-6E98-407F-8DE8-7419B3794D0F}.Release|x64.Build.0 = Release|Any CPU
 		{444DF582-6E98-407F-8DE8-7419B3794D0F}.Release|x86.ActiveCfg = Release|Any CPU
 		{444DF582-6E98-407F-8DE8-7419B3794D0F}.Release|x86.Build.0 = Release|Any CPU
+		
+		#if (Gateway == "true")
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -60,6 +64,7 @@ Global
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Release|x64.Build.0 = Release|Any CPU
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Release|x86.ActiveCfg = Release|Any CPU
 		{EFB2C8F3-F835-44C3-A448-EEC566CD2C50}.Release|x86.Build.0 = Release|Any CPU
+		#endif
 		
 		#if (Aspire == "true")
 		{C17795F5-A744-4D67-8FF0-EAC181980983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -87,6 +92,18 @@ Global
 		{A411D2A4-47DC-4907-89AC-A1BB9ED82434}.Release|x86.ActiveCfg = Release|Any CPU
 		{A411D2A4-47DC-4907-89AC-A1BB9ED82434}.Release|x86.Build.0 = Release|Any CPU
 		#endif
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|x64.Build.0 = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Debug|x86.Build.0 = Debug|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|x64.ActiveCfg = Release|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|x64.Build.0 = Release|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA1D2E58-A832-479A-AB27-F3EB190E5B9A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

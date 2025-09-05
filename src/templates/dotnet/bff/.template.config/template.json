@@ -41,6 +41,13 @@
       "description": "Add Yarp support",
       "datatype": "bool",
       "defaultValue": "false"
+    },
+
+    "Gateway": {
+      "type": "parameter",
+      "description": "Add graphQL gateway support",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   
@@ -74,15 +81,22 @@
           ]
         },
         
-        //
-        //    {
-        //      "condition": "(!Gateway)",
-        //      "exclude": [""]
-        //    },
+        {
+          "condition": "(!Gateway)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway/**",
+            "**/GatewayConfiguration.cs",
+            "**/GatewayAuthenticationHeaderHandler.cs",
+            "**/Continents.razor",
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/**"
+          ]
+        },
 
         {
           "condition": "(!Docker)",
-          "exclude": ["src/IAC/Docker/**"]
+          "exclude": [
+            "src/IAC/Docker/docker-compose.yml",
+          ]
         },
 
         {
@@ -90,6 +104,13 @@
           "exclude": [
             "src/IAC/Aspire/**",
             "src/CrossCutting/**"
+          ]
+        },
+
+        {
+          "condition": "(!Docker && !Aspire)",
+          "exclude": [
+            "src/IAC/Docker/**"
           ]
         }
       ]

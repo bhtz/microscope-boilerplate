@@ -1,16 +1,16 @@
 using HotChocolate;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.BFF.Configurations;
 
 public static class GraphQlConfiguration
 {
     public static IServiceCollection AddGraphQlConfiguration(this IServiceCollection services)
     {
-        services.AddErrorFilter<GraphQlErrorFilter>();
-        
         services
-            .AddGraphQLServer()
-            .AddAuthorization();
+            .AddGraphQLServer("bff")
+            .AddErrorFilter<GraphQlErrorFilter>()
+            .AddAuthorization()
+            .AddBffTypes();
         
         return services;
     }

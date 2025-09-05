@@ -1,5 +1,7 @@
 using System.Globalization;
-using ApexCharts;
+#if (Gateway)
+using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Serializers;
+#endif
 using Microscope.Boilerplate.Clients.Web.Blazor.Configurations;
 using Microscope.Boilerplate.Clients.Web.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -11,10 +13,17 @@ builder.Services.AddUiConfiguration();
 
 var baseAddress = builder.HostEnvironment.BaseAddress;
 builder.Services.AddScoped<ClientAuthenticationHeaderHandler>();
-builder.Services.AddBFFClient().ConfigureHttpClient(
+
+#if (Gateway)
+builder.Services.AddSerializer<Float8Serializer>();
+builder.Services.AddGatewayClient().ConfigureHttpClient(
+    client => client.BaseAddress = new Uri(baseAddress + "gateway"),
+    clientBuilder => clientBuilder.AddHttpMessageHandler<ClientAuthenticationHeaderHandler>());
+#endif
+
+builder.Services.AddBffClient().ConfigureHttpClient(
     client => client.BaseAddress = new Uri(baseAddress + "graphql"),
     clientBuilder => clientBuilder.AddHttpMessageHandler<ClientAuthenticationHeaderHandler>());
-
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();

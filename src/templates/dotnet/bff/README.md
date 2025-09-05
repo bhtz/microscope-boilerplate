@@ -33,7 +33,5 @@ dotnet run
 - [x] Yarp
 - [x] BaaS
     - [x] Dab
-- [ ] GraphQL gateway
-    - [ ] Fusion over trevorblade public api
-- [ ] GraphQL server
-    - [ ] Continents graphQL query
+- [ ] GraphQL Gateway
+    - [x] Fusion over trevorblade public api
