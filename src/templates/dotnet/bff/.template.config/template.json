@@ -88,7 +88,9 @@
             "**/GatewayConfiguration.cs",
             "**/GatewayAuthenticationHeaderHandler.cs",
             "**/Continents.razor",
-            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/**"
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/**",
+            "**/gateway.fgp",
+            "**/gateway.Development.fgp"
           ]
         },
 

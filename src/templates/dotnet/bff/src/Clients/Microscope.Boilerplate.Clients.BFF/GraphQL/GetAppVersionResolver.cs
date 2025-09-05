@@ -1,5 +1,4 @@
 using HotChocolate.Authorization;
-using HotChocolate.Types;
 
 namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
 

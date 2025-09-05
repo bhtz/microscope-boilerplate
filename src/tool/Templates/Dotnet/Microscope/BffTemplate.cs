@@ -9,5 +9,9 @@ public sealed class BffTemplate : Template, ITemplate
     public override List<TemplateOption> Options { get; set; } =
     [
         new("Backend as a service", "--BaaS"),
+        new("Reverse proxy", "--Yarp"),
+        new("Aspire IAC", "--Aspire"),
+        new("Docker compose IAC", "--Docker"),
+        new("GraphQL Fusion Gateway", "--Gateway"),
     ];
 }
