@@ -31,3 +31,8 @@ dotnet new mcsp_cli -n Acme.CLI
 ```console
 dotnet new mcsp_doc -n Acme.Doc
 ```
+
+## Desktop template
+```console
+dotnet new mcsp_desktop -n Acme.Desktop
+```
