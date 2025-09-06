@@ -5,7 +5,6 @@ namespace Microscope.Boilerplate.Tool.CLI.Templates;
 public interface ITemplate
 {
     public string Category { get; set; }
-    public string Language { get; set; }
     public string Label { get; set; }
     public string CodeName { get; set; }
     public bool OptionRequired { get; set; }

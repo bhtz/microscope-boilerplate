@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:viewModels="clr-namespace:Microscope.Boilerplate.Desktop.ViewModels"
+             x:DataType="viewModels:CounterPageViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Microscope.Boilerplate.Desktop.Views.CounterPageView">
+    
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock FontSize="24" Margin="10" Text="Current count :"></TextBlock>
+            <TextBlock FontSize="24" Margin="10" Text="{Binding Counter}"></TextBlock>
+        </StackPanel>
+        <Button Margin="10" Command="{Binding Increment}">Click me</Button>
+    </StackPanel>
+    
+</UserControl>

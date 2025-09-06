@@ -15,10 +15,8 @@ hero:
       link: /roadmap
 
 features:
-  - title: .NET templates
-    details: CLI, BFF, Distributed, Documentation, Desktop
-  - title: Rust templates
-    details: CLI, API
-  - title: Nodejs templates
-    details: CLI
+  - title: Templates
+    details: Custom(BFF/Frontend, Modular monolith, Console, Desktop, Dab)   .NET, Aspire, Hotchocolate, ...
+  - title: CLI
+    details: Console GUI for templates
 ---

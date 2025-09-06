@@ -1,0 +1,98 @@
+﻿@using Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.Components
+@using Microscope.Boilerplate.Clients.Web.Blazor.Services
+@using Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared
+@using Microscope.Boilerplate.Clients.Web.Blazor.Settings
+@inherits LayoutComponentBase
+@inject HostingEnvironmentService HostingEnvironmentService
+
+<MudThemeProvider  @bind-IsDarkMode="@_isDarkMode" Theme="_currentTheme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true">
+        <AuthorizeView>
+            <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="((e) => ToggleDrawer())"/>
+        </AuthorizeView>
+
+        <MudText Class="cursor-pointer" @onclick="GoToHome">microscope</MudText>
+        <FeatureFlag FlagName="ShowAppVersion">
+            <UseGetAppVersion Context="result">
+                <MudText Class="ml-2" >
+                    @result.AppVersion
+                </MudText>
+            </UseGetAppVersion>
+        </FeatureFlag>
+        
+        <FeatureFlag FlagName="ShowInteractiveRenderMode">
+            @if (!HostingEnvironmentService.IsWebAssembly)
+            {
+                <MudProgressCircular Class="ml-2" Size="Size.Small" Color="Color.Inherit" Indeterminate="true"></MudProgressCircular>
+            }
+        </FeatureFlag>
+        <MudSpacer/>
+        <FeatureFlag FlagName="DarkModeAvailable">
+            <ThemeSelector OnThemeChanged="OnThemeChanged"></ThemeSelector>
+            @{
+                var icon = _isDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode;
+            }
+            <MudIconButton Icon="@icon" Color="Color.Inherit" OnClick="ToggleTheme"/>
+        </FeatureFlag>
+        <LanguageSelector/>
+        <LoginDisplay/>
+    </MudAppBar>
+    
+    <AuthorizeView>
+        <MudDrawer @bind-open="DrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" Variant="DrawerVariant.Mini" MiniWidth="60px">
+            <NavMenu/>
+        </MudDrawer>
+    </AuthorizeView>
+    
+    <MudMainContent Class="">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _isDarkMode = false;
+    MudTheme _currentTheme = Theme.MicroscopeTheme;
+    private bool DrawerOpen { get; set; } = false;
+
+    public void ToggleDrawer()
+    {
+        DrawerOpen = !DrawerOpen;
+    }
+    
+    private void OnThemeChanged(string theme)
+    {
+        switch (theme)
+        {
+            case "microscope":
+                _currentTheme = Theme.MicroscopeTheme;
+                break;
+                
+            case "skyline":
+                _currentTheme = Theme.SkylineTheme;
+                break;
+                
+            case "mud":
+                _currentTheme = Theme.MudTheme;
+                break;
+                
+            default:
+                _currentTheme = Theme.MicroscopeTheme;
+                break;
+        }
+    }
+    
+    private void ToggleTheme()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+    
+    private void GoToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

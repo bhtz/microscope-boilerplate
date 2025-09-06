@@ -1,0 +1,19 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<NavMenu> Loc
+
+<MudNavMenu Bordered="true">
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">@Loc["Home"]</MudNavLink>
+    <MudNavLink Href="/todolist" Icon="@Icons.Material.Outlined.List">@Loc["TodoList"]</MudNavLink>
+    @* <MudNavLink Href="http://localhost:8083/admin" Target="_blank" Icon="@Icons.Material.Outlined.People">IAM</MudNavLink> *@
+    @* <MudNavLink Href="http://localhost:15672" Target="_blank" Icon="@Icons.Material.Filled.Webhook">ESB</MudNavLink> *@
+    @* <MudNavLink Href="http://localhost:16686/" Target="_blank" Icon="@Icons.Material.Filled.CrisisAlert">Telemetry</MudNavLink> *@
+    @* $1$ <MudNavLink Href="http://localhost:9000" Target="_blank" Icon="@Icons.Material.Outlined.Book">Documentation</MudNavLink> #1# *@
+    <MudNavLink Href="/infos" Icon="@Icons.Material.Outlined.Info">Informations</MudNavLink>
+</MudNavMenu>
+
+@code
+{
+    [Parameter] public bool IsDrawerOpen { get; set; }
+}

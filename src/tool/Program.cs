@@ -17,17 +17,18 @@ app.AddCommand(() =>
             .Color(Color.Aqua)
             .Centered());
 
-    var language = AnsiConsole.Prompt(
+    var category = AnsiConsole.Prompt(
         new SelectionPrompt<string>()
             .Title("Select template language")
             .AddChoices(new[]
             {
-                "Dotnet",
-                "Rust",
-                "JS"
+                "Microscope",
+                ".NET",
+                "Aspire",
+                "Community"
             }));
 
-    var selectedTemplate = PromptTemplates(language);
+    var selectedTemplate = PromptTemplates(category);
     var templateArguments = selectedTemplate.Prompt();
     var name = AnsiConsole.Ask<string>("What is the name of the project ?");
     var output = AnsiConsole.Ask<string>("Where do you want output ?");
@@ -35,13 +36,13 @@ app.AddCommand(() =>
     GenerateDotnetTemplate(selectedTemplate.CodeName, name, output, templateArguments);
 });
 
-ITemplate PromptTemplates(string language)
+ITemplate PromptTemplates(string category)
 {
     var templates = TemplateService.GetTemplates()
-        .Where(x => x.Language == language);
+        .Where(x => x.Category == category);
 
     var prompt = new SelectionPrompt<ITemplate>()
-        .Title($"Select {language} template you like to use :");
+        .Title($"Select {category} template you like to use :");
 
     prompt.AddChoices(templates);
     prompt.Converter = (tpl) => tpl.Label;

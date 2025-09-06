@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ContainerRepository>boilerplate/blazor</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
+        <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+        <PackageReference Include="MudBlazor" Version="6.11.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Shared\Components\RedirectToLogin.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\SDK\Microscope.Boilerplate.Clients.SDK.GraphQL\Microscope.Boilerplate.Clients.SDK.GraphQL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Shared\NavMenu.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>NavMenu.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Shared\NavMenu.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>NavMenu.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TodoListDialog.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TodoListDialog.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListDetailsPage.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDetailsPage.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListDetailsPage.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDetailsPage.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListPage.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListPage.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\TodoListPage.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListPage.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Shared\Components\LoginDisplay.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LoginDisplay.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Shared\Components\LoginDisplay.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>LoginDisplay.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TagDialog.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\TodoLists\Components\TagDialog.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>TodoListDialog.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Shared\NavMenu.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>NavMenu.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Shared\NavMenu.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>NavMenu.fr.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

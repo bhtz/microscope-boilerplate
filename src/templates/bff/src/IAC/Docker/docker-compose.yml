@@ -1,0 +1,70 @@
+version: "3.8"
+name: microscope-management
+services:
+  postgres:
+    image: postgres:15
+    container_name: microscope-management-database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./Postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - microscope_boilerplate_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: microscope-management-identity
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/mcsp_identity
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: root
+      KC_HTTP_ENABLED: "true" # Use HTTP, disable HTTPS for local dev
+      KC_HOSTNAME_STRICT: "false"
+      KC_LOG_LEVEL: INFO
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
+    ports:
+      - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./Keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./Keycloak/Themes/microscope/:/opt/keycloak/themes/microscope
+    depends_on:
+      - postgres
+
+  bff:
+    image: microscope-management/bff:latest
+    container_name: microscope-management-bff
+    ports:
+      - "5215:8080"
+    depends_on:
+      - "keycloak"
+#if (BaaS == true)
+      - "dab"
+#endif
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+      OTEL_SERVICE_NAME: BFF
+  
+#if (BaaS == true)
+  dab:
+    image: "mcr.microsoft.com/azure-databases/data-api-builder:latest"
+    container_name: microscope-management-dab
+    ports:
+      - "4700:5000"
+    depends_on:
+      - "postgres"
+      - "keycloak"
+    volumes:
+      - "./Dab/dab-config.json:/App/dab-config.json"
+#endif
+              
+volumes:
+  microscope_boilerplate_data:
+  

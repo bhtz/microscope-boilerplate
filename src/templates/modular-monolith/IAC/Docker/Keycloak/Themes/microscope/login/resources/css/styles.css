@@ -1,0 +1,41 @@
+.login-pf body {
+    /*background-image: url('../img/branding.jpg');*/
+    background-image: url('../img/background-image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-pf-page .login-pf-page-header {
+    font-size: 60px;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#kc-login {
+  background-color: #1b1b1f;  
+}
+
+#kc-login:hover {
+    background-color: #2a2a30;  
+}
+
+.pf-m-primary {
+    background-color: #1b1b1f !important;
+}
+
+.pf-m-primary:hover {
+    background-color: #2a2a30 !important;
+}
+
+.card-pf {
+    text-align: center;
+    margin: auto;
+    width: 40%;
+}
+
+
+

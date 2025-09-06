@@ -4,8 +4,7 @@ namespace Microscope.Boilerplate.Tool.CLI.Templates.Dotnet;
 
 public sealed class GrpcTemplate : Template, ITemplate
 {
-    public string Category { get; set; } = "Dotnet";
-    public string Language { get; set; } = "Dotnet";
+    public string Category { get; set; } = ".NET";
     public string Label { get; set; } = ".NET - Grpc";
     public string CodeName { get; set; } = "grpc";
 

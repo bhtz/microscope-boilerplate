@@ -1,0 +1,79 @@
+version: "3.8"
+name: microscope-bff-ssr-blazor
+services:
+  postgres:
+    image: postgres:12
+    container_name: microscope-database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - microscope_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: microscope-identity
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
+      KEYCLOAK_DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_PASSWORD: root
+    ports:
+      - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+    depends_on:
+      - postgres
+
+  bff:
+    image: boilerplate/bff:latest
+    container_name: boilerplate-bff
+    ports:
+      - "5215:8080"
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+      OTEL_SERVICE_NAME: BFF
+
+#if (BaaS == true)
+  baas:
+    image: hasura/graphql-engine:v2.38.0
+    container_name: boilerplate-baas
+    ports:
+      - "8080:8000"
+    depends_on:
+      - "postgres"
+      - "keycloak"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:root@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_ADMIN_SECRET: microscope
+      HASURA_GRAPHQL_SERVER_PORT: 8000
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
+      HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: "true"
+      HASURA_GRAPHQL_JWT_SECRET: '{
+          "jwk_url": "http://host.docker.internal:8083/realms/microscope/protocol/openid-connect/certs",
+          "audience": ["poc-service"],
+          "issuer": "http://localhost:8083/realms/microscope",
+          "claims_map": {
+              "x-hasura-allowed-roles": { "path": "$$.roles" },
+              "x-hasura-default-role": { "path": "$$.roles[0]" },
+              "x-hasura-user-id": { "path": "$$.sub" }
+          }
+      }'
+#endif
+
+volumes:
+  microscope_data:
+  

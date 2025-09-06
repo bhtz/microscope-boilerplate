@@ -2,6 +2,10 @@
 
 > Console app with CLI & UI
 
+![]()
+
+### Features
+
 * ✅ Cocona CLI
 * ✅ Spectre.Console UI
 * ✅ Commands folder & sample

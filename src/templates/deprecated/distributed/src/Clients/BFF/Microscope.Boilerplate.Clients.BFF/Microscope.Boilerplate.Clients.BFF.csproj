@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ContainerRepository>boilerplate/bff</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.9.0" />
+      <PackageReference Include="HotChocolate.AspNetCore" Version="13.8.1" />
+      <PackageReference Include="HotChocolate.Diagnostics" Version="13.8.1" />
+      <PackageReference Include="HotChocolate.Stitching" Version="13.8.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+      <PackageReference Include="OpenTelemetry" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+      <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
+      <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\Web\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="stitching.graphql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

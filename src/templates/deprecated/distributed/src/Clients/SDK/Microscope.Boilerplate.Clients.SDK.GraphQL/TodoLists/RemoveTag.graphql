@@ -1,0 +1,7 @@
+mutation RemoveTag($todoListId: UUID!, $label: String!, $color: String!) {
+    removeTag(command: {
+        label: $label,
+        color: $color,
+        todoListId: $todoListId
+    })
+}

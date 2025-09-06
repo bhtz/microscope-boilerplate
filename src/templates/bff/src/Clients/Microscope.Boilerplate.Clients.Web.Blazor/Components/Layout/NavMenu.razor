@@ -1,0 +1,21 @@
+﻿@using Microsoft.Extensions.Localization
+@using Microscope.Boilerplate.Clients.Web.Blazor.Services
+@inject IFeatureManagementService FeatureManagementService;
+@inject IStringLocalizer<NavMenu> Loc
+@using Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared
+
+<MudNavMenu>
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">@Loc["Home"]</MudNavLink>
+    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">@Loc["Counter"]</MudNavLink>
+    
+@*#if (Gateway)
+    <MudNavLink Href="continents" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Web">@Loc["Continents"]</MudNavLink>
+#endif*@
+    <AuthorizeView>
+        <Authorized>
+            <FeatureFlag FlagName="ShowUserPage">
+                <MudNavLink Href="user" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.VerifiedUser">@Loc["User"]</MudNavLink>
+            </FeatureFlag>
+        </Authorized>
+    </AuthorizeView>
+</MudNavMenu>

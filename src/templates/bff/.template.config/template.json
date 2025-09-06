@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  
+  "classifications": [
+    "BFF",
+    "SSR",
+    "Blazor",
+    "Boilerplate"
+  ],
+  
+  "identity": "Microscope.Boilerplate.BFF",
+  "name": "Microscope boilerplate BFF",
+  "shortName": "mcsp_bff",
+  "sourceName": "Microscope.Boilerplate",
+
+  "symbols": {
+    "BaaS": {
+      "type": "parameter",
+      "description": "Whether to include Backend as a Service container or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "Docker": {
+      "type": "parameter",
+      "description": "Add Docker support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "Aspire": {
+      "type": "parameter",
+      "description": "Add Aspire support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    
+    "Yarp": {
+      "type": "parameter",
+      "description": "Add Yarp support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "Gateway": {
+      "type": "parameter",
+      "description": "Add graphQL gateway support",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
+        },
+
+        {
+          "condition": "(!Yarp)",
+          "exclude": [
+            "**/ReverseProxyConfiguration.cs"
+          ]
+        },
+
+        {
+          "condition": "(!BaaS)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/Dab/**",
+            "src/IAC/Docker/Dab/**"
+          ]
+        },
+        
+        {
+          "condition": "(!Gateway)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway/**",
+            "**/GatewayConfiguration.cs",
+            "**/GatewayAuthenticationHeaderHandler.cs",
+            "**/Continents.razor",
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/**",
+            "**/gateway.fgp",
+            "**/gateway.Development.fgp"
+          ]
+        },
+
+        {
+          "condition": "(!Docker)",
+          "exclude": [
+            "src/IAC/Docker/docker-compose.yml"
+          ]
+        },
+
+        {
+          "condition": "(!Aspire)",
+          "exclude": [
+            "src/IAC/Aspire/**",
+            "src/CrossCutting/**"
+          ]
+        },
+
+        {
+          "condition": "(!Docker && !Aspire)",
+          "exclude": [
+            "src/IAC/Docker/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+version: "3.8"
+name: Microscope.Boilerplate
+services:
+  postgres:
+    image: postgres:15
+    container_name: microscope_boilerplate_database
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - ./Postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - microscope_boilerplate_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+  
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0
+    container_name: microscope_boilerplate_identity
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/mcsp_identity
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: root
+      KC_HTTP_ENABLED: "true" # Use HTTP, disable HTTPS for local dev
+      KC_HOSTNAME_STRICT: "false"
+      KC_LOG_LEVEL: INFO
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: microscope
+    ports:
+      - 8083:8080
+    command:
+      - start-dev
+      - --import-realm
+    volumes:
+      - ./Keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./Keycloak/Themes/microscope/:/opt/keycloak/themes/microscope
+    depends_on:
+      - postgres
+
+#  api:
+#    image: microscope-boilerplate/api:latest
+#    container_name: microscope_boilerplate_api
+#    ports:
+#      - "5095:8080"
+#    depends_on:
+#      - "postgres"
+#      - "keycloak"
+#    environment:
+#      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+#      OTEL_SERVICE_NAME: API
+#      AI__Key: "openai_key_here"
+        
+#  dab:
+#    image: "mcr.microsoft.com/azure-databases/data-api-builder:latest"
+#    container_name: microscope-baas
+#    ports:
+#      - "4700:5000"
+#    depends_on:
+#      - "postgres"
+#      - "keycloak"
+#    volumes:
+#      - "./Dab/dab-config.json:/App/dab-config.json"
+      
+#  azurite:
+#    image: mcr.microsoft.com/azure-storage/azurite:3.33.0
+#    container_name: on-the-air-azurite
+#    ports:
+#      - "10000:10000"  # Blob service
+#      - "10001:10001"  # Queue service
+#      - "10002:10002"  # Table service
+#    volumes:
+#      - azurite_data:/data
+#    command: "azurite --blobHost 0.0.0.0 --queueHost 0.0.0.0 --tableHost 0.0.0.0"
+              
+volumes:
+  microscope_boilerplate_data:
+#  azurite_data:
+  

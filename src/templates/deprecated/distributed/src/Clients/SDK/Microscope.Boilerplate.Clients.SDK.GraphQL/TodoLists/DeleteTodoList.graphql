@@ -1,0 +1,5 @@
+mutation DeleteTodoList($todoListId: UUID!) {
+    deleteTodoList(command: {
+        todoListId: $todoListId
+    })
+}

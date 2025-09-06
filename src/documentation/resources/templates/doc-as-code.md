@@ -2,6 +2,10 @@
 
 > Documentation as code web application
 
+![]()
+
+### Features
+
 * ✅ ASP NET static files
 * 🚫 OIDC / Cookie authentication
 * ✅ vitepress SSG

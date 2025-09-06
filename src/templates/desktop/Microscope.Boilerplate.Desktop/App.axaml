@@ -1,0 +1,32 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Microscope.Boilerplate.Desktop.App"
+             xmlns:local="using:Microscope.Boilerplate.Desktop"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+    
+    <!-- SIMPLE UI THEME -->
+     <!-- <Application.Styles> -->
+     <!--     <SimpleTheme /> -->
+     <!--     <materialIcons:MaterialIconStyles /> -->
+     <!-- </Application.Styles> -->
+    
+    <!-- FLUENT UI THEME -->
+    <!-- <Application.Styles> -->
+    <!--     <FluentTheme /> -->
+    <!--     <materialIcons:MaterialIconStyles /> -->
+    <!-- </Application.Styles> -->
+             
+    <!-- ENABLE MATERIAL UI THEME -->
+    <Application.Styles>
+        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Teal" SecondaryColor="Red" />
+        <materialIcons:MaterialIconStyles />
+    </Application.Styles>
+
+</Application>

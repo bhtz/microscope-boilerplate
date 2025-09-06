@@ -1,0 +1,16 @@
+<MudMenu Icon="@Icons.Material.Filled.ColorLens" Color="Color.Inherit" AnchorOrigin="Origin.BottomCenter" Dense="true">
+    <MudMenuItem OnClick="@(() => ChangeTheme("microscope"))">Microscope</MudMenuItem>
+    <MudMenuItem OnClick="@(() => ChangeTheme("skyline"))">Skyline</MudMenuItem>
+    <MudMenuItem OnClick="@(() => ChangeTheme("mud"))">Mud</MudMenuItem>
+</MudMenu>
+
+@code
+{
+    [Parameter]
+    public EventCallback<string> OnThemeChanged { get; set; }
+
+    private async void ChangeTheme(string theme)
+    {
+        await OnThemeChanged.InvokeAsync(theme);
+    } 
+}

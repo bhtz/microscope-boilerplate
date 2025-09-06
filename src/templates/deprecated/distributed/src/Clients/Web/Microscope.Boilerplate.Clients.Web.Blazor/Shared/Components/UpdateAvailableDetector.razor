@@ -1,0 +1,39 @@
+@inject IJSRuntime _jsRuntime
+
+@if (_newVersionAvailable)
+{
+    <MudTooltip Text="A new version is available. Click to download !">
+        <MudIconButton Icon="@Icons.Material.Filled.BrowserUpdated" Color="Color.Secondary" OnClick="Reload" />
+    </MudTooltip>
+}
+
+@code {
+
+    private bool _newVersionAvailable = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await RegisterForUpdateAvailableNotification();
+    }
+
+    private async Task RegisterForUpdateAvailableNotification()
+    {
+        await _jsRuntime.InvokeAsync<object>(
+            identifier: "registerForUpdateAvailableNotification",
+            DotNetObjectReference.Create(this),
+            nameof(OnUpdateAvailable));
+    }
+
+    [JSInvokable(nameof(OnUpdateAvailable))]
+    public Task OnUpdateAvailable()
+    {
+        _newVersionAvailable = true;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private async void Reload()
+    {
+        await _jsRuntime.InvokeVoidAsync("interop.reload");
+    }
+}

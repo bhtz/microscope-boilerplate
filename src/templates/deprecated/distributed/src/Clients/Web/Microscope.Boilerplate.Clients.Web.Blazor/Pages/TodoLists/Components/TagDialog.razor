@@ -1,0 +1,73 @@
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<TagDialog> Loc
+
+<EditForm Model="@ViewModel" OnValidSubmit="OnValidSubmit">
+    <MudDialog>
+        <TitleContent>@Loc["Title"]</TitleContent>
+        <DialogContent>
+            <DataAnnotationsValidator />
+
+            <MudTextField Variant="Variant.Filled" T="string" Label="@Loc["Label"]" @bind-Value="ViewModel.Label" For="@(() => ViewModel.Label)" />
+            
+            <MudSelect @bind-value="ViewModel.Color" T="String" Label="@Loc["Color"]" Variant="Variant.Filled">
+                @foreach (var item in Enum.GetValues(typeof(Color)).Cast<Color>().Select(v => v.ToString()).ToList())
+                {
+                    <MudSelectItem Value="@item">
+                        @{
+                            Color.TryParse(item, out Color color);
+                        }
+                        <div class="d-flex">
+                            <MudAvatar Size="Size.Small" Color="@color"></MudAvatar>
+                            <MudText Class="ml-2">@item</MudText>
+                        </div>
+                    </MudSelectItem>
+                }
+            </MudSelect>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@Loc["Button_Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Color="Color.Success" Disabled="@IsDisabled">@Loc["Button_Save"]</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>
+
+@code {
+    [CascadingParameter] MudDialogInstance? MudDialog { get; set; }
+    [Parameter] public TagViewModel ViewModel { get; set; } = new TagViewModel();
+    [Parameter] public Guid TodoListId { get; set; }
+
+    void Cancel() => MudDialog?.Close(DialogResult.Cancel());
+    private bool Loading { get; set; } = false;
+
+    private bool IsDisabled => Loading;
+
+    public async Task OnValidSubmit()
+    {
+        Loading = true;
+
+        var res = await _todoAppClient.AddTag.ExecuteAsync(TodoListId, ViewModel.Label, ViewModel.Color);
+
+        if (res.IsSuccessResult())
+        {
+            var isOK = res.Data is {AddTag: true };
+            _snackBar.Add("Saved", Severity.Success);
+            MudDialog.Close(DialogResult.Ok(isOK));
+        }
+        else
+        {
+            _snackBar.Add(res.Errors.FirstOrDefault()?.Message, Severity.Error);
+        }
+
+        Loading = false;
+    }
+
+    public class TagViewModel
+    {
+        [Required]
+        public string? Label { get; set; } = default;
+        
+        [Required]
+        public string? Color { get; set; } = default;
+    }
+}

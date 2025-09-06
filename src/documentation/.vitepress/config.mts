@@ -38,11 +38,13 @@ export default withMermaid(
           {
             text: 'Templates',
             items: [
-              { text: 'Distributed', link: '/templates/distributed' },
-              { text: 'BFF Blazor', link: '/templates/bff-ssr-blazor' },
+              { text: 'Installation', link: '/templates/installation' },
+              { text: 'BFF/Frontend', link: '/templates/bff' },
+              { text: 'Service', link: '/templates/service' },
               { text: 'Desktop', link: '/templates/desktop' },
               { text: 'CLI', link: '/templates/cli' },
               { text: 'Doc as code', link: '/templates/doc-as-code' },
+              // { text: 'Data API builder', link: '/templates/dab' },
             ]
           },
         ],

@@ -1,0 +1,6 @@
+mutation AddTodoItem($label: String!, $todoListId: UUID!) {
+    addTodoItem(command: {
+        label : $label,
+        todoListId: $todoListId
+    })
+}

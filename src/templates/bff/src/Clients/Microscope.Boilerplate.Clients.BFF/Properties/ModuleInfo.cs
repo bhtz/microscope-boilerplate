@@ -1,0 +1,1 @@
+[assembly: HotChocolate.Module("BffTypes")]

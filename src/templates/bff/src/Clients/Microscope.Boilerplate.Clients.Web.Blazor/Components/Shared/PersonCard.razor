@@ -1,0 +1,23 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+
+<AuthorizeView>
+    <MudCard Elevation="0" Square="true" Class="@Class" Style="@Style">
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                <UserAvatar Size="Size.Medium" Color="Color.Primary" Email="@context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value"></UserAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body2">@Name</MudText>
+                <MudText Typo="Typo.caption">@Role</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+    </MudCard>
+</AuthorizeView>
+
+@code {
+    [Parameter] public string? Class { get; set; }
+    [Parameter] public string? Style { get; set; }
+    [Parameter] public string? Name { get; set; }
+    [Parameter] public string? Role { get; set; }
+}

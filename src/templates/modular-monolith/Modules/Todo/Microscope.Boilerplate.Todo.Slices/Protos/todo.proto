@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+option csharp_namespace = "Microscope.Boilerplate.Todo.Slices.Grpc";
+
+package todoservice;
+
+// Service principal Todo
+service TodoService {
+  // Opérations sur les TodoLists
+  rpc GetTodoLists (GetTodoListsRequest) returns (GetTodoListsResponse);
+  rpc GetTodoListById (GetTodoListByIdRequest) returns (GetTodoListByIdResponse);
+  rpc CreateTodoList (CreateTodoListRequest) returns (CreateTodoListResponse);
+  rpc UpdateTodoList (UpdateTodoListRequest) returns (UpdateTodoListResponse);
+  rpc DeleteTodoList (DeleteTodoListRequest) returns (DeleteTodoListResponse);
+
+  // Opérations sur les TodoItems
+  rpc CreateTodoItem (CreateTodoItemRequest) returns (CreateTodoItemResponse);
+  rpc ToggleTodoItem (ToggleTodoItemRequest) returns (ToggleTodoItemResponse);
+  rpc DeleteTodoItem (DeleteTodoItemRequest) returns (DeleteTodoItemResponse);
+
+  // Opération sur les Tags
+  rpc AddTag (AddTagRequest) returns (AddTagResponse);
+  rpc RemoveTag (RemoveTagRequest) returns (RemoveTagResponse);
+
+  // Version du module
+  rpc GetTodoModuleVersion (GetTodoModuleVersionRequest) returns (GetTodoModuleVersionResponse);
+}
+
+// Messages pour GetTodoLists
+message GetTodoListsRequest {}
+
+message GetTodoListsResponse {
+  repeated TodoListDto todoLists = 1;
+}
+
+// Messages pour GetTodoListById
+message GetTodoListByIdRequest {
+  string id = 1;
+}
+
+message GetTodoListByIdResponse {
+  TodoListDto todoList = 1;
+}
+
+// Messages pour CreateTodoList
+message CreateTodoListRequest {
+  string name = 1;
+}
+
+message CreateTodoListResponse {
+  string id = 1;
+}
+
+// Messages pour UpdateTodoList
+message UpdateTodoListRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message UpdateTodoListResponse {
+  bool success = 1;
+}
+
+// Messages pour DeleteTodoList
+message DeleteTodoListRequest {
+  string id = 1;
+}
+
+message DeleteTodoListResponse {
+  bool success = 1;
+}
+
+// Messages pour CreateTodoItem
+message CreateTodoItemRequest {
+  string todoListId = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message CreateTodoItemResponse {
+  string id = 1;
+}
+
+// Messages pour ToggleTodoItem
+message ToggleTodoItemRequest {
+  string todoListId = 1;
+  string todoItemId = 2;
+}
+
+message ToggleTodoItemResponse {
+  bool success = 1;
+}
+
+// Messages pour DeleteTodoItem
+message DeleteTodoItemRequest {
+  string todoListId = 1;
+  string todoItemId = 2;
+}
+
+message DeleteTodoItemResponse {
+  bool success = 1;
+}
+
+// Messages pour AddTag
+message AddTagRequest {
+  string label = 1;
+  string todoListId = 2;
+  string color = 3;
+}
+
+message AddTagResponse {
+  bool success = 1;
+}
+
+// Messages pour RemoveTag
+message RemoveTagRequest {
+  string label = 1;
+  string todoListId = 2;
+  string color = 3;
+}
+
+message RemoveTagResponse {
+  bool success = 1;
+}
+
+// Messages pour GetTodoModuleVersion
+message GetTodoModuleVersionRequest {}
+
+message GetTodoModuleVersionResponse {
+  string version = 1;
+}
+
+// DTOs
+message TodoListDto {
+  string id = 1;
+  string name = 2;
+  bool isCompleted = 3;
+  repeated TodoItemDto items = 4;
+  repeated TagDto tags = 5;
+}
+
+message TodoItemDto {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool isCompleted = 4;
+}
+
+message TagDto {
+  string label = 1;
+  string color = 2;
+}

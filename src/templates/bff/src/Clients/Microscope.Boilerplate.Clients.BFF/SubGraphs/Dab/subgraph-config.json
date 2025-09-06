@@ -1,0 +1,6 @@
+{
+  "subgraph": "Dab",
+  "http": {
+    "baseAddress": "http://host.docker.internal:4700/graphql/"
+  }
+}

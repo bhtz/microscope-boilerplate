@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [
+    "DDD",
+    "Blazor",
+    "Clean architecture",
+    "Docs"
+  ],
+  "identity": "Microscope.Boilerplate.Distributed",
+  "name": "Microscope boilerplate distributed",
+  "shortName": "mcsp_distributed",
+  "sourceName": "Microscope.Boilerplate",
+  "symbols": {
+    "Terraform": {
+      "type": "parameter",
+      "description": "Whether to include Terraform IAC or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "CLI": {
+      "type": "parameter",
+      "description": "Whether to include CLI or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "E2E": {
+      "type": "parameter",
+      "description": "Whether to include E2E tests client or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+
+    "BaaS": {
+      "type": "parameter",
+      "description": "Whether to include Backend as a Service container (Hasura) or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": "src/IAC/Terraform/**"
+        },
+        {
+          "exclude": "src/Clients/CLI/**"
+        },
+        {
+          "exclude": "src/Clients/E2E/**"
+        },
+        {
+          "condition": "(Terraform)",
+          "include": ["src/IAC/Terraform/**"]
+        },
+        {
+          "condition": "(CLI)",
+          "include": ["src/Clients/CLI/**"]
+        },
+        {
+          "condition": "(E2E)",
+          "include": ["src/Clients/E2E/**"]
+        }
+      ]
+    }
+  ]
+}

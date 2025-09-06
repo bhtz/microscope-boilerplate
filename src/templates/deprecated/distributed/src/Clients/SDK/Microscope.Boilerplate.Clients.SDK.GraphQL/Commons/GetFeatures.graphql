@@ -1,0 +1,6 @@
+query GetFeatures {
+    features{
+        key
+        value
+    }
+}

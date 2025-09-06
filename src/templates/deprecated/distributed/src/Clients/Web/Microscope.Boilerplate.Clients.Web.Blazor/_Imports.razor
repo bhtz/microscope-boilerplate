@@ -1,0 +1,26 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using Microscope.Boilerplate.Clients.SDK.GraphQL
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.JSInterop
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@using Microscope.Boilerplate.Clients.Web.Blazor
+@using Microscope.Boilerplate.Clients.Web.Blazor.Services
+@using Microscope.Boilerplate.Clients.Web.Blazor.Shared
+@using Microscope.Boilerplate.Clients.Web.Blazor.Shared.Components
+@using MudBlazor
+@using StrawberryShake
+@using Microscope.Boilerplate.Clients.SDK.GraphQL.Components
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject ISnackbar _snackBar
+@inject IDialogService _dialogService
+
+@inject TodoAppClient _todoAppClient
+@inject NavigationManager _navigationManager
+@inject PreferenceService _preferenceService
+@inject FeatureManagementService _featureManagementService

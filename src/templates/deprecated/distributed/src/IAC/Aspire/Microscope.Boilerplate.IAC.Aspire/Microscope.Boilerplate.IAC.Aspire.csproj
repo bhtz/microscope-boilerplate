@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.4.24156.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Clients\BFF\Microscope.Boilerplate.Clients.BFF\Microscope.Boilerplate.Clients.BFF.csproj" />
+    <ProjectReference Include="..\..\..\Services\TodoApp\Interfaces\Microscope.Boilerplate.Services.TodoApp.Api\Microscope.Boilerplate.Services.TodoApp.Api.csproj" />
+  </ItemGroup>
+
+</Project>

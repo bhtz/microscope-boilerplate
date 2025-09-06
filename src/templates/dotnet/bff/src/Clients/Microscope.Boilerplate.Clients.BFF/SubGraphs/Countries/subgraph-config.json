@@ -1,6 +1,0 @@
-{
-  "subgraph": "Countries",
-  "http": {
-    "baseAddress": "https://countries.trevorblades.com/"
-  }
-}

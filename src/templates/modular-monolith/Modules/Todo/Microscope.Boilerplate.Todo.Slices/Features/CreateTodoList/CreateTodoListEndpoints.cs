@@ -1,0 +1,24 @@
+using Carter;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+
+namespace Microscope.Boilerplate.Todo.Slices.Features.CreateTodoList;
+
+public class CreateTodoListEndpoints : ICarterModule
+{
+    public void AddRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapPost("/api/v{apiVersion:apiVersion}/todo/todo-lists", CreateTodoList)
+            .WithApiVersionSet(TodoRestConfiguration.GetTodoModuleVersionSet(app))
+            .MapToApiVersion(1)
+            .RequireAuthorization();
+    }
+    
+    private async Task<IResult> CreateTodoList([FromServices] IMediator mediator, CreateTodoListCommand command)
+    {
+        var resp = await mediator.Send(command);
+        return Results.Ok(resp);
+    }
+}

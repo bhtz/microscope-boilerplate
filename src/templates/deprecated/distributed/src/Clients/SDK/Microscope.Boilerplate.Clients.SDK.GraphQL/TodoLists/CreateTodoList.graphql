@@ -1,0 +1,5 @@
+mutation CreateTodoList ($name: String!){
+    createTodoList(command: {
+        name: $name
+    })
+}

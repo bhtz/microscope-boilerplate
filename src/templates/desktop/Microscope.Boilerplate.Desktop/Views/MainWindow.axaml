@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Microscope.Boilerplate.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Microscope.Boilerplate.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Microscope.Boilerplate.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <SplitView 
+        IsPaneOpen="{Binding IsPaneOpen}" 
+        OpenPaneLength="240"
+        CompactPaneLength="52" 
+        PaneBackground="#27272e"
+        Background="#32333d"
+        PanePlacement="Left"
+        DisplayMode="CompactInline">
+        
+        <SplitView.Pane>
+            <StackPanel>
+                <Button
+                    Width="48"
+                    Margin="2"
+                    HorizontalAlignment="Left"
+                    Foreground="White"
+                    Command="{Binding TogglePane}"
+                    Content="{materialIcons:MaterialIconExt Kind=Menu}">
+                </Button>
+                
+                <ListBox ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedSideMenuItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:SideMenuItem}">
+                            <StackPanel Spacing="0" Orientation="Horizontal">
+                                <materialIcons:MaterialIcon Kind="{Binding IconKind}" Width="35"/>
+                                <TextBlock Text="{Binding Label}" Margin="20,0,0,0" ></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </SplitView.Pane>
+        
+        <SplitView.Content>
+            <StackPanel Margin="10">
+                <TransitioningContentControl Content="{Binding CurrentPage}"/>
+            </StackPanel>
+        </SplitView.Content>
+    </SplitView>
+</Window>

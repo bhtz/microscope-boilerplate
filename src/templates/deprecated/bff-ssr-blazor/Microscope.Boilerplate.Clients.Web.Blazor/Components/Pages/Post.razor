@@ -1,0 +1,59 @@
+@page "/posts"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@using Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared
+
+@attribute [Authorize]
+@inject HttpClient HttpClient
+@inject IStringLocalizer<Post> Loc
+@inherits Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared.InteractiveAutoPersistentPage
+
+<PageTitle>Posts</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">@Loc["Title"]</MudText>
+<MudText Class="mb-8">@Loc["SubTitle"]</MudText>
+
+@if (_posts is null)
+{
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" />
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" Class="mt-4" />
+}
+else
+{
+    <MudTable Items="_posts" Hover="true" SortLabel="Sort By" Elevation="0">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<PostDto, object?>(x=>x.Id)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<PostDto, object?>(x=>x.Title)">Title</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<PostDto, object?>(x=>x.Completed)">Completed</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<PostDto, object?>(x=>x.UserId)">UserId</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Title">@context.Id</MudTd>
+            <MudTd DataLabel="Temp. (C)">@context.Title</MudTd>
+            <MudTd DataLabel="Temp. (F)">@context.Completed</MudTd>
+            <MudTd DataLabel="Summary">@context.UserId</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+        </PagerContent>
+    </MudTable>
+}
+
+@code {
+    public IEnumerable<PostDto>? _posts;
+    private PersistingComponentStateSubscription _subscription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _posts = await GetPersistentState(nameof(_posts), async () => 
+            await HttpClient.GetFromJsonAsync<IEnumerable<PostDto>>("/api/todos"));
+    }
+
+    public class PostDto
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string? Title { get; set; }
+        public bool Completed { get; set; }
+    }
+}

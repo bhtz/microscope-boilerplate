@@ -1,0 +1,60 @@
+<MudAvatar Elevation="@Elevation" Size="@Size" Color="@Color" Class="mr-1">
+    @Shortcut
+</MudAvatar>
+
+@code {
+
+    [Parameter]
+    public string? Email { get; set; }
+
+    [Parameter]
+    public int Elevation { get; set; } = 0;
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    public string Shortcut
+    {
+        get { return GetShortcut(Email); }
+    }
+
+    private string GetShortcut(string? email)
+    {
+        string shortcut = "";
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            string[] parts = email.Split('@');
+            string username = parts[0];
+
+            if (username.Contains("."))
+            {
+                string[] usernameParts = username.Split('.');
+                if (usernameParts.Length >= 2)
+                {
+                    shortcut = $"{usernameParts[0].Substring(0, 1)}{usernameParts[1].Substring(0, 1)}";
+                }
+                else if (usernameParts.Length == 1)
+                {
+                    shortcut = $"{usernameParts[0].Substring(0, 2)}";
+                }
+            }
+            else
+            {
+                if (username.Length >= 2)
+                {
+                    shortcut = username.Substring(0, 2);
+                }
+                else
+                {
+                    shortcut = username;
+                }
+            }
+        }
+
+        return shortcut.ToUpper();
+    }
+}

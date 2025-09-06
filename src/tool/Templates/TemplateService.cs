@@ -1,7 +1,6 @@
+using Microscope.Boilerplate.Tool.CLI.Templates.Aspire;
 using Microscope.Boilerplate.Tool.CLI.Templates.Dotnet;
-using Microscope.Boilerplate.Tool.CLI.Templates.Dotnet.Microscope;
-using Microscope.Boilerplate.Tool.CLI.Templates.JS;
-using Microscope.Boilerplate.Tool.CLI.Templates.Rust;
+using Microscope.Boilerplate.Tool.CLI.Templates.Microscope;
 
 namespace Microscope.Boilerplate.Tool.CLI.Templates;
 
@@ -31,16 +30,8 @@ public static class TemplateService
             new AspireHostTemplate(),
             new AspireServiceDefaultsTemplate(),
             
-            // Custom dotnet (deprecated)
-            new DistributedTemplate(),
-            new BffSsrBlazorTemplate(),
-
-            // Custom rust
-            new RustCliTemplate(),
-            new RustApiTemplate(),
-            
-            // Custom node
-            new NodeCliTemplate()
+            // Community
+            new HotChocolateTemplate()
         };
     }
 }

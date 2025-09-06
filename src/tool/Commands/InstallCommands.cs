@@ -11,6 +11,7 @@ public class InstallCommands
     {
         InstallMicroscopeTemplates();
         await InstallAspireTemplates();
+        await InstallHotChocolateTemplates();
         await InstallAspireCli();
     }
 
@@ -34,6 +35,15 @@ public class InstallCommands
         
         LabelInstallation("Installing Aspire CLI ...");
         await RunProcessWithArguments("dotnet", arguments);
+    }
+
+    private async Task InstallHotChocolateTemplates()
+    {
+        var arguments = "new install HotChocolate.Templates";
+        
+        LabelInstallation("Installing Hotchocolate templates ...");
+        await RunProcessWithArguments("dotnet", arguments);
+
     }
 
     private void LabelInstallation(string label)

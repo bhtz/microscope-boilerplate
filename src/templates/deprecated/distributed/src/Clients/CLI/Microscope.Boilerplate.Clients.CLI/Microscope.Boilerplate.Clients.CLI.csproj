@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <ContainerRepository>boilerplate/cli</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Cocona" Version="2.2.0" />
+      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
+      <PackageReference Include="Spectre.Console" Version="0.48.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Services\TodoApp\Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure\Microscope.Boilerplate.Services.TodoApp.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
