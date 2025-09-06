@@ -15,6 +15,7 @@
   "sourceName": "Microscope.Boilerplate",
 
   "symbols": {
+    
     "BaaS": {
       "type": "parameter",
       "description": "Whether to include Backend as a Service container or not.",

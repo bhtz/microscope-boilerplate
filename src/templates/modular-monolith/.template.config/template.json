@@ -19,35 +19,35 @@
       "type": "parameter",
       "description": "Add GraphQL protocol",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
     
     "Rest": {
       "type": "parameter",
       "description": "Add REST protocol",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Grpc": {
       "type": "parameter",
       "description": "Add gRPC protocol",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Docker": {
       "type": "parameter",
       "description": "Add Docker support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Aspire": {
       "type": "parameter",
       "description": "Add Aspire support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     }
   },
   
