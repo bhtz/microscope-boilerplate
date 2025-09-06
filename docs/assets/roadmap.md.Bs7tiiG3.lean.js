@@ -1,1 +1,0 @@
-import{_ as s,c as t,o as i,a5 as e}from"./chunks/framework.B1C_J5Tt.js";const u=JSON.parse('{"title":"V1","description":"","frontmatter":{},"headers":[],"relativePath":"roadmap.md","filePath":"roadmap.md"}'),l={name:"roadmap.md"},c=e("",28),a=[c];function k(o,d,b,h,p,n){return i(),t("div",null,a)}const x=s(l,[["render",k]]);export{u as __pageData,x as default};
