@@ -48,6 +48,13 @@
       "description": "Add Aspire support",
       "datatype": "bool",
       "defaultValue": false
+    },
+
+    "UnitTest": {
+      "type": "parameter",
+      "description": "Add Unit test",
+      "datatype": "bool",
+      "defaultValue": false
     }
   },
   
@@ -114,6 +121,13 @@
           "condition": "(!Docker && !Aspire)",
           "exclude": [
             "src/IAC/Docker/**"
+          ]
+        },
+
+        {
+          "condition": "(!UnitTest)",
+          "exclude": [
+            "Modules/Todo/Microscope.Boilerplate.Todo.Domain.Tests.Unit/**"
           ]
         }
       ]

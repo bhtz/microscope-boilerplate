@@ -82,10 +82,13 @@ Global
 		{041093B5-8E46-444E-8B76-8140FB8CDF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{041093B5-8E46-444E-8B76-8140FB8CDF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{041093B5-8E46-444E-8B76-8140FB8CDF6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		#if (UnitTest == true)
 		{5D605974-750D-4750-82B8-AF30BC7636F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D605974-750D-4750-82B8-AF30BC7636F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D605974-750D-4750-82B8-AF30BC7636F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D605974-750D-4750-82B8-AF30BC7636F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		#endif
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{14454839-ECED-450F-8404-F888A21FCD75} = {D538054D-66E5-4576-A5E7-2C9585AB0B3C}
