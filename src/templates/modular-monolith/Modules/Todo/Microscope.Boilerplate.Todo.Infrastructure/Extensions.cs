@@ -6,6 +6,7 @@ using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore.Repositories
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
 using Microscope.Boilerplate.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Infrastructure.Persistence.Marten;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

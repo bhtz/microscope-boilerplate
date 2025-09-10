@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Framework\Microscope.Boilerplate.Framework.Infrastructure\Microscope.Boilerplate.Framework.Infrastructure.csproj" />
       <ProjectReference Include="..\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj" />
     </ItemGroup>
     

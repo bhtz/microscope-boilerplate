@@ -35,7 +35,8 @@
   - [x] Tool CLI options
 - [x] Feature management
 - [x] Aspire docker composer publisher
-- [ ] Domain event handler
+- [x] Domain event handler
+- [ ] Todo domain unit test
 - [ ] Bus & integration event ?
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant

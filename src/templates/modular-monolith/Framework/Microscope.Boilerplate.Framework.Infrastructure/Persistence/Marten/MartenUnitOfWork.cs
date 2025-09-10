@@ -4,7 +4,7 @@ using MediatR;
 using Microscope.Boilerplate.Framework.Domain.DDD;
 using Npgsql;
 
-namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
+namespace Microscope.Boilerplate.Framework.Infrastructure.Persistence.Marten;
 
 public class MartenUnitOfWork(IDocumentSession session, IMediator mediator) : IUnitOfWork
 {

@@ -3,12 +3,11 @@
 ## microscope templates
 
 ### BFF/Frontend
+- [ ] Theme management over cookie
 - [ ] Add Fluent UI option
-- [ ] Aspire & SDK BFF not added to solution when output
 
 ### Service
-- [ ] Docker still here even if no option
-- [ ] remove service default ref when option is disabled
+- [ ] Docker still here even if no option - to re-check
 - [ ] Transaction behavior using martenDB unit of work
 
 ### Desktop
