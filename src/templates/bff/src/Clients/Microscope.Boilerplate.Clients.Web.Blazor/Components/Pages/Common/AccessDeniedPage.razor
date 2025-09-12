@@ -1,0 +1,12 @@
+@page "/access-denied"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<AccessDeniedPage> Loc
+
+<PageTitle>Access denied</PageTitle>
+
+<MudText Typo="Typo.h4" Class="mt-20" Align="Align.Center" Color="Color.Error">
+    You're not authorized to access this page.
+</MudText>
+<MudText Typo="Typo.subtitle1" Align="Align.Center">
+    Contact your administrator.
+</MudText>

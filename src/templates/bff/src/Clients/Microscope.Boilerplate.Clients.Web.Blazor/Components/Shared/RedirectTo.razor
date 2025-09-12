@@ -1,0 +1,10 @@
+@inject NavigationManager NavigationManager
+
+@code {
+    [Parameter] public string Path { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        NavigationManager.NavigateTo(Path);
+    }
+}
