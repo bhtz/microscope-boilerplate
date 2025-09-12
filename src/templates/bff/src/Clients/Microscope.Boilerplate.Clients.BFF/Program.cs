@@ -122,6 +122,14 @@ app.MapRazorComponents<Host>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(_Imports).Assembly);
 
+app.UseStatusCodePages(async context =>
+{
+    if (context.HttpContext.Response.StatusCode == 404)
+    {
+        context.HttpContext.Response.Redirect("/not-found");
+    }
+});
+
 #endregion
 
 app.Run();

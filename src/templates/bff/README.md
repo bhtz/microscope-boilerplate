@@ -36,6 +36,11 @@ dotnet run
 - [x] GraphQL Gateway
     - [x] Fusion over trevorblade public api
 - [x] GraphQL local
+- [x] Common pages
+  - [x] Not Authorized
+  - [x] Not found
+- [x] Configure cookie authentication
+  - options.AccessDeniedPath = "...";
 - [ ] UI options
   - [x] MudBlazor
   - [ ] FluentUI
