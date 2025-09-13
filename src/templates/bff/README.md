@@ -39,8 +39,8 @@ dotnet run
 - [x] Common pages
   - [x] Not Authorized
   - [x] Not found
-- [x] Configure cookie authentication
-  - options.AccessDeniedPath = "...";
+- [x] Configure cookie authentication AccessDeniedPath
+- [ ] Save prefered theme in cookie for blazor server refresh 
 - [ ] UI options
   - [x] MudBlazor
   - [ ] FluentUI
