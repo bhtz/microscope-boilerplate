@@ -3,12 +3,11 @@
 ## microscope templates
 
 ### BFF/Frontend
+- [x] Add Fluent UI option
 - [ ] Theme management over cookie
-- [ ] Add Fluent UI option
 
 ### Service
 - [x] Add unit tests
-- [ ] Docker still here even if no option - to re-check
 - [ ] Transaction behavior using martenDB unit of work
 
 ### Desktop
