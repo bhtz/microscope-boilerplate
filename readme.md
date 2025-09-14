@@ -23,6 +23,9 @@
 
 ### mcsp_service
 > Vertical slice architecture & modular monolith 
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/service.html)
+
 * ✅ REST
 * ✅ GRPC
 * ✅ GRAPHQL
@@ -38,6 +41,9 @@
 
 ### mcsp_bff
 > Blazor frontend + BFF pattern
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/bff.html)
+
 * ✅ Material UI | Fluent UI
 * ✅ Custom endpoint (Rest / GraphQL)
 * ✅ Server side rendering (Blazor)
@@ -53,6 +59,9 @@
 
 ### mcsp_doc
 > Documentation as code web application
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/doc-as-code.html)
+
 * ✅ web app
 * ✅ vitepress
 * ✅ markdown & mermaid 
@@ -61,12 +70,18 @@
 
 ### mcsp_cli
 > Console app with CLI & UI
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/cli.html)
+
 * ✅ Cocona CLI
 * ✅ Spectre.Console UI
 * ✅ Commands folder & sample
 
 ### mcsp_desktop
 > Cross platform desktop app
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/desktop.html)
+
 * ✅ Avalonia
 * ✅ material ui & icons
 * ✅ CommunityToolkit.MVVM

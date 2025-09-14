@@ -2,8 +2,12 @@
 
 > Blazor frontend + BFF pattern
 
-**UI :**
+**Material UI :**
 ![](/images/BFF.png)
+
+**Fluent UI :**
+![](/images/BFF-fluent.png)
+
 **Aspire :**
 ![](/images/BFF-aspire.png)
 
