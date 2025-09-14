@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Clients.Web.Blazor.Services;
+namespace Microscope.Boilerplate.Clients.Web.Shared.Services;
 
 public interface IFeatureManagementService
 {

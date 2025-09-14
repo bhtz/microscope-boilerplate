@@ -1,44 +1,70 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <ContainerRepository>microscope-management/bff</ContainerRepository>
-    <ContainerImageTag>latest</ContainerImageTag>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ContainerRepository>microscope-management/bff</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants>TRACE;Aspire;Yarp;Gateway</DefineConstants>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="12.0.0" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="15.0.3" />
-    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.0.3" />
-    <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.0.3" />
-    <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.0.3" />
-      <!--#if (Gateway) -->
-    <PackageReference Include="HotChocolate.Fusion" Version="15.0.3" />
-      <!-- #endif -->
-    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1" />
-    <PackageReference Include="System.Linq.Async" Version="6.0.3" />
-      <!--#if (Yarp) -->
-    <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />
-      <!-- #endif -->
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.7" />
-    <ProjectReference Include="..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Blazor\Microscope.Boilerplate.Clients.Web.Blazor.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Update="gateway.fgp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="gateway.Development.fgp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <!--#if (Material && Fluent) -->
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <UI>Fluent</UI>
+        <!-- <UI>Material</UI> -->
+        <DefineConstants Condition="'$(UI)'=='Fluent'">TRACE;Aspire;Yarp;Gateway;Fluent</DefineConstants>
+        <DefineConstants Condition="'$(UI)'=='Material'">TRACE;Aspire;Yarp;Gateway;Material</DefineConstants>
+    </PropertyGroup>
+    <!-- #endif -->
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="12.0.0"/>
+        <PackageReference Include="HotChocolate.AspNetCore" Version="15.0.3"/>
+        <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.0.3"/>
+        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.0.3"/>
+        <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.0.3"/>
+
+        <!--#if (Gateway) -->
+        <PackageReference Include="HotChocolate.Fusion" Version="15.0.3"/>
+        <!-- #endif -->
+
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1"/>
+        <PackageReference Include="System.Linq.Async" Version="6.0.3"/>
+
+        <!--#if (Yarp) -->
+        <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0"/>
+        <!-- #endif -->
+
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.7"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.7"/>
+        <ProjectReference Include="..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UI)'=='Fluent'">
+        <!--#if (Material && Fluent) -->
+        <Compile Remove="Components\Pages\MaterialHost.razor"/>
+        <Content Remove="Components\Pages\MaterialHost.razor"/>
+        <None Remove="Components\Pages\MaterialHost.razor"/>
+        <!-- #endif -->
+        <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Blazor.Fluent\Microscope.Boilerplate.Clients.Web.Blazor.Fluent.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(UI)'=='Material'">
+        <!--#if (Material && Fluent) -->
+        <Compile Remove="Components\Pages\FluentHost.razor"/>
+        <Content Remove="Components\Pages\FluentHost.razor"/>
+        <None Remove="Components\Pages\FluentHost.razor"/>
+        <!-- #endif -->
+        <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Blazor.Material\Microscope.Boilerplate.Clients.Web.Blazor.Material.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="gateway.fgp">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="gateway.Development.fgp">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>

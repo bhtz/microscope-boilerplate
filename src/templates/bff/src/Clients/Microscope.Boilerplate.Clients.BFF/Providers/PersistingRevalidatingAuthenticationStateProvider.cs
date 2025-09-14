@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Security.Claims;
-using Microscope.Boilerplate.Clients.Web.Blazor.Providers;
+using Microscope.Boilerplate.Clients.Web.Shared.Providers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
-namespace Microscope.Boilerplate.Clients.Web.Blazor.Configurations;
+namespace Microscope.Boilerplate.Clients.Web.Shared.Services;
 
 public class ClientAuthenticationHeaderHandler : DelegatingHandler
 {

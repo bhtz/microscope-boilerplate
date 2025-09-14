@@ -1,36 +1,24 @@
 ﻿@page "/continents"
-@using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway
 @using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Components
 @using Microsoft.AspNetCore.Authorization
-@using Microsoft.Extensions.Localization
-@inject GatewayClient GatewayClient;
 @attribute [Authorize]
-@inject IStringLocalizer<Continents> Loc
 
 <PageTitle>Continents</PageTitle>
 
-<MudContainer Class="mt-10">
+<FluentLabel Typo="Typography.PageTitle">Continents</FluentLabel>
+<FluentLabel Typo="Typography.Body">Subtitle</FluentLabel>
 
-    <MudText Typo="Typo.h3" GutterBottom="true">@Loc["Title"]</MudText>
-    <MudText Class="mb-8">@Loc["SubTitle"]</MudText>
-
-    <UseGetContinents Context="result">
-        <ChildContent>
-            <MudPaper>
-                <MudList T="string">
-                    @foreach (var item in result.Continents)
-                    {
-                        <MudListItem Icon="@Icons.Material.Filled.List" T="string">@item.Name</MudListItem>
-                    }
-                </MudList>
-            </MudPaper>
-        </ChildContent>
-        <ErrorContent>
-            @result.First().Message
-        </ErrorContent>
-        <LoadingContent>
-            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" />
-            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="50px" Class="mt-4" />
-        </LoadingContent>
-    </UseGetContinents>
-</MudContainer>
+<UseGetContinents Context="result">
+    <ChildContent>
+        <FluentDataGrid Items="result.Continents.AsQueryable()"  >
+            <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+        </FluentDataGrid>
+    </ChildContent>
+    <ErrorContent>
+        @result.First().Message
+    </ErrorContent>
+    <LoadingContent>
+        <FluentSkeleton></FluentSkeleton>
+        <FluentSkeleton></FluentSkeleton>
+    </LoadingContent>
+</UseGetContinents>

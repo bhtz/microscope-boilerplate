@@ -1,0 +1,23 @@
+﻿@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Layout
+@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Shared
+@using Microscope.Boilerplate.Clients.Web.Shared.Components
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
+                <NotAuthorized>
+                    @if (context.User.Identity is { IsAuthenticated: false })
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <RedirectTo Path="/access-denied" />
+                    }
+                </NotAuthorized>
+            </AuthorizeRouteView>
+            <FocusOnNavigate RouteData="routeData" Selector="h1"/>
+        </Found>
+    </Router>
+</CascadingAuthenticationState>

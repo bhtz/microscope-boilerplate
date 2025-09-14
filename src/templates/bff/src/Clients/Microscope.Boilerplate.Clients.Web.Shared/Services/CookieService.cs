@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.JSInterop;
 
-namespace Microscope.Boilerplate.Clients.Web.Blazor.Services;
+namespace Microscope.Boilerplate.Clients.Web.Shared.Services;
 
 public class CookieService(IJSRuntime js)
 {

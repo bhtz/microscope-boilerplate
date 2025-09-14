@@ -20,35 +20,71 @@
       "type": "parameter",
       "description": "Whether to include Backend as a Service container or not.",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Docker": {
       "type": "parameter",
       "description": "Add Docker support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Aspire": {
       "type": "parameter",
       "description": "Add Aspire support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
     
     "Yarp": {
       "type": "parameter",
       "description": "Add Yarp support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
     },
 
     "Gateway": {
       "type": "parameter",
       "description": "Add graphQL gateway support",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": false
+    },
+    
+    "UI": {
+      "type": "parameter",
+      "allowMultipleValues": false,
+      "choices": ["Fluent", "Material"],
+      "defaultValue": "Material",
+      "description": "The UI framework to use",
+    },
+
+    "Fluent": {
+      "type": "computed",
+      "value": "UI == 'Fluent'",
+      "datatype": "bool",
+      "defaultValue": false
+    },
+
+    "Material": {
+      "type": "computed",
+      "value": "UI == 'Material'",
+      "datatype": "bool",
+      "defaultValue": false
+    },
+
+    "ByePassCleanFluentReference": {
+      "type": "parameter",
+      "description": "Replacement",
+      "defaultValue": "",
+      "replaces": "Condition=\"'$(UIFlavor)'=='Fluent'\""
+    },
+
+    "ByePassCleanMaterialReference": {
+      "type": "parameter",
+      "description": "Clean csproj of material condition",
+      "defaultValue": "",
+      "replaces": "Condition=\"'$(UIFlavor)'=='Material'\""
     }
   },
   
@@ -114,6 +150,22 @@
           "condition": "(!Docker && !Aspire)",
           "exclude": [
             "src/IAC/Docker/**"
+          ]
+        },
+
+        {
+          "condition": "(!Fluent)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Fluent/**",
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/Components/Pages/FluentHost.razor"
+          ]
+        },
+
+        {
+          "condition": "(!Material)",
+          "exclude": [
+            "src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Material/**",
+            "src/Clients/Microscope.Boilerplate.Clients.BFF/Components/Pages/MaterialHost.razor"
           ]
         }
       ]

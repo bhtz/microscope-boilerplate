@@ -10,7 +10,8 @@
 ### Features
 
 **UI**
-* ✅ Material UI (MudBlazor)
+* ✅ Material UI
+* ✅ Fluent UI
     
 **BFF & Gateway**
 * ✅ GraphQL Fusion gateway (HotChocolate)
@@ -23,7 +24,7 @@
 
 **FRONTEND**
 * ✅ Auto generated GraphQL SDK (StrawberryShake)
-* ✅ Dark mode
+* ✅ Dark mode / Light mode
 * ✅ Multi-theme
 * ✅ I18N
 
@@ -71,4 +72,8 @@ dotnet new mcsp_bff -n Acme
     * Type : bool
     * Default : false
 
+* -U, --UI
+    * Select UI framework (Material | Fluent)
+    * Type : string
+    * Default : Material
 

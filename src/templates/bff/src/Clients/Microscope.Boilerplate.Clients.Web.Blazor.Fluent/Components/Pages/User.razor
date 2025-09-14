@@ -1,21 +1,37 @@
-@page "/counter"
+@page "/user"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>User</PageTitle>
 
-<FluentLabel Typo="Typography.H1">Counter</FluentLabel>
-<FluentLabel Typo="Typography.Body">Ce composant démontre la fonctionnalité basique d'interactivité</FluentLabel>
+<FluentLabel Typo="Typography.H1">User</FluentLabel>
+<FluentLabel Typo="Typography.Body">Ce composant montre la liste des revendications d'authentification des utilisateurs</FluentLabel>
 
-<div role="status" style="padding-bottom: 1em;">
-    Current count: <FluentBadge Appearance="Appearance.Neutral">@currentCount</FluentBadge>
-</div>
+@if (Claims is not null)
+{
+    <FluentListbox TOption="string">
+        @foreach (var item in Claims)
+        {
+            <FluentOption Value="Item 3">
+                <FluentIcon Value="@(new Icons.Regular.Size20.Star())" Slot="start"/>
+                <b>@item.Type :</b> @item.Value.ToString()
+            </FluentOption>
+        }
+    </FluentListbox>
+}
 
-<FluentButton Appearance="Appearance.Accent" @onclick="IncrementCount">Click me</FluentButton>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+@code
+{
+    private IEnumerable<Claim>? Claims { get; set; }
+    private string? UserName { get; set; }
+    
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        Claims = authState.User?.Claims;
+        UserName = authState.User?.Identity?.Name;
     }
 }

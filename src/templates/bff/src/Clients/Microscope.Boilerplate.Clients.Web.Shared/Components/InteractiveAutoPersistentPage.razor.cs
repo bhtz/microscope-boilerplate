@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Microscope.Boilerplate.Clients.Web.Blazor.Components.Shared;
+namespace Microscope.Boilerplate.Clients.Web.Shared.Components;
 
 public abstract class InteractiveAutoPersistentPage : ComponentBase, IDisposable
 {

@@ -1,4 +1,4 @@
-using Microscope.Boilerplate.Clients.Web.Blazor.Services;
+using Microscope.Boilerplate.Clients.Web.Shared.Services;
 
 namespace Microscope.Boilerplate.Clients.BFF.Endpoints;
 

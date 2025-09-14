@@ -2,15 +2,23 @@ using Microscope.Boilerplate.BFF.Configurations;
 using Microscope.Boilerplate.BFF.Configurations.Http;
 using Microscope.Boilerplate.Clients.BFF.Configurations;
 using Microscope.Boilerplate.Clients.BFF.Endpoints;
+using Microscope.Boilerplate.Clients.BFF.Components.Pages;
+
+#if (Material)
+using Microscope.Boilerplate.Clients.Web.Blazor.Material.Configurations;
+#endif
+
+#if (Fluent)
+using Microsoft.FluentUI.AspNetCore.Components;
+#endif
+
 #if (Gateway)
 using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Serializers;
 #endif
-using Microscope.Boilerplate.Clients.Web.Blazor;
-using Microscope.Boilerplate.Clients.Web.Blazor.Configurations;
+
 #if (Aspire)
 using Microscope.Boilerplate.ServiceDefaults;
 #endif
-using Host = Microscope.Boilerplate.Clients.BFF.Components.Pages.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,8 +56,16 @@ builder.Services.AddRazorComponents()
     .AddAuthenticationStateSerialization(x => x.SerializeAllClaims = true); // share state between server and client
 
 // required service for Server side rendering
+
+#if (Fluent)
+builder.Services.AddFluentUIComponents();
+#endif
+
 // mirror the services from the client side
-builder.Services.AddUiConfiguration();
+#if (Material)
+builder.Services.AddMaterialUiConfiguration();
+#endif
+
 var baseAddress = builder.Configuration.GetValue<string>("BaseAddress") ?? throw new InvalidOperationException("BaseAddress configuration cannot be null");
 builder.Services.AddScoped<ServerAuthenticationHeaderHandler>();
 
@@ -117,18 +133,28 @@ app.MapCultureEndpoints();
 
 app.UseAntiforgery();
 app.MapStaticAssets();
-app.MapRazorComponents<Host>()
+
+#if (Material)
+app.MapRazorComponents<MaterialHost>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(_Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(Microscope.Boilerplate.Clients.Web.Blazor.Material._Imports).Assembly);
+#endif
 
-app.UseStatusCodePages(async context =>
-{
-    if (context.HttpContext.Response.StatusCode == 404)
-    {
-        context.HttpContext.Response.Redirect("/not-found");
-    }
-});
+#if (Fluent)
+app.MapRazorComponents<FluentHost>()
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(Microscope.Boilerplate.Clients.Web.Blazor.Fluent._Imports).Assembly);
+#endif
+
+// app.UseStatusCodePages(async context =>
+// {
+//     if (context.HttpContext.Response.StatusCode == 404)
+//     {
+//         context.HttpContext.Response.Redirect("/not-found");
+//     }
+// });
 
 #endregion
 

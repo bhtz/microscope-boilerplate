@@ -1,5 +1,38 @@
-<h3>NavMenu</h3>
+@using Microscope.Boilerplate.Clients.Web.Shared.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.FluentUI.AspNetCore.Components.Icons.Regular
+
+<FluentNavMenu Width="250" @bind-Expanded="IsExpanded" >
+    <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
+    <FluentNavLink Href="counter" Icon="@(new Icons.Regular.Size20.NumberSymbolSquare())" IconColor="Color.Accent">Counter</FluentNavLink>
+    <FluentNavLink Href="continents" Icon="@(new Icons.Regular.Size20.Map())" IconColor="Color.Accent">Continents</FluentNavLink>
+    <AuthorizeView>
+        <Authorized>
+            <FeatureFlag FlagName="ShowUserPage">
+                <FluentNavLink Href="user" Icon="@(new Icons.Regular.Size20.People())" IconColor="Color.Accent">User</FluentNavLink>
+            </FeatureFlag>
+        </Authorized>
+    </AuthorizeView>
+</FluentNavMenu>
+
+@* <FluentAppBar Style="height: 500px;" Orientation="Orientation.Vertical" PopoverShowSearch="false" > *@
+@*     <FluentAppBarItem Text="Home" Match="NavLinkMatch.All" Href="/" IconRest="ResourcesIcon()" IconActive="ResourcesIcon(active:true)"></FluentAppBarItem> *@
+@*     <FluentAppBarItem Text="Counter" Match="NavLinkMatch.Prefix" Href="/counter" IconRest="CounterIcon()" IconActive="CounterIcon(active:true)"></FluentAppBarItem> *@
+@*     <FluentAppBarItem Text="User" Match="NavLinkMatch.Prefix" Href="/user" IconRest="UserIcon()" IconActive="UserIcon(active:true)"></FluentAppBarItem> *@
+@* </FluentAppBar> *@
 
 @code {
+    [Parameter] public bool IsExpanded { get; set; } = true;
     
+    private static Icon ResourcesIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.Home()
+            : new Icons.Regular.Size24.Home();
+    
+    private static Icon CounterIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.NumberSymbol()
+            : new Icons.Regular.Size24.NumberSymbol();
+    
+    private static Icon UserIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.People()
+            : new Icons.Regular.Size24.People();
 }
