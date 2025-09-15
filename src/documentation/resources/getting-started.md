@@ -1,6 +1,6 @@
 # Microscope.Boilerplate
 
-> An opiniated started kit for product engineering teams
+> Opiniated starter kit portofolio
 
 ## Requirements
 

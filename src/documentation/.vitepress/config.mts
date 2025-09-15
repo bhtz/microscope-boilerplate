@@ -43,8 +43,9 @@ export default withMermaid(
               { text: 'Service', link: '/templates/service' },
               { text: 'Desktop', link: '/templates/desktop' },
               { text: 'CLI', link: '/templates/cli' },
-              { text: 'Doc as code', link: '/templates/doc-as-code' },
-              // { text: 'Data API builder', link: '/templates/dab' },
+              { text: 'Documentation', link: '/templates/documentation' },
+              // { text: 'BaaS', link: '/templates/baas' },
+              // { text: 'Workflow', link: '/templates/workflow' },
             ]
           },
         ],
