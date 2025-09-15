@@ -7,12 +7,11 @@
 <MudPaper Class="jumbotron" Elevation="4">
     <MudImage Src="images/background-image.png" ObjectFit="ObjectFit.Cover" Alt="Jumbotron Image" Class="jumbotron-image"/>
     <div class="jumbotron-content">
-        @if (RendererInfo.IsInteractive)
-        {
-            <MudText Typo="Typo.h2" Class="jumbotron-title ma-10 animate__animated animate__fadeInUp">
-                microscope
-            </MudText>
-        }
+
+        <MudText Typo="Typo.h2" Class="jumbotron-title ma-10 animate__animated animate__fadeInUp">
+            microscope
+        </MudText>
+        
         <MudText Typo="Typo.h5" Class="ma-10">
             <Typewriter Builder="@typewriter"/>
         </MudText>

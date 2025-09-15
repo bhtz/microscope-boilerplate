@@ -1,12 +1,19 @@
-<MudMenu Class="mr-5" Icon="@Icons.Material.Outlined.Translate" Color="Color.Inherit" AnchorOrigin="Origin.BottomCenter" Dense="true">
+<FluentIcon Class="ml-4" OnClick="() => IsLanguageExpanded = !IsLanguageExpanded" Id="LanguageSelector" Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.LocalLanguage())" Style="margin-right: 10px; cursor: pointer;" Color="Color.Fill"/>
+
+<FluentMenu Anchor="LanguageSelector" @bind-Open="IsLanguageExpanded">
     @foreach (var language in languages)
     {
-        <MudMenuItem OnClick="(()=> ChangeLanguageAsync(language.Code))">@language.DisplayName</MudMenuItem>
+        <FluentMenuItem
+            OnClick="(() => ChangeLanguageAsync(language.Code))">
+            @language.DisplayName
+        </FluentMenuItem>
     }
-</MudMenu>
+</FluentMenu>
 
 @code
 {
+    public bool IsLanguageExpanded { get; set; }
+    
     private async Task ChangeLanguageAsync(string? languageCode)
     {
         var uri = new Uri(NavigationManager.Uri).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);

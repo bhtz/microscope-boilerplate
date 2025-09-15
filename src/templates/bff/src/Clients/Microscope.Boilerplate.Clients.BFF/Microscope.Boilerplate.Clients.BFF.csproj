@@ -11,7 +11,7 @@
     <!--#if (Material && Fluent) -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <UI>Fluent</UI>
-        <!-- <UI>Material</UI> -->
+<!--         <UI>Material</UI>-->
         <DefineConstants Condition="'$(UI)'=='Fluent'">TRACE;Aspire;Yarp;Gateway;Fluent</DefineConstants>
         <DefineConstants Condition="'$(UI)'=='Material'">TRACE;Aspire;Yarp;Gateway;Material</DefineConstants>
     </PropertyGroup>

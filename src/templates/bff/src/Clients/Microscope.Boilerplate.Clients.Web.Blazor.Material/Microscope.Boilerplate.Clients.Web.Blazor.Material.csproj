@@ -94,8 +94,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\images\background-image.png" />
     </ItemGroup>
 
-    <ItemGroup>
-      <AdditionalFiles Include="Components\MaterialHost.razor" />
-    </ItemGroup>
-
 </Project>

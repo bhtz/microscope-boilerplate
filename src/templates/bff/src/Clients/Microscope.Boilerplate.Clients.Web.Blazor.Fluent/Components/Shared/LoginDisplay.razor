@@ -1,29 +1,44 @@
-﻿@using Microsoft.Extensions.Configuration
-@using System.Security.Claims
-@using Microsoft.Extensions.Localization
-
-@inject IStringLocalizer<LoginDisplay> Loc
-@inject NavigationManager Navigation
+﻿@using System.Security.Claims
+@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Components.Authorization
+@* @using Microsoft.Extensions.Localization *@
+@* @inject IStringLocalizer<LoginDisplay> Loc *@
 @inject IConfiguration Configuration
 @inject IJSRuntime JsRuntime
 
 <AuthorizeView>
     <Authorized>
-        <MudMenu AnchorOrigin="Origin.TopLeft" Dense="true">
-            <ActivatorContent>
-                <UserAvatar Size="Size.Medium" Elevation="0" Color="Color.Primary" Email="@context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value"></UserAvatar>
-            </ActivatorContent>
+        @{
+            var initials = GetShortcut(context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value);
+        }
+        <FluentProfileMenu Class="ml-4" Initials="@initials" ImageSize="24">
+            <HeaderTemplate>
+                <FluentStack Orientation="Orientation.Horizontal">
+                    <FluentPersona ImageSize="24" Initials="@initials"></FluentPersona>
+                    <FluentStack Orientation="Orientation.Vertical">
+                        <FluentLabel Typo="@Typography.Body">@context.User.Identity?.Name</FluentLabel>
+                        <FluentLabel Typo="@Typography.Body">@context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value</FluentLabel>
+                    </FluentStack>
+                </FluentStack>
+            </HeaderTemplate>
             <ChildContent>
-                <PersonCard Name="@context.User.Identity?.Name" Role="@context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value" Class="mt-n2" />
-                <MudDivider Class="mb-2" />
-                <MudListItem T="string" Text="@Loc["Account"]" Icon="@Icons.Material.Filled.ManageAccounts" @onclick="OpenAccount" />
-                <MudListItem T="string" Text="@Loc["Logout"]" Icon="@Icons.Material.Outlined.Logout" @onclick="BeginSignOut" />
+                <div style="width: 200px; height: 80px">
+                    <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Stretch">
+                        <FluentDivider Style="width: 100%;" Role="DividerRole.Separator"></FluentDivider>
+                        <FluentButton Appearance="Appearance.Accent" Style="width: 100%;" OnClick="OpenAccount">Account</FluentButton>
+                        <FluentButton Appearance="Appearance.Neutral" Style="width: 100%;" OnClick="BeginSignOut">Sign out</FluentButton>
+                    </FluentStack>
+                </div>
             </ChildContent>
-        </MudMenu>
+            <FooterTemplate></FooterTemplate>
+        </FluentProfileMenu>
     </Authorized>
     <NotAuthorized>
-        @* <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" OnClick="BeginSignIn"/> *@
-        <MudButton Variant="Variant.Text" Color="Color.Inherit" OnClick="BeginSignIn">@Loc["Login"]</MudButton>
+        <FluentPersona 
+            Class="ml-4"
+            OnClick="BeginSignIn"
+            Image="@(new Icons.Regular.Size24.Person().ToDataUri(color: "white"))">
+        </FluentPersona>
     </NotAuthorized>
 </AuthorizeView>
 
@@ -49,5 +64,42 @@
     private async void OpenAccount()
     {
         await JsRuntime.InvokeVoidAsync("open", AccountUrl, "_blank");
+    }
+    
+    private string GetShortcut(string? email)
+    {
+        string shortcut = "";
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            string[] parts = email.Split('@');
+            string username = parts[0];
+
+            if (username.Contains("."))
+            {
+                string[] usernameParts = username.Split('.');
+                if (usernameParts.Length >= 2)
+                {
+                    shortcut = $"{usernameParts[0].Substring(0, 1)}{usernameParts[1].Substring(0, 1)}";
+                }
+                else if (usernameParts.Length == 1)
+                {
+                    shortcut = $"{usernameParts[0].Substring(0, 2)}";
+                }
+            }
+            else
+            {
+                if (username.Length >= 2)
+                {
+                    shortcut = username.Substring(0, 2);
+                }
+                else
+                {
+                    shortcut = username;
+                }
+            }
+        }
+
+        return shortcut.ToUpper();
     }
 }

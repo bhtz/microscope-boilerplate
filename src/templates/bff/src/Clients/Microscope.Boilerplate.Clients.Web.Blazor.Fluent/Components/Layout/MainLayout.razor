@@ -1,3 +1,6 @@
+@using Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.Components
+@using Microscope.Boilerplate.Clients.Web.Blazor.Fluent.Components.Shared
+@using Microscope.Boilerplate.Clients.Web.Shared.Components
 @inherits LayoutComponentBase
 
 <FluentDesignTheme Mode="@_mode" CustomColor="#02838f" StorageName="theme" />
@@ -6,18 +9,13 @@
     <FluentHeader>
         <FluentIcon OnClick="@(() => IsExpanded = !IsExpanded)" Value="@(new Icons.Regular.Size20.Navigation())" Color="Color.Fill" Style="margin-right: 10px; cursor: pointer;" />
         microscope
+        <FeatureFlag FlagName="ShowAppVersion">
+            <UseGetAppVersion Context="result">@result.AppVersion</UseGetAppVersion>
+        </FeatureFlag>
         <FluentSpacer />
         <FluentIcon OnClick="ToggleDarkMode" Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.DarkTheme())" Style="margin-right: 10px; cursor: pointer;" Color="Color.Fill"/>
-        <FluentIcon OnClick="() => IsLanguageExpanded = !IsLanguageExpanded" Id="LanguageSelector" Value="@(new Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20.LocalLanguage())" Style="margin-right: 10px; cursor: pointer;" Color="Color.Fill"/>
-        <FluentMenu Anchor="LanguageSelector" @bind-Open="IsLanguageExpanded">
-            <FluentMenuItem>Français</FluentMenuItem>
-            <FluentMenuItem>English</FluentMenuItem>
-        </FluentMenu>
-        <FluentPersona 
-            Initials="HB"
-            Image="@(new Icons.Regular.Size24.Person().ToDataUri(color: "white"))"
-            ImageSize="30px">
-        </FluentPersona>
+        <LanguageSelector />
+        <LoginDisplay></LoginDisplay>
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <NavMenu IsExpanded="@IsExpanded" />
@@ -28,9 +26,8 @@
         </FluentBodyContent>
     </FluentStack>
     <FluentFooter>
-        <a href="https://www.fluentui-blazor.net" target="_blank">Documentation and demos</a>
+        <a href="https://bhtz.github.io/microscope-boilerplate/" target="_blank">Documentation</a>
         <FluentSpacer />
-        <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor" target="_blank">About Blazor</a>
     </FluentFooter>
 </FluentLayout>
 
@@ -48,7 +45,7 @@
 
 @code {
     public bool IsExpanded { get; set; } = true;
-    public bool IsLanguageExpanded { get; set; }
+    
     private DesignThemeModes _mode = DesignThemeModes.System;
     
     public void ToggleDarkMode() 
