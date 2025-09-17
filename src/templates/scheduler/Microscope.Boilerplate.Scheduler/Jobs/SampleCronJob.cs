@@ -2,12 +2,15 @@ using TickerQ.Utilities.Base;
 
 namespace Microscope.Boilerplate.Scheduler.Jobs;
 
-public class SampleJob
+public class SampleCronJob
 {
-    [TickerFunction(nameof(HelloWorld),"*/1 * * * *")]
-    public void HelloWorld()
+    /// <summary>
+    /// Execute every minute
+    /// </summary>
+    [TickerFunction(nameof(MyCronFunction),"*/1 * * * *")]
+    public void MyCronFunction()
     {
         // Your background job logic goes here...
-        Console.WriteLine("Hello World!");
+        Console.WriteLine("Hello cron function !");
     }
 }

@@ -1,5 +1,6 @@
 CREATE DATABASE mcsp_identity;
 CREATE DATABASE mcsp_app;
+CREATE DATABASE mcsp_scheduler;
 
 \c mcsp_app;
 

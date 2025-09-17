@@ -17,6 +17,7 @@ public static class TemplateService
             new ModularMonolithTemplate(),
             new DocumentationTemplate(),
             new DabTemplate(),
+            new SchedulerTemplate(),
             
             // Some default from dotnet 
             new ConsoleTemplate(),

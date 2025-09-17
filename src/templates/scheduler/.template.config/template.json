@@ -3,39 +3,17 @@
   "author": "Benjamin HEINTZ",
   
   "classifications": [
-    "Modular",
-    "Monolith",
-    "MartenDB",
-    "Vertical slice"
+    "Scheduler",
+    "TickerQ",
+    "Postgres",
   ],
   
-  "identity": "Microscope.Boilerplate.Service",
-  "name": "Microscope boilerplate modular monolith",
-  "shortName": "mcsp_service",
+  "identity": "Microscope.Boilerplate.Scheduler",
+  "name": "Microscope boilerplate scheduler",
+  "shortName": "mcsp_scheduler",
   "sourceName": "Microscope.Boilerplate",
 
   "symbols": {
-    "GraphQL": {
-      "type": "parameter",
-      "description": "Add GraphQL protocol",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-    
-    "Rest": {
-      "type": "parameter",
-      "description": "Add REST protocol",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-
-    "Grpc": {
-      "type": "parameter",
-      "description": "Add gRPC protocol",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-
     "Docker": {
       "type": "parameter",
       "description": "Add Docker support",
@@ -46,13 +24,6 @@
     "Aspire": {
       "type": "parameter",
       "description": "Add Aspire support",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-
-    "UnitTest": {
-      "type": "parameter",
-      "description": "Add Unit test",
       "datatype": "bool",
       "defaultValue": false
     }
@@ -74,36 +45,6 @@
         },
         
         {
-          "condition": "(!GraphQL)",
-          "exclude": [
-            "**/*Resolver.cs",
-            "**/*GraphQL*/**",
-            "**/GraphQL/**",
-            "**/GraphQLConfiguration.cs"
-          ]
-        },
-        {
-          "condition": "(!Rest)",
-          "exclude": [
-            "**/*Controller.cs",
-            "**/*Endpoints.cs",
-            "**/OpenApiConfiguration.cs",
-            "**/RestConfiguration.cs",
-            "**/TodoRestConfiguration.cs"
-          ]
-        },
-
-        {
-          "condition": "(!Grpc)",
-          "exclude": [
-            "**/Protos/**",
-            "**/*RpcService.cs",
-            "**/*GrpcService.cs",
-            "Microscope.Boilerplate.API/Configurations/GrpcConfiguration.cs"
-          ]
-        },
-        
-        {
           "condition": "(!Docker)",
           "exclude": [
             "src/IAC/Docker/docker-compose.yml",
@@ -120,14 +61,7 @@
         {
           "condition": "(!Docker && !Aspire)",
           "exclude": [
-            "src/IAC/Docker/**"
-          ]
-        },
-
-        {
-          "condition": "(!UnitTest)",
-          "exclude": [
-            "Modules/Todo/Microscope.Boilerplate.Todo.Domain.Tests.Unit/**"
+            "IAC/Docker/**"
           ]
         }
       ]

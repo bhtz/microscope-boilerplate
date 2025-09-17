@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.Scheduler", "Microscope.Boilerplate.Scheduler\Microscope.Boilerplate.Scheduler.csproj", "{B6C6F53A-2263-430E-9868-849E16AC3B5A}"
+EndProject
+
+#if (Aspire == true)
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IAC", "IAC", "{9402013B-C4D4-42DC-A0DB-5F1D1DF1BA8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microscope.Boilerplate.IAC.Aspire", "IAC\Aspire\Microscope.Boilerplate.IAC.Aspire\Microscope.Boilerplate.IAC.Aspire.csproj", "{17CCC9F8-A8A6-44CF-8999-586C3C3A0242}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{C89E7C26-E6EC-4712-A8EC-D18421B47BB5}"
+EndProject
+#endif
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6C6F53A-2263-430E-9868-849E16AC3B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C6F53A-2263-430E-9868-849E16AC3B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C6F53A-2263-430E-9868-849E16AC3B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C6F53A-2263-430E-9868-849E16AC3B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		#if (Aspire == true)
+		{17CCC9F8-A8A6-44CF-8999-586C3C3A0242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CCC9F8-A8A6-44CF-8999-586C3C3A0242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CCC9F8-A8A6-44CF-8999-586C3C3A0242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CCC9F8-A8A6-44CF-8999-586C3C3A0242}.Release|Any CPU.Build.0 = Release|Any CPU
+		#endif
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		#if (Aspire == true)
+		{C89E7C26-E6EC-4712-A8EC-D18421B47BB5} = {9402013B-C4D4-42DC-A0DB-5F1D1DF1BA8E}
+		{17CCC9F8-A8A6-44CF-8999-586C3C3A0242} = {C89E7C26-E6EC-4712-A8EC-D18421B47BB5}
+		#endif
+	EndGlobalSection
+EndGlobal

@@ -38,6 +38,18 @@ services:
     depends_on:
       - postgres
               
+  api:
+    image: microscope-boilerplate/scheduler:latest
+    container_name: microscope_boilerplate_scheduler
+    ports:
+      - "5236:8080"
+    depends_on:
+      - "postgres"
+      - "keycloak"
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://host.docker.internal:4317
+      OTEL_SERVICE_NAME: SCHEDULER            
+
 volumes:
   microscope_boilerplate_scheduler_data:
   

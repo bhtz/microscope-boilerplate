@@ -44,6 +44,7 @@ export default withMermaid(
               { text: 'Desktop', link: '/templates/desktop' },
               { text: 'CLI', link: '/templates/cli' },
               { text: 'Documentation', link: '/templates/documentation' },
+              { text: 'Scheduler', link: '/templates/scheduler' },
               // { text: 'BaaS', link: '/templates/baas' },
               // { text: 'Workflow', link: '/templates/workflow' },
             ]
