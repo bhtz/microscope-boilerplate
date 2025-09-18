@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.Clients.BFF.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
 public static class ReverseProxyConfiguration
 {

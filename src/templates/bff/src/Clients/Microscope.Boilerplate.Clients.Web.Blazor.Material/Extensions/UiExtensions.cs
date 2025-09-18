@@ -3,7 +3,7 @@ using Microscope.Boilerplate.Clients.Web.Shared.Services;
 using MudBlazor;
 using MudBlazor.Services;
 
-namespace Microscope.Boilerplate.Clients.Web.Blazor.Material.Configurations;
+namespace Microscope.Boilerplate.Clients.Web.Blazor.Material.Extensions;
 
 public static class UiConfiguration
 {

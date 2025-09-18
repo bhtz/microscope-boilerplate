@@ -1,10 +1,10 @@
 using FluentValidation;
 using HotChocolate;
 using HotChocolate.Types;
-using Microscope.Boilerplate.BFF.Configurations.Http;
+using Microscope.Boilerplate.BFF.Extensions.Http;
 using Microsoft.Extensions.Options;
 
-namespace Microscope.Boilerplate.Clients.BFF.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
 public static class GatewayConfiguration
 {

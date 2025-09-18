@@ -1,7 +1,7 @@
 using Microscope.Boilerplate.Clients.Web.Shared.Services;
 using Microsoft.FeatureManagement;
 
-namespace Microscope.Boilerplate.Clients.BFF.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
 public static class FeatureManagementConfiguration
 {

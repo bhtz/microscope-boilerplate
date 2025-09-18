@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
-namespace Microscope.Boilerplate.Clients.BFF.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
 public static class CookieOidcRefresherConfiguration
 {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Microscope.Boilerplate.Clients.BFF.Configurations;
+namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
 public static class AuthenticationConfiguration
 {

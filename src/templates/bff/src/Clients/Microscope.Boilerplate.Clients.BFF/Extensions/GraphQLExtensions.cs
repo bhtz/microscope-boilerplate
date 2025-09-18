@@ -1,6 +1,6 @@
 using HotChocolate;
 
-namespace Microscope.Boilerplate.BFF.Configurations;
+namespace Microscope.Boilerplate.BFF.Extensions;
 
 public static class GraphQlConfiguration
 {
