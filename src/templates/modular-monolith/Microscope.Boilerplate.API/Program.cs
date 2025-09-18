@@ -3,7 +3,7 @@ using Carter;
 using Scalar.AspNetCore;
 #endif
 
-using Microscope.Boilerplate.API.Configurations;
+using Microscope.Boilerplate.API.Extensions;
 using Microscope.Boilerplate.API.Endpoints;
 using Microscope.Boilerplate.Todo.Infrastructure;
 using Microscope.Boilerplate.Todo.Slices;

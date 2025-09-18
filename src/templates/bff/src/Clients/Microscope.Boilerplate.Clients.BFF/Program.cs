@@ -1,6 +1,6 @@
-using Microscope.Boilerplate.BFF.Configurations;
-using Microscope.Boilerplate.BFF.Configurations.Http;
-using Microscope.Boilerplate.Clients.BFF.Configurations;
+using Microscope.Boilerplate.BFF.Extensions;
+using Microscope.Boilerplate.BFF.Extensions.Http;
+using Microscope.Boilerplate.Clients.BFF.Extensions;
 using Microscope.Boilerplate.Clients.BFF.Endpoints;
 using Microscope.Boilerplate.Clients.BFF.Components.Pages;
 

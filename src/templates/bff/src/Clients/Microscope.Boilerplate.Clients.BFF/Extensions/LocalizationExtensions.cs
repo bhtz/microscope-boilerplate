@@ -1,6 +1,6 @@
 namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
-public static class LocalizationConfiguration
+public static class LocalizationExtensions
 {
     public static IServiceCollection AddLocalizationConfiguration(this IServiceCollection services, IConfiguration configuration)
     {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 
-namespace Microscope.Boilerplate.BFF.Configurations.Http;
+namespace Microscope.Boilerplate.BFF.Extensions.Http;
 
 public class GatewayAuthenticationHeaderHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
 {

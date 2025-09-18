@@ -2,7 +2,7 @@ using System.Globalization;
 #if (Gateway)
 using Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.Serializers;
 #endif
-using Microscope.Boilerplate.Clients.Web.Blazor.Material.Configurations;
+using Microscope.Boilerplate.Clients.Web.Blazor.Material.Extensions;
 using Microscope.Boilerplate.Clients.Web.Shared.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Localization;

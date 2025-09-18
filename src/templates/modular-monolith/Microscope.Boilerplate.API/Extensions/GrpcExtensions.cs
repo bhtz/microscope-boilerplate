@@ -1,9 +1,9 @@
 using FluentValidation;
 using Microsoft.Extensions.Options;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class GrpcConfiguration
+public static class GrpcExtensions
 {
     public static IServiceCollection AddGrpcConfiguration(this IServiceCollection services, IConfiguration configuration)
     {

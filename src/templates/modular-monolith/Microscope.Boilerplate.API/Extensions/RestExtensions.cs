@@ -2,9 +2,9 @@ using Asp.Versioning;
 using Asp.Versioning.Builder;
 using Carter;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class RestConfiguration
+public static class RestExtensions
 {
     public static IServiceCollection AddRestConfiguration(this IServiceCollection services)
     {

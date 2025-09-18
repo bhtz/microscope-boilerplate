@@ -1,6 +1,6 @@
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class AuthorizationConfiguration
+public static class AuthorizationExtensions
 {
     public static IServiceCollection AddAuthorizationConfiguration(this IServiceCollection services)
     {

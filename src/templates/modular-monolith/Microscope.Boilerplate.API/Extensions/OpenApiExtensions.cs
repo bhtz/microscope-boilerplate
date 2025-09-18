@@ -1,6 +1,6 @@
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class OpenApiConfiguration
+public static class OpenApiExtensions
 {
     public static IServiceCollection AddOpenApiConfiguration(this IServiceCollection services)
     {

@@ -36,6 +36,8 @@
 - [x] Feature management
 - [x] Aspire docker composer publisher
 - [x] Domain event handler
+- [x] Refactoring IRepository & Aggregate framework
+- [x] Clean AuditableAggregate
 - [x] Todo domain unit test
   - [x] Sample Unit test
   - [x] Add template option
@@ -43,9 +45,6 @@
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
 - [ ] Bus & integration event ?
-- [ ] Only module symbol ?
-- [x] Refactoring IRepository & Aggregate framework
-- [x] Clean AuditableAggregate
 - [ ] Clean up readme
 
 ## Helpers EF CORE

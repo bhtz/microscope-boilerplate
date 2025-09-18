@@ -2,7 +2,7 @@ using HotChocolate;
 
 namespace Microscope.Boilerplate.BFF.Extensions;
 
-public static class GraphQlConfiguration
+public static class GraphQLExtensions
 {
     public static IServiceCollection AddGraphQlConfiguration(this IServiceCollection services)
     {

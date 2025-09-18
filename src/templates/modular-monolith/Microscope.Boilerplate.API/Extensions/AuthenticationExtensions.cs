@@ -7,9 +7,9 @@ using Microscope.Boilerplate.Framework.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class AuthenticationConfiguration
+public static class AuthenticationExtensions
 {
     /// <summary>
     /// Add service authentication

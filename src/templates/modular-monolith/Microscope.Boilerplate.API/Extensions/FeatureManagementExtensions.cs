@@ -1,8 +1,8 @@
 using Microsoft.FeatureManagement;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class FeatureManagementConfiguration
+public static class FeatureManagementExtensions
 {
     public static IServiceCollection AddFeatureManagementConfiguration(this IServiceCollection services, IConfiguration configuration)
     {

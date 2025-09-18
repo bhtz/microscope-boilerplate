@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
-public static class AuthenticationConfiguration
+public static class AuthenticationExtensions
 {
     /// <summary>
     /// Register & validate options from configuration 

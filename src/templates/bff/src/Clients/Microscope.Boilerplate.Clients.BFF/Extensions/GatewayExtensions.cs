@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
-public static class GatewayConfiguration
+public static class GatewayExtensions
 {
     private static IServiceCollection ValidateGatewayConfiguration(this IServiceCollection services, IConfiguration configuration)
     {

@@ -1,4 +1,4 @@
-namespace Microscope.Boilerplate.BFF.Configurations.Http;
+namespace Microscope.Boilerplate.BFF.Extensions.Http;
 
 public class ServerAuthenticationHeaderHandler(IHttpContextAccessor httpContextAccessor) : DelegatingHandler
 {

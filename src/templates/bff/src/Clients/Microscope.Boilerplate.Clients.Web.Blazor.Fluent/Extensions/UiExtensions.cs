@@ -3,7 +3,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Microscope.Boilerplate.Clients.Web.Shared.Configurations;
 
-public static class UiConfiguration
+public static class UiExtensions
 {
     public static IServiceCollection AddFluentUiConfiguration(this IServiceCollection services)
     {

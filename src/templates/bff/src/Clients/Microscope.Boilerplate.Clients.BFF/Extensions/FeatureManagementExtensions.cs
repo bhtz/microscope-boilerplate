@@ -3,7 +3,7 @@ using Microsoft.FeatureManagement;
 
 namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
-public static class FeatureManagementConfiguration
+public static class FeatureManagementExtensions
 {
     public static IServiceCollection AddFeatureManagementConfiguration(this IServiceCollection services, IConfiguration configuration)
     {

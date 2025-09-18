@@ -5,7 +5,7 @@ using MudBlazor.Services;
 
 namespace Microscope.Boilerplate.Clients.Web.Blazor.Material.Extensions;
 
-public static class UiConfiguration
+public static class UiExtensions
 {
     public static IServiceCollection AddMaterialUiConfiguration(this IServiceCollection services)
     {

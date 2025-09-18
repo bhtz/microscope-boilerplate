@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Microscope.Boilerplate.Clients.BFF.Extensions;
 
-public static class CookieOidcRefresherConfiguration
+public static class CookieOidcRefresherExtensions
 {
     public static IServiceCollection ConfigureCookieOidcRefresh(this IServiceCollection services, string cookieScheme, string oidcScheme)
     {

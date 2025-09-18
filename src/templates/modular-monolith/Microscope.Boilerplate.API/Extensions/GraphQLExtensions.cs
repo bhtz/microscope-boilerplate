@@ -1,8 +1,8 @@
 using HotChocolate;
 
-namespace Microscope.Boilerplate.API.Configurations;
+namespace Microscope.Boilerplate.API.Extensions;
 
-public static class GraphQlConfiguration
+public static class GraphQLExtensions
 {
     public static IServiceCollection AddGraphQlConfiguration(this IServiceCollection services)
     {

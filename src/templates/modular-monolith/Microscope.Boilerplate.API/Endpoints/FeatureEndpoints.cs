@@ -1,4 +1,4 @@
-using Microscope.Boilerplate.API.Configurations;
+using Microscope.Boilerplate.API.Extensions;
 
 namespace Microscope.Boilerplate.API.Endpoints;
 
