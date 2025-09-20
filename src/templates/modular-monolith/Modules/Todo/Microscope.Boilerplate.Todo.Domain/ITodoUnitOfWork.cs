@@ -1,6 +1,6 @@
-using Microscope.Management.Framework.Domain.DDD;
+using Microscope.Boilerplate.Framework.Domain.DDD;
 
-namespace Microscope.Management.Todo.Domain;
+namespace Microscope.Boilerplate.Todo.Domain;
 
 public interface ITodoUnitOfWork : IUnitOfWork
 {

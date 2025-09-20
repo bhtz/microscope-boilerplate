@@ -11,9 +11,14 @@
 
 ### Service
 - [x] Add unit tests (xUnit)
-- [ ] Integration tests (xUnit)
+- [x] Isolated marten IDocumentStore per module
 - [ ] Transaction behavior using martenDB unit of work
+- [ ] Integration tests (xUnit)
 - [ ] Scheduler option ?
+- [ ] Multi tenancy
+  - [ ] EF CORE global filter by tenant
+  - [ ] marten session by tenant
+- [ ] Bus & integration event ?
 
 ### Desktop
 - [ ] tbd
@@ -38,16 +43,19 @@
 - [ ] Add IAM authentication ?
 
 ### Workflow
+- [ ] Elsa core setup
+    - [ ] Server
+    - [ ] Studio
 - [ ] Docker
 - [ ] Aspire
 - [ ] CLI
+- [ ] AI ?
 - [ ] Add IAM authentication ?
 
 -------------------------
 
 ## Templates sandbox
 - [ ] Mobile (MAUI) ?
-- [ ] AI Workflow (Microsoft.Extensions.AI + Elsa core workflow) ?
 - [ ] Spreadsheet as a Service (NocoDB / Superset) ?
 
 -------------------------

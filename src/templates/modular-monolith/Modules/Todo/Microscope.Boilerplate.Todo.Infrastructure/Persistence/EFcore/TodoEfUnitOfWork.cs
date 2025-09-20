@@ -1,12 +1,13 @@
 using System.Data;
 using MediatR;
 using Microscope.Boilerplate.Framework.Domain.DDD;
+using Microscope.Boilerplate.Todo.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 
-public class EfUnitOfWork : IUnitOfWork
+public class TodoEfUnitOfWork : ITodoUnitOfWork
 {
     private readonly TodoAppDbContext _context;
     private IDbContextTransaction? _currentTransaction;
@@ -15,7 +16,7 @@ public class EfUnitOfWork : IUnitOfWork
 
     public bool HasActiveTransaction => _currentTransaction != null;
 
-    public EfUnitOfWork(TodoAppDbContext context, IMediator mediator)
+    public TodoEfUnitOfWork(TodoAppDbContext context, IMediator mediator)
     {
         _context = context;
         _mediator = mediator;

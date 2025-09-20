@@ -7,6 +7,9 @@ using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
 using Microscope.Boilerplate.Framework.Domain.DDD;
 using Microscope.Boilerplate.Framework.Infrastructure.Persistence.Marten;
+using Microscope.Boilerplate.Todo.Domain;
+using Microscope.Boilerplate.Todo.Slices;
+using Microscope.Management.Todo.Infrastructure.Persistence.Marten;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -80,13 +83,16 @@ public static class Extensions
 
         if (option.Framework == PersistenceOptions.MARTEN_FRAMEWORK)
         {
-            services.AddMarten(options =>
+            services.AddMartenStore<ITodoDocumentStore>(options =>
             {
                 options.Connection(option.ConnectionString);
                 options.DatabaseSchemaName = option.Schema;
-            }).UseLightweightSessions();
+            });
+
+            services.AddKeyedScoped<IDocumentSession>(nameof(ITodoModule), (sp, _) 
+                => sp.GetRequiredService<ITodoDocumentStore>().LightweightSession());
             
-            services.AddScoped<IUnitOfWork, MartenUnitOfWork>();
+            services.AddScoped<ITodoUnitOfWork, TodoMartenUnitOfWork>();
             services.AddScoped<ITodoListRepository, MartenTodoListRepository>();
         }
         else
@@ -125,8 +131,8 @@ public static class Extensions
                         break;
                 }
             });
-
-            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
+            
+            services.AddScoped<ITodoUnitOfWork, TodoEfUnitOfWork>();
             services.AddScoped<ITodoListRepository, EfTodoListRepository>();
         }
         

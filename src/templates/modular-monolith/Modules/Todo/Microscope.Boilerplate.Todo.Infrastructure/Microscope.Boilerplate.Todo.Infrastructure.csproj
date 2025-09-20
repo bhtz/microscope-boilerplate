@@ -23,6 +23,5 @@
     
     <ItemGroup>
       <Folder Include="Persistence\EFcore\Scripts\" />
-      <Folder Include="Services\" />
     </ItemGroup>
 </Project>

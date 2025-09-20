@@ -41,11 +41,6 @@
 - [x] Todo domain unit test
   - [x] Sample Unit test
   - [x] Add template option
-- [ ] Multi tenancy
-  - [ ] EF CORE global filter by tenant
-  - [ ] marten session by tenant
-- [ ] Bus & integration event ?
-- [ ] Clean up readme
 
 ## Helpers EF CORE
 
