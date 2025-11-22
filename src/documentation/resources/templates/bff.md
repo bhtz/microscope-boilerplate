@@ -33,7 +33,7 @@
 * ✅ I18N
 
 **IAM**
-* ✅ IAM (keycloak)
+* ✅ IAM (keycloak | AzureAD)
 
 **IAC**
 * ✅ Docker

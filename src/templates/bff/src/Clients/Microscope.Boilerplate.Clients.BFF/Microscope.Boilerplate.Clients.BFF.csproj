@@ -10,8 +10,8 @@
 
     <!--#if (Material && Fluent) -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <UI>Fluent</UI>
-<!--         <UI>Material</UI>-->
+<!--        <UI>Fluent</UI>-->
+         <UI>Material</UI>
         <DefineConstants Condition="'$(UI)'=='Fluent'">TRACE;Aspire;Yarp;Gateway;Fluent</DefineConstants>
         <DefineConstants Condition="'$(UI)'=='Material'">TRACE;Aspire;Yarp;Gateway;Material</DefineConstants>
     </PropertyGroup>
@@ -36,6 +36,7 @@
         <!-- #endif -->
 
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.7"/>
+        <PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.7"/>
         <ProjectReference Include="..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj"/>
     </ItemGroup>

@@ -40,7 +40,9 @@
             }
             <MudIconButton Icon="@icon" Color="Color.Inherit" OnClick="ToggleTheme"/>
         </FeatureFlag>
-        <LanguageSelector/>
+        <FeatureFlag FlagName="ShowLanguageSelector">
+            <LanguageSelector/>
+        </FeatureFlag>
         <LoginDisplay/>
     </MudAppBar>
     

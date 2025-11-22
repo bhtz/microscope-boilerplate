@@ -5,7 +5,7 @@ using Microscope.Boilerplate.Clients.BFF.Endpoints;
 using Microscope.Boilerplate.Clients.BFF.Components.Pages;
 
 #if (Material)
-using Microscope.Boilerplate.Clients.Web.Blazor.Material.Configurations;
+using Microscope.Boilerplate.Clients.Web.Blazor.Material.Extensions;
 #endif
 
 #if (Fluent)
@@ -148,13 +148,13 @@ app.MapRazorComponents<FluentHost>()
     .AddAdditionalAssemblies(typeof(Microscope.Boilerplate.Clients.Web.Blazor.Fluent._Imports).Assembly);
 #endif
 
-// app.UseStatusCodePages(async context =>
-// {
-//     if (context.HttpContext.Response.StatusCode == 404)
-//     {
-//         context.HttpContext.Response.Redirect("/not-found");
-//     }
-// });
+app.UseStatusCodePages(async context =>
+{
+    if (context.HttpContext.Response.StatusCode == 404)
+    {
+        context.HttpContext.Response.Redirect("/not-found");
+    }
+});
 
 #endregion
 

@@ -3,6 +3,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Options;
+using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,7 +17,8 @@ public static class AuthenticationExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    private static IServiceCollection ValidateAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection ValidateAuthenticationConfiguration(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddOptions<OidcAuthenticationOptions>()
             .Bind(configuration.GetSection(OidcAuthenticationOptions.ConfigurationKey))
@@ -32,15 +34,41 @@ public static class AuthenticationExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.ValidateAuthenticationConfiguration(configuration);
-        
+
         var oidcAuthenticationOptions = services
             .BuildServiceProvider()
             .GetRequiredService<IOptions<OidcAuthenticationOptions>>()
             .Value;
 
+        switch (oidcAuthenticationOptions.Provider)
+        {
+            case OidcAuthenticationOptions.OIDC_PROVIDER:
+                services.AddOidcAuthenticationConfiguration(oidcAuthenticationOptions);
+                break;
+            case OidcAuthenticationOptions.AZUREAD_PROVIDER:
+                services.AddAzureAdAuthenticationConfiguration(oidcAuthenticationOptions);
+                break;
+        }
+
+        services.ConfigureCookieOidcRefresh(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+        services.AddAuthorization();
+
+        return services;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="oidcAuthenticationOptions"></param>
+    /// <returns></returns>
+    private static IServiceCollection AddOidcAuthenticationConfiguration(this IServiceCollection services,
+        OidcAuthenticationOptions oidcAuthenticationOptions)
+    {
         services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -93,11 +121,39 @@ public static class AuthenticationExtensions
                 }
             })
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
-
-        services.ConfigureCookieOidcRefresh(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
         
-        services.AddAuthorization();
+        return services;
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="oidcAuthenticationOptions"></param>
+    /// <returns></returns>
+    private static IServiceCollection AddAzureAdAuthenticationConfiguration(this IServiceCollection services,
+        OidcAuthenticationOptions oidcAuthenticationOptions)
+    {
+        services
+            .AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddMicrosoftIdentityWebApp(options =>
+            {
+                options.Instance = oidcAuthenticationOptions.Authority;
+                options.CallbackPath = oidcAuthenticationOptions.CallbackPath;
+                options.ClientId = oidcAuthenticationOptions.ClientId;
+                options.ClientSecret = oidcAuthenticationOptions.ClientSecret;
+                options.TenantId = oidcAuthenticationOptions.TenantId;
+                
+                foreach (var scope in oidcAuthenticationOptions.Scopes)
+                {
+                    options.Scope.Add(scope);
+                }
+            });
+        
         return services;
     }
 }
@@ -105,10 +161,16 @@ public static class AuthenticationExtensions
 public class OidcAuthenticationOptions
 {
     public const string ConfigurationKey = "OIDC";
+    public string Provider { get; set; } = OIDC_PROVIDER;
 
-    public string Authority { get; set; }
+    public const string OIDC_PROVIDER = "OIDC";
+    public const string AZUREAD_PROVIDER = "AzureAd";
+
+    public string Authority { get; set; } // MSAL "Instance" 
     public string ClientId { get; set; }
     public string ClientSecret { get; set; }
+    public string TenantId { get; set; } // MSAL
+    public string CallbackPath { get; set; } = "/signin-oidc"; // MSAL
     public string? NameClaimType { get; set; } = ClaimTypes.Name;
     public string? RoleClaimType { get; set; } = ClaimTypes.Role;
     public string? IssuerAddress { get; set; }
@@ -134,5 +196,13 @@ public class OidcAuthenticationOptionsValidator : AbstractValidator<OidcAuthenti
             .NotNull()
             .NotEmpty()
             .WithMessage("OIDC option ClientSecret must have a value");
+
+        When(x => x.Provider == OidcAuthenticationOptions.AZUREAD_PROVIDER, () =>
+        {
+            RuleFor(x => x.TenantId)
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("OIDC option TenantId must have a value when using AzureAD provider");
+        });
     }
 }
