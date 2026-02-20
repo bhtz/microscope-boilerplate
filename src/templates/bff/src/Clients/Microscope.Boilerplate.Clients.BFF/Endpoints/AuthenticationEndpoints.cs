@@ -11,7 +11,7 @@ public static class AuthenticationEndpoints
     {
         var group = app.MapGroup("auth");
         group.MapGet("/login", Login).AllowAnonymous();
-        group.MapGet("/logout", Logout).RequireAuthorization();
+        group.MapGet("/logout", Logout).RequireAuthorization(); // TODO : use post instead
     }
 
     private static ChallengeHttpResult Login(string? returnUrl)
@@ -21,7 +21,7 @@ public static class AuthenticationEndpoints
             [CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme]);
     }
 
-    private static Task<SignOutHttpResult> Logout(IHttpContextAccessor httpContextAccessor)
+    private static Task<SignOutHttpResult> Logout()
     {
         return Task.FromResult(TypedResults.SignOut(new AuthenticationProperties() { RedirectUri = "/" },
             [CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme]));

@@ -59,6 +59,7 @@
         <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Blazor.Material\Microscope.Boilerplate.Clients.Web.Blazor.Material.csproj"/>
     </ItemGroup>
 
+    <!--#if (Gateway) -->
     <ItemGroup>
         <None Update="gateway.fgp">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -67,5 +68,6 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+    <!-- #endif -->
 
 </Project>

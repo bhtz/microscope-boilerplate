@@ -15,8 +15,6 @@ public class ServerAuthenticationHeaderHandler(IHttpContextAccessor httpContextA
         }
 
         var response = await base.SendAsync(request, cancellationToken);
-
-        var content = response.Content.ReadAsStringAsync();
         
         return response;
     }
