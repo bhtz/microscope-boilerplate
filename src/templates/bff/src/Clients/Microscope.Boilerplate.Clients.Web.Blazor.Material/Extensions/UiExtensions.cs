@@ -1,4 +1,3 @@
-using ApexCharts;
 using Microscope.Boilerplate.Clients.Web.Shared.Services;
 using MudBlazor;
 using MudBlazor.Services;
@@ -9,14 +8,6 @@ public static class UiExtensions
 {
     public static IServiceCollection AddMaterialUiConfiguration(this IServiceCollection services)
     {
-        services.AddScoped<HostingEnvironmentService>();
-        services.AddApexCharts(e =>
-        {
-            e.GlobalOptions = new ApexChartBaseOptions
-            {
-                Theme = new Theme { Palette = PaletteType.Palette1 }
-            };
-        });
         services.AddMudServices(config =>
         {
             config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;

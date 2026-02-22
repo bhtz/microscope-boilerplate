@@ -3,6 +3,7 @@ schema {
 }
 
 type Query {
+  flags: [KeyValuePairOfStringAndBoolean!]
   appVersion: String!
 }
 
@@ -14,6 +15,11 @@ enum ApplyPolicy {
   AFTER_RESOLVER
   "The policy is applied in the validation step before the execution."
   VALIDATION
+}
+
+type KeyValuePairOfStringAndBoolean {
+  key: String!
+  value: Boolean!
 }
 
 "The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."

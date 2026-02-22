@@ -1,12 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
         <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
         <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+        <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -14,15 +12,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Blazor-ApexCharts" Version="5.1.0"/>
-        <PackageReference Include="Blazored.FluentValidation" Version="2.2.0"/>
-        <PackageReference Include="BlazorTypewriter" Version="1.1.0"/>
-        <PackageReference Include="MudBlazor" Version="8.3.0"/>
+        <PackageReference Include="Blazored.FluentValidation" />
+        <PackageReference Include="BlazorTypewriter" />
+        <PackageReference Include="MudBlazor" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Shared\Microscope.Boilerplate.Clients.Web.Shared.csproj"/>
-        <ProjectReference Include="..\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff\Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.csproj"/>
         <ProjectReference Include="..\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway\Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj"/>
     </ItemGroup>
 

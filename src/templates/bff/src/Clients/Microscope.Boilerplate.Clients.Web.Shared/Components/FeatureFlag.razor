@@ -1,26 +1,57 @@
 @using Microscope.Boilerplate.Clients.Web.Shared.Services
-@inject IFeatureManagementService FeatureManagementService;
-@inherits Microscope.Boilerplate.Clients.Web.Shared.Components.InteractiveAutoPersistentPage
+@inject IFeatureManagementService FeatureManagementService
+@inject PersistentComponentState PersistentComponentState
+@implements IDisposable
 
-@if (featureIsEnabled)
+@if (FeatureIsEnabled == true)
 {
     @ChildContent
 }
+else
+{
+    @DisabledContent
+}
 
 @code {
-    private bool featureIsEnabled = false;
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
-    [Parameter] public string? FlagName { get; set; }
+    [Parameter] public RenderFragment? DisabledContent { get; set; }
+    [Parameter] public required string FlagName { get; set; }
+
+    private bool? FeatureIsEnabled { get; set; }
+    private PersistingComponentStateSubscription? PersistingSubscription { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (string.IsNullOrEmpty(FlagName)) return;
-        
-        featureIsEnabled = await GetPersistentState(FlagName, async () =>
+        PersistingSubscription = PersistentComponentState.RegisterOnPersisting(PersistFeatureState);
+
+        if (string.IsNullOrEmpty(FlagName))
         {
-            var features = await FeatureManagementService.GetFeatureManagement();
-            return features != null && features.FirstOrDefault(x => x.Key == FlagName).Value;
-        });
+            return;
+        }
+
+        if (PersistentComponentState.TryTakeFromJson<bool?>(FlagName, out var persistedState))
+        {
+            FeatureIsEnabled = persistedState;
+            return;
+        }
+
+        var features = await FeatureManagementService.GetFeatureManagement();
+        FeatureIsEnabled = features != null && features.FirstOrDefault(x => x.Key == FlagName).Value;
+    }
+
+    private Task PersistFeatureState()
+    {
+        if (!string.IsNullOrEmpty(FlagName) && FeatureIsEnabled != null)
+        {
+            PersistentComponentState.PersistAsJson(FlagName, FeatureIsEnabled);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        PersistingSubscription?.Dispose();
     }
 }

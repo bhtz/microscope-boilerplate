@@ -7,7 +7,6 @@ public static class UiExtensions
 {
     public static IServiceCollection AddFluentUiConfiguration(this IServiceCollection services)
     {
-        services.AddScoped<HostingEnvironmentService>();
         services.AddFluentUIComponents();
 
         return services;

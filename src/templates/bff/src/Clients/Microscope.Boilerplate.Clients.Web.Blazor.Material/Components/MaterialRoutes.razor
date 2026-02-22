@@ -1,9 +1,9 @@
 ﻿@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Layout
-@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Shared
+@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Pages.Common
 @using Microscope.Boilerplate.Clients.Web.Shared.Components
 
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="@typeof(NotFoundPage)">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)">
                 <NotAuthorized>

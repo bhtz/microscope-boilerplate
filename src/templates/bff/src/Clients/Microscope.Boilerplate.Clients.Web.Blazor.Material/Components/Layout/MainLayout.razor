@@ -2,11 +2,9 @@
 @using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Shared
 @using Microscope.Boilerplate.Clients.Web.Blazor.Material.Settings
 @using Microscope.Boilerplate.Clients.Web.Shared.Components
-@using Microscope.Boilerplate.Clients.Web.Shared.Services
 @inherits LayoutComponentBase
-@inject HostingEnvironmentService HostingEnvironmentService
 
-<MudThemeProvider  @bind-IsDarkMode="@_isDarkMode" Theme="_currentTheme" />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_currentTheme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -27,7 +25,7 @@
         </FeatureFlag>
         
         <FeatureFlag FlagName="ShowInteractiveRenderMode">
-            @if (!HostingEnvironmentService.IsWebAssembly)
+            @if (RendererInfo.Name == "Server")
             {
                 <MudProgressCircular Class="ml-2" Size="Size.Small" Color="Color.Inherit" Indeterminate="true"></MudProgressCircular>
             }
@@ -67,26 +65,21 @@
         DrawerOpen = !DrawerOpen;
     }
     
-    private void OnThemeChanged(string theme)
+    private async Task OnThemeChanged(string theme)
     {
-        switch (theme)
+        _currentTheme = theme switch
         {
-            case "microscope":
-                _currentTheme = Theme.MicroscopeTheme;
-                break;
-                
-            case "skyline":
-                _currentTheme = Theme.SkylineTheme;
-                break;
-                
-            case "mud":
-                _currentTheme = Theme.MudTheme;
-                break;
-                
-            default:
-                _currentTheme = Theme.MicroscopeTheme;
-                break;
-        }
+            "microscope" => Theme.MicroscopeTheme,
+            "skyline" => Theme.SkylineTheme,
+            "mud" => Theme.MudTheme,
+            _ => Theme.MicroscopeTheme
+        };
+
+        // var result = await BffClient.SetTheme.ExecuteAsync(theme);
+        // if (result.IsSuccessResult())
+        // {
+        //     Snackbar.Add("cookie theme set", Severity.Info);
+        // }
     }
     
     private void ToggleTheme()

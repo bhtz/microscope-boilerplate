@@ -1,43 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <ContainerRepository>microscope-management/bff</ContainerRepository>
         <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
+    
     <!--#if (Material && Fluent) -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-<!--        <UI>Fluent</UI>-->
-         <UI>Material</UI>
+        <!--        <UI>Fluent</UI>-->
+        <UI>Material</UI>
         <DefineConstants Condition="'$(UI)'=='Fluent'">TRACE;Aspire;Yarp;Gateway;Fluent</DefineConstants>
         <DefineConstants Condition="'$(UI)'=='Material'">TRACE;Aspire;Yarp;Gateway;Material</DefineConstants>
     </PropertyGroup>
     <!-- #endif -->
-
+    
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="12.0.0"/>
-        <PackageReference Include="HotChocolate.AspNetCore" Version="15.0.3"/>
-        <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="15.0.3"/>
-        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="15.0.3"/>
-        <PackageReference Include="HotChocolate.Types.Analyzers" Version="15.0.3"/>
+        <PackageReference Include="FluentValidation" />
+        <PackageReference Include="HotChocolate.AspNetCore" />
+        <PackageReference Include="HotChocolate.AspNetCore.Authorization" />
+        <PackageReference Include="HotChocolate.AspNetCore.CommandLine" />
+        <PackageReference Include="HotChocolate.Types.Analyzers" />
 
         <!--#if (Gateway) -->
-        <PackageReference Include="HotChocolate.Fusion" Version="15.0.3"/>
+        <PackageReference Include="HotChocolate.Fusion" />
         <!-- #endif -->
 
-        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="4.2.1"/>
-        <PackageReference Include="System.Linq.Async" Version="6.0.3"/>
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" />
+        <PackageReference Include="System.Linq.Async" />
 
         <!--#if (Yarp) -->
-        <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0"/>
+        <PackageReference Include="Yarp.ReverseProxy" />
         <!-- #endif -->
 
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.7"/>
-        <PackageReference Include="Microsoft.Identity.Web" Version="4.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.7"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect"  />
+        <PackageReference Include="Microsoft.Identity.Web" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+    </ItemGroup>
+    
+    <ItemGroup>
         <ProjectReference Include="..\..\CrossCutting\Microscope.Boilerplate.ServiceDefaults\Microscope.Boilerplate.ServiceDefaults.csproj"/>
     </ItemGroup>
 

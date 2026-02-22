@@ -4,7 +4,7 @@ namespace Microscope.Boilerplate.Clients.Web.Blazor.Material.Settings;
 
 public class Theme
 {
-    public static readonly MudTheme MicroscopeTheme = new MudTheme()
+    public static readonly MudTheme MicroscopeTheme = new()
     {
         PaletteLight = new PaletteLight()
         {
@@ -39,7 +39,7 @@ public class Theme
 
     public static readonly MudTheme MudTheme = new MudTheme()
     {
-        PaletteLight = new()
+        PaletteLight = new PaletteLight()
         {
             Black = "#110e2d",
             AppbarText = "#424242",
@@ -49,7 +49,7 @@ public class Theme
             GrayLighter = "#f9f9f9",
         },
 
-        PaletteDark = new()
+        PaletteDark = new PaletteDark()
         {
             Primary = "#7e6fff",
             Surface = "#1e1e2d",

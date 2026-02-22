@@ -14,14 +14,13 @@ public static class CultureEndpoints
 
     private static IResult Culture(HttpContext context, string? culture, string? redirectUri)
     {
-        if (culture != null)
-        {
-            var requestCulture = new RequestCulture(culture, culture);
-            var cookieName = CookieRequestCultureProvider.DefaultCookieName;
-            var cookieValue = CookieRequestCultureProvider.MakeCookieValue(requestCulture);
+        if (culture == null) return Results.Redirect(redirectUri ?? "/");
+        
+        var requestCulture = new RequestCulture(culture, culture);
+        var cookieName = CookieRequestCultureProvider.DefaultCookieName;
+        var cookieValue = CookieRequestCultureProvider.MakeCookieValue(requestCulture);
 
-            context.Response.Cookies.Append(cookieName, cookieValue);
-        }
+        context.Response.Cookies.Append(cookieName, cookieValue);
 
         return Results.Redirect(redirectUri ?? "/");
     } 
