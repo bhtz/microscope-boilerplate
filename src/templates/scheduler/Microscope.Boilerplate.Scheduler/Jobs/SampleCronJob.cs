@@ -7,7 +7,7 @@ public class SampleCronJob
     /// <summary>
     /// Execute every minute
     /// </summary>
-    [TickerFunction(nameof(MyCronFunction),"*/1 * * * *")]
+    [TickerFunction(nameof(MyCronFunction),"0 * * * * *")]
     public void MyCronFunction()
     {
         // Your background job logic goes here...

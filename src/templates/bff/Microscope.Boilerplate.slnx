@@ -8,12 +8,25 @@
     <Platform Project="AnyCPU" />
   </Project>
   <Project Path="src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Bff/Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.csproj" />
+
+  <!--#if (Gateway) -->
   <Project Path="src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj" />
+  <!-- #endif -->
+
+  <!--#if (Fluent) -->
   <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Fluent/Microscope.Boilerplate.Clients.Web.Blazor.Fluent.csproj" />
+  <!-- #endif -->
+
+  <!--#if (Material) -->
   <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Material/Microscope.Boilerplate.Clients.Web.Blazor.Material.csproj" Type="f698e3fa-6164-43bb-bc88-e1081370fc31">
     <Platform Project="AnyCPU" />
   </Project>
+  <!-- #endif -->
+  
   <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Shared/Microscope.Boilerplate.Clients.Web.Shared.csproj" />
+
+  <!--#if (Aspire) -->
   <Project Path="src/CrossCutting/Microscope.Boilerplate.ServiceDefaults/Microscope.Boilerplate.ServiceDefaults.csproj" />
   <Project Path="src/IAC/Aspire/Microscope.Boilerplate.IAC.Aspire/Microscope.Boilerplate.IAC.Aspire.csproj" />
+  <!-- #endif -->
 </Solution>

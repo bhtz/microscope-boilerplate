@@ -5,7 +5,9 @@
 <FluentNavMenu Width="250" @bind-Expanded="IsExpanded" >
     <FluentNavLink Href="/" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())" IconColor="Color.Accent">Home</FluentNavLink>
     <FluentNavLink Href="counter" Icon="@(new Icons.Regular.Size20.NumberSymbolSquare())" IconColor="Color.Accent">Counter</FluentNavLink>
+@*#if (Gateway) *@
     <FluentNavLink Href="continents" Icon="@(new Icons.Regular.Size20.Map())" IconColor="Color.Accent">Continents</FluentNavLink>
+@*#endif*@
     <AuthorizeView>
         <Authorized>
             <FeatureFlag FlagName="ShowUserPage">

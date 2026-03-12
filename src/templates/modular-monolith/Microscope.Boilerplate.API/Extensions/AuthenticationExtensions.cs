@@ -54,7 +54,9 @@ public static class AuthenticationExtensions
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(option =>
+        });
+            
+        authenticationBuilder.AddJwtBearer(option =>
         {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -82,6 +84,17 @@ public static class AuthenticationExtensions
                 }
             };
         });
+        
+#if (Mcp)
+        authenticationBuilder.AddMcp(options =>
+        {
+            options.ResourceMetadata = new()
+            {
+                Resource = oidcAuthenticationOptions.McpResource,
+                AuthorizationServers = { oidcAuthenticationOptions.Authority },
+            };
+        });
+#endif
 
         services.AddHttpContextAccessor();
         services.AddScoped<IIdentityService, IdentityService>();
@@ -96,6 +109,7 @@ public class OidcAuthenticationOptions
 
     public string Authority { get; set; } = string.Empty;
     public string ClientId { get; set; } = string.Empty;
+    public string McpResource { get; set; }
 
     public string? NameClaimType { get; set; } = ClaimTypes.Name;
     public string? RoleClaimType { get; set; } = ClaimTypes.Role;

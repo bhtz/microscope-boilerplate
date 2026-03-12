@@ -1,15 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="13.1.1"/>
+    <Sdk Name="Aspire.AppHost.Sdk" Version="13.1.2"/>
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <IsAspireHost>true</IsAspireHost>
-        <UserSecretsId>45c6d06e-1558-46f8-bf19-1680df9a6d23</UserSecretsId>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;BaaS</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>

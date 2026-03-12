@@ -2,7 +2,7 @@ using MudBlazor;
 
 namespace Microscope.Boilerplate.Clients.Web.Blazor.Material.Settings;
 
-public class Theme
+public static class Theme
 {
     public static readonly MudTheme MicroscopeTheme = new()
     {

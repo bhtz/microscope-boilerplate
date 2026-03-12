@@ -7,7 +7,7 @@
 ### Features
 
 * ✅ ASP NET static files
-* 🚫 OIDC / Cookie authentication
+* ✅ OIDC / Cookie authentication
 * ✅ vitepress SSG
 * ✅ Mermaid support
 * ✅ Documentation templates (#product, #ADR, #PRD, #guidelines, ...)
@@ -19,6 +19,11 @@ dotnet new mcsp_doc -n Acme.Doc
 ```
 
 ### Template options
+* -A, --Aspire    
+    * Whether to include aspire (include authentication using keycloak IAM) or not.
+    * Type : bool
+    * Default : false
+
 * -G, --Guidelines    
     * Whether to include microscope opiniated guidelines or not.
     * Type : bool

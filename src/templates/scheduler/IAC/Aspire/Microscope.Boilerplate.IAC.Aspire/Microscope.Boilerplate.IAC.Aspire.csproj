@@ -1,21 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <Sdk Name="Aspire.AppHost.Sdk" Version="13.1.2"/>
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.2" />
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsAspireHost>true</IsAspireHost>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <UserSecretsId>aef9be65-92e2-48c3-8059-fe9ad231707d</UserSecretsId>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Microscope.Boilerplate.Scheduler\Microscope.Boilerplate.Scheduler.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Microscope.Boilerplate.Scheduler\Microscope.Boilerplate.Scheduler.csproj" />
+    </ItemGroup>
 
 </Project>

@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.AI" />
+        <PackageReference Include="Microsoft.Extensions.AI.OpenAI" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Framework\Microscope.Boilerplate.Framework.Infrastructure\Microscope.Boilerplate.Framework.Infrastructure.csproj" />
+      <ProjectReference Include="..\Microscope.Boilerplate.Ai.Slices\Microscope.Boilerplate.Ai.Slices.csproj" />
+    </ItemGroup>
+</Project>

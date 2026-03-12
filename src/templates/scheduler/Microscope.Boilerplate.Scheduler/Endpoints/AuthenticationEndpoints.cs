@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Microscope.Boilerplate.Clients.BFF.Endpoints;
+namespace Microscope.Boilerplate.Clients.Scheduler.Endpoints;
 
 public static class AuthenticationEndpoints
 {

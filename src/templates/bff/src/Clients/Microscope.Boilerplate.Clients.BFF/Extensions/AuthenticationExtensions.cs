@@ -79,18 +79,22 @@ public static class AuthenticationExtensions
                 options.Authority = oidcAuthenticationOptions.Authority;
                 options.ClientId = oidcAuthenticationOptions.ClientId;
                 options.ClientSecret = oidcAuthenticationOptions.ClientSecret;
-
+                
+                if (!string.IsNullOrEmpty(oidcAuthenticationOptions.MetadataAddress))
+                    options.MetadataAddress = oidcAuthenticationOptions.MetadataAddress;
+                
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.CallbackPath = oidcAuthenticationOptions.CallbackPath;
                 options.ResponseType = OpenIdConnectResponseType.Code;
 
-                options.RequireHttpsMetadata = false;
-                options.SaveTokens = true;
+                options.RequireHttpsMetadata = oidcAuthenticationOptions.RequireHttpsMetadata;
+                options.SaveTokens = oidcAuthenticationOptions.SaveTokens;
                 options.AuthenticationMethod = OpenIdConnectRedirectBehavior.RedirectGet;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     NameClaimType = oidcAuthenticationOptions.NameClaimType,
                     RoleClaimType = oidcAuthenticationOptions.RoleClaimType,
-                    ValidateIssuer = false
+                    ValidateIssuer = oidcAuthenticationOptions.ValidateIssuer
                 };
 
                 options.Events.OnRedirectToIdentityProvider = context =>
@@ -120,7 +124,12 @@ public static class AuthenticationExtensions
                     options.Scope.Add(item);
                 }
             })
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.AccessDeniedPath = "/access-denied";
+                options.LoginPath = "/auth/login";
+                options.LogoutPath = "/auth/logout";
+            });
         
         return services;
     }
@@ -167,6 +176,10 @@ public class OidcAuthenticationOptions
     public const string AZUREAD_PROVIDER = "AzureAd";
 
     public string Authority { get; set; } // MSAL "Instance" 
+    public string MetadataAddress { get; set; }
+    public bool RequireHttpsMetadata { get; set; }
+    public bool ValidateIssuer { get; set; }
+    public bool SaveTokens { get; set; }
     public string ClientId { get; set; }
     public string ClientSecret { get; set; }
     public string TenantId { get; set; } // MSAL

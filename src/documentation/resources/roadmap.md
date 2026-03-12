@@ -1,46 +1,91 @@
 # Roadmap & issues
 
-## microscope templates
+## microscope boilerplate templates
 
 ### BFF/Frontend
+
 - [x] Add Fluent UI option
+- [x] Theme management over cookie
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [x] Clean keycloak export
+- [x] Remove BaaS
+- [x] Go to aspire & clean docker-compose
+- [ ] Fluent theme selector
 - [ ] I18N fluent UI
-- [ ] Theme management over cookie
 - [ ] E2E test (Playwright / bUnit)
-- [ ] SignalR sample
+- [ ] SignalR / Subscription sample
 
 ### Service
 - [x] Add unit tests (xUnit)
 - [x] Isolated marten IDocumentStore per module
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [x] Clean keycloak export
+- [x] https on keycloak 
+- [x] Go to aspire & clean docker-compose
+- [x] AI remote MCP tools to cache instead of perform at each request
 - [ ] Transaction behavior using martenDB unit of work
 - [ ] Integration tests (xUnit)
-- [ ] Scheduler option ?
 - [ ] Multi tenancy
   - [ ] EF CORE global filter by tenant
   - [ ] marten session by tenant
 - [ ] Bus & integration event ?
 
 ### Desktop
-- [ ] tbd
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [ ] Add Authentication option ?
 
 ### CLI
-- [ ] tbd
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [ ] Add Authentication option ?
 
 ### BaaS
 - [x] CLI
-- [x] Docker
-- [ ] Aspire
-- [ ] Authentication 
-- [ ] Documentation
+  - [x] Rename it in CLI
+- [x] Aspire
+  - [x] Data API Builder
+  - [x] Hasura graphQL engine
+- [ ] Hasura
+  - [x] Manage hasura console
+  - [x] Authentication
+- [ ] Dab
+  - [ ] [Authentication - Github issue](https://github.com/Azure/data-api-builder/issues/2226)
 
 ### Documentation
-- [ ] Add IAM authentication ?
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [x] Add Authentication / keycloak option
+- [ ] Dissociate aspire & authentication option
+- [ ] Add OTEL with serviceDefault
 
 ### Scheduler
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
 - [x] Docker
 - [x] Aspire
 - [x] CLI
-- [ ] Add IAM authentication ?
+- [ ] Authentication
+  - [x] No auth
+  - [x] Basic auth
+  - [x] Api key auth
+  - [ ] Host auth
+    - [ ] https://github.com/Arcenox-co/TickerQ/issues/575
+- [ ] Dissociate aspire & authentication option
+- [ ] Add OTEL with serviceDefault
+
+### Spec Driven Development
+- [ ] Custom agents
+  - [ ] Product manager
+  - [ ] Engineering manager
+  - [ ] Software engineer
+  - [ ] Product designer
+  - [ ] QA engineer
+- [ ] Rules
+  - [ ] Blazor
+  - [ ] gRPC
+  - [ ] GraphQL
+  - [ ] REST
+  - [ ] Entity framework
+- [ ] Skills
+- [ ] Add to CLI
+- [ ] Templatize
 
 ### Workflow
 - [ ] Elsa core setup
@@ -48,17 +93,19 @@
     - [ ] Studio
 - [ ] Docker
 - [ ] Aspire
-- [ ] CLI
+- [ ] Add in CLI
+- [ ] Add IAM authentication
 - [ ] AI ?
-- [ ] Add IAM authentication ?
 
 -------------------------
 
 ## Templates sandbox
-- [ ] Mobile (MAUI) ?
+- [ ] Mobile (MAUI / Uno) ?
 - [ ] Spreadsheet as a Service (NocoDB / Superset) ?
 
 -------------------------
 
-## microscope CLI
+## Boilerplate CLI
+- [x] .NET 10 (CentralPackageManagement, .slnx, upgrade nuget)
+- [ ] Update 2026 templates & options
 - [ ] Refactor template system

@@ -16,10 +16,12 @@ public class ServerPreferenceService(IHttpContextAccessor accessor) : IPreferenc
         return Task.FromResult(parsed?.Cultures.FirstOrDefault().Value);
     }
 
-    public Task<bool> GetDarkModeAsync()
+    public Task<LuminanceMode?> GetLuminanceModeAsync()
     {
-        var value = accessor.HttpContext?.Request.Cookies["IsDarkMode"];
-        return Task.FromResult(value == "true");
+        var value = accessor.HttpContext?.Request.Cookies["LuminanceMode"];
+        var result = Enum.TryParse<LuminanceMode>(value, out var lightMode);
+        
+        return Task.FromResult<LuminanceMode?>(result ? lightMode : null);
     }
 
     public Task<string?> GetThemeAsync()

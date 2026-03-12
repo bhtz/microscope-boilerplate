@@ -4,7 +4,7 @@
 
 ## Requirements
 
-* dotnet 9 SDK
+* dotnet 10 SDK
 * nodejs 20+
 * docker engine
 

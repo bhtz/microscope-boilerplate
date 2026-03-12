@@ -1,6 +1,6 @@
 using HotChocolate.Authorization;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.Version;
+namespace Microscope.Boilerplate.BFF.GraphQL;
 
 [QueryType]
 public static class GetAppVersionResolver

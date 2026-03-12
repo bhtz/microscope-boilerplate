@@ -8,7 +8,7 @@
 
 ## Requirements
 
-* dotnet 9 SDK
+* dotnet 10 SDK
 * nodejs 20+
 * docker engine
 
@@ -19,7 +19,8 @@
 * mcsp_desktop
 * mcsp_cli
 * mcsp_doc
-* mcsp_dab
+* mcsp_baas
+* mcsp_spec-driven
 
 ### mcsp_service
 > Vertical slice architecture & modular monolith 
@@ -86,6 +87,24 @@
 * ✅ material ui & icons
 * ✅ CommunityToolkit.MVVM
 
+### mcsp_baas
+> Aspire + Backend as a Service tool (Hasura / Data API builder)
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/baas.html)
+
+* ✅ Aspire IAC
+* ✅ Hasura graphql engine (2.X)
+* ✅ Azure data api builder
+
+### mcsp_spec-driven
+> Markdown collection for agentic coding tool (agents, rules, skills)
+
+[documentation](https://bhtz.github.io/microscope-boilerplate/templates/spec-driven.html)
+
+* ✅ Aspire IAC
+* ✅ Hasura graphql engine (2.X)
+* ✅ Azure data api builder
+
 ### Get source code
 ```console
 git clone https://github.com/bhtz/microscope-boilerplate.git
@@ -110,7 +129,7 @@ dotnet new mcsp_service -n Acme.AwesomeProject
 
 ### Create new BFF/Frontend solution
 ```console
-dotnet new mcsp_bff -n Acme.AwesomeProject -C
+dotnet new mcsp_bff -n Acme.AwesomeProject
 ```
 
 ### Create new CLI project
@@ -139,7 +158,12 @@ dotnet tool uninstall --global  Microscope.Boilerplate.Tool.CLI
 microscope install
 ```
 
-### Use CLI
+### Use CLI as template generator
 ```console
 microscope
+```
+
+### Use CLI as microscope agent (copilot)
+```console
+microscope code
 ```

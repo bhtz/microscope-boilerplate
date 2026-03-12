@@ -4,8 +4,9 @@
   
   "classifications": [
     "BFF",
-    "SSR",
     "Blazor",
+    "GraphQL",
+    "Yarp",
     "Boilerplate"
   ],
   
@@ -15,20 +16,6 @@
   "sourceName": "Microscope.Boilerplate",
 
   "symbols": {
-    
-    "BaaS": {
-      "type": "parameter",
-      "description": "Whether to include Backend as a Service container or not.",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-
-    "Docker": {
-      "type": "parameter",
-      "description": "Add Docker support",
-      "datatype": "bool",
-      "defaultValue": false
-    },
 
     "Aspire": {
       "type": "parameter",
@@ -109,14 +96,6 @@
             "**/ReverseProxyConfiguration.cs"
           ]
         },
-
-        {
-          "condition": "(!BaaS)",
-          "exclude": [
-            "src/Clients/Microscope.Boilerplate.Clients.BFF/SubGraphs/Dab/**",
-            "src/IAC/Docker/Dab/**"
-          ]
-        },
         
         {
           "condition": "(!Gateway)",
@@ -132,24 +111,10 @@
         },
 
         {
-          "condition": "(!Docker)",
-          "exclude": [
-            "src/IAC/Docker/docker-compose.yml"
-          ]
-        },
-
-        {
           "condition": "(!Aspire)",
           "exclude": [
             "src/IAC/Aspire/**",
             "src/CrossCutting/**"
-          ]
-        },
-
-        {
-          "condition": "(!Docker && !Aspire)",
-          "exclude": [
-            "src/IAC/Docker/**"
           ]
         },
 

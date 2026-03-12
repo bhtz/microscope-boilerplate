@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [
+    "CLI",
+    "Documentation as code",
+    "Boilerplate"
+  ],
+  "identity": "Microscope.Boilerplate.Documentation",
+  "name": "Microscope boilerplate Documentation",
+  "shortName": "mcsp_doc",
+  "sourceName": "Microscope.Boilerplate",
+  "symbols": {
+    "Aspire": {
+      "type": "parameter",
+      "description": "Add Aspire support (provide authentication using keycloak)",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Guidelines": {
+      "type": "parameter",
+      "description": "Whether to include microscope opiniated guidelines or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Product": {
+      "type": "parameter",
+      "description": "Whether to include product documentation or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Tech": {
+      "type": "parameter",
+      "description": "Whether to include tech documentation or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Blog": {
+      "type": "parameter",
+      "description": "Whether to include blog or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "Organization": {
+      "type": "parameter",
+      "description": "Whether to include organization & governance doc or not.",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*",
+            "**/node_modules/**",
+            "wwwroot/**",
+            "package-lock.json"
+          ]
+        },
+        {
+          "condition": "(!Aspire)",
+          "exclude": [
+            "**/IAC/**",
+            "**/Extensions/**",
+            "**/Endpoints/**",
+            "Microscope.Boilerplate.ServiceDefaults/**"
+          ]
+        },
+        {
+          "condition": "(!Guidelines)",
+          "exclude": [
+            "**/resources/Guidelines/**"
+          ]
+        },
+        {
+          "condition": "(!Blog)",
+          "exclude": [
+            "**/resources/Blog/**"
+          ]
+        },
+        {
+          "condition": "(!Tech)",
+          "exclude": [
+            "**/resources/Architecture/**"
+          ]
+        },
+        {
+          "condition": "(!Product)",
+          "exclude": [
+            "**/resources/Product/**"
+          ]
+        },
+        {
+          "condition": "(!Organization)",
+          "exclude": [
+            "**/resources/Organization/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

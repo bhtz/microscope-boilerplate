@@ -22,6 +22,7 @@
 * ✅ Grpc
 * ✅ GraphQL
 * ✅ Rest
+* ✅ Mcp
 * ✅ Feature management
 
 **Persistence**
@@ -36,7 +37,6 @@
 * ✅ nitro (GraphQL)
 
 **IAC**
-* ✅ Docker
 * ✅ Aspire
 
 **Data**
@@ -51,29 +51,32 @@ dotnet new mcsp_service -n Acme
 
 ### Template options
 
-* -D, --Docker
-    * Whether to include docker compose or not.
-    * Type : bool
-    * Default : false
-
 * -A, --Aspire
     * Whether to include aspire or not.
     * Type : bool
     * Default : false
 
-* --Grpc
+* -Gr, --Grpc
     * Whether to include Grpc API protocol proxy or not.
     * Type : bool
     * Default : false
 
-* --Graphql
+* -G, --Graphql
     * Whether to include GraphQL API protocol or not.
     * Type : bool
     * Default : false
 
-* --Rest
+* -R, --Rest
     * Whether to include Rest API protocol or not.
     * Type : bool
     * Default : false
 
+* -M, --Mcp
+    * Whether to include MCP protocol or not.
+    * Type : bool
+    * Default : false
 
+* -U, --UnitTest
+    * Whether to include unit tests or not.
+    * Type : bool
+    * Default : false

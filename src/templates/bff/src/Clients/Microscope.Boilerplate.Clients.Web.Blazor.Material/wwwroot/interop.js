@@ -1,7 +1,6 @@
 window.jsInterop = {
 
     getCultureCookie: function () {
-        // return document.cookie.replace(/(?:(?:^|.*;\s*)culture\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         return this.getCookie('.AspNetCore.Culture');
     },
 
@@ -15,10 +14,21 @@ window.jsInterop = {
                 c = c.substring(1);
             }
             if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
+                let value = c.substring(name.length, c.length);
+                return value;
             }
         }
         return "";
+    },
+    
+    setCookie: function (name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // 
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     },
 
     async downloadFileFromUrl(url, filename) {

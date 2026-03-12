@@ -11,7 +11,7 @@ public class GetTodoModuleVersionQueryHandler(IFeatureManager featureManager) : 
     {
         var result = await featureManager.IsEnabledAsync(nameof(GetTodoVersionQuery));
 
-        // TODO: move feature management check reliable to a protocol (grpc, graphql, rest)
+        // TODO: move feature management check to be reliable to a protocol (grpc, graphql, rest)
         return !result 
             ? throw new NotImplementedException($"Feature {nameof(GetTodoVersionQuery)} not implemented") 
             : "1.0.0";

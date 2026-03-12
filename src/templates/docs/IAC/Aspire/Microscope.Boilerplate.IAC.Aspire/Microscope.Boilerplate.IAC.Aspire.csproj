@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Sdk Name="Aspire.AppHost.Sdk" Version="13.1.2"/>
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsAspireHost>true</IsAspireHost>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Microscope.Boilerplate.Doc\Microscope.Boilerplate.Doc.csproj" />
+    </ItemGroup>
+
+</Project>

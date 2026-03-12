@@ -1,15 +1,26 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.JSInterop;
 
 namespace Microscope.Boilerplate.Clients.Web.Shared.Services;
 
-public class CookieService(IJSRuntime js, IHttpContextAccessor httpContextAccessor)
+public class ClientPreferenceService(IJSRuntime jsRuntime) : IPreferenceService
 {
-    public async Task<string?> GetCultureFromCookie()
+    public async Task<string?> GetCultureAsync()
     {
-        var cookie = httpContextAccessor.HttpContext?.Request.Cookies[CookieRequestCultureProvider.DefaultCookieName];
-        // return await js.InvokeAsync<string>("jsInterop.getCookie", CookieRequestCultureProvider.DefaultCookieName);
-        return cookie;
+        return await jsRuntime.InvokeAsync<string>("jsInterop.getCookie", CookieRequestCultureProvider.DefaultCookieName);
+    }
+
+    public async Task<LuminanceMode?> GetLuminanceModeAsync()
+    {
+        var value = await jsRuntime.InvokeAsync<string>("jsInterop.getCookie", "LuminanceMode");
+
+        var result = Enum.TryParse<LuminanceMode>(value, out var lightMode);
+
+        return result ? lightMode : null;
+    }
+
+    public async Task<string?> GetThemeAsync()
+    {
+        return await jsRuntime.InvokeAsync<string>("jsInterop.getCookie", "Theme");
     }
 }

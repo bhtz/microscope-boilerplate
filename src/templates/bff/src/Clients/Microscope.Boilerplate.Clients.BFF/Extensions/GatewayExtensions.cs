@@ -44,7 +44,11 @@ public static class GatewayExtensions
         {
             graphqlFusionGatewayBuilder
                 .CoreBuilder
-                .AddType(new AnyType(scalar));
+                .AddType(new AnyType(scalar))
+                .ModifyOptions(o =>
+                {
+                    o.EnableOneOf = false;
+                });
         }
 
         // do not enable query plan in production !

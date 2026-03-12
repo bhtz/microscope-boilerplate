@@ -1,0 +1,19 @@
+---
+name: dotnet-build
+description: Build the entire Microscope.Boilerplate solution locally to verify compilation and produce build outputs.
+---
+
+# dotnet-build
+
+Build the entire .NET solution.
+
+## Command
+```bash
+dotnet build Microscope.Boilerplate.sln
+```
+
+## Purpose
+Compile all projects, verify no syntax errors
+
+## Output
+Success/failure with error details

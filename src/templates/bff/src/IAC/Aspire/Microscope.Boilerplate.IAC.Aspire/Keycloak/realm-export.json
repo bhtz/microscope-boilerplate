@@ -93,7 +93,6 @@
       }
     ],
     "client": {
-      "boilerplate-hasura": [],
       "realm-management": [
         {
           "id": "374bf696-5078-4ee3-810c-539839696e68",
@@ -329,7 +328,7 @@
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],
-      "boilerplate-dab": [],
+      "boilerplate-api": [],
       "broker": [
         {
           "id": "6447611b-3294-4ce1-a6f8-c99171cc983b",
@@ -650,12 +649,12 @@
     },
     {
       "id": "a293f8e0-d9ec-46f6-8b97-4a7b2fbf710f",
-      "clientId": "boilerplate-dab",
-      "name": "boilerplate-dab",
-      "description": "Data API builder backend as a service",
-      "rootUrl": "http://localhost:4700/",
-      "adminUrl": "http://localhost:4700/",
-      "baseUrl": "http://localhost:4700/",
+      "clientId": "boilerplate-api",
+      "name": "boilerplate-api",
+      "description": "Sample api",
+      "rootUrl": "http://localhost:5095/",
+      "adminUrl": "http://localhost:5095/",
+      "baseUrl": "http://localhost:5095/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -677,7 +676,10 @@
       "frontchannelLogout": true,
       "protocol": "openid-connect",
       "attributes": {
+        "logout.confirmation.enabled": "false",
+        "standard.token.exchange.enabled": "false",
         "post.logout.redirect.uris": "+",
+        "frontchannel.logout.session.required": "true",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
         "use.refresh.tokens": "true",
@@ -689,7 +691,8 @@
         "require.pushed.authorization.requests": "false",
         "acr.loa.map": "{}",
         "display.on.consent.screen": "false",
-        "token.response.type.bearer.lower-case": "false"
+        "token.response.type.bearer.lower-case": "false",
+        "dpop.bound.access.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
@@ -792,30 +795,6 @@
           }
         },
         {
-          "id": "06e49360-79ec-4a7f-94c6-49aff5161c61",
-          "name": "boilerplate-dab",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-audience-mapper",
-          "consentRequired": false,
-          "config": {
-            "included.client.audience": "boilerplate-dab",
-            "id.token.claim": "false",
-            "access.token.claim": "true"
-          }
-        },
-        {
-          "id": "7795ca36-fd88-4906-bbcb-0982f25b9b02",
-          "name": "boilerplate-hasura",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-audience-mapper",
-          "consentRequired": false,
-          "config": {
-            "included.client.audience": "boilerplate-hasura",
-            "id.token.claim": "false",
-            "access.token.claim": "true"
-          }
-        },
-        {
           "id": "cfd5097a-285c-49f4-952c-1be526186eb2",
           "name": "Client IP Address",
           "protocol": "openid-connect",
@@ -829,61 +808,22 @@
             "jsonType.label": "String",
             "userinfo.token.claim": "true"
           }
+        },
+        {
+          "id": "f1b84f61-3b36-476e-9904-12ad29d6f1ec",
+          "name": "boilerplate-api",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "boilerplate-api",
+            "id.token.claim": "false",
+            "lightweight.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
         }
       ],
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "roles",
-        "profile",
-        "basic",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "microprofile-jwt"
-      ]
-    },
-    {
-      "id": "39fad6ec-4508-4fdc-9fe6-321b61b46e2d",
-      "clientId": "boilerplate-hasura",
-      "name": "boilerplate-hasura",
-      "description": "Hasura backend as a service",
-      "rootUrl": "http://localhost:4800",
-      "adminUrl": "http://localhost:4800",
-      "baseUrl": "http://localhost:4800",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": false,
-      "clientAuthenticatorType": "client-secret",
-      "redirectUris": [
-        "http://localhost:4800/*"
-      ],
-      "webOrigins": [
-        "http://localhost:4800"
-      ],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": false,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
-      "publicClient": true,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "realm_client": "false",
-        "oidc.ciba.grant.enabled": "false",
-        "backchannel.logout.session.required": "true",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.revoke.offline.tokens": "false"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
       "defaultClientScopes": [
         "web-origins",
         "acr",
@@ -1079,8 +1019,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "AUTH_TIME",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "auth_time",
             "jsonType.label": "long"
@@ -1457,14 +1398,16 @@
           "protocolMapper": "oidc-usermodel-client-role-mapper",
           "consentRequired": false,
           "config": {
+            "introspection.token.claim": "true",
             "multivalued": "true",
             "userinfo.token.claim": "false",
             "user.attribute": "foo",
             "id.token.claim": "true",
+            "lightweight.claim": "false",
             "access.token.claim": "true",
             "claim.name": "roles",
             "jsonType.label": "String",
-            "usermodel.clientRoleMapping.clientId": "boilerplate"
+            "usermodel.clientRoleMapping.clientId": "boilerplate-frontend"
           }
         },
         {
@@ -1540,8 +1483,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientHost",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientHost",
             "jsonType.label": "String"
@@ -1555,8 +1499,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "clientAddress",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "clientAddress",
             "jsonType.label": "String"
@@ -1570,8 +1515,9 @@
           "consentRequired": false,
           "config": {
             "user.session.note": "client_id",
-            "id.token.claim": "true",
             "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
             "access.token.claim": "true",
             "claim.name": "client_id",
             "jsonType.label": "String"
@@ -1706,14 +1652,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
+            "oidc-full-name-mapper",
+            "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
             "saml-user-attribute-mapper",
-            "saml-role-list-mapper",
             "oidc-usermodel-attribute-mapper",
-            "oidc-full-name-mapper",
+            "saml-user-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
-            "oidc-address-mapper",
-            "saml-user-property-mapper"
+            "saml-role-list-mapper"
           ]
         }
       },
@@ -1769,13 +1715,13 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-full-name-mapper",
-            "oidc-usermodel-property-mapper",
+            "oidc-address-mapper",
             "oidc-usermodel-attribute-mapper",
+            "oidc-usermodel-property-mapper",
             "saml-user-attribute-mapper",
             "saml-role-list-mapper",
+            "oidc-full-name-mapper",
             "saml-user-property-mapper",
-            "oidc-address-mapper",
             "oidc-sha256-pairwise-sub-mapper"
           ]
         }

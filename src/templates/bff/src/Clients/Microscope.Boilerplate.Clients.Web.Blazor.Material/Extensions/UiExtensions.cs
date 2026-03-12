@@ -1,4 +1,5 @@
 using Microscope.Boilerplate.Clients.Web.Shared.Services;
+using Microscope.Management.Clients.Web.Blazor.Material.Settings;
 using MudBlazor;
 using MudBlazor.Services;
 
@@ -8,6 +9,7 @@ public static class UiExtensions
 {
     public static IServiceCollection AddMaterialUiConfiguration(this IServiceCollection services)
     {
+        services.AddScoped<MaterialThemeService>();
         services.AddMudServices(config =>
         {
             config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomRight;

@@ -28,13 +28,13 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddAuthenticationStateDeserialization();
 
 // builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-builder.Services.AddScoped<CookieService>();
+builder.Services.AddScoped<IPreferenceService, ClientPreferenceService>();
 builder.Services.AddSingleton<IFeatureManagementService, ClientFeatureManagementService>();
 
 var host = builder.Build();
 
-var cookieService = host.Services.GetRequiredService<CookieService>();
-var cultureCookie = await cookieService.GetCultureFromCookie();
+var preferenceService = host.Services.GetRequiredService<IPreferenceService>();
+var cultureCookie = await preferenceService.GetCultureAsync();
 
 if (!string.IsNullOrEmpty(cultureCookie))
 {

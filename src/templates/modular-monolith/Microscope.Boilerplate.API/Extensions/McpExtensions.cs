@@ -1,8 +1,6 @@
-using Microscope.Management.Product.Slices;
-using Microscope.Management.Strategy.Slices;
-using Microscope.Management.Tech.Slices;
+using Microscope.Boilerplate.Todo.Slices;
 
-namespace Microscope.Management.API.Extensions;
+namespace Microscope.Boilerplate.API.Extensions;
 
 public static class McpExtensions
 {
@@ -11,9 +9,8 @@ public static class McpExtensions
         services
             .AddMcpServer()
             .WithHttpTransport()
-            .WithToolsFromAssembly(typeof(IProductModule).Assembly)
-            .WithToolsFromAssembly(typeof(IStrategyModule).Assembly)
-            .WithToolsFromAssembly(typeof(ITechModule).Assembly);
+            .AddAuthorizationFilters()
+            .WithToolsFromAssembly(typeof(ITodoModule).Assembly);
         
         return services;
     }

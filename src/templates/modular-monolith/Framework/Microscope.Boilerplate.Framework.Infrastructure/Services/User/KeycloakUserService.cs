@@ -4,27 +4,17 @@ using Microsoft.Extensions.Options;
 
 namespace Microscope.Boilerplate.Services.TodoList.Infrastructure.Services.User;
 
-public class KeycloakUserService : IUserService
+public class KeycloakUserService(HttpClient httpClient, IIdentityService identityService, IOptions<UserOptions> options)
+    : IUserService
 {
-    private readonly HttpClient _httpClient;
-    private readonly IIdentityService _identityService;
-    private readonly IOptions<UserOptions> _options;
-
-    public KeycloakUserService(HttpClient httpClient, IIdentityService identityService, IOptions<UserOptions> options)
-    {
-        _httpClient = httpClient;
-        _identityService = identityService;
-        _options = options;
-    }
-
     public async Task<IEnumerable<DomainUser>> GetUsersAsync(int limit)
     {
-        var token = _identityService.GetToken();
+        var token = await identityService.GetTokenAsync();
 
         try
         {
-            _httpClient.DefaultRequestHeaders.Add("Authorization", token);
-            var users = await _httpClient.GetFromJsonAsync<IEnumerable<DomainUser>>(_options.Value.UserServiceEndpoint);
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var users = await httpClient.GetFromJsonAsync<IEnumerable<DomainUser>>(options.Value.UserServiceEndpoint);
             return users;
         }
         catch (Exception e)

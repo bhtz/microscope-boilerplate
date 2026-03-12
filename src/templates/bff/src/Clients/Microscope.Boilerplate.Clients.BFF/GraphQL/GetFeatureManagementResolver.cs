@@ -1,7 +1,7 @@
-using HotChocolate.Authorization;
 using Microscope.Boilerplate.Clients.Web.Shared.Services;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Microscope.Boilerplate.Todo.Slices.Features.FeatureManagement;
+namespace Microscope.Boilerplate.BFF.GraphQL;
 
 [QueryType]
 public static class GetFeatureManagementResolver

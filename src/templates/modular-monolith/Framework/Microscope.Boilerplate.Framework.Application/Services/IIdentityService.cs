@@ -10,5 +10,5 @@ public interface IIdentityService
     string GetUserMail();
     bool IsInRole(string role);
     ClaimsPrincipal GetClaimsPrincipal();
-    string GetToken();
+    Task<string?> GetTokenAsync();
 }

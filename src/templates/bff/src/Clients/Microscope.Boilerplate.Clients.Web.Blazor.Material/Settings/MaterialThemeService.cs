@@ -5,20 +5,25 @@ using MudBlazor;
 
 namespace Microscope.Management.Clients.Web.Blazor.Material.Settings;
 
-/// <summary>
-/// TODO
-/// </summary>
-/// <param name="preferenceService"></param>
-public class ThemeService(IPreferenceService preferenceService, IJSRuntime jsRuntime)
+public class MaterialThemeService(IPreferenceService preferenceService, IJSRuntime jsRuntime)
 {
     public bool IsDarkMode { get; set; }
     public MudTheme AppTheme { get; private set; } = Theme.MicroscopeTheme;
     public LuminanceMode LuminanceMode { get; private set; } = LuminanceMode.System;
+    public event Action? OnChange;
+    private void NotifyChange() => OnChange?.Invoke();
+    public async Task InitializeAsync()
+    {
+        await SetThemeFromPreferences();
+        await SetLuminanceFromPreferences();
+        ApplyLuminance();
+    }
 
     public async Task SetTheme(string theme)
     {
         AppTheme = GetThemeFromName(theme);
         await jsRuntime.InvokeVoidAsync("jsInterop.setCookie", "Theme", theme);
+        NotifyChange();
     }
     
     public async Task SetLuminance(LuminanceMode mode)
@@ -30,13 +35,7 @@ public class ThemeService(IPreferenceService preferenceService, IJSRuntime jsRun
     public void SetDarkMode(bool isDarkMode)
     {
         IsDarkMode = isDarkMode;
-    }
-
-    public async Task InitializeAsync()
-    {
-        await SetThemeFromPreferences();
-        await SetLuminanceFromPreferences();
-        ApplyLuminance();
+        NotifyChange();
     }
     
     private async Task SetThemeFromPreferences()
@@ -56,6 +55,7 @@ public class ThemeService(IPreferenceService preferenceService, IJSRuntime jsRun
     public void ApplyLuminance()
     {
         IsDarkMode = LuminanceMode == LuminanceMode.Dark;
+        NotifyChange();
     }
     
     private static MudTheme GetThemeFromName(string theme)

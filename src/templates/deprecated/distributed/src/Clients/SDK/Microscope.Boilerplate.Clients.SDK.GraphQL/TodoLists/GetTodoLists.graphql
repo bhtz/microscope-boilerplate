@@ -1,6 +1,0 @@
-query GetTodolists {
-    todolists {
-        id
-        name
-    }
-}

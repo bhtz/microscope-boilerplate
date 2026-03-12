@@ -1,0 +1,5 @@
+<Project>
+    <ItemGroup>
+        <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.2" />
+    </ItemGroup>
+</Project>

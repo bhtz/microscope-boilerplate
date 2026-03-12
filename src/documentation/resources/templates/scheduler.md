@@ -17,9 +17,10 @@
 * ✅ Cron job
 * ✅ Time job
 
-**IAM**
-* ✅ Basic Auth
-* 🚫 IAM (keycloak)
+**Authentication**
+* ✅ Basic auth
+* ✅ ApiKey auth
+* ⚠️ IAM (keycloak) - with issues
 
 **IAC**
 * ✅ Docker
@@ -36,11 +37,6 @@ dotnet new mcsp_scheduler -n Acme
 ```
 
 ### Template options
-
-* -D, --Docker
-    * Whether to include docker compose or not.
-    * Type : bool
-    * Default : false
 
 * -A, --Aspire
     * Whether to include aspire or not.

@@ -2,45 +2,25 @@
 
 > Microscope.Boilerplate BFF template.
 
-## Getting started 
+## Requirements
 
-**Build solution containers**
-```console
-dotnet publish -p:PublishProfile=DefaultContainer
-```
+- .NET 10
+- NPM
+- Docker
+    
+## Install required tools
+    
+    npm install -g graphqurl
+    dotnet tool install StrawberryShake.Tools --local
 
-**Build solution containers for arm64**
-```console
-dotnet publish -r linux-arm64 -p:PublishProfile=DefaultContainer
-```
+## Generate local certificate for keycloak https
 
-**Docker compose up**
-```console
-cd ./IAC/Docker
-docker-compose up
-```
+    cd src/IAC/Aspire/
+    chmod +x ./generate-certs.sh
+    ./generate-certs.sh
 
-```console
-cd ./Microscope.Boilerplate.Clients.BFF
-dotnet run
-```
+## Add spec driven development specification
+
+dotnet new mcsp_codingrules --Template bff
 
 > 🎉 Enjoy !
-
-## Template options
-- [x] Aspire
-- [x] Docker
-- [x] Yarp
-- [x] BaaS
-    - [x] Dab
-- [x] GraphQL Gateway
-    - [x] Fusion over trevorblade public api
-- [x] GraphQL local
-- [x] Common pages
-  - [x] Not Authorized
-  - [x] Not found
-- [x] Configure cookie authentication AccessDeniedPath
-- [ ] Save prefered theme in cookie for blazor server refresh 
-- [ ] UI options
-  - [x] MudBlazor
-  - [ ] FluentUI

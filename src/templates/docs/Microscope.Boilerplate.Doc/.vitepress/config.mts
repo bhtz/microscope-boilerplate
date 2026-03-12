@@ -15,7 +15,8 @@ export default withMermaid(
         },
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Docs', link: '/Overview/introduction' }
+          { text: 'Docs', link: '/Overview/introduction' },
+          { text: 'Logout', link: 'javascript:window.location.href="/auth/logout"', target: '_self' }
         ],
     
         sidebar: [

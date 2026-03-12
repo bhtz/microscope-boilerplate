@@ -13,6 +13,6 @@ fi
 
 mkcert -install
 # Inclut les noms utilises par le host et les conteneurs Docker
-mkcert -cert-file ./Keycloak/Certs/keycloak.crt -key-file  ./Keycloak/Certs/keycloak.key localhost 127.0.0.1 ::1 host.docker.internal
+mkcert -cert-file ./Keycloak/Certs/keycloak.crt -key-file  ./Keycloak/Certs/keycloak.key localhost 127.0.0.1 ::1
 
 echo "✅ Certificates generated at ./Keycloak/certs/"

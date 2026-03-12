@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [
+    "AI",
+    "Agents",
+    "Skills",
+    "Rules"
+  ],
+  "identity": "Microscope.Boilerplate.SpecDriven",
+  "name": "Microscope boilerplate Spec-Driven",
+  "shortName": "mcsp_spec-driven",
+  "sourceName": "Microscope.Boilerplate",
+  "symbols": {
+    "Template": {
+      "type": "parameter",
+      "dataType": "choice",
+      "isRequired": true,
+      "enableQuotelessLiterals": true,
+      "description": "Select the template variant to generate coding skills and rules for.",
+      "choices": [
+        {
+          "choice": "bff",
+          "description": "Backend-for-Frontend (BFF) / gateway + Blazor"
+        },
+        {
+          "choice": "dab",
+          "description": "Data API Builder - Backend As a Service"
+        },
+        {
+          "choice": "docs",
+          "description": "Documentation site"
+        },
+        {
+          "choice": "service",
+          "description": "API Service / modular monolith oriented"
+        },
+        {
+          "choice": "scheduler",
+          "description": "Scheduler / background jobs"
+        },
+        {
+          "choice": "cli",
+          "description": "Command-line tool / CLI"
+        },
+        {
+          "choice": "desktop",
+          "description": "Desktop application (Avalonia)"
+        }
+      ]
+    },
+    "Aspire": {
+      "type": "parameter",
+      "description": "Add Aspire coding skills and rules",
+      "dataType": "bool",
+      "defaultValue": false
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
+        },
+        {
+          "condition": "(!Aspire)",
+          "exclude": [
+            ".agents/skills/dotnet-aspire-run.md",
+            ".agents/skills/docker-compose-up.md",
+            ".agents/skills/docker-compose-down.md"
+          ]
+        },
+
+        // Service
+        {
+          "condition": "(Template != service)",
+          "exclude": [
+            ".agents/rules/slices.md",
+            ".agents/rules/cqrs.md",
+            ".agents/rules/rest.md",
+            ".agents/rules/graphql.md",
+            ".agents/rules/mcp.md",
+            ".agents/rules/grpc.md",
+            ".agents/skills/fusion-subgraphs-pack/**",
+            "AGENTS.service.md"
+          ]
+        },
+        {
+          "condition": "(Template == service)",
+          "rename": {
+            "AGENTS.service.md": "AGENTS.md"
+          }
+        },
+
+        // Bff
+        {
+          "condition": "(Template != bff)",
+          "exclude": [
+            ".agents/rules/bff.md",
+            ".agents/rules/blazor.md",
+            ".agents/skills/fusion-subgraphs-pack/**",
+            ".agents/skills/fusion-compose/**",
+            "AGENTS.bff.md"
+          ]
+        },
+        {
+          "condition": "(Template == bff)",
+          "rename": {
+            "AGENTS.bff.md": "AGENTS.md"
+          }
+        },
+
+        // Dab
+        {
+          "condition": "(Template != dab)",
+          "exclude": [
+            ".agents/rules/dab.md",
+            ".agents/skills/data-api-builder/**",
+            "AGENTS.data-api-builder.md"
+          ]
+        },
+        {
+          "condition": "(Template == dab)",
+          "rename": {
+            "AGENTS.data-api-builder.md": "AGENTS.md"
+          }
+        },
+
+        // Scheduler
+        {
+          "condition": "(Template != scheduler)",
+          "exclude": [
+            "AGENTS.scheduler.md"
+          ]
+        },
+        {
+          "condition": "(Template == scheduler)",
+          "rename": {
+            "AGENTS.scheduler.md": "AGENTS.md"
+          }
+        },
+
+        // CLI
+        {
+          "condition": "(Template != cli)",
+          "exclude": [
+            "AGENTS.cli.md"
+          ]
+        },
+        {
+          "condition": "(Template == cli)",
+          "rename": {
+            "AGENTS.cli.md": "AGENTS.md"
+          }
+        },
+
+        // Desktop
+        {
+          "condition": "(Template != desktop)",
+          "exclude": [
+            "AGENTS.desktop.md"
+          ]
+        },
+        {
+          "condition": "(Template == desktop)",
+          "rename": {
+            "AGENTS.desktop.md": "AGENTS.md"
+          }
+        },
+
+        // DOCS
+        {
+          "condition": "(Template != docs)",
+          "exclude": [
+            "AGENTS.docs.md"
+          ]
+        },
+        {
+          "condition": "(Template == docs)",
+          "rename": {
+            "AGENTS.docs.md": "AGENTS.md"
+          }
+        }
+      ]
+    }
+  ]
+}

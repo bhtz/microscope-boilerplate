@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Microscope.Management.Todo.Slices;
 
-public static class AdvisorRestConfiguration
+public static class AiRestConfiguration
 {
-    public static ApiVersionSet GetAdvisorModuleVersionSet(IEndpointRouteBuilder app)
+    public static ApiVersionSet GetAiModuleVersionSet(IEndpointRouteBuilder app)
     {
         return app.NewApiVersionSet()
             .HasApiVersion(new ApiVersion(1))

@@ -3,18 +3,15 @@ using Microscope.Boilerplate.Todo.Domain.TodoListAggregate.Repositories;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.EFcore.Repositories;
-using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten;
 using Microscope.Boilerplate.Todo.Infrastructure.Persistence.Marten.Repositories;
 using Microscope.Boilerplate.Framework.Domain.DDD;
-using Microscope.Boilerplate.Framework.Infrastructure.Persistence.Marten;
+using Microscope.Boilerplate.Framework.Infrastructure.Persistence;
 using Microscope.Boilerplate.Todo.Domain;
 using Microscope.Boilerplate.Todo.Slices;
 using Microscope.Management.Todo.Infrastructure.Persistence.Marten;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.FeatureManagement;
 
 namespace Microscope.Boilerplate.Todo.Infrastructure;
 
@@ -44,8 +41,8 @@ public static class Extensions
 
     public static IServiceCollection AddTodoAppInfrastructureSettings(this IServiceCollection services)
     {
-        services.AddOptions<PersistenceOptions>()
-            .BindConfiguration(PersistenceOptions.ConfigurationKey)
+        services.AddOptions<TodoPersistenceOptions>()
+            .BindConfiguration(TodoPersistenceOptions.ConfigurationKey)
             .Validate(x => new PersistenceOptionsValidator().Validate(x).IsValid)
             .ValidateOnStart();
 
@@ -78,20 +75,22 @@ public static class Extensions
 
         var option = services
             .BuildServiceProvider()
-            .GetRequiredService<IOptions<PersistenceOptions>>()
+            .GetRequiredService<IOptions<TodoPersistenceOptions>>()
             .Value;
-
+        
         if (option.Framework == PersistenceOptions.MARTEN_FRAMEWORK)
         {
             services.AddMartenStore<ITodoDocumentStore>(options =>
             {
                 options.Connection(option.ConnectionString);
                 options.DatabaseSchemaName = option.Schema;
+                options.UseNewtonsoftForSerialization(nonPublicMembersStorage:NonPublicMembersStorage.NonPublicSetters);
             });
 
             services.AddKeyedScoped<IDocumentSession>(nameof(ITodoModule), (sp, _) 
                 => sp.GetRequiredService<ITodoDocumentStore>().LightweightSession());
             
+            services.AddScoped<IUnitOfWork, TodoMartenUnitOfWork>();
             services.AddScoped<ITodoUnitOfWork, TodoMartenUnitOfWork>();
             services.AddScoped<ITodoListRepository, MartenTodoListRepository>();
         }
@@ -132,6 +131,7 @@ public static class Extensions
                 }
             });
             
+            services.AddScoped<IUnitOfWork, TodoEfUnitOfWork>();
             services.AddScoped<ITodoUnitOfWork, TodoEfUnitOfWork>();
             services.AddScoped<ITodoListRepository, EfTodoListRepository>();
         }

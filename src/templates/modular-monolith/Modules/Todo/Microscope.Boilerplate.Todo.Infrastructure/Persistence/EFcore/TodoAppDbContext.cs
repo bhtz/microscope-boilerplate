@@ -11,7 +11,7 @@ public class TodoAppDbContext : DbContext
 {
     private readonly IMediator _mediator = null!;
     private readonly ILogger<TodoAppDbContext> _logger = null!;
-    private readonly IOptions<PersistenceOptions> _persistenceOptions = null!;
+    private readonly IOptions<TodoPersistenceOptions> _persistenceOptions = null!;
 
     #region DbSets
 
@@ -22,7 +22,7 @@ public class TodoAppDbContext : DbContext
 
     public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options) : base(options) { }
 
-    public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options, IMediator mediator, ILogger<TodoAppDbContext> logger, IOptions<PersistenceOptions> persistenceOptions) : base(options)
+    public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options, IMediator mediator, ILogger<TodoAppDbContext> logger, IOptions<TodoPersistenceOptions> persistenceOptions) : base(options)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         _logger = logger;

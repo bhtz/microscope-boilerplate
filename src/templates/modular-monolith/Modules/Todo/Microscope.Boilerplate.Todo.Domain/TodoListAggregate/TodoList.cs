@@ -22,7 +22,7 @@ public class TodoList : AuditableAggregateRoot
     private readonly List<Tag> _tags;
     public IReadOnlyCollection<Tag> Tags => _tags;
 
-    protected TodoList()
+    public TodoList()
     {
         _todoItems = [];
         _tags = [];

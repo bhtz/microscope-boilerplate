@@ -11,7 +11,7 @@ public class MartenTodoListRepository([FromKeyedServices(nameof(ITodoModule))] I
     public async Task<IEnumerable<TodoList>> GetCreatedByAsync(string tenantId, Guid userId)
     {
         var results = await session.Query<TodoList>()
-            .Where(x => x.CreatedBy == userId)
+            .Where(x => x.CreatedBy == userId && x.TenantId == tenantId)
             .ToListAsync();
         return results;
     }

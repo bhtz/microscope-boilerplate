@@ -1,16 +1,9 @@
+@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Settings
+@using Microscope.Management.Clients.Web.Blazor.Material.Settings
+@inject MaterialThemeService ThemeService
+
 <MudMenu Icon="@Icons.Material.Filled.ColorLens" Color="Color.Inherit" AnchorOrigin="Origin.BottomCenter" Dense="true">
-    <MudMenuItem OnClick="@(() => ChangeTheme("microscope"))">Microscope</MudMenuItem>
-    <MudMenuItem OnClick="@(() => ChangeTheme("skyline"))">Skyline</MudMenuItem>
-    <MudMenuItem OnClick="@(() => ChangeTheme("mud"))">Mud</MudMenuItem>
+    <MudMenuItem OnClick="@(() => ThemeService.SetTheme(nameof(Theme.MicroscopeTheme)))">Microscope</MudMenuItem>
+    <MudMenuItem OnClick="@(() => ThemeService.SetTheme(nameof(Theme.SkylineTheme)))">Skyline</MudMenuItem>
+    <MudMenuItem OnClick="@(() => ThemeService.SetTheme(nameof(Theme.MudTheme)))">Mud</MudMenuItem>
 </MudMenu>
-
-@code
-{
-    [Parameter]
-    public EventCallback<string> OnThemeChanged { get; set; }
-
-    private async void ChangeTheme(string theme)
-    {
-        await OnThemeChanged.InvokeAsync(theme);
-    } 
-}

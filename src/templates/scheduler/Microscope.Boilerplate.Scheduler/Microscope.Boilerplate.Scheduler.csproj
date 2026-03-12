@@ -1,22 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-      <ContainerRepository>microscope-boilerplate/scheduler</ContainerRepository>
-      <ContainerImageTag>latest</ContainerImageTag>
-  </PropertyGroup>
+    <PropertyGroup>
+        <ContainerRepository>microscope-boilerplate/scheduler</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <DefineConstants>Aspire</DefineConstants>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
-    <PackageReference Include="TickerQ" Version="2.5.3" />
-    <PackageReference Include="TickerQ.Dashboard" Version="2.5.3" />
-    <PackageReference Include="TickerQ.EntityFrameworkCore" Version="2.5.3" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="TickerQ"/>
+        <PackageReference Include="TickerQ.Dashboard"/>
+        <PackageReference Include="TickerQ.EntityFrameworkCore"/>
+    </ItemGroup>
 
+    <!--#if (Aspire) -->
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect"  />
+        <PackageReference Include="Microsoft.Identity.Web" />
+    </ItemGroup>
+    <!-- #endif -->
+    
 </Project>

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Benjamin HEINTZ",
+  "classifications": [
+    "Data API builder",
+    "Hasura",
+    "BaaS",
+    "postgres"
+  ],
+  "identity": "Microscope.Boilerplate.BaaS",
+  "name": "Microscope boilerplate BaaS",
+  "shortName": "mcsp_baas",
+  "sourceName": "Microscope.Boilerplate",
+  "symbols": {
+    "Hasura": {
+      "type": "parameter",
+      "description": "Whether to include Hasura container or not.",
+      "datatype": "bool",
+      "defaultValue": false
+    },
+    "Dab": {
+      "type": "parameter",
+      "description": "Whether to include Azure Data API Builder container or not.",
+      "datatype": "bool",
+      "defaultValue": false
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
+        },
+        {
+          "condition": "(!Hasura)",
+          "exclude": [
+            "**/Hasura/**"
+          ]
+        },
+        {
+          "condition": "(!Dab)",
+          "exclude": [
+            "**/Dab/**"
+          ]
+        }
+      ]
+    }
+  ]
+}

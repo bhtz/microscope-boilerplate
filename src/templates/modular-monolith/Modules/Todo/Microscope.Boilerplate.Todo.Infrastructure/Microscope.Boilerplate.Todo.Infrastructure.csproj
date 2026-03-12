@@ -1,27 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Framework\Microscope.Boilerplate.Framework.Infrastructure\Microscope.Boilerplate.Framework.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj"/>
+    </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Framework\Microscope.Boilerplate.Framework.Infrastructure\Microscope.Boilerplate.Framework.Infrastructure.csproj" />
-      <ProjectReference Include="..\Microscope.Boilerplate.Todo.Slices\Microscope.Boilerplate.Todo.Slices.csproj" />
+        <PackageReference Include="Marten"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="System.Linq.Async"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Marten" Version="8.6.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
-        <PackageReference Include="System.Linq.Async" Version="6.0.3" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Persistence\EFcore\Scripts\" />
+        <Folder Include="Persistence\EFcore\Scripts\"/>
     </ItemGroup>
 </Project>

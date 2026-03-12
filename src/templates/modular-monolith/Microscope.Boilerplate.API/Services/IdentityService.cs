@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using Microscope.Boilerplate.Framework.Application.Services;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Microscope.Boilerplate.API.Services;
 
@@ -45,9 +46,10 @@ public sealed class IdentityService : IIdentityService
         return _context.HttpContext?.User ?? new ClaimsPrincipal();
     }
 
-    public string GetToken()
+    public async Task<string?> GetTokenAsync()
     {
-        var authorization = _context.HttpContext?.Request.Headers.Authorization.ToString();
-        return string.IsNullOrWhiteSpace(authorization) ? string.Empty : authorization;
+        return _context.HttpContext?.User.Identity is { IsAuthenticated: true }
+            ? await _context?.HttpContext?.GetTokenAsync("access_token")!
+            : null;
     }
 }

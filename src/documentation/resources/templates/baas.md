@@ -1,24 +1,12 @@
 # Backend as a Service
 
-> Data API Builder (DAB) as a BaaS
-
-**Aspire :**
-![]()
-
-**Nitro :**
-![]()
-
-**Scalar :**
-![]()
+> Backend as a service tools
 
 ### Features
 
 **BaaS**
-* ✅ GraphQL
-* ✅ Rest
-
-**Persistence**
-* ✅ Postgres
+* ✅ Hasura graphql engine (2.X)
+* ✅ Data API builder
 
 **IAM**
 * ✅ Keycloak (with customizable UI)
@@ -28,7 +16,6 @@
 * ✅ nitro (GraphQL)
 
 **IAC**
-* ✅ Docker
 * ✅ Aspire
 
 **Data**
@@ -38,34 +25,18 @@
 
 ### Create new project
 ```console
-dotnet new mcsp_service -n Acme
+dotnet new mcsp_baas -n Acme
 ```
 
 ### Template options
 
-* -D, --Docker
-    * Whether to include docker compose or not.
+* -H, --Hasura 
+    * Whether to include aspire (include authentication using keycloak IAM) or not.
     * Type : bool
     * Default : false
 
-* -A, --Aspire
-    * Whether to include aspire or not.
+* -D, --Dab 
+    * Whether to include aspire (include authentication using keycloak IAM) or not.
     * Type : bool
     * Default : false
-
-* --Grpc
-    * Whether to include Grpc API protocol proxy or not.
-    * Type : bool
-    * Default : false
-
-* --Graphql
-    * Whether to include GraphQL API protocol or not.
-    * Type : bool
-    * Default : false
-
-* --Rest
-    * Whether to include Rest API protocol or not.
-    * Type : bool
-    * Default : false
-
 

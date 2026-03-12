@@ -8,14 +8,25 @@
     "Boilerplate"
   ],
   "identity": "Microscope.Boilerplate.Desktop",
-  "name": "Microscope boilerplate desktop",
+  "name": "Microscope boilerplate Desktop",
   "shortName": "mcsp_desktop",
   "sourceName": "Microscope.Boilerplate",
   "symbols": {},
-
   "sources": [
     {
-      "modifiers": []
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            ".template.config/**/*",
+            "**/*.filelist",
+            "**/*.user",
+            "**/*.lock.json",
+            ".idea/**/*"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -5,25 +5,18 @@
   "classifications": [
     "Scheduler",
     "TickerQ",
-    "Postgres",
+    "Postgres"
   ],
   
   "identity": "Microscope.Boilerplate.Scheduler",
-  "name": "Microscope boilerplate scheduler",
+  "name": "Microscope boilerplate Scheduler",
   "shortName": "mcsp_scheduler",
   "sourceName": "Microscope.Boilerplate",
 
   "symbols": {
-    "Docker": {
-      "type": "parameter",
-      "description": "Add Docker support",
-      "datatype": "bool",
-      "defaultValue": false
-    },
-
     "Aspire": {
       "type": "parameter",
-      "description": "Add Aspire support",
+      "description": "Add Aspire support (provide authentication using keycloak)",
       "datatype": "bool",
       "defaultValue": false
     }
@@ -45,23 +38,14 @@
         },
         
         {
-          "condition": "(!Docker)",
-          "exclude": [
-            "src/IAC/Docker/docker-compose.yml",
-          ]
-        },
-        {
           "condition": "(!Aspire)",
           "exclude": [
             "IAC/Aspire/**",
+            "**/Extensions/AuthenticationExtensions.cs",
+            "**/Extensions/CookieOidcRefresher.cs",
+            "**/Extensions/CookieOidcRefresherExtensions.cs",
+            "**/Endpoints/**",
             "Microscope.Boilerplate.ServiceDefaults/**"
-          ]
-        },
-
-        {
-          "condition": "(!Docker && !Aspire)",
-          "exclude": [
-            "IAC/Docker/**"
           ]
         }
       ]

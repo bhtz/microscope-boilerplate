@@ -1,9 +1,8 @@
-using Microscope.Boilerplate.Clients.BFF.Providers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
-namespace Microscope.Boilerplate.Clients.BFF.Extensions;
+namespace Microscope.Boilerplate.Scheduler.Extensions;
 
 public static class CookieOidcRefresherExtensions
 {

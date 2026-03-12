@@ -7,7 +7,7 @@ using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Microscope.Boilerplate.Clients.BFF.Extensions;
+namespace Microscope.Boilerplate.Clients.Doc.Extensions;
 
 public static class AuthenticationExtensions
 {

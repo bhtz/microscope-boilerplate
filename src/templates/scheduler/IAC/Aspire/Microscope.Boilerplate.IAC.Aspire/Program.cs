@@ -2,19 +2,19 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 #region Database
 
-var postgres = builder.AddContainer("postgres", "postgres:15")
+var postgres = builder.AddContainer("postgres", "postgres:18")
     .WithEnvironment("POSTGRES_USER", "postgres")
     .WithEnvironment("POSTGRES_PASSWORD", "root")
     .WithEnvironment("POSTGRES_DB", "postgres")
-    .WithVolume("microscope_boilerplate_scheduler_data", "/var/lib/postgresql/data")
-    .WithBindMount("../../Docker/Postgres/init.sql", "/docker-entrypoint-initdb.d/init.sql")
+    .WithVolume("microscope_boilerplate_scheduler_data", "/var/lib/postgresql")
+    .WithBindMount("./Postgres/init.sql", "/docker-entrypoint-initdb.d/init.sql")
     .WithEndpoint(5432, 5432);
 
 #endregion
 
 #region Identity & Access Management
 
-var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "22.0")
+var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "26.5.4")
     .WithEnvironment(context =>
     {
         context.EnvironmentVariables.Add("KEYCLOAK_ADMIN", "admin");
@@ -25,12 +25,21 @@ var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "22
         context.EnvironmentVariables.Add("KC_DB_USERNAME", "postgres");
         context.EnvironmentVariables.Add("KC_DB_PASSWORD", "root");
         context.EnvironmentVariables.Add("KC_HTTP_ENABLED", "true");
+        context.EnvironmentVariables.Add("KC_HTTPS_CERTIFICATE_FILE", "/opt/keycloak/conf/keycloak.crt");
+        context.EnvironmentVariables.Add("KC_HTTPS_CERTIFICATE_KEY_FILE", "/opt/keycloak/conf/keycloak.key");
         context.EnvironmentVariables.Add("KC_HOSTNAME_STRICT", "false");
         context.EnvironmentVariables.Add("KC_LOG_LEVEL", "INFO");
+        context.EnvironmentVariables.Add("KC_HTTPS_PORT", "8443");
+        context.EnvironmentVariables.Add("QUARKUS_HTTP_HTTP2", "false");
+        context.EnvironmentVariables.Add("QUARKUS_HTTP_LIMITS_MAX_HEADER_SIZE", "200K");
     })
-    .WithEndpoint(8083, 8080)
-    .WithBindMount("../../Docker/Keycloak/realm-export.json", "/opt/keycloak/data/import/realm-export.json")
-    .WithBindMount("../../Docker/Keycloak/Themes/microscope/","/opt/keycloak/themes/microscope")
+    .WithHttpEndpoint(8083, 8080)
+    .WithHttpsEndpoint(8443, 8443)
+    .WithExternalHttpEndpoints()
+    .WithBindMount("./Keycloak/realm-export.json", "/opt/keycloak/data/import/realm-export.json")
+    .WithBindMount("./Keycloak/Themes/microscope/", "/opt/keycloak/themes/microscope")
+    .WithBindMount("./Keycloak/Certs/keycloak.crt", "/opt/keycloak/conf/keycloak.crt")
+    .WithBindMount("./Keycloak/Certs/keycloak.key", "/opt/keycloak/conf/keycloak.key")
     .WithArgs(new[]
     {
         "start-dev",
@@ -40,12 +49,10 @@ var keycloak = builder.AddContainer("keycloak", "quay.io/keycloak/keycloak", "22
 
 #endregion
 
-#region Services
+#region Clients
 
-var scheduler = builder
-    .AddProject<Projects.Microscope_Boilerplate_Scheduler>("scheduler")
+var scheduler = builder.AddProject<Projects.Microscope_Boilerplate_Scheduler>("scheduler")
     .WithExternalHttpEndpoints()
-    .WaitFor(postgres)
     .WaitFor(keycloak);
 
 #endregion

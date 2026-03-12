@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <ContainerRepository>microscope-management/bff</ContainerRepository>
+        <ContainerRepository>boilerplate/bff</ContainerRepository>
         <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
-
     
+    <!-- just a marker to remove UI selector at template generation or support both UI -->
     <!--#if (Material && Fluent) -->
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <!--        <UI>Fluent</UI>-->
+    <PropertyGroup>
+    <!--<UI>Fluent</UI>-->
         <UI>Material</UI>
         <DefineConstants Condition="'$(UI)'=='Fluent'">TRACE;Aspire;Yarp;Gateway;Fluent</DefineConstants>
         <DefineConstants Condition="'$(UI)'=='Material'">TRACE;Aspire;Yarp;Gateway;Material</DefineConstants>
@@ -60,15 +60,8 @@
         <ProjectReference Include="..\Microscope.Boilerplate.Clients.Web.Blazor.Material\Microscope.Boilerplate.Clients.Web.Blazor.Material.csproj"/>
     </ItemGroup>
 
-    <!--#if (Gateway) -->
     <ItemGroup>
-        <None Update="gateway.fgp">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="gateway.Development.fgp">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+      <_ContentIncludedByDefault Remove="SubGraphs\Dab\subgraph-config.Development.json" />
+      <_ContentIncludedByDefault Remove="SubGraphs\Dab\subgraph-config.json" />
     </ItemGroup>
-    <!-- #endif -->
-
 </Project>

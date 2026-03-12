@@ -6,11 +6,17 @@
     "Modular",
     "Monolith",
     "MartenDB",
-    "Vertical slice"
+    "EfCore",
+    "Vertical slice",
+    "GraphQL",
+    "REST",
+    "gRPC",
+    "MCP",
+    "Aspire"
   ],
   
   "identity": "Microscope.Boilerplate.Service",
-  "name": "Microscope boilerplate modular monolith",
+  "name": "Microscope boilerplate Service",
   "shortName": "mcsp_service",
   "sourceName": "Microscope.Boilerplate",
 
@@ -36,9 +42,9 @@
       "defaultValue": false
     },
 
-    "Docker": {
+    "Mcp": {
       "type": "parameter",
-      "description": "Add Docker support",
+      "description": "Add Mcp protocol",
       "datatype": "bool",
       "defaultValue": false
     },
@@ -79,17 +85,19 @@
             "**/*Resolver.cs",
             "**/*GraphQL*/**",
             "**/GraphQL/**",
-            "**/GraphQLConfiguration.cs"
+            "**/GraphQLExtensions.cs"
           ]
         },
+        
         {
           "condition": "(!Rest)",
           "exclude": [
             "**/*Controller.cs",
             "**/*Endpoints.cs",
-            "**/OpenApiConfiguration.cs",
-            "**/RestConfiguration.cs",
-            "**/TodoRestConfiguration.cs"
+            "**/OpenApiExtensions.cs",
+            "**/RestExtensions.cs",
+            "**/*RestExtensions.cs",
+            "**/*RestConfiguration.cs"
           ]
         },
 
@@ -97,18 +105,21 @@
           "condition": "(!Grpc)",
           "exclude": [
             "**/Protos/**",
+            "**/GrpcExtensions.cs",
             "**/*RpcService.cs",
-            "**/*GrpcService.cs",
-            "Microscope.Boilerplate.API/Configurations/GrpcConfiguration.cs"
+            "**/*GrpcService.cs"
+          ]
+        },
+
+        {
+          "condition": "(!Mcp)",
+          "exclude": [
+            "**/*McpTool.cs",
+            "**/McpExtensions.cs",
+            "Modules/Ai/**"
           ]
         },
         
-        {
-          "condition": "(!Docker)",
-          "exclude": [
-            "src/IAC/Docker/docker-compose.yml",
-          ]
-        },
         {
           "condition": "(!Aspire)",
           "exclude": [

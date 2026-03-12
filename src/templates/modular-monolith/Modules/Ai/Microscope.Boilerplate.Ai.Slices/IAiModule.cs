@@ -1,10 +1,8 @@
+#if (GraphQL) 
 using HotChocolate;
+[assembly: Module("AiTypes")]
+#endif
 
-[assembly: Module("AdvisorTypes")]
+namespace Microscope.Boilerplate.Ai.Slices;
 
-namespace Microscope.Management.Advisor.Slices;
-
-public interface IAdvisorModule
-{
-    
-}
+public interface IAiModule;

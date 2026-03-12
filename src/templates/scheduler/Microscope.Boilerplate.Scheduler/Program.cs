@@ -1,31 +1,28 @@
-using Microscope.Boilerplate.Scheduler.Data;
-using Microsoft.EntityFrameworkCore;
-using TickerQ.Dashboard.DependencyInjection;
+using Microscope.Boilerplate.Scheduler.Extensions;
 using TickerQ.DependencyInjection;
-using TickerQ.EntityFrameworkCore.DependencyInjection;
+#if (Aspire)
+using Microscope.Boilerplate.Clients.Scheduler.Endpoints;
+#endif
 
 var builder = WebApplication.CreateBuilder(args);
 
-var cs = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new Exception("Missing connection string.");
+#if (Aspire)
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthenticationConfiguration(builder.Configuration);
+#endif
 
-builder.Services.AddDbContext<SchedulerDbContext>(options => options.UseNpgsql(cs));
-builder.Services.AddTickerQ(options =>
-{
-    options.AddOperationalStore<SchedulerDbContext>(efOpts =>
-    {
-        efOpts.UseModelCustomizerForMigrations();
-        efOpts.CancelMissedTickersOnAppStart();
-    });
-    
-    options.AddDashboard(dshOptions =>
-    {
-        dshOptions.BasePath = "/";
-        dshOptions.EnableBasicAuth = true;
-    });
-});
+builder.Services.AddSchedulerConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
+#if (Aspire)
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapAuthenticationEndpoints();
+#endif
+
 app.UseTickerQ();
+
+app.MapGet("/", () => Results.Redirect("/scheduler/dashboard"));
 
 app.Run();

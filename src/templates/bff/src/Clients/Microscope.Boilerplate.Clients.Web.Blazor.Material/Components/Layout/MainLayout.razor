@@ -1,10 +1,16 @@
-﻿@using Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.Components
+﻿@using Microscope.Boilerplate.Clients.SDK.GraphQL.Bff
 @using Microscope.Boilerplate.Clients.Web.Blazor.Material.Components.Shared
-@using Microscope.Boilerplate.Clients.Web.Blazor.Material.Settings
 @using Microscope.Boilerplate.Clients.Web.Shared.Components
+@using Microscope.Boilerplate.Clients.Web.Shared.Services
+@using Microscope.Management.Clients.Web.Blazor.Material.Settings
+@using StrawberryShake
+@inject BffClient BffClient
+@inject ISnackbar Snackbar
+@inject MaterialThemeService ThemeService
 @inherits LayoutComponentBase
+@implements IDisposable
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_currentTheme" />
+<MudThemeProvider @ref="_mudThemeProvider" ObserveSystemDarkModeChange="true" @bind-IsDarkMode="@ThemeService.IsDarkMode" Theme="@ThemeService.AppTheme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -15,13 +21,9 @@
             <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="((e) => ToggleDrawer())"/>
         </AuthorizeView>
 
-        <MudText Class="cursor-pointer" @onclick="GoToHome">microscope</MudText>
+        <MudText Class="cursor-pointer" @onclick="GoToHome">Boilerplate</MudText>
         <FeatureFlag FlagName="ShowAppVersion">
-            <UseGetAppVersion Context="result">
-                <MudText Class="ml-2" >
-                    @result.AppVersion
-                </MudText>
-            </UseGetAppVersion>
+            <MudText Class="ml-2">@_appVersion</MudText>
         </FeatureFlag>
         
         <FeatureFlag FlagName="ShowInteractiveRenderMode">
@@ -32,11 +34,19 @@
         </FeatureFlag>
         <MudSpacer/>
         <FeatureFlag FlagName="DarkModeAvailable">
-            <ThemeSelector OnThemeChanged="OnThemeChanged"></ThemeSelector>
+            <ThemeSelector />
+            
             @{
-                var icon = _isDarkMode ? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode;
+                var icon = ThemeService.IsDarkMode ? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode;
+                var systemColor = ThemeService.LuminanceMode == LuminanceMode.System ? Color.Primary : Color.Inherit;
+                var lightColor = ThemeService.LuminanceMode == LuminanceMode.Light ? Color.Primary : Color.Inherit;
+                var darkColor = ThemeService.LuminanceMode == LuminanceMode.Dark ? Color.Primary : Color.Inherit;
             }
-            <MudIconButton Icon="@icon" Color="Color.Inherit" OnClick="ToggleTheme"/>
+            <MudMenu Icon="@icon" Color="Color.Inherit">
+                <MudMenuItem OnClick="() => SetLuminanceMode(LuminanceMode.System)" Label="System" Icon="@Icons.Material.Filled.Lightbulb" IconColor="@systemColor" />
+                <MudMenuItem OnClick="() => SetLuminanceMode(LuminanceMode.Light)" Label="Light" Icon="@Icons.Material.Filled.LightMode" IconColor="@lightColor" />
+                <MudMenuItem OnClick="() => SetLuminanceMode(LuminanceMode.Dark)" Label="Dark" Icon="@Icons.Material.Filled.DarkMode" IconColor="@darkColor" />
+            </MudMenu>
         </FeatureFlag>
         <FeatureFlag FlagName="ShowLanguageSelector">
             <LanguageSelector/>
@@ -50,45 +60,72 @@
         </MudDrawer>
     </AuthorizeView>
     
-    <MudMainContent Class="">
+    <MudMainContent>
         @Body
     </MudMainContent>
 </MudLayout>
 
 @code {
-    private bool _isDarkMode = false;
-    MudTheme _currentTheme = Theme.MicroscopeTheme;
-    private bool DrawerOpen { get; set; } = false;
+    private string _appVersion = string.Empty;
+    private MudThemeProvider? _mudThemeProvider;
+    private bool DrawerOpen { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ThemeService.InitializeAsync(); // pre-rendering
+        ThemeService.OnChange += StateHasChanged;
+        
+        var result = await BffClient.GetAppVersion.ExecuteAsync();
+        if (result.IsSuccessResult())
+        {
+            _appVersion = result.Data?.AppVersion ?? string.Empty;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ThemeService.InitializeAsync();
+            if (ThemeService.LuminanceMode == LuminanceMode.System)
+            {
+                var systemDarkMode = await _mudThemeProvider?.GetSystemDarkModeAsync()!;
+                ThemeService.SetDarkMode(systemDarkMode);
+            }
+            
+            StateHasChanged();
+        }
+    }
 
     public void ToggleDrawer()
     {
         DrawerOpen = !DrawerOpen;
     }
-    
-    private async Task OnThemeChanged(string theme)
-    {
-        _currentTheme = theme switch
-        {
-            "microscope" => Theme.MicroscopeTheme,
-            "skyline" => Theme.SkylineTheme,
-            "mud" => Theme.MudTheme,
-            _ => Theme.MicroscopeTheme
-        };
 
-        // var result = await BffClient.SetTheme.ExecuteAsync(theme);
-        // if (result.IsSuccessResult())
-        // {
-        //     Snackbar.Add("cookie theme set", Severity.Info);
-        // }
-    }
-    
-    private void ToggleTheme()
+    private async Task SetLuminanceMode(LuminanceMode mode)
     {
-        _isDarkMode = !_isDarkMode;
+        await ThemeService.SetLuminance(mode);
+        
+        if (ThemeService.LuminanceMode == LuminanceMode.System)
+        {
+            var systemDarkMode = await _mudThemeProvider?.GetSystemDarkModeAsync()!;
+            ThemeService.SetDarkMode(systemDarkMode);
+        }
+        else
+        {
+            ThemeService.ApplyLuminance();
+        }
+
+        StateHasChanged();
     }
     
     private void GoToHome()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    public void Dispose()
+    {
+        ThemeService.OnChange -= StateHasChanged;
     }
 }

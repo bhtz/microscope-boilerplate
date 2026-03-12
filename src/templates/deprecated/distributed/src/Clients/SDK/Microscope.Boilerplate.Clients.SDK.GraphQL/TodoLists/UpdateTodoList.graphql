@@ -1,6 +1,0 @@
-mutation UpdateTodoList ($todoListId: UUID!, $name: String!){
-    updateTodoList(command: {
-        name : $name,
-        todoListId: $todoListId
-    })
-}

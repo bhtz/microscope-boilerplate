@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="Cocona" Version="2.2.0" />
+    <PackageVersion Include="GitHub.Copilot.SDK" Version="0.1.29" />
+    <PackageVersion Include="Spectre.Console" Version="0.54.0" />
+  </ItemGroup>
+</Project>

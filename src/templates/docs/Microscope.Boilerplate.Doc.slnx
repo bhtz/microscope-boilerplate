@@ -1,0 +1,6 @@
+<Solution>
+  <!--#if (Aspire) -->
+  <Project Path="IAC/Aspire/Microscope.Boilerplate.IAC.Aspire/Microscope.Boilerplate.IAC.Aspire.csproj" />
+  <!-- #endif -->
+  <Project Path="Microscope.Boilerplate.Doc/Microscope.Boilerplate.Doc.csproj" />
+</Solution>

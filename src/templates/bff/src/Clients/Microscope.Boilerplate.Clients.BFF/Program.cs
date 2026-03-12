@@ -3,6 +3,7 @@ using Microscope.Boilerplate.BFF.Extensions.Http;
 using Microscope.Boilerplate.Clients.BFF.Extensions;
 using Microscope.Boilerplate.Clients.BFF.Endpoints;
 using Microscope.Boilerplate.Clients.BFF.Components.Pages;
+using Microscope.Boilerplate.Clients.Web.Shared.Services;
 
 #if (Material)
 using Microscope.Boilerplate.Clients.Web.Blazor.Material.Extensions;
@@ -81,6 +82,8 @@ builder.Services.AddBffClient().ConfigureHttpClient(
     clientBuilder => clientBuilder.AddHttpMessageHandler<ServerAuthenticationHeaderHandler>());
 
 builder.Services.AddLocalizationConfiguration(builder.Configuration);
+
+builder.Services.AddScoped<IPreferenceService, ServerPreferenceService>();
 
 #endregion
 

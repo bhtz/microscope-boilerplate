@@ -1,16 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <ContainerRepository>boilerplate/docs</ContainerRepository>
     <ContainerImageTag>latest</ContainerImageTag>
+    <CompressionEnabled>false</CompressionEnabled>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DefineConstants>Aspire</DefineConstants>
+  </PropertyGroup>
+
+  <!--#if (Aspire) -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect"  />
+    <PackageReference Include="Microsoft.Identity.Web" />
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+  <!-- #endif -->
+  
   <ItemGroup>
     <Folder Include="resources\Assets\Images\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
+
+  <Target Name="NpmRestore" BeforeTargets="Restore">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+  </Target>
+
+  <Target Name="BuildDocs" BeforeTargets="Build;Publish">
+    <Exec Command="npm run doc:build" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 
 </Project>

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v1.3.19/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "postgresql",
+    "connection-string": "Host=host.docker.internal;Port=5432;Database=mcsp_app;User ID=postgres;Password=root;",
+    "options": {}
+  },
+  "runtime": {
+    "rest": {
+      "enabled": true,
+      "path": "/api",
+      "request-body-strict": true
+    },
+    "graphql": {
+      "enabled": true,
+      "path": "/graphql",
+      "allow-introspection": true
+    },
+    "host": {
+      "cors": {
+        "origins": [],
+        "allow-credentials": false
+      },
+//       "authentication": {
+//         "provider": "AzureAD", //"Custom" or "AzureAD" or "EntraID" if using Azure AD, or "StaticWebApps" if using Azure Static Web Apps authentication
+//         "jwt": {
+//           "audience": "boilerplate-dab",
+//           "issuer": "https://keycloak:8443/realms/microscope/" // require https with EntraID, DAB issue
+//         }
+//       },
+      "authentication": {
+        "provider": "StaticWebApps"
+      },
+      "mode": "development"
+    }
+  },
+  "entities": {
+    "Leads": {
+      "source": {
+        "object": "public.leads",
+        "type": "table"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "Lead",
+          "plural": "Leads"
+        }
+      },
+      "rest": {
+        "enabled": true,
+        "path": "leads"
+      },
+      "permissions": [
+        {
+          "role": "authenticated", // "anonymous" or "authenticated" or "user" or another specific Keycloak role
+          "actions": ["*"]
+        }
+      ]
+    }
+  }
+}

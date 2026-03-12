@@ -5,6 +5,7 @@
         <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
         <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
         <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+        <IsPublishable>false</IsPublishable>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

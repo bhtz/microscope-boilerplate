@@ -1,16 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ContainerRepository>boilerplate/docs</ContainerRepository>
+    <ContainerRepository>boilerplate/documentation</ContainerRepository>
     <ContainerImageTag>latest</ContainerImageTag>
+    <CompressionEnabled>false</CompressionEnabled>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="resources\Assets\Images\" />
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
+  <Target Name="NpmRestore" BeforeTargets="Restore">
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)"/>
+  </Target>
+  <Target Name="BuildDocs" BeforeTargets="Build;Publish">
+    <Exec Command="npm run doc:build" WorkingDirectory="$(ProjectDir)"/>
+  </Target>
 
+  <ItemGroup>
+    <Folder Include="resources\Assets\Images\"/>
+    <Folder Include="wwwroot\"/>
+  </ItemGroup>
 </Project>

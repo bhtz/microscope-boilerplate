@@ -1,6 +1,0 @@
-mutation ToggleTodoItem($id: UUID!, $todoListId: UUID!) {
-    toggleTodoItem(command: {
-        todoItemId: $id,
-        todoListId: $todoListId
-    })
-}
