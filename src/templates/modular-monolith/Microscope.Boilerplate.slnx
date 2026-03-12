@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/Framework/">
+    <Project Path="Framework/Microscope.Boilerplate.Framework.Application/Microscope.Boilerplate.Framework.Application.csproj" />
+    <Project Path="Framework/Microscope.Boilerplate.Framework.Domain/Microscope.Boilerplate.Framework.Domain.csproj" />
+    <Project Path="Framework/Microscope.Boilerplate.Framework.Infrastructure/Microscope.Boilerplate.Framework.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/IAC/" />
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Todo/">
+    <Project Path="Modules/Todo/Microscope.Boilerplate.Todo.Domain/Microscope.Boilerplate.Todo.Domain.csproj" />
+    <Project Path="Modules/Todo/Microscope.Boilerplate.Todo.Infrastructure/Microscope.Boilerplate.Todo.Infrastructure.csproj" />
+    <Project Path="Modules/Todo/Microscope.Boilerplate.Todo.Slices/Microscope.Boilerplate.Todo.Slices.csproj" />
+  </Folder>
+  <Project Path="IAC/Aspire/Microscope.Boilerplate.IAC.Aspire/Microscope.Boilerplate.IAC.Aspire.csproj" />
+  <Project Path="Microscope.Boilerplate.API/Microscope.Boilerplate.API.csproj" />
+  <Project Path="Microscope.Boilerplate.ServiceDefaults/Microscope.Boilerplate.ServiceDefaults.csproj" />
+  <Project Path="Modules/Todo/Microscope.Boilerplate.Todo.Domain.Tests.Unit/Microscope.Boilerplate.Todo.Domain.Tests.Unit.csproj" />
+</Solution>

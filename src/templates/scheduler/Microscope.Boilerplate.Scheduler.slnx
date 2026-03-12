@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Aspire/" />
+  <Folder Name="/IAC/" />
+  <Project Path="IAC/Aspire/Microscope.Boilerplate.IAC.Aspire/Microscope.Boilerplate.IAC.Aspire.csproj" />
+  <Project Path="Microscope.Boilerplate.Scheduler/Microscope.Boilerplate.Scheduler.csproj" />
+</Solution>

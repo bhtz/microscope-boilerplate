@@ -1,6 +1,0 @@
-{
-  "subgraph": "Dab",
-  "http": {
-    "baseAddress": "http://localhost:4700/graphql/"
-  }
-}

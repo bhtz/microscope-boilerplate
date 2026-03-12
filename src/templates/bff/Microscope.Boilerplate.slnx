@@ -1,0 +1,19 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.BFF/Microscope.Boilerplate.Clients.BFF.csproj" Type="f698e3fa-6164-43bb-bc88-e1081370fc31">
+    <Platform Project="AnyCPU" />
+  </Project>
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Bff/Microscope.Boilerplate.Clients.SDK.GraphQL.Bff.csproj" />
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway/Microscope.Boilerplate.Clients.SDK.GraphQL.Gateway.csproj" />
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Fluent/Microscope.Boilerplate.Clients.Web.Blazor.Fluent.csproj" />
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Blazor.Material/Microscope.Boilerplate.Clients.Web.Blazor.Material.csproj" Type="f698e3fa-6164-43bb-bc88-e1081370fc31">
+    <Platform Project="AnyCPU" />
+  </Project>
+  <Project Path="src/Clients/Microscope.Boilerplate.Clients.Web.Shared/Microscope.Boilerplate.Clients.Web.Shared.csproj" />
+  <Project Path="src/CrossCutting/Microscope.Boilerplate.ServiceDefaults/Microscope.Boilerplate.ServiceDefaults.csproj" />
+  <Project Path="src/IAC/Aspire/Microscope.Boilerplate.IAC.Aspire/Microscope.Boilerplate.IAC.Aspire.csproj" />
+</Solution>
